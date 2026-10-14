@@ -1,0 +1,748 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "STM32F103C8T6 题库设计 v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "revision",
+    "chapterId",
+    "knowledgePointIds",
+    "type",
+    "level",
+    "difficulty",
+    "stem",
+    "payload",
+    "answer",
+    "explanations",
+    "functionIds",
+    "sources",
+    "verification",
+    "publicationStatus"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^q\\.[a-z0-9][a-z0-9.-]{2,95}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "chapterId": {
+      "$ref": "#/$defs/chapterId"
+    },
+    "knowledgePointIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/kpId"
+      }
+    },
+    "type": {
+      "enum": [
+        "single_choice",
+        "multiple_choice",
+        "true_false",
+        "flashcard",
+        "function_match",
+        "call_order",
+        "code_reading",
+        "troubleshooting"
+      ]
+    },
+    "level": {
+      "enum": [
+        "memory",
+        "understanding",
+        "application"
+      ]
+    },
+    "difficulty": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "stem": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12000
+    },
+    "payload": {
+      "type": "object"
+    },
+    "answer": {
+      "type": "object"
+    },
+    "explanations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "incorrect": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        }
+      }
+    },
+    "functionIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^fn\\.[a-z][a-z0-9]*\\.[a-z0-9-]+$"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "publicationStatus": {
+      "enum": [
+        "design_example",
+        "draft",
+        "published",
+        "retired"
+      ]
+    }
+  },
+  "$defs": {
+    "chapterId": {
+      "type": "string",
+      "pattern": "^ch\\.[a-z][a-z0-9-]*$"
+    },
+    "kpId": {
+      "type": "string",
+      "pattern": "^kp\\.[a-z][a-z0-9-]*\\.[a-z0-9-]+$"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "source_checked",
+        "official_checked",
+        "conflict"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "url",
+        "section",
+        "chip",
+        "status"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 3000
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chip": {
+          "const": "STM32F103C8T6"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "blobSha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answer",
+        "reasoning",
+        "chipApplicability",
+        "code",
+        "reviewedOn",
+        "notes"
+      ],
+      "properties": {
+        "answer": {
+          "$ref": "#/$defs/status"
+        },
+        "reasoning": {
+          "$ref": "#/$defs/status"
+        },
+        "chipApplicability": {
+          "$ref": "#/$defs/status"
+        },
+        "code": {
+          "enum": [
+            "not_applicable",
+            "pending",
+            "source_checked",
+            "compiled",
+            "on_device"
+          ]
+        },
+        "reviewedOn": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 8000
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        }
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/option"
+      }
+    },
+    "choicesPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "options"
+      ],
+      "properties": {
+        "options": {
+          "$ref": "#/$defs/options"
+        }
+      }
+    },
+    "singleAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "optionId"
+      ],
+      "properties": {
+        "optionId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "multiAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "optionIds"
+      ],
+      "properties": {
+        "optionIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "boolPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "maxProperties": 0
+    },
+    "boolAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "boolean"
+        }
+      }
+    },
+    "cardPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "front",
+        "back"
+      ],
+      "properties": {
+        "front": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "back": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        }
+      }
+    },
+    "cardAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expectedRecall",
+        "grading"
+      ],
+      "properties": {
+        "expectedRecall": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grading": {
+          "const": "self_rated"
+        }
+      }
+    },
+    "matchPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "left",
+        "right"
+      ],
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/options"
+        },
+        "right": {
+          "$ref": "#/$defs/options"
+        }
+      }
+    },
+    "pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "leftId",
+        "rightId"
+      ],
+      "properties": {
+        "leftId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rightId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "matchAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pairs"
+      ],
+      "properties": {
+        "pairs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/pair"
+          }
+        }
+      }
+    },
+    "orderPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "constraintsDescription"
+      ],
+      "properties": {
+        "items": {
+          "$ref": "#/$defs/options"
+        },
+        "constraintsDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        }
+      }
+    },
+    "orderAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precedenceEdges"
+      ],
+      "properties": {
+        "precedenceEdges": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "before",
+              "after"
+            ],
+            "properties": {
+              "before": {
+                "type": "string",
+                "minLength": 1
+              },
+              "after": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "codePayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "code",
+        "assumptions",
+        "options"
+      ],
+      "properties": {
+        "language": {
+          "const": "c"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        },
+        "assumptions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "options": {
+          "$ref": "#/$defs/options"
+        }
+      }
+    },
+    "faultPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "symptoms",
+        "knownConditions",
+        "options"
+      ],
+      "properties": {
+        "symptoms": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "knownConditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "options": {
+          "$ref": "#/$defs/options"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "single_choice"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/choicesPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/singleAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "multiple_choice"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/choicesPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/multiAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "true_false"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/boolPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/boolAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "flashcard"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/cardPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/cardAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "function_match"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/matchPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/matchAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "call_order"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/orderPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/orderAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "code_reading"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/codePayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/singleAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "troubleshooting"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/faultPayload"
+          },
+          "answer": {
+            "$ref": "#/$defs/singleAnswer"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "publicationStatus": {
+            "const": "published"
+          }
+        },
+        "required": [
+          "publicationStatus"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "answer": {
+                "const": "official_checked"
+              },
+              "reasoning": {
+                "const": "official_checked"
+              },
+              "chipApplicability": {
+                "const": "official_checked"
+              },
+              "code": {
+                "enum": [
+                  "not_applicable",
+                  "compiled",
+                  "on_device"
+                ]
+              }
+            }
+          },
+          "sources": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "status"
+              ],
+              "properties": {
+                "status": {
+                  "const": "official_checked"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

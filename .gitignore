@@ -1,0 +1,46 @@
+**/node_modules/
+**/dist/
+**/.npm-cache/
+**/.vite/
+**/.playwright/
+**/*.tsbuildinfo
+web-app/src/generated/
+output/
+references/
+docs/
+.codex/
+.agents/
+.env
+.env.*
+**/.env
+**/.env.*
+*.zip
+*.log
+
+# Private learning exports, at any depth. Keep knowledge/question/schema JSON trackable.
+stm32-review-study-*.json
+stm32-before-import-*.json
+stm32-import-backup-*.json
+my-study.json
+
+# Explicitly private data and backup directory names, at any depth.
+private/
+private-data/
+private-study/
+private-learning-data/
+personal-study/
+study-data/
+learning-data/
+private-backups/
+backup/
+backups/
+
+# Private keys/certificates: .pem, .key, .p12, .pfx, including mixed-case extensions.
+*.[pP][eE][mM]
+*.[kK][eE][yY]
+*.[pP]12
+*.[pP][fF][xX]
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519

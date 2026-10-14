@@ -1,0 +1,199 @@
+[
+  {
+    "id": "q.rcc.timer-clock-001",
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.timer-clock"
+    ],
+    "type": "single_choice",
+    "level": "understanding",
+    "difficulty": 2,
+    "stem": "已知 HCLK = 72 MHz，APB1 预分频为 2，TIM2 使用内部时钟。TIM2 的输入时钟是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "36 MHz"
+        },
+        {
+          "id": "b",
+          "text": "72 MHz"
+        },
+        {
+          "id": "c",
+          "text": "144 MHz"
+        },
+        {
+          "id": "d",
+          "text": "由 PSC 值决定输入时钟"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "APB1 分频为 2 时 PCLK1 为 36 MHz。时钟树规定 APB1 分频不为 1 时，TIM2/3/4 的输入时钟为 2 × PCLK1，因此 TIM2 输入为 72 MHz。",
+      "incorrect": {
+        "a": "把 PCLK1 直接当成了 TIM2 的输入时钟，漏掉定时器的倍频分支。",
+        "c": "应对 36 MHz 的 PCLK1 倍频，不能对 HCLK 再乘 2。",
+        "d": "PSC 决定输入时钟经过预分频后的计数速率，不改变该输入时钟来源。"
+      }
+    },
+    "functionIds": [
+      "fn.rcc.rcc-pclk1config",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "Figure 2，印刷页 12：APB1 分频与 TIM2/3/4 时钟分支",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked",
+        "revision": "DS5319 Rev 20（2025-07）"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-13",
+      "notes": "已读时钟树并渲染核查；仍为设计示例，未发布题库。"
+    },
+    "publicationStatus": "design_example"
+  },
+  {
+    "id": "q.gpio.setbits-register-001",
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.atomic"
+    ],
+    "type": "code_reading",
+    "level": "understanding",
+    "difficulty": 2,
+    "stem": "按此次读取的 SPL V3.5.0 仓库实现，下面调用通过哪个寄存器设置 GPIOA 的 PA0 输出锁存位？",
+    "payload": {
+      "language": "c",
+      "code": "GPIO_SetBits(GPIOA, GPIO_Pin_0);",
+      "assumptions": [
+        "GPIOA 时钟已启用，PA0 已配置为输出。",
+        "问题只考查所读取函数实现；不推断 LED 接线和实际引脚电平。"
+      ],
+      "options": [
+        {
+          "id": "a",
+          "text": "GPIOA 的 IDR"
+        },
+        {
+          "id": "b",
+          "text": "GPIOA 的 BSRR"
+        },
+        {
+          "id": "c",
+          "text": "GPIOA 的 CRL"
+        },
+        {
+          "id": "d",
+          "text": "RCC 的 APB2ENR"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "已读取的 GPIO_SetBits 实现将 GPIO_Pin 掩码写入 GPIOx->BSRR。RM0008 §9.2.5 说明 BSRR 低 16 位的置位作用。",
+      "incorrect": {
+        "a": "IDR 用于读取输入状态。",
+        "c": "CRL 用于配置低编号引脚的模式与速度。",
+        "d": "APB2ENR 用于外设时钟门控，不设置 GPIO 输出锁存位。"
+      }
+    },
+    "functionIds": [
+      "fn.gpio.gpio-setbits"
+    ],
+    "sources": [
+      {
+        "sourceId": "repo.main.gpio-source",
+        "url": "https://github.com/jjejdhhd/Learn_stm32f103/blob/031ea20f7ec553b711738e8f880d7d575a1f6502/02%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B/2-2%20%E5%BA%93%E5%87%BD%E6%95%B0%E6%96%B9%E5%BC%8F/Library/stm32f10x_gpio.c#L358",
+        "section": "GPIO_SetBits 函数体",
+        "chip": "STM32F103C8T6",
+        "status": "source_checked",
+        "commit": "031ea20f7ec553b711738e8f880d7d575a1f6502",
+        "blobSha": "93dbcd7cafb9d9ed858e678b7e25092e4a2d30f1"
+      },
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "§9.2.5，印刷页 173",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked",
+        "revision": "RM0008 Rev 21"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "official_checked",
+      "code": "source_checked",
+      "reviewedOn": "2026-10-13",
+      "notes": "实现和 BSRR 手册语义已分别读取；官方标准库包一致性、代码编译和实机尚未核验。"
+    },
+    "publicationStatus": "design_example"
+  },
+  {
+    "id": "q.i2c.address-shift-001",
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.address"
+    ],
+    "type": "flashcard",
+    "level": "memory",
+    "difficulty": 2,
+    "stem": "硬件 I²C 地址参数记忆卡（按所读取实现）",
+    "payload": {
+      "front": "裸 7 位地址为 0x50。所读取的 I2C_Send7bitAddress 应传入哪个 Address 编码？",
+      "back": "传入 0xA0，即 (uint8_t)(0x50U << 1)。方向参数控制 bit0；此编码约定与软件 I²C 封装的约定必须分开。"
+    },
+    "answer": {
+      "expectedRecall": "0xA0；函数按方向修改最低读写位，已读取实现没有帮调用者左移裸 7 位地址。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "已读取函数体直接调整 Address 的 bit0 后写入 DR，因此高 7 位应预先包含左移后的地址。",
+      "incorrect": {
+        "raw_address": "直接传 0x50 会使高 7 位成为错误的地址编码。",
+        "double_shift": "若输入已经是地址字节，再左移会重复编码。",
+        "software_alias": "SoftI2C 或教学 I2C_SendByte 的地址约定由封装定义，不能直接套用。"
+      }
+    },
+    "functionIds": [
+      "fn.i2c.i2c-send7bitaddress"
+    ],
+    "sources": [
+      {
+        "sourceId": "repo.main.i2c-source",
+        "url": "https://github.com/jjejdhhd/Learn_stm32f103/blob/031ea20f7ec553b711738e8f880d7d575a1f6502/02%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B/2-2%20%E5%BA%93%E5%87%BD%E6%95%B0%E6%96%B9%E5%BC%8F/Library/stm32f10x_i2c.c#L601",
+        "section": "I2C_Send7bitAddress 函数体",
+        "chip": "STM32F103C8T6",
+        "status": "source_checked",
+        "commit": "031ea20f7ec553b711738e8f880d7d575a1f6502",
+        "blobSha": "889672683fa9646c11ce36fbc51dbdc9f97f6b0a"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-13",
+      "notes": "官方包和完整硬件 I²C 接收/发送时序仍待核验；0x50 只作编码示例。"
+    },
+    "publicationStatus": "design_example"
+  }
+]

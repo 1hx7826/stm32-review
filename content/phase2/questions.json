@@ -1,0 +1,1876 @@
+[
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.sources"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-hseconfig",
+      "fn.rcc.rcc-waitforhsestartup",
+      "fn.rcc.rcc-pllconfig",
+      "fn.rcc.rcc-pllcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2.1–3，pp.94–97；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2.1–3，pp.94–97；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.sources.concept-201",
+    "type": "single_choice",
+    "stem": "STM32F103C8T6 的内部高速 HSI 标称频率是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "8 MHz"
+        },
+        {
+          "id": "b",
+          "text": "72 MHz"
+        },
+        {
+          "id": "c",
+          "text": "36 MHz"
+        },
+        {
+          "id": "d",
+          "text": "32.768 kHz"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "a"
+    },
+    "explanations": {
+      "correct": "HSI 是标称 8 MHz 的内部 RC；72 MHz 是系统时钟上限。HSE 和 PLL 的输出还取决于硬件及配置。",
+      "incorrect": {
+        "b": "72 MHz 不是 HSI 频率。",
+        "c": "36 MHz 是 APB1 最大允许频率，不是 HSI。",
+        "d": "32.768 kHz 常用于外部低速 LSE。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.sources"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-hseconfig",
+      "fn.rcc.rcc-waitforhsestartup",
+      "fn.rcc.rcc-pllconfig",
+      "fn.rcc.rcc-pllcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2.1–3，pp.94–97；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2.1–3，pp.94–97；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.sources.card-201",
+    "type": "flashcard",
+    "stem": "时钟从哪里来：HSI、HSE 与 PLL · 记忆卡",
+    "payload": {
+      "front": "STM32F103C8T6 的内部高速 HSI 标称频率是多少？",
+      "back": "HSI 是标称 8 MHz 的内部 RC；72 MHz 是系统时钟上限。HSE 和 PLL 的输出还取决于硬件及配置。"
+    },
+    "answer": {
+      "expectedRecall": "HSI 是标称 8 MHz 的内部 RC；72 MHz 是系统时钟上限。HSE 和 PLL 的输出还取决于硬件及配置。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "HSI 是标称 8 MHz 的内部 RC；72 MHz 是系统时钟上限。HSE 和 PLL 的输出还取决于硬件及配置。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.buses"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-hclkconfig",
+      "fn.rcc.rcc-pclk1config",
+      "fn.rcc.rcc-pclk2config",
+      "fn.rcc.rcc-getclocksfreq"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2，pp.92–94；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2，pp.92–94；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.buses.concept-201",
+    "type": "single_choice",
+    "stem": "STM32F103C8T6 的 APB1 允许的最高频率是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "72 MHz"
+        },
+        {
+          "id": "b",
+          "text": "36 MHz"
+        },
+        {
+          "id": "c",
+          "text": "144 MHz"
+        },
+        {
+          "id": "d",
+          "text": "与 HCLK 总相同"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "官方时钟树将 APB1 最大频率限制为 36 MHz。HCLK 为 72 MHz 时，APB1 至少需要合适的分频。",
+      "incorrect": {
+        "a": "72 MHz 是 HCLK/APB2 的上限，不能直接套给 APB1。",
+        "c": "144 MHz 超出本芯片这些总线的频率约束。",
+        "d": "APB1 有独立预分频，并不恒等于 HCLK。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.buses"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-hclkconfig",
+      "fn.rcc.rcc-pclk1config",
+      "fn.rcc.rcc-pclk2config",
+      "fn.rcc.rcc-getclocksfreq"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2，pp.92–94；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2，pp.92–94；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.buses.card-201",
+    "type": "flashcard",
+    "stem": "沿着时钟树看 SYSCLK、HCLK 与 PCLK · 记忆卡",
+    "payload": {
+      "front": "STM32F103C8T6 的 APB1 允许的最高频率是多少？",
+      "back": "官方时钟树将 APB1 最大频率限制为 36 MHz。HCLK 为 72 MHz 时，APB1 至少需要合适的分频。"
+    },
+    "answer": {
+      "expectedRecall": "官方时钟树将 APB1 最大频率限制为 36 MHz。HCLK 为 72 MHz 时，APB1 至少需要合适的分频。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "官方时钟树将 APB1 最大频率限制为 36 MHz。HCLK 为 72 MHz 时，APB1 至少需要合适的分频。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.timer-clock"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-pclk1config",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2，p.94；DS5319 Figure 2，p.12",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2，p.94；DS5319 Figure 2，p.12",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.timer-clock.concept-201",
+    "type": "single_choice",
+    "stem": "HCLK=72 MHz，APB1 预分频=2，TIM2 使用内部时钟。TIM2 输入时钟是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "36 MHz"
+        },
+        {
+          "id": "b",
+          "text": "72 MHz"
+        },
+        {
+          "id": "c",
+          "text": "144 MHz"
+        },
+        {
+          "id": "d",
+          "text": "由 ARR 决定"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "PCLK1=36 MHz；APB1 分频不为 1，定时器分支为 2×PCLK1，因此 fTIM2=72 MHz。",
+      "incorrect": {
+        "a": "漏掉了定时器分支的倍频。",
+        "c": "倍频作用于 PCLK1，而非再对 HCLK 倍频。",
+        "d": "ARR 决定计数周期，不决定定时器输入时钟。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.timer-clock"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-pclk1config",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.2，p.94；DS5319 Figure 2，p.12",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §7.2，p.94；DS5319 Figure 2，p.12",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.timer-clock.card-201",
+    "type": "flashcard",
+    "stem": "为什么 PCLK1 是 36 MHz，TIM2 却是 72 MHz · 记忆卡",
+    "payload": {
+      "front": "HCLK=72 MHz，APB1 预分频=2，TIM2 使用内部时钟。TIM2 输入时钟是多少？",
+      "back": "PCLK1=36 MHz；APB1 分频不为 1，定时器分支为 2×PCLK1，因此 fTIM2=72 MHz。"
+    },
+    "answer": {
+      "expectedRecall": "PCLK1=36 MHz；APB1 分频不为 1，定时器分支为 2×PCLK1，因此 fTIM2=72 MHz。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "PCLK1=36 MHz；APB1 分频不为 1，定时器分支为 2×PCLK1，因此 fTIM2=72 MHz。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.gates"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-ahbperiphclockcmd",
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.3.6–8，pp.111–117",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.gates.concept-201",
+    "type": "single_choice",
+    "stem": "DMA1 所属的时钟总线是？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "APB2"
+        },
+        {
+          "id": "b",
+          "text": "APB1"
+        },
+        {
+          "id": "c",
+          "text": "AHB"
+        },
+        {
+          "id": "d",
+          "text": "GPIO"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "c"
+    },
+    "explanations": {
+      "correct": "DMA1 使用 AHB 时钟，由 RCC_AHBENR 对应位控制。外设发出 DMA 请求仍需其自身配置。",
+      "incorrect": {
+        "a": "APB2 包含 GPIO、USART1 等，不是 DMA1。",
+        "b": "APB1 包含 I2C1/2 等，不是 DMA1。",
+        "d": "GPIO 不是 DMA 控制器的总线域。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.rcc",
+    "knowledgePointIds": [
+      "kp.rcc.gates"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-ahbperiphclockcmd",
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §7.3.6–8，pp.111–117",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.rcc.gates.card-201",
+    "type": "flashcard",
+    "stem": "开启外设时钟，是初始化的第一道门 · 记忆卡",
+    "payload": {
+      "front": "DMA1 所属的时钟总线是？",
+      "back": "DMA1 使用 AHB 时钟，由 RCC_AHBENR 对应位控制。外设发出 DMA 请求仍需其自身配置。"
+    },
+    "answer": {
+      "expectedRecall": "DMA1 使用 AHB 时钟，由 RCC_AHBENR 对应位控制。外设发出 DMA 请求仍需其自身配置。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "DMA1 使用 AHB 时钟，由 RCC_AHBENR 对应位控制。外设发出 DMA 请求仍需其自身配置。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.modes"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-resetbits"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1 / Tables 20–21，pp.159–164",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.modes.concept-201",
+    "type": "single_choice",
+    "stem": "开漏输出写入 1 时，引脚输出级的行为是？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "主动强驱高电平"
+        },
+        {
+          "id": "b",
+          "text": "关闭下拉，释放引脚"
+        },
+        {
+          "id": "c",
+          "text": "主动强驱低电平"
+        },
+        {
+          "id": "d",
+          "text": "自动变成模拟输入"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "开漏的高状态是释放引脚，由上拉与总线状态决定真实电压。低状态由下拉晶体管主动拉低。",
+      "incorrect": {
+        "a": "这是推挽高电平驱动的特征。",
+        "c": "输出 0 才主动下拉。",
+        "d": "写 ODR 不会自动切换 GPIO 模式。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.modes"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-resetbits"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1 / Tables 20–21，pp.159–164",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.modes.card-201",
+    "type": "flashcard",
+    "stem": "推挽与开漏：写 1 并不总是主动输出高电平 · 记忆卡",
+    "payload": {
+      "front": "开漏输出写入 1 时，引脚输出级的行为是？",
+      "back": "开漏的高状态是释放引脚，由上拉与总线状态决定真实电压。低状态由下拉晶体管主动拉低。"
+    },
+    "answer": {
+      "expectedRecall": "开漏的高状态是释放引脚，由上拉与总线状态决定真实电压。低状态由下拉晶体管主动拉低。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "开漏的高状态是释放引脚，由上拉与总线状态决定真实电压。低状态由下拉晶体管主动拉低。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.speed"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1 / §9.2.1 / Tables 20–21，pp.161–171",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.speed.concept-201",
+    "type": "true_false",
+    "stem": "设置 GPIO_Speed_50MHz 后，GPIO 会自动输出 50 MHz 方波。",
+    "payload": {},
+    "answer": {
+      "value": false
+    },
+    "explanations": {
+      "correct": "该枚举配置输出速度等级；自动周期输出需要定时器或其他实际翻转逻辑。不能把它当作频率发生器。",
+      "incorrect": {
+        "true": "反向判断把相关硬件机制理解错了。该枚举配置输出速度等级；自动周期输出需要定时器或其他实际翻转逻辑。不能把它当作频率发生器。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.speed"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1 / §9.2.1 / Tables 20–21，pp.161–171",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.speed.card-201",
+    "type": "flashcard",
+    "stem": "GPIO_Speed 不是你程序的翻转频率 · 记忆卡",
+    "payload": {
+      "front": "设置 GPIO_Speed_50MHz 后，GPIO 会自动输出 50 MHz 方波。",
+      "back": "该枚举配置输出速度等级；自动周期输出需要定时器或其他实际翻转逻辑。不能把它当作频率发生器。"
+    },
+    "answer": {
+      "expectedRecall": "该枚举配置输出速度等级；自动周期输出需要定时器或其他实际翻转逻辑。不能把它当作频率发生器。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "该枚举配置输出速度等级；自动周期输出需要定时器或其他实际翻转逻辑。不能把它当作频率发生器。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.input"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.7 / §9.2.3，pp.163 / 172",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.input.concept-201",
+    "type": "single_choice",
+    "stem": "PA0 上拉输入，按键闭合时直接接 GND。按下时读取的输入位通常是？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "1"
+        },
+        {
+          "id": "b",
+          "text": "0"
+        },
+        {
+          "id": "c",
+          "text": "一直不变"
+        },
+        {
+          "id": "d",
+          "text": "由 GPIO_Speed 决定"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "闭合到 GND 把引脚拉低，IDR 对应位为 0。空闲时上拉建立高电平；真实电气条件仍要满足。",
+      "incorrect": {
+        "a": "上拉决定空闲状态，闭合到 GND 后应为低。",
+        "c": "按键改变电路连接，输入位会变化。",
+        "d": "GPIO_Speed 不决定按键有效电平。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.input"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.7 / §9.2.3，pp.163 / 172",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.input.card-201",
+    "type": "flashcard",
+    "stem": "读按键：从接线推导有效电平 · 记忆卡",
+    "payload": {
+      "front": "PA0 上拉输入，按键闭合时直接接 GND。按下时读取的输入位通常是？",
+      "back": "闭合到 GND 把引脚拉低，IDR 对应位为 0。空闲时上拉建立高电平；真实电气条件仍要满足。"
+    },
+    "answer": {
+      "expectedRecall": "闭合到 GND 把引脚拉低，IDR 对应位为 0。空闲时上拉建立高电平；真实电气条件仍要满足。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "闭合到 GND 把引脚拉低，IDR 对应位为 0。空闲时上拉建立高电平；真实电气条件仍要满足。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.atomic"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-writebit",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-readoutputdatabit",
+      "fn.gpio.gpio-write"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.2 / §9.2.3–6，pp.161 / 172–174",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.atomic.concept-201",
+    "type": "single_choice",
+    "stem": "向 GPIO 的 BSRR 低 16 位某一位写 1，硬件会怎样？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "清对应 ODR 位"
+        },
+        {
+          "id": "b",
+          "text": "置对应 ODR 位"
+        },
+        {
+          "id": "c",
+          "text": "改变该引脚模式"
+        },
+        {
+          "id": "d",
+          "text": "清全部端口"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "BSRR 低半部的 BS 位用于置位对应 ODR 位，高半部的 BR 位用于复位。其他位写 0 不受影响。",
+      "incorrect": {
+        "a": "复位由高 16 位 BR 位或 BRR 完成。",
+        "c": "GPIO 模式由 CRL/CRH 配置。",
+        "d": "位操作只影响指定位置，不清全部端口。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.gpio",
+    "knowledgePointIds": [
+      "kp.gpio.atomic"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-writebit",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-readoutputdatabit",
+      "fn.gpio.gpio-write"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.2 / §9.2.3–6，pp.161 / 172–174",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.gpio.atomic.card-201",
+    "type": "flashcard",
+    "stem": "IDR、ODR 与 BSRR：读状态和改位是不同动作 · 记忆卡",
+    "payload": {
+      "front": "向 GPIO 的 BSRR 低 16 位某一位写 1，硬件会怎样？",
+      "back": "BSRR 低半部的 BS 位用于置位对应 ODR 位，高半部的 BR 位用于复位。其他位写 0 不受影响。"
+    },
+    "answer": {
+      "expectedRecall": "BSRR 低半部的 BS 位用于置位对应 ODR 位，高半部的 BR 位用于复位。其他位写 0 不受影响。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "BSRR 低半部的 BS 位用于置位对应 ODR 位，高半部的 BR 位用于复位。其他位写 0 不受影响。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.frame"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-init",
+      "fn.usart.usart-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.1 / §27.3.7，pp.790 / 802",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.frame.concept-201",
+    "type": "single_choice",
+    "stem": "F103 USART 需要 8 个有效数据位并开启偶校验，硬件字长应选？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "8 位字长"
+        },
+        {
+          "id": "b",
+          "text": "9 位字长"
+        },
+        {
+          "id": "c",
+          "text": "7 位字长"
+        },
+        {
+          "id": "d",
+          "text": "与校验无关"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "校验位占所配置字长的最高一位，9 位字长加校验可保留 8 个有效数据位。",
+      "incorrect": {
+        "a": "8 位字长加校验只保留 7 个有效数据位。",
+        "c": "本题需要 8 个有效数据位加 1 个校验位。",
+        "d": "在 F103 中，校验会占据字长的一位。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.frame"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-init",
+      "fn.usart.usart-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.1 / §27.3.7，pp.790 / 802",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.frame.card-201",
+    "type": "flashcard",
+    "stem": "8E1：数据位、校验位和字长怎么对应 · 记忆卡",
+    "payload": {
+      "front": "F103 USART 需要 8 个有效数据位并开启偶校验，硬件字长应选？",
+      "back": "校验位占所配置字长的最高一位，9 位字长加校验可保留 8 个有效数据位。"
+    },
+    "answer": {
+      "expectedRecall": "校验位占所配置字长的最高一位，9 位字长加校验可保留 8 个有效数据位。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "校验位占所配置字长的最高一位，9 位字长加校验可保留 8 个有效数据位。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.pins"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.gpio.gpio-init",
+      "fn.usart.usart-init",
+      "fn.usart.usart-cmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "DS5319 Table 5，p.31；RM0008 §9.1.11 / §7.3.7 / §27.6.4",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "DS5319 Table 5，p.31；RM0008 §9.1.11 / §7.3.7 / §27.6.4",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.pins.concept-201",
+    "type": "true_false",
+    "stem": "默认映射下，STM32F103C8T6 的 USART1_TX 位于 PA9。",
+    "payload": {},
+    "answer": {
+      "value": true
+    },
+    "explanations": {
+      "correct": "DS5319 的引脚表将 PA9 的默认复用功能列为 USART1_TX，PA10 为 USART1_RX；重映射情况需另核对。",
+      "incorrect": {
+        "false": "反向判断把相关硬件机制理解错了。DS5319 的引脚表将 PA9 的默认复用功能列为 USART1_TX，PA10 为 USART1_RX；重映射情况需另核对。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.pins"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.gpio.gpio-init",
+      "fn.usart.usart-init",
+      "fn.usart.usart-cmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "DS5319 Table 5，p.31；RM0008 §9.1.11 / §7.3.7 / §27.6.4",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "DS5319 Table 5，p.31；RM0008 §9.1.11 / §7.3.7 / §27.6.4",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.pins.card-201",
+    "type": "flashcard",
+    "stem": "USART1 的时钟与 TX/RX 引脚 · 记忆卡",
+    "payload": {
+      "front": "默认映射下，STM32F103C8T6 的 USART1_TX 位于 PA9。",
+      "back": "DS5319 的引脚表将 PA9 的默认复用功能列为 USART1_TX，PA10 为 USART1_RX；重映射情况需另核对。"
+    },
+    "answer": {
+      "expectedRecall": "DS5319 的引脚表将 PA9 的默认复用功能列为 USART1_TX，PA10 为 USART1_RX；重映射情况需另核对。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "DS5319 的引脚表将 PA9 的默认复用功能列为 USART1_TX，PA10 为 USART1_RX；重映射情况需另核对。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.baud"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-getclocksfreq",
+      "fn.usart.usart-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.4，pp.798–799；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §27.3.4，pp.798–799；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.baud.concept-201",
+    "type": "single_choice",
+    "stem": "默认时钟路由下，USART1 的波特率发生器使用哪个总线时钟？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "PCLK1"
+        },
+        {
+          "id": "b",
+          "text": "PCLK2"
+        },
+        {
+          "id": "c",
+          "text": "TIM2CLK"
+        },
+        {
+          "id": "d",
+          "text": "恒定 8 MHz"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "USART1 属于 APB2，因此使用 PCLK2。USART2/3 属于 APB1，不能跨实例套用。",
+      "incorrect": {
+        "a": "PCLK1 对应 USART2/3 等 APB1 外设。",
+        "c": "USART1 不使用 TIM2 的时钟作为波特率输入。",
+        "d": "外设时钟随 RCC 配置变化，不恒为 8 MHz。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.baud"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-getclocksfreq",
+      "fn.usart.usart-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.4，pp.798–799；DS5319 Figure 2",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      },
+      {
+        "sourceId": "st.ds5319",
+        "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+        "section": "RM0008 §27.3.4，pp.798–799；DS5319 Figure 2",
+        "revision": "DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.baud.card-201",
+    "type": "flashcard",
+    "stem": "波特率用哪个时钟算 · 记忆卡",
+    "payload": {
+      "front": "默认时钟路由下，USART1 的波特率发生器使用哪个总线时钟？",
+      "back": "USART1 属于 APB2，因此使用 PCLK2。USART2/3 属于 APB1，不能跨实例套用。"
+    },
+    "answer": {
+      "expectedRecall": "USART1 属于 APB2，因此使用 PCLK2。USART2/3 属于 APB1，不能跨实例套用。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "USART1 属于 APB2，因此使用 PCLK2。USART2/3 属于 APB1，不能跨实例套用。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.flags"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-senddata",
+      "fn.usart.usart-receivedata",
+      "fn.usart.usart-getitstatus"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.2–3 / §27.6.1，pp.791–797 / 818–820",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.flags.concept-201",
+    "type": "single_choice",
+    "stem": "要确认 USART 最后一帧已经发送结束，更合适的状态位是？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "TXE"
+        },
+        {
+          "id": "b",
+          "text": "TC"
+        },
+        {
+          "id": "c",
+          "text": "RXNE"
+        },
+        {
+          "id": "d",
+          "text": "ORE"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "TC 表示帧发送完成并且 TXE 已置位；TXE 只表示发送寄存器已腾空。",
+      "incorrect": {
+        "a": "TXE 时移位寄存器可能仍在发送。",
+        "c": "RXNE 是接收数据寄存器状态。",
+        "d": "ORE 是接收溢出错误，不是发送完成。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.usart",
+    "knowledgePointIds": [
+      "kp.usart.flags"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-senddata",
+      "fn.usart.usart-receivedata",
+      "fn.usart.usart-getitstatus"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §27.3.2–3 / §27.6.1，pp.791–797 / 818–820",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.usart.flags.card-201",
+    "type": "flashcard",
+    "stem": "TXE 不等于发送完成，RXNE 不等于收到完整包 · 记忆卡",
+    "payload": {
+      "front": "要确认 USART 最后一帧已经发送结束，更合适的状态位是？",
+      "back": "TC 表示帧发送完成并且 TXE 已置位；TXE 只表示发送寄存器已腾空。"
+    },
+    "answer": {
+      "expectedRecall": "TC 表示帧发送完成并且 TXE 已置位；TXE 只表示发送寄存器已腾空。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "TC 表示帧发送完成并且 TXE 已置位；TXE 只表示发送寄存器已腾空。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.timing"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-senddata",
+      "fn.i2c.i2c-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3 / Figure 269，pp.753–754",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.timing.concept-201",
+    "type": "single_choice",
+    "stem": "I²C 中，在 SCL 为高时 SDA 从高变低表示？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "普通数据 0"
+        },
+        {
+          "id": "b",
+          "text": "START 条件"
+        },
+        {
+          "id": "c",
+          "text": "STOP 条件"
+        },
+        {
+          "id": "d",
+          "text": "ACK 已完成"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "START 是 SCL 高期间 SDA 的下降沿；STOP 是同一条件下的上升沿。普通数据在 SCL 高期间应稳定。",
+      "incorrect": {
+        "a": "普通数据阶段在 SCL 高期间应保持稳定。",
+        "c": "STOP 的 SDA 方向相反。",
+        "d": "ACK 在字节的第九个时钟上表达，不能等同于 START。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.timing"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-senddata",
+      "fn.i2c.i2c-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3 / Figure 269，pp.753–754",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.timing.card-201",
+    "type": "flashcard",
+    "stem": "I²C 的 START、STOP 与第九个时钟 · 记忆卡",
+    "payload": {
+      "front": "I²C 中，在 SCL 为高时 SDA 从高变低表示？",
+      "back": "START 是 SCL 高期间 SDA 的下降沿；STOP 是同一条件下的上升沿。普通数据在 SCL 高期间应稳定。"
+    },
+    "answer": {
+      "expectedRecall": "START 是 SCL 高期间 SDA 的下降沿；STOP 是同一条件下的上升沿。普通数据在 SCL 高期间应稳定。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "START 是 SCL 高期间 SDA 的下降沿；STOP 是同一条件下的上升沿。普通数据在 SCL 高期间应稳定。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.software"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-writebit",
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.8 / §26.3 / Figure 269，pp.163 / 753–754",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.software.concept-201",
+    "type": "true_false",
+    "stem": "软件模拟 I²C 必须调用 I2C_Cmd(I2C1, ENABLE)，GPIO 才能产生总线时序。",
+    "payload": {},
+    "answer": {
+      "value": false
+    },
+    "explanations": {
+      "correct": "软件模拟路径由普通 GPIO 和自定义程序控制线路；需要 GPIO 时钟与模式，而不是启用硬件 I2C1 状态机。",
+      "incorrect": {
+        "true": "反向判断把相关硬件机制理解错了。软件模拟路径由普通 GPIO 和自定义程序控制线路；需要 GPIO 时钟与模式，而不是启用硬件 I2C1 状态机。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.software"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-writebit",
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §9.1.8 / §26.3 / Figure 269，pp.163 / 753–754",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.software.card-201",
+    "type": "flashcard",
+    "stem": "软件 I²C：GPIO 负责线路，程序负责节拍 · 记忆卡",
+    "payload": {
+      "front": "软件模拟 I²C 必须调用 I2C_Cmd(I2C1, ENABLE)，GPIO 才能产生总线时序。",
+      "back": "软件模拟路径由普通 GPIO 和自定义程序控制线路；需要 GPIO 时钟与模式，而不是启用硬件 I2C1 状态机。"
+    },
+    "answer": {
+      "expectedRecall": "软件模拟路径由普通 GPIO 和自定义程序控制线路；需要 GPIO 时钟与模式，而不是启用硬件 I2C1 状态机。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "软件模拟路径由普通 GPIO 和自定义程序控制线路；需要 GPIO 时钟与模式，而不是启用硬件 I2C1 状态机。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.hardware"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-init",
+      "fn.i2c.i2c-cmd",
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-checkevent",
+      "fn.i2c.i2c-getflagstatus"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3.3 / §26.6，pp.757–762 / 772–782",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.hardware.concept-201",
+    "type": "true_false",
+    "stem": "硬件 I²C 的状态寄存器读取总是没有副作用，可以在任意时序点随意读 SR1/SR2。",
+    "payload": {},
+    "answer": {
+      "value": false
+    },
+    "explanations": {
+      "correct": "ADDR 等状态存在规定的读取清除序列。读 SR1 后读 SR2 会影响状态机，尤其接收边界时不能随意插入事件查询。",
+      "incorrect": {
+        "true": "反向判断把相关硬件机制理解错了。ADDR 等状态存在规定的读取清除序列。读 SR1 后读 SR2 会影响状态机，尤其接收边界时不能随意插入事件查询。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.hardware"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-init",
+      "fn.i2c.i2c-cmd",
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-checkevent",
+      "fn.i2c.i2c-getflagstatus"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3.3 / §26.6，pp.757–762 / 772–782",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.hardware.card-201",
+    "type": "flashcard",
+    "stem": "硬件 I²C：请求与事件之间有状态机 · 记忆卡",
+    "payload": {
+      "front": "硬件 I²C 的状态寄存器读取总是没有副作用，可以在任意时序点随意读 SR1/SR2。",
+      "back": "ADDR 等状态存在规定的读取清除序列。读 SR1 后读 SR2 会影响状态机，尤其接收边界时不能随意插入事件查询。"
+    },
+    "answer": {
+      "expectedRecall": "ADDR 等状态存在规定的读取清除序列。读 SR1 后读 SR2 会影响状态机，尤其接收边界时不能随意插入事件查询。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "ADDR 等状态存在规定的读取清除序列。读 SR1 后读 SR2 会影响状态机，尤其接收边界时不能随意插入事件查询。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.address"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-send7bitaddress"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3 / Figure 269 / §26.3.3，pp.754 / 758",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.address.concept-201",
+    "type": "single_choice",
+    "stem": "裸 7 位 I²C 地址为 0x50，线路上的写地址字节是？",
+    "payload": {
+      "options": [
+        {
+          "id": "a",
+          "text": "0x50"
+        },
+        {
+          "id": "b",
+          "text": "0xA0"
+        },
+        {
+          "id": "c",
+          "text": "0xA1"
+        },
+        {
+          "id": "d",
+          "text": "0x28"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanations": {
+      "correct": "地址放在 bit7..1，左移一位得到 0xA0；写方向 bit0 为 0，读方向则为 0xA1。本题考协议编码，不假设某个 API 已官方核验。",
+      "incorrect": {
+        "a": "这是裸 7 位地址，还未按字节编码。",
+        "c": "0xA1 是读方向地址字节。",
+        "d": "这里应左移而非右移。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.i2c",
+    "knowledgePointIds": [
+      "kp.i2c.address"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-send7bitaddress"
+    ],
+    "sources": [
+      {
+        "sourceId": "st.rm0008",
+        "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+        "section": "RM0008 §26.3 / Figure 269 / §26.3.3，pp.754 / 758",
+        "revision": "RM0008 Rev 21 / DS5319 Rev 20",
+        "chip": "STM32F103C8T6",
+        "status": "official_checked"
+      }
+    ],
+    "verification": {
+      "answer": "official_checked",
+      "reasoning": "official_checked",
+      "chipApplicability": "official_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-14",
+      "notes": "原创原理题；按列明的 ST 官方段落核对，答案不依赖尚未取得官方包的 API 实现。"
+    },
+    "publicationStatus": "published",
+    "id": "q.i2c.address.card-201",
+    "type": "flashcard",
+    "stem": "7 位地址与线路上的地址字节 · 记忆卡",
+    "payload": {
+      "front": "裸 7 位 I²C 地址为 0x50，线路上的写地址字节是？",
+      "back": "地址放在 bit7..1，左移一位得到 0xA0；写方向 bit0 为 0，读方向则为 0xA1。本题考协议编码，不假设某个 API 已官方核验。"
+    },
+    "answer": {
+      "expectedRecall": "地址放在 bit7..1，左移一位得到 0xA0；写方向 bit0 为 0，读方向则为 0xA1。本题考协议编码，不假设某个 API 已官方核验。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "地址放在 bit7..1，左移一位得到 0xA0；写方向 bit0 为 0，读方向则为 0xA1。本题考协议编码，不假设某个 API 已官方核验。",
+      "incorrect": {
+        "misconception": "如果只能回忆术语而不能解释因果，请选择“再学”并返回关联讲解。"
+      }
+    }
+  }
+]
