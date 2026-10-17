@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "STM32F103C8T6 题库设计 v1",
+  "title": "STM32F103C8T6 题库结构：官方核对或显式课程来源核对",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -707,41 +707,89 @@
         ]
       },
       "then": {
-        "properties": {
-          "verification": {
+        "anyOf": [
+          {
             "properties": {
-              "answer": {
-                "const": "official_checked"
+              "verification": {
+                "properties": {
+                  "answer": {
+                    "const": "official_checked"
+                  },
+                  "reasoning": {
+                    "const": "official_checked"
+                  },
+                  "chipApplicability": {
+                    "const": "official_checked"
+                  },
+                  "code": {
+                    "enum": [
+                      "not_applicable",
+                      "compiled",
+                      "on_device"
+                    ]
+                  }
+                }
               },
-              "reasoning": {
-                "const": "official_checked"
-              },
-              "chipApplicability": {
-                "const": "official_checked"
-              },
-              "code": {
-                "enum": [
-                  "not_applicable",
-                  "compiled",
-                  "on_device"
-                ]
+              "sources": {
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "const": "official_checked"
+                    }
+                  }
+                }
               }
             }
           },
-          "sources": {
-            "contains": {
-              "type": "object",
-              "required": [
-                "status"
-              ],
-              "properties": {
-                "status": {
-                  "const": "official_checked"
+          {
+            "properties": {
+              "id": {
+                "pattern": "^q\\.course[1-9][0-9]*\\.s[1-9][0-9]*\\."
+              },
+              "verification": {
+                "properties": {
+                  "answer": {
+                    "const": "source_checked"
+                  },
+                  "reasoning": {
+                    "const": "source_checked"
+                  },
+                  "chipApplicability": {
+                    "const": "source_checked"
+                  },
+                  "code": {
+                    "enum": [
+                      "not_applicable",
+                      "compiled",
+                      "on_device"
+                    ]
+                  }
+                }
+              },
+              "sources": {
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "sourceId",
+                    "status"
+                  ],
+                  "properties": {
+                    "sourceId": {
+                      "pattern": "^src\\.course\\."
+                    },
+                    "status": {
+                      "const": "source_checked"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        ]
       }
     }
   ]

@@ -1,0 +1,5942 @@
+[
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.1",
+        "url": "urn:stm32:course:1.1:pdf",
+        "section": "1.1 安装开发环境 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "2c14f56bb31ddd9f6a3d3232e14bf773de79c25131e2cb8b70cefbfc8d152d8f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s1.check-01",
+    "type": "single_choice",
+    "stem": "C 代码编译通过以后，能否据此认定目标板已经正确运行？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "不能，还要检查下载与实际运行现象"
+        },
+        {
+          "id": "misconception-1",
+          "text": "能，编译器已验证接线"
+        },
+        {
+          "id": "misconception-2",
+          "text": "能，器件包会自动测试电路"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "编译检查语言与链接关系，不检查外部电路，也不保证程序已经下载。",
+      "incorrect": {
+        "misconception-1": "编译器不能读取你的实际接线。",
+        "misconception-2": "器件包提供支持信息，不替代硬件测试。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s1"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.1",
+        "url": "urn:stm32:course:1.1:pdf",
+        "section": "1.1 安装开发环境 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "2c14f56bb31ddd9f6a3d3232e14bf773de79c25131e2cb8b70cefbfc8d152d8f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s1.card-01",
+    "type": "flashcard",
+    "stem": "开发环境中的编译、下载和运行分别在做什么？",
+    "payload": {
+      "front": "开发环境中的编译、下载和运行分别在做什么？",
+      "back": "编译把源码变成映像；下载把映像写进芯片；运行由处理器执行指令。每一步都有独立的成功判据。"
+    },
+    "answer": {
+      "expectedRecall": "编译把源码变成映像；下载把映像写进芯片；运行由处理器执行指令。每一步都有独立的成功判据。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "编译把源码变成映像；下载把映像写进芯片；运行由处理器执行指令。每一步都有独立的成功判据。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.2",
+        "url": "urn:stm32:course:1.2:pdf",
+        "section": "1.2 STM32 的基本信息 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1e691909d175dc00b46d984ec13413b667a0924298e66ae243b62bb352b7c981",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s2.check-01",
+    "type": "single_choice",
+    "stem": "准备查询某个引脚的最大允许电压和封装位置，应优先查什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "网页上的一段初始化代码"
+        },
+        {
+          "id": "misconception-2",
+          "text": "只看 GPIO_Init 的函数名"
+        },
+        {
+          "id": "core",
+          "text": "对应器件的数据手册"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "封装与电气条件是数据手册的职责；函数声明不会列出所有管脚的电气限制。",
+      "incorrect": {
+        "misconception-1": "例程无法替代电气规格。",
+        "misconception-2": "函数名不包含封装和耐压信息。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s2"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.2",
+        "url": "urn:stm32:course:1.2:pdf",
+        "section": "1.2 STM32 的基本信息 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1e691909d175dc00b46d984ec13413b667a0924298e66ae243b62bb352b7c981",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s2.card-01",
+    "type": "flashcard",
+    "stem": "数据手册、参考手册、SPL 头文件分别解决什么问题？",
+    "payload": {
+      "front": "数据手册、参考手册、SPL 头文件分别解决什么问题？",
+      "back": "数据手册：这颗芯片有什么、引脚和电气限制；参考手册：硬件怎样工作；SPL 头文件：接口名称、类型与声明。"
+    },
+    "answer": {
+      "expectedRecall": "数据手册：这颗芯片有什么、引脚和电气限制；参考手册：硬件怎样工作；SPL 头文件：接口名称、类型与声明。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "数据手册：这颗芯片有什么、引脚和电气限制；参考手册：硬件怎样工作；SPL 头文件：接口名称、类型与声明。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.3",
+        "url": "urn:stm32:course:1.3:pdf",
+        "section": "1.3 STM32 的引脚分布 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b84ca213fd0187da71e024605eb5adef7993a65136ad8a5b0e0be2ab16e24ec6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s3.check-01",
+    "type": "single_choice",
+    "stem": "PA9 中的“9”表示什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "开发板第 9 个排针"
+        },
+        {
+          "id": "core",
+          "text": "GPIOA 的第 9 位"
+        },
+        {
+          "id": "misconception-1",
+          "text": "LQFP 封装第 9 脚"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "端口位号、封装脚号和板级排针号属于不同编号系统，必须通过图纸建立对应。",
+      "incorrect": {
+        "misconception-1": "封装脚号需查询引脚表。",
+        "misconception-2": "排针号由开发板设计决定。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course1",
+    "knowledgePointIds": [
+      "kp.course1.s3"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.1.3",
+        "url": "urn:stm32:course:1.3:pdf",
+        "section": "1.3 STM32 的引脚分布 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b84ca213fd0187da71e024605eb5adef7993a65136ad8a5b0e0be2ab16e24ec6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course1.s3.card-01",
+    "type": "flashcard",
+    "stem": "为什么选择一个 USART 引脚还要检查 AFIO 和调试接口？",
+    "payload": {
+      "front": "为什么选择一个 USART 引脚还要检查 AFIO 和调试接口？",
+      "back": "外设可能映射到不同管脚，管脚还可能被 JTAG 等功能占用。必须把外设映射、GPIO 模式和实际接线同时对应。"
+    },
+    "answer": {
+      "expectedRecall": "外设可能映射到不同管脚，管脚还可能被 JTAG 等功能占用。必须把外设映射、GPIO 模式和实际接线同时对应。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "外设可能映射到不同管脚，管脚还可能被 JTAG 等功能占用。必须把外设映射、GPIO 模式和实际接线同时对应。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.1",
+        "url": "urn:stm32:course:2.1:pdf",
+        "section": "2.1 四种输出模式 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7a022ae94024d5b1e57471da209abeef01345302bc595c40d2c2410289c78d39",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s1.check-01",
+    "type": "single_choice",
+    "stem": "开漏输出写入 1，最准确的解释是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "关闭下拉驱动，释放引脚"
+        },
+        {
+          "id": "misconception-1",
+          "text": "主动把引脚强拉到 VDD"
+        },
+        {
+          "id": "misconception-2",
+          "text": "自动切换成模拟输入"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "开漏只有主动下拉能力；高电平依靠外部上拉和总线状态。",
+      "incorrect": {
+        "misconception-1": "主动拉高属于推挽输出的能力。",
+        "misconception-2": "写输出位不等于重配置模拟输入模式。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s1"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.1",
+        "url": "urn:stm32:course:2.1:pdf",
+        "section": "2.1 四种输出模式 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7a022ae94024d5b1e57471da209abeef01345302bc595c40d2c2410289c78d39",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s1.card-01",
+    "type": "flashcard",
+    "stem": "四种输出模式怎样组合出来？",
+    "payload": {
+      "front": "四种输出模式怎样组合出来？",
+      "back": "电气驱动分推挽/开漏；控制来源分通用软件/外设复用。两两组合得到四种输出模式。"
+    },
+    "answer": {
+      "expectedRecall": "电气驱动分推挽/开漏；控制来源分通用软件/外设复用。两两组合得到四种输出模式。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "电气驱动分推挽/开漏；控制来源分通用软件/外设复用。两两组合得到四种输出模式。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.2",
+        "url": "urn:stm32:course:2.2:pdf",
+        "section": "2.2 IO 的最大输出速度 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7e5c75aa064e4f3b749c4be3f50c2da61d1f83da4a4c2b8d04def27e5dba51d6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s2.check-01",
+    "type": "single_choice",
+    "stem": "GPIO_Speed_50MHz 会自动让引脚输出 50 MHz 方波吗？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "会，不再需要写引脚"
+        },
+        {
+          "id": "misconception-2",
+          "text": "只要输入模式就会"
+        },
+        {
+          "id": "core",
+          "text": "不会，它是输出驱动速度配置"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "输出频率由写操作或外设信号决定，速度字段不包含波形发生器。",
+      "incorrect": {
+        "misconception-1": "还需要程序或外设改变输出值。",
+        "misconception-2": "输入模式不负责生成输出方波。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s2"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.2",
+        "url": "urn:stm32:course:2.2:pdf",
+        "section": "2.2 IO 的最大输出速度 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7e5c75aa064e4f3b749c4be3f50c2da61d1f83da4a4c2b8d04def27e5dba51d6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s2.card-01",
+    "type": "flashcard",
+    "stem": "设置 GPIO_Speed 前先问自己哪两个问题？",
+    "payload": {
+      "front": "设置 GPIO_Speed 前先问自己哪两个问题？",
+      "back": "信号需要多快的边沿？外部负载有多大？不要把驱动速度档位当成自动翻转频率。"
+    },
+    "answer": {
+      "expectedRecall": "信号需要多快的边沿？外部负载有多大？不要把驱动速度档位当成自动翻转频率。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "信号需要多快的边沿？外部负载有多大？不要把驱动速度档位当成自动翻转频率。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.3",
+        "url": "urn:stm32:course:2.3:pdf",
+        "section": "2.3 LED 闪灯实验 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "4c9fb469ff2a2c950fb111cb231bfd6fdbd64ae1df3a7239828475c1f2e2f62e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s3.check-01",
+    "type": "single_choice",
+    "stem": "在本节 LED 经电阻接 3.3 V、阴极接 PC13 的电路中，怎样点亮？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "把 GPIO 时钟关闭"
+        },
+        {
+          "id": "core",
+          "text": "把 PC13 输出拉低"
+        },
+        {
+          "id": "misconception-1",
+          "text": "把 PC13 输出拉高"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "PC13 拉低形成电源→电阻→LED→GPIO 的电流通路；这是该接线的有效电平。",
+      "incorrect": {
+        "misconception-1": "拉高时 LED 两端不能形成所需的正向压差。",
+        "misconception-2": "关闭时钟不是控制 LED 的正常方式。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s3"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.3",
+        "url": "urn:stm32:course:2.3:pdf",
+        "section": "2.3 LED 闪灯实验 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "4c9fb469ff2a2c950fb111cb231bfd6fdbd64ae1df3a7239828475c1f2e2f62e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s3.card-01",
+    "type": "flashcard",
+    "stem": "点亮 PC13 LED 的四步顺序和原因？",
+    "payload": {
+      "front": "点亮 PC13 LED 的四步顺序和原因？",
+      "back": "核对低有效接线 → 开 GPIOC 时钟 → 配 PC13 通用输出 → 写低电平。电路决定极性，时钟让配置生效，模式决定驱动，写位决定状态。"
+    },
+    "answer": {
+      "expectedRecall": "核对低有效接线 → 开 GPIOC 时钟 → 配 PC13 通用输出 → 写低电平。电路决定极性，时钟让配置生效，模式决定驱动，写位决定状态。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "核对低有效接线 → 开 GPIOC 时钟 → 配 PC13 通用输出 → 写低电平。电路决定极性，时钟让配置生效，模式决定驱动，写位决定状态。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.4",
+        "url": "urn:stm32:course:2.4:pdf",
+        "section": "2.4 四种输入模式 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "82428adde249b44e5acc6a2b5dabddc1fcf0b692c5ea9eec299b0bae57702b47",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s4.check-01",
+    "type": "single_choice",
+    "stem": "按钮只在按下时把 PA1 接地，松开没有外部电阻，合理的输入配置是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "上拉输入，松开高、按下低"
+        },
+        {
+          "id": "misconception-1",
+          "text": "浮空输入，松开必定高"
+        },
+        {
+          "id": "misconception-2",
+          "text": "模拟输入，直接获得按钮逻辑"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "内部上拉提供松开时的默认高电平，按下通过开关接地变低。",
+      "incorrect": {
+        "misconception-1": "浮空不保证默认高电平。",
+        "misconception-2": "模拟输入不用于普通 GPIO 数字读按钮。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s4"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.4",
+        "url": "urn:stm32:course:2.4:pdf",
+        "section": "2.4 四种输入模式 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "82428adde249b44e5acc6a2b5dabddc1fcf0b692c5ea9eec299b0bae57702b47",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s4.card-01",
+    "type": "flashcard",
+    "stem": "GPIO_ReadInputDataBit 与 GPIO_WriteBit 的对象有什么区别？",
+    "payload": {
+      "front": "GPIO_ReadInputDataBit 与 GPIO_WriteBit 的对象有什么区别？",
+      "back": "ReadInputDataBit 读 IDR 中反映引脚输入的值；WriteBit 控制输出状态。输入模式和实际电路决定读值。"
+    },
+    "answer": {
+      "expectedRecall": "ReadInputDataBit 读 IDR 中反映引脚输入的值；WriteBit 控制输出状态。输入模式和实际电路决定读值。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "ReadInputDataBit 读 IDR 中反映引脚输入的值；WriteBit 控制输出状态。输入模式和实际电路决定读值。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.5",
+        "url": "urn:stm32:course:2.5:pdf",
+        "section": "2.5 按钮实验 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "985727e26e1eb8f9dc342addccd6aaf81440c29d351914a35840ea2ca0eb3279",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s5.check-01",
+    "type": "single_choice",
+    "stem": "循环中只要读到按钮按下就翻转 LED，会出现什么风险？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "自动保证一次按下只翻转一次"
+        },
+        {
+          "id": "misconception-2",
+          "text": "GPIO 函数会自动过滤机械抖动"
+        },
+        {
+          "id": "core",
+          "text": "按住期间重复翻转，需要消抖和事件检测"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "GPIO 读函数只返回当前电平，不负责把许多采样整理成一次按键事件。",
+      "incorrect": {
+        "misconception-1": "循环会重复执行条件分支。",
+        "misconception-2": "消抖需要电路或软件策略，读函数没有自动实现。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course2",
+    "knowledgePointIds": [
+      "kp.course2.s5"
+    ],
+    "level": "memory",
+    "difficulty": 1,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.5",
+        "url": "urn:stm32:course:2.5:pdf",
+        "section": "2.5 按钮实验 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "985727e26e1eb8f9dc342addccd6aaf81440c29d351914a35840ea2ca0eb3279",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course2.s5.card-01",
+    "type": "flashcard",
+    "stem": "按钮电平、消抖后的状态、按下事件有什么区别？",
+    "payload": {
+      "front": "按钮电平、消抖后的状态、按下事件有什么区别？",
+      "back": "电平是一次采样；稳定状态是经过消抖确认的结果；按下事件是稳定状态从松开变为按下的一次转移。"
+    },
+    "answer": {
+      "expectedRecall": "电平是一次采样；稳定状态是经过消抖确认的结果；按下事件是稳定状态从松开变为按下的一次转移。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "电平是一次采样；稳定状态是经过消抖确认的结果；按下事件是稳定状态从松开变为按下的一次转移。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.3.1",
+        "url": "urn:stm32:course:3.1:pdf",
+        "section": "3.1 通信协议 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "c238c393efc166c4d1ec317adf95cfacc21bf4d0f60379adab030d00ad5a476b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s1.check-01",
+    "type": "single_choice",
+    "stem": "UART 异步通信为什么仍需要双方约定相同波特率？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "相同波特率能代替共地"
+        },
+        {
+          "id": "core",
+          "text": "没有共享时钟，接收端要按约定位宽采样"
+        },
+        {
+          "id": "misconception-1",
+          "text": "TX 线同时传送完整时钟"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "起始位提供帧起点，约定的波特率提供后续采样节奏。",
+      "incorrect": {
+        "misconception-1": "UART 的 TX 不提供独立时钟信号。",
+        "misconception-2": "共地或合适的隔离接口仍然必要。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.3.1",
+        "url": "urn:stm32:course:3.1:pdf",
+        "section": "3.1 通信协议 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "c238c393efc166c4d1ec317adf95cfacc21bf4d0f60379adab030d00ad5a476b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s1.card-01",
+    "type": "flashcard",
+    "stem": "UART 一帧按什么顺序出现？",
+    "payload": {
+      "front": "UART 一帧按什么顺序出现？",
+      "back": "空闲高 → 起始低 → 数据位（通常低位先发）→ 可选校验 → 停止高。收发双方必须统一帧格式。"
+    },
+    "answer": {
+      "expectedRecall": "空闲高 → 起始低 → 数据位（通常低位先发）→ 可选校验 → 停止高。收发双方必须统一帧格式。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "空闲高 → 起始低 → 数据位（通常低位先发）→ 可选校验 → 停止高。收发双方必须统一帧格式。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init",
+      "fn.usart.usart-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.2",
+        "url": "urn:stm32:course:3.2:pdf",
+        "section": "3.2 UART 模块的使用方法 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8e00778c6fc53f547649561f949767e67a1588f2d94cddfbafca7a8ba3bfc5fa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s2.check-01",
+    "type": "single_choice",
+    "stem": "USART_Init 与 USART_Cmd 的关系是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "先配置工作参数，再使能模块"
+        },
+        {
+          "id": "misconception-1",
+          "text": "两者完全相同，只调用任一个即可"
+        },
+        {
+          "id": "misconception-2",
+          "text": "USART_Cmd 自动配置 TX/RX 管脚"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "初始化写帧格式和分频等参数，使能打开模块，GPIO 仍需单独配置。",
+      "incorrect": {
+        "misconception-1": "配置和使能作用不同。",
+        "misconception-2": "引脚由 GPIO/AFIO 配置。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init",
+      "fn.usart.usart-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.2",
+        "url": "urn:stm32:course:3.2:pdf",
+        "section": "3.2 UART 模块的使用方法 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8e00778c6fc53f547649561f949767e67a1588f2d94cddfbafca7a8ba3bfc5fa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s2.card-01",
+    "type": "flashcard",
+    "stem": "USART 初始化结构最先要核对哪些字段？",
+    "payload": {
+      "front": "USART 初始化结构最先要核对哪些字段？",
+      "back": "波特率、字长、停止位、校验、Tx/Rx 模式、硬件流控，并与实际总线时钟和对端设置对应。"
+    },
+    "answer": {
+      "expectedRecall": "波特率、字长、停止位、校验、Tx/Rx 模式、硬件流控，并与实际总线时钟和对端设置对应。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "波特率、字长、停止位、校验、Tx/Rx 模式、硬件流控，并与实际总线时钟和对端设置对应。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.3",
+        "url": "urn:stm32:course:3.3:pdf",
+        "section": "3.3 为串口初始化 IO 引脚 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "5d81e6114b6bc4f4ed23e651702d64da75b18eb435d67f9873f29c7fd03a9efa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s3.check-01",
+    "type": "single_choice",
+    "stem": "USART1 重映射到 PB6/PB7 后，TX 管脚应如何配置？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "PB6 普通输入"
+        },
+        {
+          "id": "misconception-2",
+          "text": "仍只配置 PA9 为输出"
+        },
+        {
+          "id": "core",
+          "text": "PB6 复用推挽"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "重映射选 PB6 作为 USART1_TX，复用输出让 USART 硬件驱动它。",
+      "incorrect": {
+        "misconception-1": "普通输入不能把发送波形驱到管脚。",
+        "misconception-2": "映射已经改变，原默认 TX 不再是本方案输出。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.3",
+        "url": "urn:stm32:course:3.3:pdf",
+        "section": "3.3 为串口初始化 IO 引脚 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "5d81e6114b6bc4f4ed23e651702d64da75b18eb435d67f9873f29c7fd03a9efa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s3.card-01",
+    "type": "flashcard",
+    "stem": "GPIO 复用输出与 AFIO 重映射分别解决什么？",
+    "payload": {
+      "front": "GPIO 复用输出与 AFIO 重映射分别解决什么？",
+      "back": "复用输出决定由外设控制输出；AFIO 重映射决定外设信号接到哪组管脚。"
+    },
+    "answer": {
+      "expectedRecall": "复用输出决定由外设控制输出；AFIO 重映射决定外设信号接到哪组管脚。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "复用输出决定由外设控制输出；AFIO 重映射决定外设信号接到哪组管脚。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.4",
+        "url": "urn:stm32:course:3.4:pdf",
+        "section": "3.4 发送数据 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "871ef5f9d4ac9c8e8fb0b5c93d037424799525213d3e4f1a914d761428a4cf62",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s4.check-01",
+    "type": "true_false",
+    "stem": "TXE置位就能保证最后一帧的停止位已经在引脚上发送完毕。",
+    "payload": {},
+    "answer": {
+      "value": false
+    },
+    "explanations": {
+      "correct": "TXE 描述发送数据寄存器空，TC 描述整帧完成。",
+      "incorrect": {
+        "true": "TXE只表示数据寄存器空，完整发送结束应检查TC。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s4"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.4",
+        "url": "urn:stm32:course:3.4:pdf",
+        "section": "3.4 发送数据 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "871ef5f9d4ac9c8e8fb0b5c93d037424799525213d3e4f1a914d761428a4cf62",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s4.card-01",
+    "type": "flashcard",
+    "stem": "连续发送字节等 TXE，最后收尾有时等 TC，为什么？",
+    "payload": {
+      "front": "连续发送字节等 TXE，最后收尾有时等 TC，为什么？",
+      "back": "TXE 允许填下一个字节以维持流水；TC 确认移位寄存器和停止位都已完成。"
+    },
+    "answer": {
+      "expectedRecall": "TXE 允许填下一个字节以维持流水；TC 确认移位寄存器和停止位都已完成。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "TXE 允许填下一个字节以维持流水；TC 确认移位寄存器和停止位都已完成。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.5",
+        "url": "urn:stm32:course:3.5:pdf",
+        "section": "3.5 格式化打印字符串 / PDF第1—5页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0a935c1e28ea4284874038ab1a485bfa074cd5820e8d66cb9e72cebdf11aade7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s5.check-01",
+    "type": "single_choice",
+    "stem": "printf 与 USART_SendData 的分工是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "printf 格式化，底层发送接口输出字符"
+        },
+        {
+          "id": "misconception-1",
+          "text": "printf 是 USART 标准库函数"
+        },
+        {
+          "id": "misconception-2",
+          "text": "USART_SendData 自动识别 %u"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "格式化属于 C 库，串口只处理要发送的数据值。",
+      "incorrect": {
+        "misconception-1": "printf 不是 SPL API。",
+        "misconception-2": "发送函数不解析格式字符串。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s5"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.5",
+        "url": "urn:stm32:course:3.5:pdf",
+        "section": "3.5 格式化打印字符串 / PDF第1—5页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0a935c1e28ea4284874038ab1a485bfa074cd5820e8d66cb9e72cebdf11aade7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s5.card-01",
+    "type": "flashcard",
+    "stem": "为什么 printf 成功编译仍可能没有串口输出？",
+    "payload": {
+      "front": "为什么 printf 成功编译仍可能没有串口输出？",
+      "back": "运行库输出入口未必已重定向到正确 USART，还可能依赖半主机。先验证单字节发送，再检查工具链重定向。"
+    },
+    "answer": {
+      "expectedRecall": "运行库输出入口未必已重定向到正确 USART，还可能依赖半主机。先验证单字节发送，再检查工具链重定向。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "运行库输出入口未必已重定向到正确 USART，还可能依赖半主机。先验证单字节发送，再检查工具链重定向。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s6"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.6",
+        "url": "urn:stm32:course:3.6:pdf",
+        "section": "3.6 接收数据 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "35eab1a0e989a64f7d13b6a78f94c971b2429cecf0aba37b4cd93be44ef603ef",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s6.check-01",
+    "type": "single_choice",
+    "stem": "串口收到 ASCII 字符 '0'，应与哪个值比较？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "数值 0x00"
+        },
+        {
+          "id": "misconception-2",
+          "text": "停止位的电平值"
+        },
+        {
+          "id": "core",
+          "text": "字符常量 '0'（0x30）"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "文本数字的字符编码与数学数值不同；先明确通信协议。",
+      "incorrect": {
+        "misconception-1": "0x00 是另一个二进制字节。",
+        "misconception-2": "停止位是帧结构，不是接收数据值。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s6"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.6",
+        "url": "urn:stm32:course:3.6:pdf",
+        "section": "3.6 接收数据 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "35eab1a0e989a64f7d13b6a78f94c971b2429cecf0aba37b4cd93be44ef603ef",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s6.card-01",
+    "type": "flashcard",
+    "stem": "RXNE、ORE 分别提示什么？",
+    "payload": {
+      "front": "RXNE、ORE 分别提示什么？",
+      "back": "RXNE：有新接收数据待读；ORE：先前数据未及时取走又来了新数据，发生溢出风险。"
+    },
+    "answer": {
+      "expectedRecall": "RXNE：有新接收数据待读；ORE：先前数据未及时取走又来了新数据，发生溢出风险。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "RXNE：有新接收数据待读；ORE：先前数据未及时取走又来了新数据，发生溢出风险。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s7"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.7",
+        "url": "urn:stm32:course:3.7:pdf",
+        "section": "3.7 封装常用功能 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "dc6a6042cfc649a2672a1e4cad071e9565104e16097730606dc3396e6dd0dd00",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s7.check-01",
+    "type": "single_choice",
+    "stem": "发送可能包含 0x00 的二进制数组，接口最需要哪个参数？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "只传第一个字节"
+        },
+        {
+          "id": "core",
+          "text": "显式数据长度"
+        },
+        {
+          "id": "misconception-1",
+          "text": "只依赖 strlen"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "0x00 可是有效二进制数据，而 strlen 把它视为字符串结束。",
+      "incorrect": {
+        "misconception-1": "strlen 不适合任意二进制数组。",
+        "misconception-2": "单个字节不能描述完整数组边界。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course3",
+    "knowledgePointIds": [
+      "kp.course3.s7"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.7",
+        "url": "urn:stm32:course:3.7:pdf",
+        "section": "3.7 封装常用功能 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "dc6a6042cfc649a2672a1e4cad071e9565104e16097730606dc3396e6dd0dd00",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course3.s7.card-01",
+    "type": "flashcard",
+    "stem": "串口封装除“怎么发”之外，还必须说清什么？",
+    "payload": {
+      "front": "串口封装除“怎么发”之外，还必须说清什么？",
+      "back": "长度、阻塞方式、超时、返回值、缓冲区容量、错误恢复，以及文本和二进制的区别。"
+    },
+    "answer": {
+      "expectedRecall": "长度、阻塞方式、超时、返回值、缓冲区容量、错误恢复，以及文本和二进制的区别。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "长度、阻塞方式、超时、返回值、缓冲区容量、错误恢复，以及文本和二进制的区别。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.1",
+        "url": "urn:stm32:course:4.1:pdf",
+        "section": "4.1 基本电路结构 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "eab24f7335ebcee477e69a10d8f109428c6b26d27d8ac396f8975314809e24d1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s1.check-01",
+    "type": "single_choice",
+    "stem": "I²C 器件发送高电平的正常做法是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "释放开漏输出，由上拉建立高电平"
+        },
+        {
+          "id": "misconception-1",
+          "text": "用推挽强制拉高共享线"
+        },
+        {
+          "id": "misconception-2",
+          "text": "先关闭所有从设备"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "开漏的线与结构允许多个器件协作，任一器件都可以拉低。",
+      "incorrect": {
+        "misconception-1": "推挽强拉高可能与另一方下拉争用。",
+        "misconception-2": "正常总线不靠关闭从设备传送高电平。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.1",
+        "url": "urn:stm32:course:4.1:pdf",
+        "section": "4.1 基本电路结构 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "eab24f7335ebcee477e69a10d8f109428c6b26d27d8ac396f8975314809e24d1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s1.card-01",
+    "type": "flashcard",
+    "stem": "I²C 为什么离不开上拉电阻？",
+    "payload": {
+      "front": "I²C 为什么离不开上拉电阻？",
+      "back": "器件通常只主动拉低，释放后的高电平由上拉建立；上拉与总线电容还决定上升时间。"
+    },
+    "answer": {
+      "expectedRecall": "器件通常只主动拉低，释放后的高电平由上拉建立；上拉与总线电容还决定上升时间。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "器件通常只主动拉低，释放后的高电平由上拉建立；上拉与总线电容还决定上升时间。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.2",
+        "url": "urn:stm32:course:4.2:pdf",
+        "section": "4.2 通信协议 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "ab227b2720c9e719fe7a076cebbcc7992a7fe72915f127c482ab2e1fe79af750",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s2.check-01",
+    "type": "single_choice",
+    "stem": "主机读取最后一个字节后发送 NACK，通常代表什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "读取过程必定失败"
+        },
+        {
+          "id": "misconception-2",
+          "text": "从设备地址一定错了"
+        },
+        {
+          "id": "core",
+          "text": "主机不再需要后续字节，准备结束读取"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "最后字节的主机 NACK 是正常结束流程的一部分，应结合事务阶段解释。",
+      "incorrect": {
+        "misconception-1": "NACK 在不同阶段含义不同，不能一概认定错误。",
+        "misconception-2": "地址应答阶段早于最后数据字节。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.2",
+        "url": "urn:stm32:course:4.2:pdf",
+        "section": "4.2 通信协议 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "ab227b2720c9e719fe7a076cebbcc7992a7fe72915f127c482ab2e1fe79af750",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s2.card-01",
+    "type": "flashcard",
+    "stem": "START、STOP 和普通数据变化的区别？",
+    "payload": {
+      "front": "START、STOP 和普通数据变化的区别？",
+      "back": "START/STOP 在 SCL 高时改变 SDA；普通数据通常在 SCL 低时改变，在高时保持稳定。"
+    },
+    "answer": {
+      "expectedRecall": "START/STOP 在 SCL 高时改变 SDA；普通数据通常在 SCL 低时改变，在高时保持稳定。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "START/STOP 在 SCL 高时改变 SDA；普通数据通常在 SCL 低时改变，在高时保持稳定。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.i2c.i2c-cmd",
+      "fn.i2c.i2c-init",
+      "fn.i2c.i2c-structinit",
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.3",
+        "url": "urn:stm32:course:4.3:pdf",
+        "section": "4.3 I2C 模块的使用方法 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1ff2b824c99906832abf65c88ed279dcbd390374b1ac2e75484992e3251d845c",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s3.check-01",
+    "type": "single_choice",
+    "stem": "I2C_Init 中 OwnAddress 表示什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "PB8 的引脚编号"
+        },
+        {
+          "id": "core",
+          "text": "本机自身地址配置"
+        },
+        {
+          "id": "misconception-1",
+          "text": "本次访问的目标从机地址"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "目标地址在事务寻址阶段发送，自身地址是模块初始化参数。",
+      "incorrect": {
+        "misconception-1": "访问目标通过地址发送操作指定。",
+        "misconception-2": "引脚由 GPIO/AFIO 配置。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.i2c.i2c-cmd",
+      "fn.i2c.i2c-init",
+      "fn.i2c.i2c-structinit",
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.3",
+        "url": "urn:stm32:course:4.3:pdf",
+        "section": "4.3 I2C 模块的使用方法 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1ff2b824c99906832abf65c88ed279dcbd390374b1ac2e75484992e3251d845c",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s3.card-01",
+    "type": "flashcard",
+    "stem": "课程硬件 I2C1 初始化要开哪些时钟？",
+    "payload": {
+      "front": "课程硬件 I2C1 初始化要开哪些时钟？",
+      "back": "GPIOB 与 AFIO 在 APB2，I2C1 在 APB1；PB8/PB9 重映射后配置复用开漏，并使用外部上拉。"
+    },
+    "answer": {
+      "expectedRecall": "GPIOB 与 AFIO 在 APB2，I2C1 在 APB1；PB8/PB9 重映射后配置复用开漏，并使用外部上拉。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "GPIOB 与 AFIO 在 APB2，I2C1 在 APB1；PB8/PB9 重映射后配置复用开漏，并使用外部上拉。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-getflagstatus",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-send7bitaddress",
+      "fn.i2c.i2c-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.4",
+        "url": "urn:stm32:course:4.4:pdf",
+        "section": "4.4 写数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "a2418f6e66f55b9326f19580fdc470c993918553c15ce8a1abd1dcf0cc57909b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s4.check-01",
+    "type": "single_choice",
+    "stem": "I2C 硬件置位 ADDR 后，为什么要按规定读 SR1 和 SR2？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "清除 ADDR 以推进状态流程"
+        },
+        {
+          "id": "misconception-1",
+          "text": "读取目标器件的全部数据"
+        },
+        {
+          "id": "misconception-2",
+          "text": "修改从机物理地址"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "ADDR 有特定清除序列；状态机操作不能只按函数名想当然。",
+      "incorrect": {
+        "misconception-1": "SR1/SR2 是控制器状态寄存器，不是目标数据。",
+        "misconception-2": "读状态寄存器不会修改从机地址。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s4"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-getflagstatus",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-send7bitaddress",
+      "fn.i2c.i2c-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.4",
+        "url": "urn:stm32:course:4.4:pdf",
+        "section": "4.4 写数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "a2418f6e66f55b9326f19580fdc470c993918553c15ce8a1abd1dcf0cc57909b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s4.card-01",
+    "type": "flashcard",
+    "stem": "一次硬件 I2C 写事务的主线是什么？",
+    "payload": {
+      "front": "一次硬件 I2C 写事务的主线是什么？",
+      "back": "空闲检查 → START/SB → 地址/ADDR或AF → 清 ADDR → TXE逐字节写 → 等最终传输完成 → STOP。所有等待要有失败出口。"
+    },
+    "answer": {
+      "expectedRecall": "空闲检查 → START/SB → 地址/ADDR或AF → 清 ADDR → TXE逐字节写 → 等最终传输完成 → STOP。所有等待要有失败出口。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "空闲检查 → START/SB → 地址/ADDR或AF → 清 ADDR → TXE逐字节写 → 等最终传输完成 → STOP。所有等待要有失败出口。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-acknowledgeconfig",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-nackpositionconfig",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.5",
+        "url": "urn:stm32:course:4.5:pdf",
+        "section": "4.5 读数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7d51771192f6537a5f8d96ef714b696c9bfe4f8f2eac7057c9dd9bbf515a827",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s5.check-01",
+    "type": "single_choice",
+    "stem": "STM32F1 硬件 I2C 接收 1、2、多个字节，能否一律使用同一尾部流程？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "能，读完 DR 后再关闭 ACK 即可"
+        },
+        {
+          "id": "misconception-2",
+          "text": "能，只要延时足够长"
+        },
+        {
+          "id": "core",
+          "text": "不能，ACK/POS、ADDR 和 STOP 的时序需分支处理"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "硬件接收流水和应答时点决定尾部操作必须提前且依长度安排。",
+      "incorrect": {
+        "misconception-1": "事后关闭 ACK 可能已错过总线时点。",
+        "misconception-2": "延时不能修复错误的状态顺序。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s5"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.i2c.i2c-acknowledgeconfig",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-nackpositionconfig",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.5",
+        "url": "urn:stm32:course:4.5:pdf",
+        "section": "4.5 读数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7d51771192f6537a5f8d96ef714b696c9bfe4f8f2eac7057c9dd9bbf515a827",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s5.card-01",
+    "type": "flashcard",
+    "stem": "为什么本节不把一串 I2C API 直接当完整读驱动？",
+    "payload": {
+      "front": "为什么本节不把一串 I2C API 直接当完整读驱动？",
+      "back": "F1 接收要按字节数区分尾部时序，ACK/POS、ADDR、BTF、STOP 具有依赖关系；还需超时和配置恢复。"
+    },
+    "answer": {
+      "expectedRecall": "F1 接收要按字节数区分尾部时序，ACK/POS、ADDR、BTF、STOP 具有依赖关系；还需超时和配置恢复。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "F1 接收要按字节数区分尾部时序，ACK/POS、ADDR、BTF、STOP 具有依赖关系；还需超时和配置恢复。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s6"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.6",
+        "url": "urn:stm32:course:4.6:pdf",
+        "section": "4.6 软 I2C / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "31ad6c3b3d4226431a1e599a10dfc5fc51e42b7ca9eec485dbe5f55860964d06",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s6.check-01",
+    "type": "single_choice",
+    "stem": "软件模拟 I2C 中，实际产生 SCL/SDA 边沿的是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "USART_SendData"
+        },
+        {
+          "id": "core",
+          "text": "应用调用 GPIO 操作并安排时序"
+        },
+        {
+          "id": "misconception-1",
+          "text": "I2C_Init 自动驱动 PA0/PA1"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "软件模拟以 GPIO 实现协议；与硬件 I2C 控制器 API 分开。",
+      "incorrect": {
+        "misconception-1": "本节普通 PA0/PA1 不由 I2C1 状态机驱动。",
+        "misconception-2": "USART 对应另一种通信外设。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s6"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.6",
+        "url": "urn:stm32:course:4.6:pdf",
+        "section": "4.6 软 I2C / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "31ad6c3b3d4226431a1e599a10dfc5fc51e42b7ca9eec485dbe5f55860964d06",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s6.card-01",
+    "type": "flashcard",
+    "stem": "软件 I2C 与硬件 I2C 共享什么、不同什么？",
+    "payload": {
+      "front": "软件 I2C 与硬件 I2C 共享什么、不同什么？",
+      "back": "共享总线电气与协议；不同在边沿由 GPIO 软件生成，还是由硬件控制器生成。两套 API 不能混为一谈。"
+    },
+    "answer": {
+      "expectedRecall": "共享总线电气与协议；不同在边沿由 GPIO 软件生成，还是由硬件控制器生成。两套 API 不能混为一谈。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "共享总线电气与协议；不同在边沿由 GPIO 软件生成，还是由硬件控制器生成。两套 API 不能混为一谈。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s7"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.7",
+        "url": "urn:stm32:course:4.7:pdf",
+        "section": "4.7 封装常用功能 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0db70198fecf04dcef0f2e41702c145676a634dda62f356712889b95f21511ba",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s7.check-01",
+    "type": "single_choice",
+    "stem": "I2C 封装的地址参数最需要说明什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "传入 7 位地址还是已左移地址字节"
+        },
+        {
+          "id": "misconception-1",
+          "text": "变量名越短越好"
+        },
+        {
+          "id": "misconception-2",
+          "text": "所有器件都固定使用同一个地址"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "地址表示不一致是常见互换后端错误，契约必须明确。",
+      "incorrect": {
+        "misconception-1": "命名不能代替语义约定。",
+        "misconception-2": "器件地址由器件和地址脚决定。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s7"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.7",
+        "url": "urn:stm32:course:4.7:pdf",
+        "section": "4.7 封装常用功能 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0db70198fecf04dcef0f2e41702c145676a634dda62f356712889b95f21511ba",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s7.card-01",
+    "type": "flashcard",
+    "stem": "硬件/软件 I2C 对上层统一接口时，哪些边界不能省？",
+    "payload": {
+      "front": "硬件/软件 I2C 对上层统一接口时，哪些边界不能省？",
+      "back": "地址表示、长度、超时、错误码，以及每个后端支持的能力；底层严格时序仍由各自实现负责。"
+    },
+    "answer": {
+      "expectedRecall": "地址表示、长度、超时、错误码，以及每个后端支持的能力；底层严格时序仍由各自实现负责。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "地址表示、长度、超时、错误码，以及每个后端支持的能力；底层严格时序仍由各自实现负责。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s8"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.8",
+        "url": "urn:stm32:course:4.8:pdf",
+        "section": "4.8 OLED 显示器 / PDF第1—26页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "63b53e4f213e2adba919df9300b53f990b32ffc478a10cfb8a7a0a0255dc20c7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s8.check-01",
+    "type": "single_choice",
+    "stem": "OLED 对地址正常应答，是否就能证明文字绘制一定正确？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "能，I2C 自动完成字模绘制"
+        },
+        {
+          "id": "misconception-2",
+          "text": "能，ACK 表示整屏内容已经显示"
+        },
+        {
+          "id": "core",
+          "text": "不能，还要检查控制命令、像素映射和刷新"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "ACK 只说明相应传输阶段被接收，不验证上层显示内容。",
+      "incorrect": {
+        "misconception-1": "I2C 不理解字体或像素。",
+        "misconception-2": "总线应答与整屏显示不是一回事。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course4",
+    "knowledgePointIds": [
+      "kp.course4.s8"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.4.8",
+        "url": "urn:stm32:course:4.8:pdf",
+        "section": "4.8 OLED 显示器 / PDF第1—26页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "63b53e4f213e2adba919df9300b53f990b32ffc478a10cfb8a7a0a0255dc20c7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course4.s8.card-01",
+    "type": "flashcard",
+    "stem": "OLED 显示链路怎样分层？",
+    "payload": {
+      "front": "OLED 显示链路怎样分层？",
+      "back": "文字/图形 → 像素与缓冲区 → 控制器命令和数据 → I2C 传输 → SCL/SDA 电气信号。"
+    },
+    "answer": {
+      "expectedRecall": "文字/图形 → 像素与缓冲区 → 控制器命令和数据 → I2C 传输 → SCL/SDA 电气信号。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "文字/图形 → 像素与缓冲区 → 控制器命令和数据 → I2C 传输 → SCL/SDA 电气信号。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.5.1",
+        "url": "urn:stm32:course:5.1:pdf",
+        "section": "5.1 电路结构和通信协议 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "60cad9c0e056b8008c80d8fae9a67bccb2a9d276bf08eaa5036aebb6a687e90a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s1.check-01",
+    "type": "single_choice",
+    "stem": "为什么单说“上升沿采样”不足以确定 SPI 模式？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "CPOL 和 CPHA 永远相同"
+        },
+        {
+          "id": "core",
+          "text": "还要知道空闲电平与该边沿是第几边沿"
+        },
+        {
+          "id": "misconception-1",
+          "text": "SPI 没有时钟"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "CPOL 决定第一边沿方向，CPHA 决定在哪一类边沿采样。",
+      "incorrect": {
+        "misconception-1": "SPI 有 SCK。",
+        "misconception-2": "CPOL 与 CPHA 是独立配置。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.5.1",
+        "url": "urn:stm32:course:5.1:pdf",
+        "section": "5.1 电路结构和通信协议 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "60cad9c0e056b8008c80d8fae9a67bccb2a9d276bf08eaa5036aebb6a687e90a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s1.card-01",
+    "type": "flashcard",
+    "stem": "SPI 的 CPOL 与 CPHA 分别表示什么？",
+    "payload": {
+      "front": "SPI 的 CPOL 与 CPHA 分别表示什么？",
+      "back": "CPOL：时钟空闲电平；CPHA：相对第一/第二边沿的采样关系。再结合位顺序、帧宽和频率匹配设备。"
+    },
+    "answer": {
+      "expectedRecall": "CPOL：时钟空闲电平；CPHA：相对第一/第二边沿的采样关系。再结合位顺序、帧宽和频率匹配设备。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "CPOL：时钟空闲电平；CPHA：相对第一/第二边沿的采样关系。再结合位顺序、帧宽和频率匹配设备。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.2",
+        "url": "urn:stm32:course:5.2:pdf",
+        "section": "5.2 番外：按钮驱动程序编写 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "546a1f295416dcfb9b0edb27486e936457591287c57facc4ee2cdd78348e70e1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s2.check-01",
+    "type": "single_choice",
+    "stem": "消抖后一次“按下事件”应由什么触发？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "稳定状态从松开变为按下"
+        },
+        {
+          "id": "misconception-1",
+          "text": "每次读到低电平"
+        },
+        {
+          "id": "misconception-2",
+          "text": "每次主循环执行"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "状态转移才是一件新发生的事，持续按住只是同一状态。",
+      "incorrect": {
+        "misconception-1": "低电平在一次长按中会被读到很多次。",
+        "misconception-2": "主循环次数与按钮事件数量无直接对应。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.2",
+        "url": "urn:stm32:course:5.2:pdf",
+        "section": "5.2 番外：按钮驱动程序编写 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "546a1f295416dcfb9b0edb27486e936457591287c57facc4ee2cdd78348e70e1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s2.card-01",
+    "type": "flashcard",
+    "stem": "非阻塞消抖需要记住哪些信息？",
+    "payload": {
+      "front": "非阻塞消抖需要记住哪些信息？",
+      "back": "当前采样、候选状态、候选开始时间、已确认状态。稳定足够久才确认转移并发事件。"
+    },
+    "answer": {
+      "expectedRecall": "当前采样、候选状态、候选开始时间、已确认状态。稳定足够久才确认转移并发事件。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "当前采样、候选状态、候选开始时间、已确认状态。稳定足够久才确认转移并发事件。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.3",
+        "url": "urn:stm32:course:5.3:pdf",
+        "section": "5.3 番外：按钮代码的封装 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "6922dfc02fe8a3b70a4632358a5a317c14df9d719208b0a09abac3f85d30dbb9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s3.check-01",
+    "type": "single_choice",
+    "stem": "多个按钮实例中，消抖计时和稳定状态应怎样保存？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "全部共用一个时间与状态"
+        },
+        {
+          "id": "misconception-2",
+          "text": "不需要保存历史"
+        },
+        {
+          "id": "core",
+          "text": "每个按钮各自保存"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "每个物理按钮变化独立，状态必须独立。",
+      "incorrect": {
+        "misconception-1": "共享状态会造成互相覆盖。",
+        "misconception-2": "没有历史就无法判断稳定和转移。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.3",
+        "url": "urn:stm32:course:5.3:pdf",
+        "section": "5.3 番外：按钮代码的封装 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "6922dfc02fe8a3b70a4632358a5a317c14df9d719208b0a09abac3f85d30dbb9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s3.card-01",
+    "type": "flashcard",
+    "stem": "按钮模块与回调业务的分界是什么？",
+    "payload": {
+      "front": "按钮模块与回调业务的分界是什么？",
+      "back": "模块检测稳定事件，回调执行业务。实例保存自己的状态，接口说明执行上下文和阻塞限制。"
+    },
+    "answer": {
+      "expectedRecall": "模块检测稳定事件，回调执行业务。实例保存自己的状态，接口说明执行上下文和阻塞限制。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "模块检测稳定事件，回调执行业务。实例保存自己的状态，接口说明执行上下文和阻塞限制。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-setbits"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.4",
+        "url": "urn:stm32:course:5.4:pdf",
+        "section": "5.4 IO 引脚初始化 / PDF第1—2页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "fcc2e402e73c13ed1590ab7f427c50d604e83937d91b500ec21dc7ae9ca3fc1f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s4.check-01",
+    "type": "single_choice",
+    "stem": "本课为什么选择关闭 JTAG 而保留 SWD？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "让 SPI 自动变成 I2C"
+        },
+        {
+          "id": "core",
+          "text": "释放相关复用管脚，同时保留 SWD 调试通路"
+        },
+        {
+          "id": "misconception-1",
+          "text": "关闭所有调试才能发送 SPI"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "管脚复用存在冲突，选择性释放能兼顾 SPI 接线与调试。",
+      "incorrect": {
+        "misconception-1": "无需关闭全部调试接口。",
+        "misconception-2": "重映射不改变协议类型。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s4"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-setbits"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.4",
+        "url": "urn:stm32:course:5.4:pdf",
+        "section": "5.4 IO 引脚初始化 / PDF第1—2页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "fcc2e402e73c13ed1590ab7f427c50d604e83937d91b500ec21dc7ae9ca3fc1f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s4.card-01",
+    "type": "flashcard",
+    "stem": "本课程 SPI1 重映射实验的四根线？",
+    "payload": {
+      "front": "本课程 SPI1 重映射实验的四根线？",
+      "back": "PB3 SCK，PB4 MISO，PB5 MOSI，PA15 软件 CS。还需处理 JTAG 占用并保留 SWD。"
+    },
+    "answer": {
+      "expectedRecall": "PB3 SCK，PB4 MISO，PB5 MOSI，PA15 软件 CS。还需处理 JTAG 占用并保留 SWD。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "PB3 SCK，PB4 MISO，PB5 MOSI，PA15 软件 CS。还需处理 JTAG 占用并保留 SWD。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.spi.spi-cmd",
+      "fn.spi.spi-init",
+      "fn.spi.spi-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.5",
+        "url": "urn:stm32:course:5.5:pdf",
+        "section": "5.5 SPI 模块的初始化 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "121d406760260efdfdfe9a59177f647378614a18f0ca89201e70dd1f18585d93",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s5.check-01",
+    "type": "single_choice",
+    "stem": "SPI_BaudRatePrescaler_16 表示什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "SPI 输入时钟除以 16"
+        },
+        {
+          "id": "misconception-1",
+          "text": "固定 16 Hz"
+        },
+        {
+          "id": "misconception-2",
+          "text": "一帧自动发送 16 字节"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "它是时钟分频因子，实际频率还取决于输入总线时钟。",
+      "incorrect": {
+        "misconception-1": "不是直接的频率单位。",
+        "misconception-2": "帧宽与传输长度由其他配置和软件决定。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s5"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.spi.spi-cmd",
+      "fn.spi.spi-init",
+      "fn.spi.spi-structinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.5",
+        "url": "urn:stm32:course:5.5:pdf",
+        "section": "5.5 SPI 模块的初始化 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "121d406760260efdfdfe9a59177f647378614a18f0ca89201e70dd1f18585d93",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s5.card-01",
+    "type": "flashcard",
+    "stem": "软件 NSS 是否自动控制 PA15 的器件片选？",
+    "payload": {
+      "front": "软件 NSS 是否自动控制 PA15 的器件片选？",
+      "back": "不自动。内部 NSS 管理与外部软件 GPIO 片选是不同职责，CS 的拉低拉高由应用事务控制。"
+    },
+    "answer": {
+      "expectedRecall": "不自动。内部 NSS 管理与外部软件 GPIO 片选是不同职责，CS 的拉低拉高由应用事务控制。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "不自动。内部 NSS 管理与外部软件 GPIO 片选是不同职责，CS 的拉低拉高由应用事务控制。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s6"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.spi.spi-i2s-getflagstatus",
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.6",
+        "url": "urn:stm32:course:5.6:pdf",
+        "section": "5.6 数据收发 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d633a1f3889d9d2a19d58331180d51350a9e694fd50cfe6b4acf70be8247fff9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s6.check-01",
+    "type": "single_choice",
+    "stem": "SPI 主机只想读取从机一个字节，为什么常要发送 dummy？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "dummy 是所有设备的复位命令"
+        },
+        {
+          "id": "misconception-2",
+          "text": "不发送也会自动产生无限时钟"
+        },
+        {
+          "id": "core",
+          "text": "发送产生时钟，同时移入从机数据"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "全双工移位依靠主机时钟，发送占位帧可驱动接收。",
+      "incorrect": {
+        "misconception-1": "dummy 的意义依设备协议，不普遍等于复位。",
+        "misconception-2": "SPI 主机不会无条件自动持续发时钟。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s6"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.spi.spi-i2s-getflagstatus",
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.6",
+        "url": "urn:stm32:course:5.6:pdf",
+        "section": "5.6 数据收发 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d633a1f3889d9d2a19d58331180d51350a9e694fd50cfe6b4acf70be8247fff9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s6.card-01",
+    "type": "flashcard",
+    "stem": "全双工 SPI 交换一帧的基本顺序？",
+    "payload": {
+      "front": "全双工 SPI 交换一帧的基本顺序？",
+      "back": "等待 TXE → 写发送数据 → 等待 RXNE → 读接收数据。事务整体还需管理 CS、忙状态、超时和错误。"
+    },
+    "answer": {
+      "expectedRecall": "等待 TXE → 写发送数据 → 等待 RXNE → 读接收数据。事务整体还需管理 CS、忙状态、超时和错误。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "等待 TXE → 写发送数据 → 等待 RXNE → 读接收数据。事务整体还需管理 CS、忙状态、超时和错误。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s7"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.7",
+        "url": "urn:stm32:course:5.7:pdf",
+        "section": "5.7 W25Q64 实验（上） / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9e1dd4ee0aa0cd5074322e3c467f436a8d480254573b017a70d76f800d993740",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s7.check-01",
+    "type": "single_choice",
+    "stem": "NOR Flash 中想把已经写成 0 的位恢复为 1，通常需要什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "提高 SPI 输出速度即可"
+        },
+        {
+          "id": "core",
+          "text": "按器件要求擦除对应区域"
+        },
+        {
+          "id": "misconception-1",
+          "text": "再直接写一次 1 就行"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "擦除和编程有方向性，不能按 RAM 的任意覆盖方式理解。",
+      "incorrect": {
+        "misconception-1": "普通编程不负责把已清零位恢复为 1。",
+        "misconception-2": "通信速度不改变存储单元的擦写机制。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s7"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.7",
+        "url": "urn:stm32:course:5.7:pdf",
+        "section": "5.7 W25Q64 实验（上） / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9e1dd4ee0aa0cd5074322e3c467f436a8d480254573b017a70d76f800d993740",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s7.card-01",
+    "type": "flashcard",
+    "stem": "外部 Flash 可靠写入的主线？",
+    "payload": {
+      "front": "外部 Flash 可靠写入的主线？",
+      "back": "选择安全区域 → 写使能 → 必要擦除并等忙 → 写使能 → 按页编程并等忙 → 读回比较。"
+    },
+    "answer": {
+      "expectedRecall": "选择安全区域 → 写使能 → 必要擦除并等忙 → 写使能 → 按页编程并等忙 → 读回比较。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "选择安全区域 → 写使能 → 必要擦除并等忙 → 写使能 → 按页编程并等忙 → 读回比较。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s8"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.5.8",
+        "url": "urn:stm32:course:5.8:pdf",
+        "section": "5.8 W25Q64 实验（下） / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "75962cfbf84f40487590de63ab6875202acb9b8a58ccd254ae9998ae0f92ccf7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s8.check-01",
+    "type": "single_choice",
+    "stem": "为什么不应在每次主循环都把相同 LED 状态擦写进 Flash？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "无效重复擦写会消耗寿命并造成阻塞"
+        },
+        {
+          "id": "misconception-1",
+          "text": "Flash 只能在主循环中读不能写"
+        },
+        {
+          "id": "misconception-2",
+          "text": "重复写能无限提高可靠性"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "持久化应由状态变化和策略触发，不是无条件高频擦写。",
+      "incorrect": {
+        "misconception-1": "写可以在合适的软件流程中进行。",
+        "misconception-2": "擦写寿命有限，重复写还有掉电风险。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course5",
+    "knowledgePointIds": [
+      "kp.course5.s8"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.5.8",
+        "url": "urn:stm32:course:5.8:pdf",
+        "section": "5.8 W25Q64 实验（下） / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "75962cfbf84f40487590de63ab6875202acb9b8a58ccd254ae9998ae0f92ccf7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course5.s8.card-01",
+    "type": "flashcard",
+    "stem": "按钮控制并保存 LED 状态的完整链路？",
+    "payload": {
+      "front": "按钮控制并保存 LED 状态的完整链路？",
+      "back": "上电读回与校验 → 消抖事件 → 改变 LED → 保存并检查结果 → 重启验证。不要把内存改变等同于已保存。"
+    },
+    "answer": {
+      "expectedRecall": "上电读回与校验 → 消抖事件 → 改变 LED → 保存并检查结果 → 重启验证。不要把内存改变等同于已保存。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "上电读回与校验 → 消抖事件 → 改变 LED → 保存并检查结果 → 重启验证。不要把内存改变等同于已保存。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.1",
+        "url": "urn:stm32:course:6.1:pdf",
+        "section": "6.1 中断的概念 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b170d880df7d14a37eb06906880155ca4dee049736e6f01db12e3b21a43e4142",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s1.check-01",
+    "type": "single_choice",
+    "stem": "只配置 NVIC 就能保证 USART RXNE 中断进入吗？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "能，NVIC 会自动打开 USART"
+        },
+        {
+          "id": "misconception-2",
+          "text": "只要函数名里有 IRQ 就会进入"
+        },
+        {
+          "id": "core",
+          "text": "不能，还要外设中断使能且确实有事件"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "事件来源、外设使能、NVIC 与屏蔽共同构成链路。",
+      "incorrect": {
+        "misconception-1": "NVIC 不代替 USART 的中断控制位。",
+        "misconception-2": "函数名必须匹配向量且有实际请求。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.1",
+        "url": "urn:stm32:course:6.1:pdf",
+        "section": "6.1 中断的概念 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b170d880df7d14a37eb06906880155ca4dee049736e6f01db12e3b21a43e4142",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s1.card-01",
+    "type": "flashcard",
+    "stem": "有事件标志却不进中断，沿哪几层排查？",
+    "payload": {
+      "front": "有事件标志却不进中断，沿哪几层排查？",
+      "back": "外设事件与使能 → NVIC 通道与优先级 → 全局屏蔽 → 向量函数名称和启动文件。"
+    },
+    "answer": {
+      "expectedRecall": "外设事件与使能 → NVIC 通道与优先级 → 全局屏蔽 → 向量函数名称和启动文件。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "外设事件与使能 → NVIC 通道与优先级 → 全局屏蔽 → 向量函数名称和启动文件。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.nvic.nvic-prioritygroupconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.2",
+        "url": "urn:stm32:course:6.2:pdf",
+        "section": "6.2 中断优先级 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1d7800c56b4fc590afaa713f8355e4871137b927f25632c2c6a5bb11873317de",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s2.check-01",
+    "type": "single_choice",
+    "stem": "两个中断抢占优先级相同，子优先级不同，后来的能只因子优先级更高而打断前者吗？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "一定同时执行"
+        },
+        {
+          "id": "core",
+          "text": "不能，子优先级不决定这种抢占"
+        },
+        {
+          "id": "misconception-1",
+          "text": "能，子优先级决定全部嵌套"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "抢占由抢占优先级决定，子优先级用于待处理请求排序。",
+      "incorrect": {
+        "misconception-1": "混淆了分组后的两类字段。",
+        "misconception-2": "单核不会同时执行两个处理函数。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.nvic.nvic-prioritygroupconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.2",
+        "url": "urn:stm32:course:6.2:pdf",
+        "section": "6.2 中断优先级 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1d7800c56b4fc590afaa713f8355e4871137b927f25632c2c6a5bb11873317de",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s2.card-01",
+    "type": "flashcard",
+    "stem": "抢占优先级与子优先级的简明区别？",
+    "payload": {
+      "front": "抢占优先级与子优先级的简明区别？",
+      "back": "抢占级决定可否打断正在运行的中断；子优先级安排同抢占级请求的等待顺序。"
+    },
+    "answer": {
+      "expectedRecall": "抢占级决定可否打断正在运行的中断；子优先级安排同抢占级请求的等待顺序。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "抢占级决定可否打断正在运行的中断；子优先级安排同抢占级请求的等待顺序。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.usart.usart-getitstatus",
+      "fn.usart.usart-itconfig",
+      "fn.usart.usart-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.3",
+        "url": "urn:stm32:course:6.3:pdf",
+        "section": "6.3 串口中断编程实验 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "255315fd7477670c909d7da07e2da89260edbeb4b61fc229fc698d585b69d8c2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s3.check-01",
+    "type": "single_choice",
+    "stem": "串口中断改变闪灯周期，推荐把长时间闪灯延时放在哪里？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "主循环，中断只接收和更新状态"
+        },
+        {
+          "id": "misconception-1",
+          "text": "一直放在 USART1_IRQHandler 内"
+        },
+        {
+          "id": "misconception-2",
+          "text": "清除全部 NVIC 优先级后再延时"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "短 ISR 能及时服务其他事件，业务延时留在主循环。",
+      "incorrect": {
+        "misconception-1": "长阻塞 ISR 会拖延其他事件。",
+        "misconception-2": "修改优先级不是解决阻塞的合理方法。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course6",
+    "knowledgePointIds": [
+      "kp.course6.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.usart.usart-getitstatus",
+      "fn.usart.usart-itconfig",
+      "fn.usart.usart-receivedata"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.3",
+        "url": "urn:stm32:course:6.3:pdf",
+        "section": "6.3 串口中断编程实验 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "255315fd7477670c909d7da07e2da89260edbeb4b61fc229fc698d585b69d8c2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course6.s3.card-01",
+    "type": "flashcard",
+    "stem": "本实验从收到字符到改变闪灯经历哪些层？",
+    "payload": {
+      "front": "本实验从收到字符到改变闪灯经历哪些层？",
+      "back": "RXNE 事件 → USART 中断使能 → NVIC → USART1_IRQHandler 读 DR → 更新共享间隔 → 主循环采用新值。"
+    },
+    "answer": {
+      "expectedRecall": "RXNE 事件 → USART 中断使能 → NVIC → USART1_IRQHandler 读 DR → 更新共享间隔 → 主循环采用新值。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "RXNE 事件 → USART 中断使能 → NVIC → USART1_IRQHandler 读 DR → 更新共享间隔 → 主循环采用新值。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course7",
+    "knowledgePointIds": [
+      "kp.course7.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.exti.exti-structinit",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.1",
+        "url": "urn:stm32:course:7.1:pdf",
+        "section": "7.1 EXTI 工作原理 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b897c75d9d8b475c4cbc9171ba845382bbc1f40e6cc57271f32288033e5a7dd8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course7.s1.check-01",
+    "type": "single_choice",
+    "stem": "PA5 与 PB5 能否同时独立映射到同一条 EXTI5？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "能，EXTI5 会自动区分两个端口"
+        },
+        {
+          "id": "misconception-2",
+          "text": "只要改 NVIC 子优先级就能"
+        },
+        {
+          "id": "core",
+          "text": "不能，该线 GPIO 来源需要选择一个端口"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "AFIO 对同编号 GPIO 的 EXTI 来源做多选一。",
+      "incorrect": {
+        "misconception-1": "没有两个独立来源标识供它区分。",
+        "misconception-2": "NVIC 优先级不改变 AFIO 多选一映射。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course7",
+    "knowledgePointIds": [
+      "kp.course7.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.exti.exti-structinit",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.1",
+        "url": "urn:stm32:course:7.1:pdf",
+        "section": "7.1 EXTI 工作原理 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b897c75d9d8b475c4cbc9171ba845382bbc1f40e6cc57271f32288033e5a7dd8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course7.s1.card-01",
+    "type": "flashcard",
+    "stem": "EXTI 的线号、端口选择与 NVIC 各管什么？",
+    "payload": {
+      "front": "EXTI 的线号、端口选择与 NVIC 各管什么？",
+      "back": "线号由 GPIO 位号决定，AFIO 选来源端口，EXTI 选边沿与模式，NVIC 管中断入口和优先级。"
+    },
+    "answer": {
+      "expectedRecall": "线号由 GPIO 位号决定，AFIO 选来源端口，EXTI 选边沿与模式，NVIC 管中断入口和优先级。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "线号由 GPIO 位号决定，AFIO 选来源端口，EXTI 选边沿与模式，NVIC 管中断入口和优先级。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course7",
+    "knowledgePointIds": [
+      "kp.course7.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.gpio.gpio-init",
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.2",
+        "url": "urn:stm32:course:7.2:pdf",
+        "section": "7.2 按钮实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7fd27d95f8538ab89c454db4d9db142d31902acc0d0a7e7e6a1d2981cad7e0dc",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course7.s2.check-01",
+    "type": "single_choice",
+    "stem": "PA5 和 PA6 使用 EXTI 中断时，本课的公共入口是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "两个引脚各自有 EXTI5_IRQHandler 和 EXTI6_IRQHandler"
+        },
+        {
+          "id": "core",
+          "text": "EXTI9_5_IRQHandler"
+        },
+        {
+          "id": "misconception-1",
+          "text": "USART1_IRQHandler"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "EXTI5–9 在 F103 共用向量，处理函数内再区分挂起线。",
+      "incorrect": {
+        "misconception-1": "USART 中断不处理 GPIO EXTI。",
+        "misconception-2": "这几条线不是各自独立向量。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course7",
+    "knowledgePointIds": [
+      "kp.course7.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.gpio.gpio-init",
+      "fn.nvic.nvic-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.2",
+        "url": "urn:stm32:course:7.2:pdf",
+        "section": "7.2 按钮实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7fd27d95f8538ab89c454db4d9db142d31902acc0d0a7e7e6a1d2981cad7e0dc",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course7.s2.card-01",
+    "type": "flashcard",
+    "stem": "为什么两个按钮用了 EXTI 以后还需要消抖？",
+    "payload": {
+      "front": "为什么两个按钮用了 EXTI 以后还需要消抖？",
+      "back": "EXTI 只检测电气边沿，机械抖动也是真实边沿。必须把连续边沿整理为稳定事件。"
+    },
+    "answer": {
+      "expectedRecall": "EXTI 只检测电气边沿，机械抖动也是真实边沿。必须把连续边沿整理为稳定事件。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "EXTI 只检测电气边沿，机械抖动也是真实边沿。必须把连续边沿整理为稳定事件。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course8",
+    "knowledgePointIds": [
+      "kp.course8.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-getclocksfreq"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.1",
+        "url": "urn:stm32:course:8.1:pdf",
+        "section": "8.1 时钟树 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d55182263177487dc8ec78f595864d122f788983f257c4ed4ea1b2ed226c6fb6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course8.s1.check-01",
+    "type": "single_choice",
+    "stem": "APB1 分频为 2、PCLK1=36 MHz 时，TIM3 常用输入时钟是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "72 MHz"
+        },
+        {
+          "id": "misconception-1",
+          "text": "36 Hz"
+        },
+        {
+          "id": "misconception-2",
+          "text": "必定等于 ADC 时钟"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "APB 预分频不为1时，对应定时器时钟为2×PCLK，因此为72 MHz。",
+      "incorrect": {
+        "misconception-1": "既混淆倍频也混淆单位。",
+        "misconception-2": "ADC 使用另外的分频分支。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course8",
+    "knowledgePointIds": [
+      "kp.course8.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.rcc.rcc-getclocksfreq"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.1",
+        "url": "urn:stm32:course:8.1:pdf",
+        "section": "8.1 时钟树 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d55182263177487dc8ec78f595864d122f788983f257c4ed4ea1b2ed226c6fb6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course8.s1.card-01",
+    "type": "flashcard",
+    "stem": "计算某个外设时钟为什么不能只看 SYSCLK？",
+    "payload": {
+      "front": "计算某个外设时钟为什么不能只看 SYSCLK？",
+      "back": "还要经过 AHB/APB 和外设专用分频；定时器有 APB 分频不为1时的倍频关系，ADC 有独立分频限制。"
+    },
+    "answer": {
+      "expectedRecall": "还要经过 AHB/APB 和外设专用分频；定时器有 APB 分频不为1时的倍频关系，ADC 有独立分频限制。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "还要经过 AHB/APB 和外设专用分频；定时器有 APB 分频不为1时的倍频关系，ADC 有独立分频限制。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course8",
+    "knowledgePointIds": [
+      "kp.course8.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.flash.flash-prefetchbuffercmd",
+      "fn.flash.flash-setlatency",
+      "fn.rcc.rcc-getflagstatus",
+      "fn.rcc.rcc-getsysclksource",
+      "fn.rcc.rcc-hclkconfig",
+      "fn.rcc.rcc-hseconfig",
+      "fn.rcc.rcc-pclk1config",
+      "fn.rcc.rcc-pclk2config",
+      "fn.rcc.rcc-pllcmd",
+      "fn.rcc.rcc-pllconfig",
+      "fn.rcc.rcc-sysclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.2",
+        "url": "urn:stm32:course:8.2:pdf",
+        "section": "8.2 时钟树编程 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "76d3485f9ffb25118ac0dd5aedac21df71cf079c97ab38c5bd2a40c3fecefdce",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course8.s2.check-01",
+    "type": "single_choice",
+    "stem": "切换到 PLL 系统时钟前最关键的条件之一是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "只要写过 PLL 倍数就立即切换"
+        },
+        {
+          "id": "misconception-2",
+          "text": "先把 APB1 固定设为72MHz"
+        },
+        {
+          "id": "core",
+          "text": "PLL 已稳定，Flash 与总线分频已满足目标频率"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "硬件就绪和各域限制先满足，才能安全切换。",
+      "incorrect": {
+        "misconception-1": "配置倍数不等于时钟已经稳定。",
+        "misconception-2": "F103C8 的 APB1 上限不能这样忽略。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course8",
+    "knowledgePointIds": [
+      "kp.course8.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.flash.flash-prefetchbuffercmd",
+      "fn.flash.flash-setlatency",
+      "fn.rcc.rcc-getflagstatus",
+      "fn.rcc.rcc-getsysclksource",
+      "fn.rcc.rcc-hclkconfig",
+      "fn.rcc.rcc-hseconfig",
+      "fn.rcc.rcc-pclk1config",
+      "fn.rcc.rcc-pclk2config",
+      "fn.rcc.rcc-pllcmd",
+      "fn.rcc.rcc-pllconfig",
+      "fn.rcc.rcc-sysclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.2",
+        "url": "urn:stm32:course:8.2:pdf",
+        "section": "8.2 时钟树编程 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "76d3485f9ffb25118ac0dd5aedac21df71cf079c97ab38c5bd2a40c3fecefdce",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course8.s2.card-01",
+    "type": "flashcard",
+    "stem": "8MHz HSE 到72MHz的可靠主线？",
+    "payload": {
+      "front": "8MHz HSE 到72MHz的可靠主线？",
+      "back": "确认当前状态 → 准备 Flash/总线 → 启HSE并等就绪 → 配PLL×9并等就绪 → 切SYSCLK并确认 → 更新软件和外设时序。"
+    },
+    "answer": {
+      "expectedRecall": "确认当前状态 → 准备 Flash/总线 → 启HSE并等就绪 → 配PLL×9并等就绪 → 切SYSCLK并确认 → 更新软件和外设时序。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "确认当前状态 → 准备 Flash/总线 → 启HSE并等就绪 → 配PLL×9并等就绪 → 切SYSCLK并确认 → 更新软件和外设时序。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.1",
+        "url": "urn:stm32:course:9.1:pdf",
+        "section": "9.1 时基单元 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b78d206803972dd4fa12eab596261a6e98da9f9e034c900325ff3332790d62d0",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s1.check-01",
+    "type": "single_choice",
+    "stem": "向上计数 fTIM=72MHz、PSC=71、ARR=999，更新周期是多少？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "72 ms"
+        },
+        {
+          "id": "core",
+          "text": "1 ms"
+        },
+        {
+          "id": "misconception-1",
+          "text": "1000 ms"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "72MHz/72=1MHz，1000个计数为1ms。",
+      "incorrect": {
+        "misconception-1": "1MHz 下1000次是1ms，不是1s。",
+        "misconception-2": "应先除预分频，再算计数范围。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.1",
+        "url": "urn:stm32:course:9.1:pdf",
+        "section": "9.1 时基单元 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b78d206803972dd4fa12eab596261a6e98da9f9e034c900325ff3332790d62d0",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s1.card-01",
+    "type": "flashcard",
+    "stem": "向上计数基本公式？",
+    "payload": {
+      "front": "向上计数基本公式？",
+      "back": "fCNT=fTIM/(PSC+1)，更新频率=fCNT/(ARR+1)。先确认实际定时器时钟和计数模式。"
+    },
+    "answer": {
+      "expectedRecall": "fCNT=fTIM/(PSC+1)，更新频率=fCNT/(ARR+1)。先确认实际定时器时钟和计数模式。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "fCNT=fTIM/(PSC+1)，更新频率=fCNT/(ARR+1)。先确认实际定时器时钟和计数模式。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.tim.tim-clearitpendingbit",
+      "fn.tim.tim-getitstatus",
+      "fn.tim.tim-itconfig",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.2",
+        "url": "urn:stm32:course:9.2:pdf",
+        "section": "9.2 自制延迟函数 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1f5262ffc0ed4e62386b73561516b0e1654624c6a8fc33051f411109d29dd6b8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s2.check-01",
+    "type": "single_choice",
+    "stem": "依赖 TIM3 中断递增 tick 的延时，在 TIM3 中断被长期屏蔽时会怎样？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "tick 不推进，等待可能永远不结束"
+        },
+        {
+          "id": "misconception-1",
+          "text": "编译器自动补偿时间"
+        },
+        {
+          "id": "misconception-2",
+          "text": "GPIO 会代替 TIM3 计时"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "延时的时间源被阻断，条件无法满足。",
+      "incorrect": {
+        "misconception-1": "编译器不提供运行期时间补偿。",
+        "misconception-2": "未配置的 GPIO 不会代替中断节拍。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.tim.tim-clearitpendingbit",
+      "fn.tim.tim-getitstatus",
+      "fn.tim.tim-itconfig",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.2",
+        "url": "urn:stm32:course:9.2:pdf",
+        "section": "9.2 自制延迟函数 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1f5262ffc0ed4e62386b73561516b0e1654624c6a8fc33051f411109d29dd6b8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s2.card-01",
+    "type": "flashcard",
+    "stem": "毫秒延时为什么用 now-start 而不只用 now<expire？",
+    "payload": {
+      "front": "毫秒延时为什么用 now-start 而不只用 now<expire？",
+      "back": "无符号差值在受控范围内能处理计数回绕；绝对到期值比较在回绕附近可能失效。时间源必须持续推进。"
+    },
+    "answer": {
+      "expectedRecall": "无符号差值在受控范围内能处理计数回绕；绝对到期值比较在回绕附近可能失效。时间源必须持续推进。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "无符号差值在受控范围内能处理计数回绕；绝对到期值比较在回绕附近可能失效。时间源必须持续推进。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-ocstructinit",
+      "fn.tim.tim-setcompare1",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.3",
+        "url": "urn:stm32:course:9.3:pdf",
+        "section": "9.3 输出比较 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7066ff30aedbcbc5ee4b5b74d2a108d13e6943dbaaa90598095a17250328663",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s3.check-01",
+    "type": "single_choice",
+    "stem": "时基和通道都正常，但 TIM1 PWM 管脚没波形，还应重点检查什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "把 USART 波特率提高"
+        },
+        {
+          "id": "misconception-2",
+          "text": "只读 ADC 数据"
+        },
+        {
+          "id": "core",
+          "text": "主输出使能 MOE 等输出门控"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "高级定时器有额外输出门控，内部比较正常也可能被挡住。",
+      "incorrect": {
+        "misconception-1": "USART 不决定 TIM1 输出门控。",
+        "misconception-2": "ADC 读值不打开 TIM1 输出。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-ocstructinit",
+      "fn.tim.tim-setcompare1",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.3",
+        "url": "urn:stm32:course:9.3:pdf",
+        "section": "9.3 输出比较 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7066ff30aedbcbc5ee4b5b74d2a108d13e6943dbaaa90598095a17250328663",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s3.card-01",
+    "type": "flashcard",
+    "stem": "PWM 频率和占空比各主要由什么决定？",
+    "payload": {
+      "front": "PWM 频率和占空比各主要由什么决定？",
+      "back": "时钟、PSC、ARR决定周期；CCR和输出比较模式/极性决定有效时间。还需检查输出通道、GPIO和TIM1主输出门控。"
+    },
+    "answer": {
+      "expectedRecall": "时钟、PSC、ARR决定周期；CCR和输出比较模式/极性决定有效时间。还需检查输出通道、GPIO和TIM1主输出门控。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "时钟、PSC、ARR决定周期；CCR和输出比较模式/极性决定有效时间。还需检查输出通道、GPIO和TIM1主输出门控。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-oc1preloadconfig",
+      "fn.tim.tim-setcompare1"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.4",
+        "url": "urn:stm32:course:9.4:pdf",
+        "section": "9.4 呼吸灯实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "f80085c8ab69cde2bed9293ea4863c2a7899c4165e25f34c022396e6bc0eef41",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s4.check-01",
+    "type": "single_choice",
+    "stem": "呼吸灯的 PWM 载波周期与亮度更新周期是什么关系？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "亮度只能通过反复关闭 TIM1 改变"
+        },
+        {
+          "id": "core",
+          "text": "不同层次：载波维持输出，较慢更新 CCR 改亮度"
+        },
+        {
+          "id": "misconception-1",
+          "text": "必须完全相同"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "硬件持续产生PWM，软件较慢地改变占空比包络。",
+      "incorrect": {
+        "misconception-1": "相同节奏并非呼吸灯要求。",
+        "misconception-2": "正常方法是更新比较值。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s4"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-oc1preloadconfig",
+      "fn.tim.tim-setcompare1"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.4",
+        "url": "urn:stm32:course:9.4:pdf",
+        "section": "9.4 呼吸灯实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "f80085c8ab69cde2bed9293ea4863c2a7899c4165e25f34c022396e6bc0eef41",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s4.card-01",
+    "type": "flashcard",
+    "stem": "呼吸灯为什么只慢慢改 CCR，而不在循环里手工拉高拉低？",
+    "payload": {
+      "front": "呼吸灯为什么只慢慢改 CCR，而不在循环里手工拉高拉低？",
+      "back": "定时器负责准确的高频PWM，软件只更新占空比，让慢速亮度变化与快速载波解耦。"
+    },
+    "answer": {
+      "expectedRecall": "定时器负责准确的高频PWM，软件只更新占空比，让慢速亮度变化与快速载波解耦。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "定时器负责准确的高频PWM，软件只更新占空比，让慢速亮度变化与快速载波解耦。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-icstructinit",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.5",
+        "url": "urn:stm32:course:9.5:pdf",
+        "section": "9.5 输入捕获 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "24f6b09878a63a5681dd91a6ea66e8c3ab0808b367491a7e561e35b6eb559b9a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s5.check-01",
+    "type": "single_choice",
+    "stem": "输入捕获 CCR 保存的是什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "有效边沿到来时硬件锁存的计数值"
+        },
+        {
+          "id": "misconception-1",
+          "text": "CPU 读取时的系统日期"
+        },
+        {
+          "id": "misconception-2",
+          "text": "必定已经换算为微秒的距离"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "单位由时基决定，软件再将计数换成时间或其他物理量。",
+      "incorrect": {
+        "misconception-1": "定时器不保存系统日期。",
+        "misconception-2": "距离还需要协议和物理换算。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s5"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-icstructinit",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.5",
+        "url": "urn:stm32:course:9.5:pdf",
+        "section": "9.5 输入捕获 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "24f6b09878a63a5681dd91a6ea66e8c3ab0808b367491a7e561e35b6eb559b9a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s5.card-01",
+    "type": "flashcard",
+    "stem": "读 CNT 与读捕获 CCR 的区别？",
+    "payload": {
+      "front": "读 CNT 与读捕获 CCR 的区别？",
+      "back": "CNT 是当前计数；CCR 是符合捕获条件的边沿到来时锁存的计数。测时优先解释捕获事件与时基。"
+    },
+    "answer": {
+      "expectedRecall": "CNT 是当前计数；CCR 是符合捕获条件的边沿到来时锁存的计数。测时优先解释捕获事件与时基。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "CNT 是当前计数；CCR 是符合捕获条件的边沿到来时锁存的计数。测时优先解释捕获事件与时基。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s6"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-setcounter"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.6",
+        "url": "urn:stm32:course:9.6:pdf",
+        "section": "9.6 超声波测距实验 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "defb2472ab7f13a5a8338c90ad90ca5db97bd3cfe226388137dd69c30151136d",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s6.check-01",
+    "type": "single_choice",
+    "stem": "Echo 脉宽乘声速后为什么还要除以2？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "定时器一定自动倍频"
+        },
+        {
+          "id": "misconception-2",
+          "text": "GPIO 每次只读到一半数据"
+        },
+        {
+          "id": "core",
+          "text": "脉宽反映声波往返路程时间"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "距离是单程，传播时间包含发出到反射再返回。",
+      "incorrect": {
+        "misconception-1": "时钟倍频应在时基换算中处理。",
+        "misconception-2": "GPIO数据与往返除2没有关系。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s6"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-setcounter"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.6",
+        "url": "urn:stm32:course:9.6:pdf",
+        "section": "9.6 超声波测距实验 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "defb2472ab7f13a5a8338c90ad90ca5db97bd3cfe226388137dd69c30151136d",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s6.card-01",
+    "type": "flashcard",
+    "stem": "超声测距程序必须处理哪些无效情况？",
+    "payload": {
+      "front": "超声测距程序必须处理哪些无效情况？",
+      "back": "无回波超时、旧捕获标志、计数回绕、超量程、错误电平，以及声速近似带来的误差。"
+    },
+    "answer": {
+      "expectedRecall": "无回波超时、旧捕获标志、计数回绕、超量程、错误电平，以及声速近似带来的误差。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "无回波超时、旧捕获标志、计数回绕、超量程、错误电平，以及声速近似带来的误差。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s7"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.7",
+        "url": "urn:stm32:course:9.7:pdf",
+        "section": "9.7 从模式控制器 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b480314e1c8b83e16d19d4bfc6fbf854f0a69f977ac9aa0b4a0ffc6827dc1a56",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s7.check-01",
+    "type": "single_choice",
+    "stem": "TRGO 必须经过一个 GPIO 输出管脚才能触发另一个片上模块吗？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "必须先通过OLED显示"
+        },
+        {
+          "id": "core",
+          "text": "不必，它可以是内部触发连线"
+        },
+        {
+          "id": "misconception-1",
+          "text": "必须，它就是串口TX"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "定时器内部互连支持片上触发，具体连接查器件互连表。",
+      "incorrect": {
+        "misconception-1": "TRGO不是USART TX。",
+        "misconception-2": "显示与内部触发链路无关。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s7"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.7",
+        "url": "urn:stm32:course:9.7:pdf",
+        "section": "9.7 从模式控制器 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b480314e1c8b83e16d19d4bfc6fbf854f0a69f977ac9aa0b4a0ffc6827dc1a56",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s7.card-01",
+    "type": "flashcard",
+    "stem": "配置从模式时最先说清哪三件事？",
+    "payload": {
+      "front": "配置从模式时最先说清哪三件事？",
+      "back": "触发源是谁、怎样接到TRGI、触发后计数器做什么。若用内部ITR，查对应定时器的互连表。"
+    },
+    "answer": {
+      "expectedRecall": "触发源是谁、怎样接到TRGI、触发后计数器做什么。若用内部ITR，查对应定时器的互连表。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "触发源是谁、怎样接到TRGI、触发后计数器做什么。若用内部ITR，查对应定时器的互连表。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s8"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-pwmiconfig",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.8",
+        "url": "urn:stm32:course:9.8:pdf",
+        "section": "9.8 PWM 参数测量原理 / PDF第1—22页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "183f0681b2fd31a256f000c717b17e3f1176287688cbb192ff735c09370043e2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s8.check-01",
+    "type": "single_choice",
+    "stem": "PWM测量中为什么先检查周期计数不为0？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "避免无效数据和除零"
+        },
+        {
+          "id": "misconception-1",
+          "text": "因为0表示100%占空比"
+        },
+        {
+          "id": "misconception-2",
+          "text": "因为标准库自动把0变成1秒"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "零周期无法作为频率或占空比计算的合法分母，应报告无效。",
+      "incorrect": {
+        "misconception-1": "0周期不等于合法的满占空比。",
+        "misconception-2": "标准库不替应用编造周期。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s8"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-pwmiconfig",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.8",
+        "url": "urn:stm32:course:9.8:pdf",
+        "section": "9.8 PWM 参数测量原理 / PDF第1—22页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "183f0681b2fd31a256f000c717b17e3f1176287688cbb192ff735c09370043e2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s8.card-01",
+    "type": "flashcard",
+    "stem": "PWM输入测量中的三个核心配置？",
+    "payload": {
+      "front": "PWM输入测量中的三个核心配置？",
+      "back": "直接/间接捕获路径、相反边沿、合适TRGI与复位从模式；再确认CCR对应量后计算。"
+    },
+    "answer": {
+      "expectedRecall": "直接/间接捕获路径、相反边沿、合适TRGI与复位从模式；再确认CCR对应量后计算。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "直接/间接捕获路径、相反边沿、合适TRGI与复位从模式；再确认CCR对应量后计算。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s9"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.9",
+        "url": "urn:stm32:course:9.9:pdf",
+        "section": "9.9 PWM 参数测量实验 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "de7a23f8b9f66b6593a7bbe59fec8b735500cfcda8363e98e32059fce17cc10a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s9.check-01",
+    "type": "single_choice",
+    "stem": "high=250、period=1000，要算0.25占空比，怎样避免整数截断？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "先整数除法再强制转float"
+        },
+        {
+          "id": "misconception-2",
+          "text": "把 GPIO 速度改50MHz"
+        },
+        {
+          "id": "core",
+          "text": "先把 high 转为浮点再除以 period"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "整数除法先执行会得到0，之后转浮点也无法恢复小数。",
+      "incorrect": {
+        "misconception-1": "丢失的小数无法由后续转换恢复。",
+        "misconception-2": "GPIO驱动档位不改变C语言除法。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s9"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.9",
+        "url": "urn:stm32:course:9.9:pdf",
+        "section": "9.9 PWM 参数测量实验 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "de7a23f8b9f66b6593a7bbe59fec8b735500cfcda8363e98e32059fce17cc10a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s9.card-01",
+    "type": "flashcard",
+    "stem": "本实验谁产生PWM，谁测量？",
+    "payload": {
+      "front": "本实验谁产生PWM，谁测量？",
+      "back": "TIM3生成已知PWM，TIM1按配置捕获周期和高时间。先验证已知量，再扩展到未知输入与边界。"
+    },
+    "answer": {
+      "expectedRecall": "TIM3生成已知PWM，TIM1按配置捕获周期和高时间。先验证已知量，再扩展到未知输入与边界。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "TIM3生成已知PWM，TIM1按配置捕获周期和高时间。先验证已知量，再扩展到未知输入与边界。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s10"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-encoderinterfaceconfig",
+      "fn.tim.tim-getcounter",
+      "fn.tim.tim-setcounter",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.original.9.10",
+        "url": "https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+        "section": "RM0008 Rev21 §15.3.12，PDF第392—394页 / 编码器接口；原创补充",
+        "status": "source_checked",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s10.check-01",
+    "type": "single_choice",
+    "stem": "正交编码器为什么使用相位错开的A/B两路信号？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "两路永远相同只是备份"
+        },
+        {
+          "id": "core",
+          "text": "结合先后顺序判断方向并计数"
+        },
+        {
+          "id": "misconception-1",
+          "text": "用来产生固定72MHz系统时钟"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "两路状态转移的先后提供方向信息，定时器编码器模式据此加减计数。",
+      "incorrect": {
+        "misconception-1": "编码器输入不是系统PLL时钟源。",
+        "misconception-2": "相位差正是解码方向的关键信息。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course9",
+    "knowledgePointIds": [
+      "kp.course9.s10"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-encoderinterfaceconfig",
+      "fn.tim.tim-getcounter",
+      "fn.tim.tim-setcounter",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.original.9.10",
+        "url": "https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+        "section": "RM0008 Rev21 §15.3.12，PDF第392—394页 / 编码器接口；原创补充",
+        "status": "source_checked",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course9.s10.card-01",
+    "type": "flashcard",
+    "stem": "本节编码器讲解的来源与边界？",
+    "payload": {
+      "front": "本节编码器讲解的来源与边界？",
+      "back": "老师9.10正文重复且缺源码；这是对照RM0008的原创补充。A/B相位→输入路径→编码器模式→CNT增减与回绕；代码未编译或实机测试。"
+    },
+    "answer": {
+      "expectedRecall": "老师9.10正文重复且缺源码；这是对照RM0008的原创补充。A/B相位→输入路径→编码器模式→CNT增减与回绕；代码未编译或实机测试。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "老师9.10正文重复且缺源码；这是对照RM0008的原创补充。A/B相位→输入路径→编码器模式→CNT增减与回绕；代码未编译或实机测试。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s1"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.10.1",
+        "url": "urn:stm32:course:10.1:pdf",
+        "section": "10.1 逐次逼近型 ADC / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1a087cfc1c7fc587480be4a137de3a640479acb76999dde2d7a4f32a061800b7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s1.check-01",
+    "type": "single_choice",
+    "stem": "12位 ADC 有多少种理想数字码？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "4096种，常见码值0至4095"
+        },
+        {
+          "id": "misconception-1",
+          "text": "12种"
+        },
+        {
+          "id": "misconception-2",
+          "text": "4095种，码值1至4095"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "2的12次方为4096，包含零码。",
+      "incorrect": {
+        "misconception-1": "位数不等于码的数量。",
+        "misconception-2": "漏掉零码会造成数量错误。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s1"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [],
+    "sources": [
+      {
+        "sourceId": "src.course.10.1",
+        "url": "urn:stm32:course:10.1:pdf",
+        "section": "10.1 逐次逼近型 ADC / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1a087cfc1c7fc587480be4a137de3a640479acb76999dde2d7a4f32a061800b7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s1.card-01",
+    "type": "flashcard",
+    "stem": "12位分辨率为什么不等于12位绝对精度？",
+    "payload": {
+      "front": "12位分辨率为什么不等于12位绝对精度？",
+      "back": "分辨率描述数字码数量；精度还受参考电压、偏移、增益、噪声、非线性和采样条件影响。"
+    },
+    "answer": {
+      "expectedRecall": "分辨率描述数字码数量；精度还受参考电压、偏移、增益、噪声、非线性和采样条件影响。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "分辨率描述数字码数量；精度还受参考电压、偏移、增益、噪声、非线性和采样条件影响。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s2"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.2",
+        "url": "urn:stm32:course:10.2:pdf",
+        "section": "10.2 ADC 模块的结构框图 / PDF第1—24页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9ae9ca00c6134b49179301ae97dd39e1e8db4cc890499039bf5e02a33170b1f3",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s2.check-01",
+    "type": "single_choice",
+    "stem": "ADC 的扫描模式与连续转换分别回答什么问题？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "两者完全相同"
+        },
+        {
+          "id": "misconception-2",
+          "text": "扫描决定GPIO输出速度"
+        },
+        {
+          "id": "core",
+          "text": "扫描决定依次转换哪些通道，连续决定是否自动再转换"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "序列范围与重复行为是独立配置。",
+      "incorrect": {
+        "misconception-1": "多通道与重复转换不是同一个维度。",
+        "misconception-2": "GPIO输出速度与ADC序列无关。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s2"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.2",
+        "url": "urn:stm32:course:10.2:pdf",
+        "section": "10.2 ADC 模块的结构框图 / PDF第1—24页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9ae9ca00c6134b49179301ae97dd39e1e8db4cc890499039bf5e02a33170b1f3",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s2.card-01",
+    "type": "flashcard",
+    "stem": "ADC通道号、序列Rank和结果寄存器为何要分开？",
+    "payload": {
+      "front": "ADC通道号、序列Rank和结果寄存器为何要分开？",
+      "back": "通道号选择模拟源；Rank安排转换顺序；结果寄存器按规则/注入组保存结果。它们不是同一个编号。"
+    },
+    "answer": {
+      "expectedRecall": "通道号选择模拟源；Rank安排转换顺序；结果寄存器按规则/注入组保存结果。它们不是同一个编号。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "通道号选择模拟源；Rank安排转换顺序；结果寄存器按规则/注入组保存结果。它们不是同一个编号。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s3"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.3",
+        "url": "urn:stm32:course:10.3:pdf",
+        "section": "10.3 采样时间和转换时间 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "656ccfcf079352d854799995b76b705c10e41b84961fdbad800aa68056c4c31e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s3.check-01",
+    "type": "single_choice",
+    "stem": "ADC时钟12MHz，采样55.5周期，转换12.5周期，单次约多久？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "12.5秒"
+        },
+        {
+          "id": "core",
+          "text": "5.67微秒"
+        },
+        {
+          "id": "misconception-1",
+          "text": "55.5毫秒"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "总68周期除12MHz约5.67µs；单位和两部分都要计算。",
+      "incorrect": {
+        "misconception-1": "周期数不是毫秒数。",
+        "misconception-2": "MHz时钟下不能这样解释周期。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s3"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.3",
+        "url": "urn:stm32:course:10.3:pdf",
+        "section": "10.3 采样时间和转换时间 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "656ccfcf079352d854799995b76b705c10e41b84961fdbad800aa68056c4c31e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s3.card-01",
+    "type": "flashcard",
+    "stem": "ADC总转换时间怎样算？",
+    "payload": {
+      "front": "ADC总转换时间怎样算？",
+      "back": "单通道为(采样周期+12.5)/fADC；多通道再逐项累加。采样时间要允许源通过阻抗给采样电容充电。"
+    },
+    "answer": {
+      "expectedRecall": "单通道为(采样周期+12.5)/fADC；多通道再逐项累加。采样时间要允许源通过阻抗给采样电容充电。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "单通道为(采样周期+12.5)/fADC；多通道再逐项累加。采样时间要允许源通过阻抗给采样电容充电。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s4"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-cmd",
+      "fn.adc.adc-getcalibrationstatus",
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getflagstatus",
+      "fn.adc.adc-getresetcalibrationstatus",
+      "fn.adc.adc-init",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.adc.adc-resetcalibration",
+      "fn.adc.adc-softwarestartconvcmd",
+      "fn.adc.adc-startcalibration",
+      "fn.gpio.gpio-init",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.4",
+        "url": "urn:stm32:course:10.4:pdf",
+        "section": "10.4 常规单通道转换 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b4741ef2ddd0b86ea15f9cdaa02f4e12b69112f7f9b50ef2ed29243d4aef62bf",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s4.check-01",
+    "type": "single_choice",
+    "stem": "软件触发规则转换后，读取本次结果前应确认什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "core",
+          "text": "规则组EOC完成状态"
+        },
+        {
+          "id": "misconception-1",
+          "text": "USART的TC"
+        },
+        {
+          "id": "misconception-2",
+          "text": "GPIO输出位为1"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "规则转换完成和DR结果对应，不能用其他外设状态代替。",
+      "incorrect": {
+        "misconception-1": "TC反映串口发送完成。",
+        "misconception-2": "输出位不能证明ADC完成。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s4"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-cmd",
+      "fn.adc.adc-getcalibrationstatus",
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getflagstatus",
+      "fn.adc.adc-getresetcalibrationstatus",
+      "fn.adc.adc-init",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.adc.adc-resetcalibration",
+      "fn.adc.adc-softwarestartconvcmd",
+      "fn.adc.adc-startcalibration",
+      "fn.gpio.gpio-init",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.4",
+        "url": "urn:stm32:course:10.4:pdf",
+        "section": "10.4 常规单通道转换 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b4741ef2ddd0b86ea15f9cdaa02f4e12b69112f7f9b50ef2ed29243d4aef62bf",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s4.card-01",
+    "type": "flashcard",
+    "stem": "常规单通道转换完整逻辑？",
+    "payload": {
+      "front": "常规单通道转换完整逻辑？",
+      "back": "模拟输入与时钟 → ADC参数和规则通道 → 使能稳定校准 → 软件触发 → EOC → 读DR → 原始码验证。"
+    },
+    "answer": {
+      "expectedRecall": "模拟输入与时钟 → ADC参数和规则通道 → 使能稳定校准 → 软件触发 → EOC → 读DR → 原始码验证。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "模拟输入与时钟 → ADC参数和规则通道 → 使能稳定校准 → 软件触发 → EOC → 读DR → 原始码验证。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s5"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-externaltriginjectedconvcmd",
+      "fn.adc.adc-externaltriginjectedconvconfig",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.5",
+        "url": "urn:stm32:course:10.5:pdf",
+        "section": "10.5 定时器触发 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "80da3423d560ec9ac47e4cf995ab4340ea08d6fcaf04083ca671cc8700c42e7b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s5.check-01",
+    "type": "single_choice",
+    "stem": "本课 TIM1_TRGO 触发的注入转换，应读取哪个结果？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-1",
+          "text": "只读规则DR即可"
+        },
+        {
+          "id": "misconception-2",
+          "text": "USART_ReceiveData"
+        },
+        {
+          "id": "core",
+          "text": "对应JDR，用ADC_GetInjectedConversionValue"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "触发、序列、完成标志与读取必须保持在注入组链路内。",
+      "incorrect": {
+        "misconception-1": "规则DR不是本课注入结果位置。",
+        "misconception-2": "串口接收不是ADC数据寄存器。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s5"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-externaltriginjectedconvcmd",
+      "fn.adc.adc-externaltriginjectedconvconfig",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.5",
+        "url": "urn:stm32:course:10.5:pdf",
+        "section": "10.5 定时器触发 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "80da3423d560ec9ac47e4cf995ab4340ea08d6fcaf04083ca671cc8700c42e7b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s5.card-01",
+    "type": "flashcard",
+    "stem": "本课定时器触发ADC的整条链路？",
+    "payload": {
+      "front": "本课定时器触发ADC的整条链路？",
+      "back": "TIM1更新 → TRGO → ADC注入外部触发 → 注入序列 → JEOC → JDR结果 → 软件处理/串口输出。"
+    },
+    "answer": {
+      "expectedRecall": "TIM1更新 → TRGO → ADC注入外部触发 → 注入序列 → JEOC → JDR结果 → 软件处理/串口输出。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "TIM1更新 → TRGO → ADC注入外部触发 → 注入序列 → JEOC → JDR结果 → 软件处理/串口输出。",
+      "incorrect": {}
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s6"
+    ],
+    "level": "understanding",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-init",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.6",
+        "url": "urn:stm32:course:10.6:pdf",
+        "section": "10.6 扫描模式 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8f848b9855e7a7aad7caac3a4a2fa33dc3ae625051e5030b6e7abaea35b62a71",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s6.check-01",
+    "type": "single_choice",
+    "stem": "ADC_InjectedChannel_1 在读取函数中主要指什么？",
+    "payload": {
+      "options": [
+        {
+          "id": "misconception-2",
+          "text": "GPIOA第1脚输出状态"
+        },
+        {
+          "id": "core",
+          "text": "注入序列的第一个结果位置"
+        },
+        {
+          "id": "misconception-1",
+          "text": "必定是PA1的ADC通道1"
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "core"
+    },
+    "explanations": {
+      "correct": "结果位置由序列配置决定，可能装着ADC通道0的结果。",
+      "incorrect": {
+        "misconception-1": "Rank与模拟通道编号独立。",
+        "misconception-2": "这是ADC结果选择，不是GPIO读写。"
+      }
+    }
+  },
+  {
+    "revision": 1,
+    "chapterId": "ch.course10",
+    "knowledgePointIds": [
+      "kp.course10.s6"
+    ],
+    "level": "memory",
+    "difficulty": 2,
+    "functionIds": [
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-init",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.gpio.gpio-init"
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.6",
+        "url": "urn:stm32:course:10.6:pdf",
+        "section": "10.6 扫描模式 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8f848b9855e7a7aad7caac3a4a2fa33dc3ae625051e5030b6e7abaea35b62a71",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "verification": {
+      "answer": "source_checked",
+      "reasoning": "source_checked",
+      "chipApplicability": "source_checked",
+      "code": "not_applicable",
+      "reviewedOn": "2026-10-17",
+      "notes": "原创检查题，已对照本节资料；属于课程来源核对，不声称官方完整包或实机验证。"
+    },
+    "publicationStatus": "published",
+    "id": "q.course10.s6.card-01",
+    "type": "flashcard",
+    "stem": "本课PA0/PA1两路扫描怎样一一对应？",
+    "payload": {
+      "front": "本课PA0/PA1两路扫描怎样一一对应？",
+      "back": "PA0→ADC通道0→注入Rank1→JDR1；PA1→通道1→Rank2→JDR2（按本课配置）。序列顺序与结果位置一起核对。"
+    },
+    "answer": {
+      "expectedRecall": "PA0→ADC通道0→注入Rank1→JDR1；PA1→通道1→Rank2→JDR2（按本课配置）。序列顺序与结果位置一起核对。",
+      "grading": "self_rated"
+    },
+    "explanations": {
+      "correct": "PA0→ADC通道0→注入Rank1→JDR1；PA1→通道1→Rank2→JDR2（按本课配置）。序列顺序与结果位置一起核对。",
+      "incorrect": {}
+    }
+  }
+]

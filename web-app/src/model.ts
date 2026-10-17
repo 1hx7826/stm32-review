@@ -21,11 +21,11 @@ export interface StudyData {
  attempts:Attempt[];wrongQuestionStates:{questionId:string;state:'open'|'resolved';updatedAt:string;resolvedAt:string|null;note:string}[];
  reviewEvents:ReviewEvent[];tombstones:{deletionId:string;targetKind:'attempt'|'review_event';targetId:string;deletedAt:string}[];
 }
-export interface KnowledgePoint {id:string;title:string;learningGoal:string;functionIds:string[];exerciseIds:string[]}
-export interface Chapter {id:string;title:string;order:number;knowledgePoints:KnowledgePoint[]}
+export interface KnowledgePoint {number?:string;id:string;title:string;learningGoal:string;functionIds:string[];exerciseIds:string[]}
+export interface Chapter {description?:string;id:string;title:string;order:number;knowledgePoints:KnowledgePoint[]}
 export interface FunctionEntry {id:string;name:string;peripheral:string;prototype:string;purpose:string;parameters:{name:string;type:string;meaning:string;structureType?:string}[];returnValue:{type:string;meaning:string};flowPosition:string;example:{code:string;context:string;verificationStatus:string};prerequisitesAndCommonErrors:string[];knowledgePointIds:string[];sources:Source[];verification:{officialPackage:string;declaration:string;hardwareDetails:string;exampleCompilation:string};applicability:{scope:string}}
-export interface Lesson {knowledgePointId:string;title:string;lead:string;minutes:number;conceptVerification:string;functionIds:string[];sections:{title:string;paragraphs:string[]}[];flow:string[];example:{code:string;assumptions:string[];status:string;publicationStatus:string};troubleshooting:{symptom:string;checks:string}[];sources:Source[];reviewedOn:string}
-export interface Content {version:string;chapters:Chapter[];functions:FunctionEntry[];lessons:Lesson[];questions:Question[];historyQuestions:Question[];structures?:Record<string,{members:{name:string;type:string;meaning:string}[]}>}
+export interface Lesson {number:string;originalSupplement?:boolean;sourceIssue?:string;diagram:{kind:string;caption:string};steps:{title:string;action:string;why:string;expect:string;functionIds:string[]}[];knowledgePointId:string;title:string;lead:string;minutes:number;conceptVerification:string;functionIds:string[];sections:{title:string;paragraphs:string[]}[];flow:string[];example:{code:string;assumptions:string[];status:string;publicationStatus:string};troubleshooting:{symptom:string;checks:string}[];sources:Source[];reviewedOn:string}
+export interface Content {legacyChapterIds?:string[];legacyKnowledgePointIds?:string[];version:string;chapters:Chapter[];functions:FunctionEntry[];lessons:Lesson[];questions:Question[];historyQuestions:Question[];structures?:Record<string,{members:{name:string;type:string;meaning:string}[]}>}
 export const now=()=>new Date().toISOString();
 export interface RandomSource {randomUUID?:()=>string;getRandomValues?:(bytes:Uint8Array<ArrayBuffer>)=>unknown}
 export function uid(prefix:string,source:RandomSource|undefined=globalThis.crypto):string {

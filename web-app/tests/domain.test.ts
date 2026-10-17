@@ -17,7 +17,7 @@ describe('稳定 ID 与真实统计',()=>{
  it('空记录不虚构已学习章节或成绩',()=>{expect(study().chapterStates).toEqual([]);expect(stats(study()).accuracy).toBeNull();});
 });
 describe('复习发布门槛',()=>{
- it('未发布的设计示例与待核验题不会进入每日复习',()=>{const draft=c.historyQuestions[0],pending={...q,verification:{...q.verification,answer:'pending'}};expect(isPublished(draft)).toBe(false);expect(isPublished(pending)).toBe(false);const d=study();d.wrongQuestionStates=[{questionId:draft.id,state:'open',updatedAt:'2026-10-14T00:00:00Z',resolvedAt:null,note:''}];expect(dueQuestions(d,[draft,pending])).toEqual([]);});
+ it('未发布的设计示例与待核验题不会进入每日复习',()=>{const draft={...q,publicationStatus:'design_example'},pending={...q,verification:{...q.verification,answer:'pending'}};expect(isPublished(draft)).toBe(false);expect(isPublished(pending)).toBe(false);const d=study();d.wrongQuestionStates=[{questionId:draft.id,state:'open',updatedAt:'2026-10-14T00:00:00Z',resolvedAt:null,note:''}];expect(dueQuestions(d,[draft,pending])).toEqual([]);});
  it('复习从真实记录安排，again 为 10 分钟',()=>{const d=study();const e=createReview(d,q.id,'again',null,'2026-10-14T00:00:00Z');expect(e.nextDueAt).toBe('2026-10-14T00:10:00.000Z');expect(dueQuestions(addReview(d,e),[q],Date.parse('2026-10-14T00:09:00Z'))).toEqual([]);expect(dueQuestions(addReview(d,e),[q],Date.parse(e.nextDueAt))).toHaveLength(1);});
  it('复习事件相同 ID 仅保存一次',()=>{const e=createReview(study(),q.id,'good',null);expect(addReview(addReview(study(),e),e).reviewEvents).toHaveLength(1);});
 });

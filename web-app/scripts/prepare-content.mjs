@@ -1,16 +1,27 @@
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {fileURLToPath} from 'node:url';
 import {questionValidator} from './content-validation.mjs';
 const root=new URL('../../',import.meta.url);
 const read=async path=>JSON.parse(await readFile(new URL(path,root),'utf8'));
-const catalog=await read('content/knowledge-catalog.json'),index=await read('content/function-index.json'),lessons=await read('content/phase2/lessons.json'),questions=await read('content/phase2/questions.json'),history=await read('content/examples/questions.example.json'),qSchema=await read('content/schemas/question.schema.json'),studySchema=await read('content/schemas/study-export.schema.json');
-const ids={chapters:new Set(catalog.chapters.map(x=>x.id)),points:new Set(catalog.chapters.flatMap(x=>x.knowledgePoints.map(p=>p.id))),functions:new Set(index.functions.map(x=>x.id))};
-if(ids.chapters.size!==11||ids.points.size!==88||ids.functions.size!==124)throw new Error('第一阶段目录数量或 ID 被意外改变');
-const validate=questionValidator(qSchema);const seen=new Set();for(const q of [...questions,...history]){if(seen.has(q.id))throw new Error('题目 ID 重复');seen.add(q.id);validate(q,ids);}
-const seenLessons=new Set();for(const l of lessons){if(!ids.points.has(l.knowledgePointId)||seenLessons.has(l.knowledgePointId))throw new Error('讲解 ID 无效');seenLessons.add(l.knowledgePointId);if(l.conceptVerification!=='official_checked'||!l.sources.some(s=>s.status==='official_checked'))throw new Error('原理讲解未核验');if(l.functionIds.some(id=>!ids.functions.has(id)))throw new Error('函数引用无效');if(l.example.status==='pending'&&l.example.publicationStatus!=='draft')throw new Error('未核验代码被错误发布');}
-const publicFunctions=index.functions.map(f=>({id:f.id,name:f.name,peripheral:f.peripheral,prototype:f.prototype,purpose:f.purpose,parameters:f.parameters,returnValue:f.returnValue,flowPosition:f.flowPosition,example:f.example,prerequisitesAndCommonErrors:f.prerequisitesAndCommonErrors,knowledgePointIds:f.knowledgePointIds,applicability:{scope:f.applicability.scope},verification:{declaration:f.verification.declaration,officialPackage:f.verification.officialPackage,hardwareDetails:f.verification.hardwareDetails,exampleCompilation:f.verification.exampleCompilation},sources:f.sources.map(s=>({url:s.url,section:s.section,status:s.status}))}));
-const chapters=catalog.chapters.map(c=>({id:c.id,title:c.title,order:c.order,knowledgePoints:c.knowledgePoints.map(p=>({id:p.id,title:p.title,learningGoal:p.learningGoal,functionIds:p.functionIds,exerciseIds:questions.filter(q=>q.knowledgePointIds.includes(p.id)).map(q=>q.id)}))}));
+const [catalog,index,lessons,questions,legacy,sources,qSchema,studySchema]=await Promise.all(['catalog','functions','lessons','questions','legacy-ids','source-register'].map(p=>read('content/course/'+p+'.json')).concat([read('content/schemas/question.schema.json'),read('content/schemas/study-export.schema.json')]));
+const chapters=catalog.chapters;
+const ids={chapters:new Set(chapters.map(x=>x.id)),points:new Set(chapters.flatMap(x=>x.knowledgePoints.map(p=>p.id))),functions:new Set(index.functions.map(x=>x.id))};
+if(chapters.length!==10||ids.chapters.size!==10||ids.points.size!==54)throw new Error('课程章节数量或ID不完整');
+const expected=[3,5,7,8,8,3,2,2,10,6].flatMap((count,i)=>Array.from({length:count},(_,j)=>`${i+1}.${j+1}`));
+if(JSON.stringify(chapters.flatMap(c=>c.knowledgePoints.map(p=>p.number)))!==JSON.stringify(expected))throw new Error('课程数字顺序错误');
+const validate=questionValidator(qSchema),seen=new Set();
+for(const q of questions){if(seen.has(q.id))throw new Error('题目ID重复');seen.add(q.id);validate(q,ids);}
+const lessonIds=new Set();
+for(const l of lessons){
+ if(!ids.points.has(l.knowledgePointId)||lessonIds.has(l.knowledgePointId))throw new Error('讲解ID无效');lessonIds.add(l.knowledgePointId);
+ if(l.conceptVerification!=='source_checked'||!l.sources.some(s=>s.status==='source_checked'))throw new Error('课程来源缺失');
+ if(!l.steps.length||!l.sections.length||l.steps.some(s=>!s.action||!s.why||!s.expect))throw new Error('逐步解释缺失');
+ for(const id of [...l.functionIds,...l.steps.flatMap(s=>s.functionIds),...l.sections.flatMap(s=>s.functionIds)])if(!ids.functions.has(id))throw new Error('函数引用无效');
+ if(l.example.status==='pending'&&l.example.publicationStatus!=='draft')throw new Error('待验证代码误发布');
+ if(!sources.lessons.some(s=>s.number===l.number))throw new Error('来源清单缺失');
+}
+if(lessonIds.size!==54||questions.length!==108)throw new Error('课程/题卡不完整');
+for(const f of index.functions)if(!f.prototype.includes(f.name+'(')||f.verification.officialPackage!=='pending'||f.knowledgePointIds.some(p=>!ids.points.has(p)))throw new Error('函数声明或关联错误');
 const output=new URL('../src/generated/',import.meta.url);await mkdir(output,{recursive:true});
-await writeFile(new URL('content.json',output),JSON.stringify({version:'0.2.0',chapters,functions:publicFunctions,structures:index.structures,lessons,questions,historyQuestions:history}));
+await writeFile(new URL('content.json',output),JSON.stringify({version:catalog.version,chapters,functions:index.functions,structures:index.structures,lessons,questions,historyQuestions:[],legacyChapterIds:legacy.chapterIds,legacyKnowledgePointIds:legacy.knowledgePointIds,courseSources:sources.lessons}));
 await writeFile(new URL('study-schema.json',output),JSON.stringify(studySchema));
-console.log(`内容校验通过：${chapters.length} 章 / 88 知识点 / ${lessons.length} 原理讲解 / ${publicFunctions.length} 函数索引 / ${questions.filter(x=>x.type!=='flashcard').length} 题 / ${questions.filter(x=>x.type==='flashcard').length} 卡。`);
+console.log(`课程校验通过：10章 / 54节 / ${index.functions.length}函数 / 54检查题 / 54记忆卡；原题库未载入。`);

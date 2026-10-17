@@ -1,0 +1,749 @@
+{
+  "course": "用户提供的铁头山羊标准库新版课程",
+  "adaptation": "按用户提供资料顺序原创整理，不附原PDF/源码包/图片，不代表老师官方出品。",
+  "lessons": [
+    {
+      "number": "1.1",
+      "file": "1.1 [准备]安装开发环境.pdf",
+      "pages": 4,
+      "sha256": "2c14f56bb31ddd9f6a3d3232e14bf773de79c25131e2cb8b70cefbfc8d152d8f",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "1.2",
+      "file": "1.2 [准备]STM32的基本信息.pdf",
+      "pages": 11,
+      "sha256": "1e691909d175dc00b46d984ec13413b667a0924298e66ae243b62bb352b7c981",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "1.3",
+      "file": "1.3 [准备]STM32的引脚分布.pdf",
+      "pages": 13,
+      "sha256": "b84ca213fd0187da71e024605eb5adef7993a65136ad8a5b0e0be2ab16e24ec6",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "2.1",
+      "file": "2.1 [GPIO]4种输出模式.pdf",
+      "pages": 16,
+      "sha256": "7a022ae94024d5b1e57471da209abeef01345302bc595c40d2c2410289c78d39",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "2.2",
+      "file": "2.2 [GPIO]IO的最大输出速度.pdf",
+      "pages": 10,
+      "sha256": "7e5c75aa064e4f3b749c4be3f50c2da61d1f83da4a4c2b8d04def27e5dba51d6",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "2.3",
+      "file": "2.3 [GPIO]LED闪灯实验.pdf",
+      "pages": 15,
+      "sha256": "4c9fb469ff2a2c950fb111cb231bfd6fdbd64ae1df3a7239828475c1f2e2f62e",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "2.3 源码.rar",
+        "sha256": "e61b8a4236d9a88ba9f8a7ab9e134150a84adba32c67a3c17bc5643b794e5a2e",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "2.4",
+      "file": "2.4 [GPIO]4种输入模式.pdf",
+      "pages": 6,
+      "sha256": "82428adde249b44e5acc6a2b5dabddc1fcf0b692c5ea9eec299b0bae57702b47",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "2.5",
+      "file": "2.5 [GPIO]按钮实验.pdf",
+      "pages": 12,
+      "sha256": "985727e26e1eb8f9dc342addccd6aaf81440c29d351914a35840ea2ca0eb3279",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "2.5 源码.rar",
+        "sha256": "c3db5876da14c4d7044bce401f49498bb312b1b9a8a8d4a1ad42b4abe97d4835",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "3.1",
+      "file": "3.1 [串口]通信协议.pdf",
+      "pages": 7,
+      "sha256": "c238c393efc166c4d1ec317adf95cfacc21bf4d0f60379adab030d00ad5a476b",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "3.2",
+      "file": "3.2 [串口]UART模块的使用方法.pdf",
+      "pages": 16,
+      "sha256": "8e00778c6fc53f547649561f949767e67a1588f2d94cddfbafca7a8ba3bfc5fa",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "3.3",
+      "file": "3.3 [串口]为串口初始化IO引脚.pdf",
+      "pages": 14,
+      "sha256": "5d81e6114b6bc4f4ed23e651702d64da75b18eb435d67f9873f29c7fd03a9efa",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "3.3 源码.rar",
+        "sha256": "9d41c15609b51414db6e9275599c5af868282b91ef265ac7e6f8dbfcb4593524",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "3.4",
+      "file": "3.4 [串口]发送数据.pdf",
+      "pages": 13,
+      "sha256": "871ef5f9d4ac9c8e8fb0b5c93d037424799525213d3e4f1a914d761428a4cf62",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "3.4 源码.rar",
+        "sha256": "85583599c9f6061ac3f4083d91cbc88550f2eed77bb7d60db14453dae274a468",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "3.5",
+      "file": "3.5 [串口]格式化打印字符串.pdf",
+      "pages": 5,
+      "sha256": "0a935c1e28ea4284874038ab1a485bfa074cd5820e8d66cb9e72cebdf11aade7",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "3.5 源码.rar",
+        "sha256": "329284f1010dfdc6d6a1fd9a2aaa11a9bd08bb74ee04b79f79aad9a06de28f86",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "3.6",
+      "file": "3.6 [串口]接收数据.pdf",
+      "pages": 12,
+      "sha256": "35eab1a0e989a64f7d13b6a78f94c971b2429cecf0aba37b4cd93be44ef603ef",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "3.6 源码.rar",
+        "sha256": "55c72a01f82bb8d199bcc5dee3b96eec889fc61faede9f2d993fd44ccc62196a",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "3.7",
+      "file": "3.7 [串口]封装常用功能.pdf",
+      "pages": 4,
+      "sha256": "dc6a6042cfc649a2672a1e4cad071e9565104e16097730606dc3396e6dd0dd00",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "3.7 源码.rar",
+        "sha256": "ac00b2c2b7e735087c24cddcce77cfe58e1ba93f792d2566ad6fa46b6e4bed18",
+        "selectedSourceFiles": 9,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.1",
+      "file": "4.1 [I2C]基本电路结构.pdf",
+      "pages": 11,
+      "sha256": "eab24f7335ebcee477e69a10d8f109428c6b26d27d8ac396f8975314809e24d1",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "4.2",
+      "file": "4.2 [I2C]通信协议.pdf",
+      "pages": 8,
+      "sha256": "ab227b2720c9e719fe7a076cebbcc7992a7fe72915f127c482ab2e1fe79af750",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "4.3",
+      "file": "4.3 [I2C]I2C模块的使用方法.pdf",
+      "pages": 13,
+      "sha256": "1ff2b824c99906832abf65c88ed279dcbd390374b1ac2e75484992e3251d845c",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.3 源码.rar",
+        "sha256": "877699dd34451f93350b1c71f913f0a7b530cb201f911da113d513cbb60582e0",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.4",
+      "file": "4.4 [I2C]写数据.pdf",
+      "pages": 16,
+      "sha256": "a2418f6e66f55b9326f19580fdc470c993918553c15ce8a1abd1dcf0cc57909b",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.4 源码.rar",
+        "sha256": "76984acecd711edcf6d1a59a0f24014590be1bc644c45d6b6547df4ff06cf962",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.5",
+      "file": "4.5 [I2C]读数据.pdf",
+      "pages": 16,
+      "sha256": "e7d51771192f6537a5f8d96ef714b696c9bfe4f8f2eac7057c9dd9bbf515a827",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.5 源码.rar",
+        "sha256": "35f56fe1df2672a376c7d60d4d32a0609de2a4b88ddc895441af084cfd5c72da",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.6",
+      "file": "4.6 [I2C]软I2C.pdf",
+      "pages": 17,
+      "sha256": "31ad6c3b3d4226431a1e599a10dfc5fc51e42b7ca9eec485dbe5f55860964d06",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.6 源码.rar",
+        "sha256": "2dcf97a5ecab4daf003b6af5dfeb09f7b39d8a6c91e15bd7608d84c83236f5fe",
+        "selectedSourceFiles": 7,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.7",
+      "file": "4.7 [I2C]封装常用功能.pdf",
+      "pages": 7,
+      "sha256": "0db70198fecf04dcef0f2e41702c145676a634dda62f356712889b95f21511ba",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.7 源码.rar",
+        "sha256": "692bf84b6f060c52ab7841fba23f34c569388d23d0e878039275d6ed9352fe48",
+        "selectedSourceFiles": 13,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "4.8",
+      "file": "4.8 [I2C]OLED显示器.pdf",
+      "pages": 26,
+      "sha256": "63b53e4f213e2adba919df9300b53f990b32ffc478a10cfb8a7a0a0255dc20c7",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "4.8 源码.rar",
+        "sha256": "c6473dec2614ad992f3117d51c078219f60dd66a33236b74de21fa1b187556ab",
+        "selectedSourceFiles": 18,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.1",
+      "file": "5.1 [SPI]电路结构和通信协议.pdf",
+      "pages": 9,
+      "sha256": "60cad9c0e056b8008c80d8fae9a67bccb2a9d276bf08eaa5036aebb6a687e90a",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "5.2",
+      "file": "5.2 [番外] 按钮驱动程序编写.pdf",
+      "pages": 10,
+      "sha256": "546a1f295416dcfb9b0edb27486e936457591287c57facc4ee2cdd78348e70e1",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.2 源码.rar",
+        "sha256": "8f1883657f31ca0ce76e686efe2ab3baf861f648e798c2f2b2144a0453f8af15",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.3",
+      "file": "5.3 [番外] 按钮代码的封装.pdf",
+      "pages": 6,
+      "sha256": "6922dfc02fe8a3b70a4632358a5a317c14df9d719208b0a09abac3f85d30dbb9",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.3 源码.rar",
+        "sha256": "102c9e269fc4d9333a77e791601b481fa0543567750d1737b09962c9a21f6d8f",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.4",
+      "file": "5.4 [SPI] IO引脚初始化.pdf",
+      "pages": 2,
+      "sha256": "fcc2e402e73c13ed1590ab7f427c50d604e83937d91b500ec21dc7ae9ca3fc1f",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.4 源码.rar",
+        "sha256": "06563f384cb760df3736672dfb21abb979cb53a7308b3f82594231062533b7c9",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.5",
+      "file": "5.5 [SPI]SPI模块的初始化.pdf",
+      "pages": 14,
+      "sha256": "121d406760260efdfdfe9a59177f647378614a18f0ca89201e70dd1f18585d93",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.5 源码.rar",
+        "sha256": "d2cb69140f075686faa0181e018712650869904dec5dbf9c8b05b498a1016ee3",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.6",
+      "file": "5.6 [SPI]数据收发.pdf",
+      "pages": 8,
+      "sha256": "d633a1f3889d9d2a19d58331180d51350a9e694fd50cfe6b4acf70be8247fff9",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.6 源码.rar",
+        "sha256": "d879886cd2f92eba584045622db677fd5ee7e92fae884249eff3652db858434d",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.7",
+      "file": "5.7 [SPI]W25Q64实验(上).pdf",
+      "pages": 16,
+      "sha256": "9e1dd4ee0aa0cd5074322e3c467f436a8d480254573b017a70d76f800d993740",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.7 源码.rar",
+        "sha256": "0d0b2551399ae2d1b04241e115d2c7164d13901255edca14961336aac2caf4a2",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "5.8",
+      "file": "5.8 [SPI]W25Q64实验(下).pdf",
+      "pages": 7,
+      "sha256": "75962cfbf84f40487590de63ab6875202acb9b8a58ccd254ae9998ae0f92ccf7",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "5.8 源码.rar",
+        "sha256": "3b3f0df372c86b5cd314f5c6bd2ac8f9f67fbb9c24390c69c13a95159d1b9fb6",
+        "selectedSourceFiles": 19,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "6.1",
+      "file": "6.1 [中断]中断的概念.pdf",
+      "pages": 11,
+      "sha256": "b170d880df7d14a37eb06906880155ca4dee049736e6f01db12e3b21a43e4142",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "6.2",
+      "file": "6.2 [中断]中断优先级.pdf",
+      "pages": 19,
+      "sha256": "1d7800c56b4fc590afaa713f8355e4871137b927f25632c2c6a5bb11873317de",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "6.3",
+      "file": "6.3 [中断]串口中断编程实验.pdf",
+      "pages": 14,
+      "sha256": "255315fd7477670c909d7da07e2da89260edbeb4b61fc229fc698d585b69d8c2",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "6.3 源码.rar",
+        "sha256": "17a4a982ce77b84e232ce5d21fb47e656d07e1524b2d45985d024ed4d634a0f5",
+        "selectedSourceFiles": 17,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "7.1",
+      "file": "7.1 [EXTI]工作原理.pdf",
+      "pages": 9,
+      "sha256": "b897c75d9d8b475c4cbc9171ba845382bbc1f40e6cc57271f32288033e5a7dd8",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "7.2",
+      "file": "7.2 [EXTI]按钮实验.pdf",
+      "pages": 13,
+      "sha256": "7fd27d95f8538ab89c454db4d9db142d31902acc0d0a7e7e6a1d2981cad7e0dc",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "7.2 源码.rar",
+        "sha256": "3a56b4c9d1f034f4c4fbc34cf793226f9214c8df1d21d3ff531f9859fba383d1",
+        "selectedSourceFiles": 17,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "8.1",
+      "file": "8.1 [时钟]时钟树.pdf",
+      "pages": 11,
+      "sha256": "d55182263177487dc8ec78f595864d122f788983f257c4ed4ea1b2ed226c6fb6",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "8.2",
+      "file": "8.2 [时钟]时钟树编程.pdf",
+      "pages": 16,
+      "sha256": "76d3485f9ffb25118ac0dd5aedac21df71cf079c97ab38c5bd2a40c3fecefdce",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "8.2 源码.rar",
+        "sha256": "764d281599812abe68ebd56027825bf5653e8120107ed96f7a6097e79ba345af",
+        "selectedSourceFiles": 17,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "9.1",
+      "file": "9.1 [定时器]时基单元.pdf",
+      "pages": 15,
+      "sha256": "b78d206803972dd4fa12eab596261a6e98da9f9e034c900325ff3332790d62d0",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "9.2",
+      "file": "9.2 [定时器]自制延迟函数.pdf",
+      "pages": 8,
+      "sha256": "1f5262ffc0ed4e62386b73561516b0e1654624c6a8fc33051f411109d29dd6b8",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "9.2 源码.rar",
+        "sha256": "bf479124cdd41b068ab2d7948be9de1b34b7a446f786c4592069d65c9cc7c8ee",
+        "selectedSourceFiles": 21,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "9.3",
+      "file": "9.3 [定时器]输出比较.pdf",
+      "pages": 13,
+      "sha256": "e7066ff30aedbcbc5ee4b5b74d2a108d13e6943dbaaa90598095a17250328663",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "9.4",
+      "file": "9.4 [定时器]呼吸灯实验.pdf",
+      "pages": 13,
+      "sha256": "f80085c8ab69cde2bed9293ea4863c2a7899c4165e25f34c022396e6bc0eef41",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "9.4 源码.rar",
+        "sha256": "6ed2408b78410994c7ba8f2bbc4b61b12f961a6cbd7442829e8dd75522eb7f9a",
+        "selectedSourceFiles": 21,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "9.5",
+      "file": "9.5 [定时器]输入捕获.pdf",
+      "pages": 13,
+      "sha256": "24f6b09878a63a5681dd91a6ea66e8c3ab0808b367491a7e561e35b6eb559b9a",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "9.6",
+      "file": "9.6 [定时器]超声波测距实验.pdf",
+      "pages": 19,
+      "sha256": "defb2472ab7f13a5a8338c90ad90ca5db97bd3cfe226388137dd69c30151136d",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "9.6 源码.rar",
+        "sha256": "bf1ba5a1272d4871fcb51bebe642f20baf1b624e80c9fbd1dd7e741ef774fbe6",
+        "selectedSourceFiles": 21,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "9.7",
+      "file": "9.7 [定时器]从模式控制器.pdf",
+      "pages": 10,
+      "sha256": "b480314e1c8b83e16d19d4bfc6fbf854f0a69f977ac9aa0b4a0ffc6827dc1a56",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "9.8",
+      "file": "9.8 [定时器]PWM参数测量原理.pdf",
+      "pages": 22,
+      "sha256": "183f0681b2fd31a256f000c717b17e3f1176287688cbb192ff735c09370043e2",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "9.9",
+      "file": "9.9 [定时器]PWM参数测量实验.pdf",
+      "pages": 11,
+      "sha256": "de7a23f8b9f66b6593a7bbe59fec8b735500cfcda8363e98e32059fce17cc10a",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": {
+        "file": "9.9 源码.rar",
+        "sha256": "5c6c4e0c15f88aa1df8f85b5f92ab80fa8b3d6d1146bbbff97c02a2a291ee7d0",
+        "selectedSourceFiles": 21,
+        "status": "source_read_not_compiled"
+      }
+    },
+    {
+      "number": "9.10",
+      "file": "9.10 [定时器]编码器实验.pdf",
+      "pages": 11,
+      "sha256": "0d607d87a66c2e4d9e0aed1eed6733a981e8823a2fac409ed31cbf4f283f106a",
+      "kind": "original_supplement",
+      "status": "source_issue_original_supplement",
+      "issue": "原PDF第2—11页重复9.9且缺对应源码；用户选择原创补充。",
+      "codeArchive": null
+    },
+    {
+      "number": "10.1",
+      "file": "10.1 [ADC] 逐次逼近型ADC.pdf",
+      "pages": 15,
+      "sha256": "1a087cfc1c7fc587480be4a137de3a640479acb76999dde2d7a4f32a061800b7",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "10.2",
+      "file": "10.2 [ADC] ADC模块的结构框图.pdf",
+      "pages": 24,
+      "sha256": "9ae9ca00c6134b49179301ae97dd39e1e8db4cc890499039bf5e02a33170b1f3",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "10.3",
+      "file": "10.3 [ADC]采样时间和转换时间.pdf",
+      "pages": 17,
+      "sha256": "656ccfcf079352d854799995b76b705c10e41b84961fdbad800aa68056c4c31e",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "10.4",
+      "file": "10.4 [ADC]常规单通道转换.pdf",
+      "pages": 17,
+      "sha256": "b4741ef2ddd0b86ea15f9cdaa02f4e12b69112f7f9b50ef2ed29243d4aef62bf",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "10.5",
+      "file": "10.5 [ADC]定时器触发.pdf",
+      "pages": 16,
+      "sha256": "80da3423d560ec9ac47e4cf995ab4340ea08d6fcaf04083ca671cc8700c42e7b",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    },
+    {
+      "number": "10.6",
+      "file": "10.6 [ADC]扫描模式.pdf",
+      "pages": 8,
+      "sha256": "8f848b9855e7a7aad7caac3a4a2fa33dc3ae625051e5030b6e7abaea35b62a71",
+      "kind": "course_adaptation",
+      "status": "source_read",
+      "issue": null,
+      "codeArchive": null
+    }
+  ],
+  "headers": [
+    {
+      "file": "misc.h",
+      "version": "V3.6.2",
+      "sha256": "97d7414336a55e1fd22c5d1c1d1b7a66583d158732db3bb60c601bd9b62d55e1"
+    },
+    {
+      "file": "stm32f10x.h",
+      "version": "V3.5.1",
+      "sha256": "543c6d47585ec10511f3fecd561c055b9f246c934cc1a10236be19e1f0b23f49"
+    },
+    {
+      "file": "stm32f10x_adc.h",
+      "version": "V3.6.2",
+      "sha256": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875"
+    },
+    {
+      "file": "stm32f10x_dma.h",
+      "version": "V3.6.2",
+      "sha256": "18fdcd86938d2b6633df470bb5b8923649bd06a8f2b260e2f80338dd604eb689"
+    },
+    {
+      "file": "stm32f10x_exti.h",
+      "version": "V3.6.2",
+      "sha256": "e352d96e5f61c4e1b9281a5bd8fa60f1841d9a5870719fdecf4cfa36a7ebeff3"
+    },
+    {
+      "file": "stm32f10x_flash.h",
+      "version": "V3.6.2",
+      "sha256": "425dc48c22762c87e8561e42a4776dc241580c0289bb4132ba2767e4122c0edf"
+    },
+    {
+      "file": "stm32f10x_gpio.h",
+      "version": "V3.6.2",
+      "sha256": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37"
+    },
+    {
+      "file": "stm32f10x_i2c.h",
+      "version": "V3.6.2",
+      "sha256": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2"
+    },
+    {
+      "file": "stm32f10x_rcc.h",
+      "version": "V3.6.2",
+      "sha256": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24"
+    },
+    {
+      "file": "stm32f10x_spi.h",
+      "version": "V3.6.2",
+      "sha256": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d"
+    },
+    {
+      "file": "stm32f10x_tim.h",
+      "version": "V3.6.2",
+      "sha256": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef"
+    },
+    {
+      "file": "stm32f10x_usart.h",
+      "version": "V3.6.2",
+      "sha256": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93"
+    }
+  ],
+  "officialPackageV350": "pending",
+  "onDevice": "not_executed",
+  "privacyExclusions": [
+    "1.2第6页订单截图含私人信息，未进入网站。",
+    "网盘提取码、商业传播声明页面和原字库不作为网站素材。"
+  ]
+}

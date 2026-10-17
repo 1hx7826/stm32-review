@@ -1,0 +1,5735 @@
+[
+  {
+    "knowledgePointId": "kp.course1.s1",
+    "number": "1.1",
+    "title": "安装开发环境",
+    "lead": "先把编辑、编译、下载和运行这四件事分清楚，再建立能反复使用的开发环境。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "开发工具各自负责什么",
+        "paragraphs": [
+          "Keil µVision 是工程管理和调试界面，C 编译器把源码变成机器指令，器件包提供芯片描述和调试支持，ST-Link 把程序下载进芯片。装好一个界面，不等于这些环节已经全部可用。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "按讲义顺序准备工具",
+        "paragraphs": [
+          "先从工具厂商获取安装包，再安装 MDK 和适合 STM32F1 的器件包，检查课程工程采用的编译器版本。使用正规授权或官方许可范围内的版本；课程截图里的旧版本界面仅用于理解步骤，不代替当前官方授权规则。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "认识下载和调试连线",
+        "paragraphs": [
+          "SWD 至少要核对 SWDIO、SWCLK、GND 和目标电压参考。先断电检查引脚再接线；调试器检测不到芯片时，优先检查供电、共地、线序和调试配置，不要反复改业务代码。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "检查工程",
+        "action": "打开课程工程，确认目标器件为 STM32F103C8。",
+        "why": "编译器、器件包和启动文件必须匹配目标芯片。",
+        "expect": "工程能够识别芯片，文件路径没有缺失。",
+        "functionIds": []
+      },
+      {
+        "title": "构建一次",
+        "action": "执行 Build，先处理第一条真实错误。",
+        "why": "缺少头文件与链接符号是不同阶段的问题。",
+        "expect": "生成可下载映像；没有把警告当作下载成功。",
+        "functionIds": []
+      },
+      {
+        "title": "连接目标板",
+        "action": "检查供电和 SWD 连线，再选择 ST-Link。",
+        "why": "下载链路不依赖串口 TX/RX。",
+        "expect": "调试器能读到目标芯片。",
+        "functionIds": []
+      },
+      {
+        "title": "下载观察",
+        "action": "下载一个最小程序，复位并观察。",
+        "why": "编译通过只证明工具链接受程序。",
+        "expect": "硬件现象与程序预期一致。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "检查工程：打开课程工程，确认目标器件为 STM32F103C8。",
+      "构建一次：执行 Build，先处理第一条真实错误。",
+      "连接目标板：检查供电和 SWD 连线，再选择 ST-Link。",
+      "下载观察：下载一个最小程序，复位并观察。"
+    ],
+    "diagram": {
+      "kind": "toolchain",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "本节不需要调用 SPL 函数。",
+        "不运行资料目录中来源未确认的安装程序。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "编译成功但不能下载",
+        "checks": "检查 SWD、目标供电、调试器选择和复位方式；编译与下载分开定位。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.1.1",
+        "url": "urn:stm32:course:1.1:pdf",
+        "section": "1.1 安装开发环境 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "2c14f56bb31ddd9f6a3d3232e14bf773de79c25131e2cb8b70cefbfc8d152d8f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course1.s2",
+    "number": "1.2",
+    "title": "STM32 的基本信息",
+    "lead": "从芯片型号读出限制，知道遇到问题应该翻哪一份手册。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "STM32 在系统里做什么",
+        "paragraphs": [
+          "微控制器把处理器、Flash、SRAM 和外设放在一颗芯片里。CPU 执行程序，外设处理引脚电平、计时、通信和采样；学习标准库的目的，是让软件正确配置这些硬件模块。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "本课程的器件边界",
+        "paragraphs": [
+          "本网站围绕 STM32F103C8T6：Cortex-M3 内核，C8 标称 64 KiB Flash、20 KiB SRAM，LQFP48 封装。不要因为某些兼容板或个别批次能访问更多地址，就把超出官方容量的空间当成可移植保证。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "把资料分工用对",
+        "paragraphs": [
+          "数据手册查引脚、电气条件、容量与速度；RM0008 查外设寄存器和工作机制；内核编程手册查异常与 Cortex-M3 指令相关规则；SPL 头文件查函数声明，源码查函数如何操作寄存器。课程讲义用于引导顺序，不能替代芯片适用性核对。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "读型号",
+        "action": "对照板上芯片丝印，确认 F103C8T6。",
+        "why": "同属 STM32，外设实例和引脚也可能不同。",
+        "expect": "知道本课程的封装与容量边界。",
+        "functionIds": []
+      },
+      {
+        "title": "查引脚",
+        "action": "在数据手册查封装引脚图。",
+        "why": "板上排针编号不是芯片引脚编号。",
+        "expect": "获得要使用的端口名和管脚号。",
+        "functionIds": []
+      },
+      {
+        "title": "查机制",
+        "action": "在 RM0008 找对应外设框图和寄存器。",
+        "why": "函数名字不能完整解释硬件状态机。",
+        "expect": "能指出设置正在改变哪一块硬件。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "读型号：对照板上芯片丝印，确认 F103C8T6。",
+      "查引脚：在数据手册查封装引脚图。",
+      "查机制：在 RM0008 找对应外设框图和寄存器。"
+    ],
+    "diagram": {
+      "kind": "mcu",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "容量与封装按官方器件定义，不依赖非标扩容。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "找到例程就直接移植",
+        "checks": "先检查芯片系列、封装、外设实例和引脚复用；HAL 示例也不能直接当 SPL 示例。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.1.2",
+        "url": "urn:stm32:course:1.2:pdf",
+        "section": "1.2 STM32 的基本信息 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1e691909d175dc00b46d984ec13413b667a0924298e66ae243b62bb352b7c981",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course1.s3",
+    "number": "1.3",
+    "title": "STM32 的引脚分布",
+    "lead": "先认封装方向，再认电源、启动和复用功能，最后才选择普通 IO。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "从封装定位到端口名字",
+        "paragraphs": [
+          "先找到封装的 1 脚标记，按数据手册视图确认逆时针编号。PA9 表示 GPIOA 的第 9 位，不等于封装第 9 脚，也不等于开发板第 9 个排针。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "专用引脚不能当普通 IO 随便用",
+        "paragraphs": [
+          "VDD/VSS、VDDA/VSSA、复位、启动选择和晶振相关管脚各有用途。先保证供电、去耦、复位和启动配置正确，程序才能进入用户 Flash。不要在不核对数据手册的情况下把这些脚当通用信号线。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "同一管脚可以承担不同功能",
+        "paragraphs": [
+          "GPIO 模式决定输入、输出或模拟路径，复用选择把 USART、SPI、TIM 等外设接到引脚。选择复用前要同时核对封装可用性、AFIO 重映射和调试接口占用；图上列出了功能，不代表这些功能能同时使用。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "定位方向",
+        "action": "从 1 脚标记查封装引脚图。",
+        "why": "避免把顶视图与板底视图混用。",
+        "expect": "引脚编号和端口名称对应。",
+        "functionIds": []
+      },
+      {
+        "title": "分离专用脚",
+        "action": "先标出电源、复位、启动和晶振脚。",
+        "why": "这些信号决定芯片能否正常启动。",
+        "expect": "普通 IO 的选择不会破坏基础电路。",
+        "functionIds": []
+      },
+      {
+        "title": "核对复用",
+        "action": "查目标外设默认与重映射引脚。",
+        "why": "标准库配置必须与实际线序一致。",
+        "expect": "能写出外设、端口、管脚和模式的对应表。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "定位方向：从 1 脚标记查封装引脚图。",
+      "分离专用脚：先标出电源、复位、启动和晶振脚。",
+      "核对复用：查目标外设默认与重映射引脚。"
+    ],
+    "diagram": {
+      "kind": "pin",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "接线前断电，按实际板子原理图复核。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "PA9 接到了排针 9",
+        "checks": "PA9 是端口位名；沿原理图查到实际排针再接线。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.1.3",
+        "url": "urn:stm32:course:1.3:pdf",
+        "section": "1.3 STM32 的引脚分布 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b84ca213fd0187da71e024605eb5adef7993a65136ad8a5b0e0be2ab16e24ec6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course2.s1",
+    "number": "2.1",
+    "title": "四种输出模式",
+    "lead": "把输出驱动方式和信号来源拆开，四种输出模式就容易理解了。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sections": [
+      {
+        "title": "先看输出驱动电路",
+        "paragraphs": [
+          "推挽输出能主动拉高和拉低，适合独占的数字输出；开漏只主动拉低，写 1 相当于释放管脚，需要外部上拉或其他电路建立高电平。多个推挽输出不能直接并接互相争夺电平。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "再看由谁控制输出",
+        "paragraphs": [
+          "通用输出由软件写输出寄存器控制；复用输出由片上外设输出信号控制。于是形成通用推挽、通用开漏、复用推挽、复用开漏四种组合。复用不是更强的驱动，只是信号来源换成外设。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "函数与硬件连起来",
+        "paragraphs": [
+          "GPIO_Init 配置 CRL/CRH 中的 MODE/CNF 字段。GPIO_SetBits、GPIO_ResetBits 或 GPIO_WriteBit 修改输出状态；若管脚处于复用输出，实际波形由所连接的外设决定，不能把写 ODR 当成正常控制外设波形的方法。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-writebit",
+          "fn.gpio.gpio-setbits",
+          "fn.gpio.gpio-resetbits"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "确定负载",
+        "action": "确认外部电路需要主动高低电平还是共享开漏。",
+        "why": "先决定电气驱动方式，避免输出冲突。",
+        "expect": "推挽或开漏的选择有明确理由。",
+        "functionIds": []
+      },
+      {
+        "title": "打开时钟",
+        "action": "使能目标 GPIO 端口的 APB2 时钟。",
+        "why": "GPIO 配置寄存器需要外设时钟。",
+        "expect": "配置写入生效。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd"
+        ]
+      },
+      {
+        "title": "配置模式",
+        "action": "填写 Pin、Mode、Speed 后调用 GPIO_Init。",
+        "why": "模式和速度是不同字段。",
+        "expect": "引脚连接到预期驱动路径。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "控制输出",
+        "action": "在通用模式下写位并测量引脚。",
+        "why": "寄存器值要和真实电气电平一起验证。",
+        "expect": "开漏写 1 时，确认上拉后的电压。",
+        "functionIds": [
+          "fn.gpio.gpio-writebit"
+        ]
+      }
+    ],
+    "flow": [
+      "确定负载：确认外部电路需要主动高低电平还是共享开漏。",
+      "打开时钟：使能目标 GPIO 端口的 APB2 时钟。",
+      "配置模式：填写 Pin、Mode、Speed 后调用 GPIO_Init。",
+      "控制输出：在通用模式下写位并测量引脚。"
+    ],
+    "diagram": {
+      "kind": "gpio",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_0;\nio.GPIO_Mode = GPIO_Mode_Out_OD;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOA, &io);\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); /* 释放开漏输出 */",
+      "assumptions": [
+        "PA0 接有合适的外部上拉；不与其他推挽输出直连。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "开漏写 1 仍然测不到高电平",
+        "checks": "检查外部上拉、负载和短路；开漏写 1 不会主动供电拉高。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.1",
+        "url": "urn:stm32:course:2.1:pdf",
+        "section": "2.1 四种输出模式 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7a022ae94024d5b1e57471da209abeef01345302bc595c40d2c2410289c78d39",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course2.s2",
+    "number": "2.2",
+    "title": "IO 的最大输出速度",
+    "lead": "2 MHz、10 MHz、50 MHz 描述驱动配置，不是让 GPIO 自动按这个频率翻转。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit"
+    ],
+    "sections": [
+      {
+        "title": "电平变化需要时间",
+        "paragraphs": [
+          "真实引脚带有输出电阻、走线和负载电容。一次 0→1 或 1→0 不是理想垂直线，存在上升时间和下降时间。驱动能力与负载共同影响边沿。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "速度档位的含义",
+        "paragraphs": [
+          "STM32F1 的输出模式提供 2、10、50 MHz 档位。它们对应输出驱动速度配置；软件循环、外设时钟、负载和信号完整性仍限制实际波形。配置 50 MHz 不会产生 50 MHz 方波。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "按需求选择",
+        "paragraphs": [
+          "低速 LED 通常不需要最快边沿；高速边沿可能增加电磁干扰和振铃。先满足时序，再用尽量低的驱动档位，并通过测量检查信号。输入模式不会靠 GPIO_Speed 来设置采样频率。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "估计信号需求",
+        "action": "区分慢速指示灯和高速通信线。",
+        "why": "输出边沿需求来自电路和协议。",
+        "expect": "知道需要验证的最大速率。",
+        "functionIds": []
+      },
+      {
+        "title": "选择档位",
+        "action": "给 GPIO_Speed 赋适合的输出速度。",
+        "why": "参数决定输出驱动配置，不决定翻转调度。",
+        "expect": "慢速输出先采用较低档。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "观察边沿",
+        "action": "用示波器检查上升下降时间和振铃。",
+        "why": "实际负载可能与例程不同。",
+        "expect": "电平及时跨过接收端阈值。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "估计信号需求：区分慢速指示灯和高速通信线。",
+      "选择档位：给 GPIO_Speed 赋适合的输出速度。",
+      "观察边沿：用示波器检查上升下降时间和振铃。"
+    ],
+    "diagram": {
+      "kind": "edge",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "GPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_13;\nio.GPIO_Mode = GPIO_Mode_Out_PP;\nio.GPIO_Speed = GPIO_Speed_2MHz; /* LED 不需要最快边沿 */\nGPIO_Init(GPIOC, &io);",
+      "assumptions": [
+        "GPIOC 时钟已经开启；这里只展示速度字段。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "设成 50 MHz 但 LED 仍很慢",
+        "checks": "翻转间隔由程序决定；检查延时和循环，不能用输出驱动档位代替定时器。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.2",
+        "url": "urn:stm32:course:2.2:pdf",
+        "section": "2.2 IO 的最大输出速度 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7e5c75aa064e4f3b749c4be3f50c2da61d1f83da4a4c2b8d04def27e5dba51d6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course2.s3",
+    "number": "2.3",
+    "title": "LED 闪灯实验",
+    "lead": "沿着“电流怎么流 → 时钟怎么开 → 引脚怎么配 → 电平怎么写”的顺序点亮课程中的 PC13 LED。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-structinit",
+      "fn.gpio.gpio-writebit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sections": [
+      {
+        "title": "先看 LED 接法",
+        "paragraphs": [
+          "课程电路把 LED 和限流电阻接到 3.3 V 一侧，PC13 拉低时吸入电流，因此低电平亮、高电平灭。这个结论来自接线，不能推广为所有开发板的 LED 都是低电平有效。限流电阻用于限制电流，不能省略。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "让配置与接线对应",
+        "paragraphs": [
+          "先通过 RCC_APB2PeriphClockCmd 打开 GPIOC 时钟，再把 GPIO_Pin_13 配成通用推挽输出。GPIO_Speed_2MHz 足以用于闪灯；PC13 的电流和速度限制仍应以芯片数据手册为准。"
+        ],
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd",
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "让时间决定现象",
+        "paragraphs": [
+          "GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_RESET) 输出低电平；Bit_SET 输出高电平。课程的 Delay_Init 和 Delay 是工程封装函数，不属于 STM32 标准外设库。延时改变亮灭持续时间，不改变 LED 的电气极性。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-writebit"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "检查电路",
+        "action": "确认 LED 阳极经电阻接电源，阴极接 PC13。",
+        "why": "先确定有效电平，才能解释 Bit_RESET。",
+        "expect": "知道低电平会亮。",
+        "functionIds": []
+      },
+      {
+        "title": "使能 GPIOC",
+        "action": "打开 GPIOC 时钟。",
+        "why": "外设寄存器配置需要时钟。",
+        "expect": "GPIOC 可配置。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd"
+        ]
+      },
+      {
+        "title": "初始化 PC13",
+        "action": "设置 Pin13、Out_PP、2MHz。",
+        "why": "由 CPU 控制推挽输出。",
+        "expect": "引脚输出模式正确。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "交替写位",
+        "action": "拉低、延时、拉高、延时，循环执行。",
+        "why": "电平决定亮灭，延时决定节奏。",
+        "expect": "观察到周期性闪烁。",
+        "functionIds": [
+          "fn.gpio.gpio-writebit"
+        ]
+      }
+    ],
+    "flow": [
+      "检查电路：确认 LED 阳极经电阻接电源，阴极接 PC13。",
+      "使能 GPIOC：打开 GPIOC 时钟。",
+      "初始化 PC13：设置 Pin13、Out_PP、2MHz。",
+      "交替写位：拉低、延时、拉高、延时，循环执行。"
+    ],
+    "diagram": {
+      "kind": "led",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* Delay_Init / Delay 为课程工程封装，需单独提供。 */\nDelay_Init();\nRCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_13;\nio.GPIO_Mode = GPIO_Mode_Out_PP;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOC, &io);\nwhile (1) {\n    GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_RESET);\n    Delay(100);\n    GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_SET);\n    Delay(100);\n}",
+      "assumptions": [
+        "采用课程中的 PC13 低有效 LED 接法。",
+        "片段需放进正确的 main 和课程延时工程中；未编译、未实机测试。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "灯一直亮或一直灭",
+        "checks": "先测 PC13 电平是否变化，再查 LED 极性、时钟、目标管脚和 Delay 实现。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.3",
+        "url": "urn:stm32:course:2.3:pdf",
+        "section": "2.3 LED 闪灯实验 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "4c9fb469ff2a2c950fb111cb231bfd6fdbd64ae1df3a7239828475c1f2e2f62e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course2.s4",
+    "number": "2.4",
+    "title": "四种输入模式",
+    "lead": "先理解输入端看见什么，再决定上拉、下拉、浮空还是模拟输入。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sections": [
+      {
+        "title": "输入读的是外部电压",
+        "paragraphs": [
+          "数字输入经过输入缓冲与施密特触发器形成 0/1，再进入 IDR。GPIO_ReadInputDataBit 读取输入数据位；它不是读取你上一次写入的输出命令。外部电压必须满足输入高低阈值。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      },
+      {
+        "title": "没有外部驱动时怎样定义电平",
+        "paragraphs": [
+          "浮空输入没有内部上下拉，悬空时电平可能不确定。上拉让默认状态趋向高，下拉让默认状态趋向低；外部开关或信号源可改变这个状态。内部弱上拉不能代替所有高速或抗干扰电路中的外部电阻。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "模拟输入走另一条路径",
+        "paragraphs": [
+          "模拟模式用于 ADC 等模拟信号，关闭相关数字输入路径，避免把中间电压当成数字输入反复翻转。GPIO_Mode_AIN 只配置引脚，ADC 的时钟、通道和触发仍需单独配置。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "分析信号源",
+        "action": "确定按钮断开时是否有外部电阻定义电平。",
+        "why": "不让输入悬空。",
+        "expect": "默认状态明确。",
+        "functionIds": []
+      },
+      {
+        "title": "选择输入模式",
+        "action": "按电路选 IPU、IPD、IN_FLOATING 或 AIN。",
+        "why": "模式必须对应数字或模拟用途。",
+        "expect": "数字输入电平稳定或模拟路径正确。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "验证读值",
+        "action": "测量电压，再读取输入位比较。",
+        "why": "把硬件电压和软件读值联系起来。",
+        "expect": "按下和松开的读值可解释。",
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      }
+    ],
+    "flow": [
+      "分析信号源：确定按钮断开时是否有外部电阻定义电平。",
+      "选择输入模式：按电路选 IPU、IPD、IN_FLOATING 或 AIN。",
+      "验证读值：测量电压，再读取输入位比较。"
+    ],
+    "diagram": {
+      "kind": "button",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_1;\nio.GPIO_Mode = GPIO_Mode_IPU;\nGPIO_Init(GPIOA, &io);\nuint8_t pressed = (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1) == Bit_RESET);",
+      "assumptions": [
+        "按钮把 PA1 接地；松开时由上拉建立高电平。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "松开按钮读值乱跳",
+        "checks": "检查是否误用浮空输入、共地和线路干扰；先保证有明确默认电平。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.4",
+        "url": "urn:stm32:course:2.4:pdf",
+        "section": "2.4 四种输入模式 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "82428adde249b44e5acc6a2b5dabddc1fcf0b692c5ea9eec299b0bae57702b47",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course2.s5",
+    "number": "2.5",
+    "title": "按钮实验",
+    "lead": "用 PA1 读按钮、PA0 控制 LED，再认识“电平”和“一次按下事件”的区别。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sections": [
+      {
+        "title": "先把两条电路分开",
+        "paragraphs": [
+          "课程把 LED 与按钮接到不同引脚：PA0 输出控制 LED，PA1 上拉输入读取按钮。先分别验证输出和输入，再把条件判断连起来，避免一上来就把接线、模式和程序逻辑混在一起。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "轮询读取的含义",
+        "paragraphs": [
+          "主循环调用 GPIO_ReadInputDataBit 反复观察 PA1。按住按钮会连续读到有效电平；若每读到一次就翻转 LED，LED 可能高速翻转，最终状态看似随机。需要分清“当前按住”和“刚刚按下”。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit",
+          "fn.gpio.gpio-writebit"
+        ]
+      },
+      {
+        "title": "为什么要消抖",
+        "paragraphs": [
+          "机械触点闭合和断开时可能短时间往返变化。可先检测变化，再经过稳定时间复查，确认一次状态转移后只执行一次动作。简单阻塞延时适合理解，后续按钮封装课再把它改成可持续调用的状态逻辑。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "配置输出",
+        "action": "PA0 配成通用推挽，先验证 LED。",
+        "why": "把输出问题独立排除。",
+        "expect": "手动写位时灯响应。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-writebit"
+        ]
+      },
+      {
+        "title": "配置输入",
+        "action": "PA1 配上拉，读按下和松开电平。",
+        "why": "按钮接地时低有效。",
+        "expect": "读值稳定且符合接线。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      },
+      {
+        "title": "检测转移",
+        "action": "保存上一次稳定值，识别高到低。",
+        "why": "一次按住不应被当作无数次按下。",
+        "expect": "一次稳定按下只触发一次。",
+        "functionIds": []
+      },
+      {
+        "title": "连接动作",
+        "action": "事件触发后修改 LED 状态。",
+        "why": "把输入事件与输出行为解耦。",
+        "expect": "按一下出现一次可解释的变化。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "配置输出：PA0 配成通用推挽，先验证 LED。",
+      "配置输入：PA1 配上拉，读按下和松开电平。",
+      "检测转移：保存上一次稳定值，识别高到低。",
+      "连接动作：事件触发后修改 LED 状态。"
+    ],
+    "diagram": {
+      "kind": "button",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 电平控制示意：低有效按钮；LED 有效电平按实际电路确定。 */\nuint8_t level = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1);\nif (level == Bit_RESET) {\n    GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);\n} else {\n    GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\n}\n/* 若目标是“按一下翻转一次”，需再加入消抖与边沿检测。 */",
+      "assumptions": [
+        "PA0 输出和 PA1 上拉输入均已初始化。",
+        "此片段展示电平跟随，不冒充完整消抖驱动。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "按一次 LED 翻转很多次",
+        "checks": "检查是否把持续有效电平当成新事件，以及是否忽略机械抖动。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.2.5",
+        "url": "urn:stm32:course:2.5:pdf",
+        "section": "2.5 按钮实验 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "985727e26e1eb8f9dc342addccd6aaf81440c29d351914a35840ea2ca0eb3279",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s1",
+    "number": "3.1",
+    "title": "通信协议",
+    "lead": "先读懂一帧 UART 波形，再去配置串口模块。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "两根数据线怎样连接",
+        "paragraphs": [
+          "课程先从异步串行通信入手：一端 TX 接另一端 RX，双方共地。STM32 的逻辑电平串口不是 RS-232 的正负电压接口，不能未经电平转换直接相连。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "一帧从哪里开始和结束",
+        "paragraphs": [
+          "UART 空闲为高，起始位拉低，随后按约定顺序发送数据位，最后发送停止位高电平。常见配置是低位先发；例如 0x55 的低八位形成交替变化，适合用逻辑分析仪观察。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "没有时钟线，怎样对齐",
+        "paragraphs": [
+          "双方预先约定波特率、数据长度、校验和停止位。接收端从起始边沿建立采样节奏。波特率不一致会让采样逐渐偏离位中心；串口显示乱码不能只从字符串编码排查。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "核对电平",
+        "action": "确认两端为兼容的逻辑电平且共地。",
+        "why": "保护 IO，并给电压比较同一参考。",
+        "expect": "没有把 RS-232 直接接 MCU。",
+        "functionIds": []
+      },
+      {
+        "title": "统一帧格式",
+        "action": "约定波特率、位数、校验和停止位。",
+        "why": "异步收发没有共享时钟线。",
+        "expect": "双方对同一帧解释一致。",
+        "functionIds": []
+      },
+      {
+        "title": "观察 0x55",
+        "action": "发送测试字节并按位宽检查波形。",
+        "why": "先验证物理帧，再处理文本。",
+        "expect": "能标出起始位、数据位和停止位。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "核对电平：确认两端为兼容的逻辑电平且共地。",
+      "统一帧格式：约定波特率、位数、校验和停止位。",
+      "观察 0x55：发送测试字节并按位宽检查波形。"
+    ],
+    "diagram": {
+      "kind": "uart",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "示意采用普通非反相 UART；具体电平以接口规格为准。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "全部乱码",
+        "checks": "先查波特率与帧格式，再查 TX/RX、共地、电平和编码。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.1",
+        "url": "urn:stm32:course:3.1:pdf",
+        "section": "3.1 通信协议 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "c238c393efc166c4d1ec317adf95cfacc21bf4d0f60379adab030d00ad5a476b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s2",
+    "number": "3.2",
+    "title": "UART 模块的使用方法",
+    "lead": "从发送/接收数据寄存器到移位寄存器，理解 USART_Init 实际在配置什么。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init",
+      "fn.usart.usart-structinit"
+    ],
+    "sections": [
+      {
+        "title": "数据不是一次出现在引脚上",
+        "paragraphs": [
+          "软件写入发送数据寄存器后，硬件经移位寄存器把字节按位发送；接收则把引脚上采到的位重新拼成数据。STM32F1 从软件看到同一个 DR 地址，但读和写分别对应接收与发送路径。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "把帧格式交给初始化结构",
+        "paragraphs": [
+          "USART_InitTypeDef 包含波特率、字长、停止位、校验、收发模式和硬件流控。USART_Init 配置相关控制位与分频；USART_Cmd 使能 USART。USART1 在 APB2，USART2/3 在 APB1，时钟来源影响波特率。"
+        ],
+        "functionIds": [
+          "fn.usart.usart-structinit",
+          "fn.usart.usart-init",
+          "fn.usart.usart-cmd"
+        ]
+      },
+      {
+        "title": "字长与校验一起看",
+        "paragraphs": [
+          "启用奇偶校验后，校验位会占用所选字长中的最高位，不能只看到 WordLength 就认定所有位都是有效载荷。课程实验先采用 8 位、无校验、1 停止位，减少变量后再修改配置。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "开外设时钟",
+        "action": "按 USART 实例选择 APB1 或 APB2。",
+        "why": "分频与寄存器配置依赖实际时钟。",
+        "expect": "目标模块有时钟。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd",
+          "fn.rcc.rcc-apb1periphclockcmd"
+        ]
+      },
+      {
+        "title": "填帧格式",
+        "action": "从默认结构开始明确设置 115200、8N1、收发模式。",
+        "why": "避免未初始化字段引入不确定行为。",
+        "expect": "每个字段可对照对端设置。",
+        "functionIds": [
+          "fn.usart.usart-structinit"
+        ]
+      },
+      {
+        "title": "初始化并启用",
+        "action": "先 USART_Init，再 USART_Cmd。",
+        "why": "配置与使能是两件事。",
+        "expect": "模块准备工作；引脚留到下一节核对。",
+        "functionIds": [
+          "fn.usart.usart-init",
+          "fn.usart.usart-cmd"
+        ]
+      }
+    ],
+    "flow": [
+      "开外设时钟：按 USART 实例选择 APB1 或 APB2。",
+      "填帧格式：从默认结构开始明确设置 115200、8N1、收发模式。",
+      "初始化并启用：先 USART_Init，再 USART_Cmd。"
+    ],
+    "diagram": {
+      "kind": "serial-block",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "USART_InitTypeDef u;\nUSART_StructInit(&u);\nu.USART_BaudRate = 115200;\nu.USART_WordLength = USART_WordLength_8b;\nu.USART_StopBits = USART_StopBits_1;\nu.USART_Parity = USART_Parity_No;\nu.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;\nu.USART_HardwareFlowControl = USART_HardwareFlowControl_None;\nUSART_Init(USART1, &u);\nUSART_Cmd(USART1, ENABLE);",
+      "assumptions": [
+        "USART1 的 APB2 时钟已开启。",
+        "TX/RX 引脚仍须按 3.3 配置。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "配置 115200 但实测不对",
+        "checks": "核对实际 PCLK 与系统时钟设置；波特率值不是脱离时钟独立存在的。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.2",
+        "url": "urn:stm32:course:3.2:pdf",
+        "section": "3.2 UART 模块的使用方法 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8e00778c6fc53f547649561f949767e67a1588f2d94cddfbafca7a8ba3bfc5fa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s3",
+    "number": "3.3",
+    "title": "为串口初始化 IO 引脚",
+    "lead": "把 USART1 内部信号接到正确的管脚，理解默认引脚和重映射。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-structinit",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sections": [
+      {
+        "title": "默认引脚与课程重映射",
+        "paragraphs": [
+          "USART1 默认 TX=PA9、RX=PA10；课程还展示重映射到 PB6/PB7。重映射改变外设连接到哪组引脚，不会自动把两组引脚都启用。接线必须和代码选择一致。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "发送与接收为什么模式不同",
+        "paragraphs": [
+          "TX 的波形由 USART 硬件产生，因此配复用推挽；RX 接收外部信号，课程用上拉输入。GPIO 输入电平和对端电平必须兼容。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "AFIO 的职责",
+        "paragraphs": [
+          "使用 GPIO_PinRemapConfig 之前开启 AFIO 时钟，同时开启相应 GPIO 端口时钟。GPIO_Mode_AF_PP 负责输出模式，重映射配置负责选择管脚，两者不可互相替代。"
+        ],
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd",
+          "fn.gpio.gpio-pinremapconfig"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "选择一组引脚",
+        "action": "确定使用默认 PA9/PA10 或重映射 PB6/PB7。",
+        "why": "避免硬件接一组、软件配置另一组。",
+        "expect": "接线表唯一确定。",
+        "functionIds": []
+      },
+      {
+        "title": "使能端口与 AFIO",
+        "action": "为 GPIOB、AFIO、USART1 开 APB2 时钟。",
+        "why": "课程重映射需要这三个模块。",
+        "expect": "所有配置对象可用。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd"
+        ]
+      },
+      {
+        "title": "映射并设模式",
+        "action": "USART1 重映射；PB6 复用推挽，PB7 上拉输入。",
+        "why": "TX 来自外设，RX 读取外部电平。",
+        "expect": "发送和接收管脚路径都接通。",
+        "functionIds": [
+          "fn.gpio.gpio-pinremapconfig",
+          "fn.gpio.gpio-init"
+        ]
+      }
+    ],
+    "flow": [
+      "选择一组引脚：确定使用默认 PA9/PA10 或重映射 PB6/PB7。",
+      "使能端口与 AFIO：为 GPIOB、AFIO、USART1 开 APB2 时钟。",
+      "映射并设模式：USART1 重映射；PB6 复用推挽，PB7 上拉输入。"
+    ],
+    "diagram": {
+      "kind": "serial-block",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB |\n    RCC_APB2Periph_AFIO | RCC_APB2Periph_USART1, ENABLE);\nGPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_6;\nio.GPIO_Mode = GPIO_Mode_AF_PP;\nio.GPIO_Speed = GPIO_Speed_10MHz;\nGPIO_Init(GPIOB, &io);\nio.GPIO_Pin = GPIO_Pin_7;\nio.GPIO_Mode = GPIO_Mode_IPU;\nGPIO_Init(GPIOB, &io);",
+      "assumptions": [
+        "此片段采用课程的 PB6/PB7 重映射方案；对端 TX 接 PB7，RX 接 PB6。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "TX 有波形但电脑收不到",
+        "checks": "检查串口适配器是否仍接 PA9/PA10，以及交叉连接、共地和波特率。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.3",
+        "url": "urn:stm32:course:3.3:pdf",
+        "section": "3.3 为串口初始化 IO 引脚 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "5d81e6114b6bc4f4ed23e651702d64da75b18eb435d67f9873f29c7fd03a9efa",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s4",
+    "number": "3.4",
+    "title": "发送数据",
+    "lead": "用 TXE 和 TC 区分“可以继续写”与“线上已经发完”。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-senddata"
+    ],
+    "sections": [
+      {
+        "title": "写入与发送分成两级",
+        "paragraphs": [
+          "USART_SendData 向发送数据寄存器写数据。当前字节移交到移位寄存器后，TXE 可再次置位，软件就能准备下一个字节；此时引脚上可能还在发送。"
+        ],
+        "functionIds": [
+          "fn.usart.usart-senddata",
+          "fn.usart.usart-getflagstatus"
+        ]
+      },
+      {
+        "title": "TC 的用途",
+        "paragraphs": [
+          "TC 表示整帧发送完成，包括停止位。连续发送通常等待 TXE；准备关闭串口、切换半双工方向或结束供电前，才特别需要确认最后一个字节 TC。不能把 TXE 当成线上完全空闲。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "轮询需要失败出口",
+        "paragraphs": [
+          "课程用轮询理解标志位。工程应用应给等待设置超时，避免接线或配置故障让主循环永久卡住。超时计时函数是应用层依赖，不是 USART 库自动提供的能力。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "等可写",
+        "action": "读取 TXE，等待发送数据寄存器空。",
+        "why": "不覆盖尚未移交的数据。",
+        "expect": "可以写入下一字节。",
+        "functionIds": [
+          "fn.usart.usart-getflagstatus"
+        ]
+      },
+      {
+        "title": "写字节",
+        "action": "把待发送值交给 USART_SendData。",
+        "why": "由硬件完成串行移位。",
+        "expect": "字节进入发送路径。",
+        "functionIds": [
+          "fn.usart.usart-senddata"
+        ]
+      },
+      {
+        "title": "重复或收尾",
+        "action": "逐字节重复；最终需要线空闲时等待 TC。",
+        "why": "TXE 与 TC 对应不同阶段。",
+        "expect": "没有在停止位尚未完成时切换方向。",
+        "functionIds": [
+          "fn.usart.usart-getflagstatus"
+        ]
+      }
+    ],
+    "flow": [
+      "等可写：读取 TXE，等待发送数据寄存器空。",
+      "写字节：把待发送值交给 USART_SendData。",
+      "重复或收尾：逐字节重复；最终需要线空闲时等待 TC。"
+    ],
+    "diagram": {
+      "kind": "serial-block",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 示意片段；量产程序请给两个等待加入超时。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET) {}\nUSART_SendData(USART1, 0x55);\n/* 只有需要确认最后一帧结束时才额外等 TC。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {}",
+      "assumptions": [
+        "时钟、GPIO、帧格式已按 3.2/3.3 初始化。",
+        "本片段是轮询教学示意，未实现超时。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "最后一个字节被截断",
+        "checks": "检查是否误把 TXE 当 TC，过早关闭发送或收发器方向。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.4",
+        "url": "urn:stm32:course:3.4:pdf",
+        "section": "3.4 发送数据 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "871ef5f9d4ac9c8e8fb0b5c93d037424799525213d3e4f1a914d761428a4cf62",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s5",
+    "number": "3.5",
+    "title": "格式化打印字符串",
+    "lead": "printf 负责把值变成字符，串口发送负责把字符送出去。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.usart.usart-senddata"
+    ],
+    "sections": [
+      {
+        "title": "格式化不是串口外设功能",
+        "paragraphs": [
+          "printf、snprintf、fputc 属于 C 运行库或工具链重定向接口，不属于 STM32 SPL。格式化把数字按 %u、%x 等转换成字符，USART_SendData 只负责发送字符的编码值。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "重定向接口依赖工具链",
+        "paragraphs": [
+          "课程通过 fputc 串起格式化输出与字节发送。不同编译器、库和半主机配置的入口可能不同，移植时要确认工具链要求，不要看到同名函数就认为所有工程都能直接复制。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "控制阻塞和缓冲区",
+        "paragraphs": [
+          "打印很长字符串会占用发送时间；中断服务程序中阻塞 printf 可能拖延其他处理。使用 snprintf 时传入真实缓冲区大小，检查是否截断。时间戳函数如 GetTick 是工程封装，需明确单位和溢出行为。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "先验证字节发送",
+        "action": "确认 3.4 的发送函数可靠。",
+        "why": "格式化故障与底层串口故障分开排查。",
+        "expect": "单字符可正确显示。",
+        "functionIds": [
+          "fn.usart.usart-senddata"
+        ]
+      },
+      {
+        "title": "连接运行库",
+        "action": "按工具链把字符输出重定向到底层发送。",
+        "why": "C 库不会自动知道要用哪个 USART。",
+        "expect": "printf 的字符逐个进入发送函数。",
+        "functionIds": []
+      },
+      {
+        "title": "加入边界",
+        "action": "限制字符串长度和打印频率。",
+        "why": "避免缓冲区越界和长期阻塞。",
+        "expect": "输出可控且不妨碍实时任务。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "先验证字节发送：确认 3.4 的发送函数可靠。",
+      "连接运行库：按工具链把字符输出重定向到底层发送。",
+      "加入边界：限制字符串长度和打印频率。"
+    ],
+    "diagram": {
+      "kind": "toolchain",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* C 标准库负责格式化；send_text 为应用层封装。 */\nchar text[32];\nint n = snprintf(text, sizeof text, \"count=%u\\r\\n\", (unsigned)count);\nif (n > 0 && n < (int)sizeof text) {\n    send_text(text);\n}",
+      "assumptions": [
+        "需包含 stdio.h；count 与 send_text 由应用提供。",
+        "重定向入口依实际 MDK 编译器/运行库核对。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "printf 卡住或无输出",
+        "checks": "先排查半主机和重定向配置，再检查底层发送；不要在 ISR 内用阻塞打印调试时序。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.5",
+        "url": "urn:stm32:course:3.5:pdf",
+        "section": "3.5 格式化打印字符串 / PDF第1—5页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0a935c1e28ea4284874038ab1a485bfa074cd5820e8d66cb9e72cebdf11aade7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s6",
+    "number": "3.6",
+    "title": "接收数据",
+    "lead": "从 RXNE 读出字节，再识别字符和错误标志。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.usart.usart-getflagstatus",
+      "fn.usart.usart-receivedata"
+    ],
+    "sections": [
+      {
+        "title": "收到一帧以后发生什么",
+        "paragraphs": [
+          "硬件把接收位拼成数据，放入接收数据寄存器并设置 RXNE。软件读 USART_ReceiveData 取走数据；读取动作参与清除接收状态。读取前检查 RXNE，避免把没有新数据误当新字节。"
+        ],
+        "functionIds": [
+          "fn.usart.usart-getflagstatus",
+          "fn.usart.usart-receivedata"
+        ]
+      },
+      {
+        "title": "字符不等于数值",
+        "paragraphs": [
+          "串口工具发送字符 '0' 时通常发送 ASCII 0x30，而不是数值 0x00。用收到的字节控制 LED 或选择速度时，应先明确协议发送的是文本还是二进制。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "接收错误必须分类",
+        "paragraphs": [
+          "PE、FE、NE、ORE 分别指向校验、帧、噪声、溢出问题。ORE 常见于软件没及时读数据。部分标志通过先读 SR 再读 DR 的规定序列清除，不能把所有接收错误都当成普通可写 0 标志；需对照参考手册与 SPL 实现。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "等待 RXNE",
+        "action": "检查接收数据寄存器是否已有新数据。",
+        "why": "只有新数据才执行接收处理。",
+        "expect": "不重复处理空读。",
+        "functionIds": [
+          "fn.usart.usart-getflagstatus"
+        ]
+      },
+      {
+        "title": "读取字节",
+        "action": "读取 DR，保存到应用变量。",
+        "why": "及时释放接收寄存器。",
+        "expect": "取得当前帧数据。",
+        "functionIds": [
+          "fn.usart.usart-receivedata"
+        ]
+      },
+      {
+        "title": "解释协议",
+        "action": "按字符或二进制约定解析。",
+        "why": "ASCII '0' 不等于整数零。",
+        "expect": "命令分支与实际发送值一致。",
+        "functionIds": []
+      },
+      {
+        "title": "诊断错误",
+        "action": "检查错误来源，按规定序列恢复。",
+        "why": "只重试发送可能掩盖时序或吞吐问题。",
+        "expect": "能区分乱码和丢字节。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "等待 RXNE：检查接收数据寄存器是否已有新数据。",
+      "读取字节：读取 DR，保存到应用变量。",
+      "解释协议：按字符或二进制约定解析。",
+      "诊断错误：检查错误来源，按规定序列恢复。"
+    ],
+    "diagram": {
+      "kind": "serial-block",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "if (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) != RESET) {\n    uint8_t ch = (uint8_t)USART_ReceiveData(USART1);\n    if (ch == '0') {\n        /* 处理文本字符 0；不是数值 0x00。 */\n    }\n}",
+      "assumptions": [
+        "串口已开启接收，对端帧格式一致。",
+        "错误恢复需按实际错误类型完善。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "能收但偶尔丢字节",
+        "checks": "检查 ORE、轮询周期、阻塞打印和缓冲策略；读函数不会自动保存无限历史。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.6",
+        "url": "urn:stm32:course:3.6:pdf",
+        "section": "3.6 接收数据 / PDF第1—12页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "35eab1a0e989a64f7d13b6a78f94c971b2429cecf0aba37b4cd93be44ef603ef",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course3.s7",
+    "number": "3.7",
+    "title": "封装常用功能",
+    "lead": "把初始化、字节、缓冲区和文本接口分层，主程序才能表达意图。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.usart.usart-cmd",
+      "fn.usart.usart-init"
+    ],
+    "sections": [
+      {
+        "title": "先确定封装边界",
+        "paragraphs": [
+          "课程把重复使用的串口初始化与收发放进 my_lib。底层负责具体 USART 和管脚；上层表达发送一段数据或接收一行。自定义 My_* 或发送字符串函数不是新的 SPL API，应在文档中说明参数、返回值和依赖。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "数组长度不是字符串长度",
+        "paragraphs": [
+          "发送字节数组要显式传长度，允许出现 0x00；发送 C 字符串则以 '\\0' 结束。接收一行需要最大长度、结束符和超时，不能把不受控输入一直写进数组。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "失败也是接口的一部分",
+        "paragraphs": [
+          "可靠封装要说明阻塞与否、超时怎么报告、接收缓冲区何时满。返回“已经收到的字节数”和返回“成功/失败”含义不同，调用者必须知道应如何重试或保留部分数据。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "整理底层",
+        "action": "把已验证的时钟、GPIO 和 USART 配置封装。",
+        "why": "主程序无需重复关注所有配置字段。",
+        "expect": "初始化只有一个清晰入口。",
+        "functionIds": [
+          "fn.usart.usart-init",
+          "fn.usart.usart-cmd"
+        ]
+      },
+      {
+        "title": "设计接口",
+        "action": "分别提供字节数组和文本接口。",
+        "why": "二进制数据不能依赖字符串终止符。",
+        "expect": "每个接口都有长度边界。",
+        "functionIds": []
+      },
+      {
+        "title": "处理失败",
+        "action": "为等待、截断和接收满设置返回值。",
+        "why": "上层需要知道传输是否完整。",
+        "expect": "错误不会悄悄丢失。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "整理底层：把已验证的时钟、GPIO 和 USART 配置封装。",
+      "设计接口：分别提供字节数组和文本接口。",
+      "处理失败：为等待、截断和接收满设置返回值。"
+    ],
+    "diagram": {
+      "kind": "toolchain",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 应用层接口设计示意，不是 SPL 声明。 */\nint uart_send_bytes(const uint8_t *data, uint16_t length,\n                    uint32_t timeout_ms);\nint uart_read_line(char *buffer, uint16_t capacity,\n                   uint32_t timeout_ms);",
+      "assumptions": [
+        "返回值约定和超时计时由本地驱动实现；这里只展示接口设计。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "发送二进制遇到 0 就截断",
+        "checks": "误把字节数组当 C 字符串；改用显式长度的接口。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.3.7",
+        "url": "urn:stm32:course:3.7:pdf",
+        "section": "3.7 封装常用功能 / PDF第1—4页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "dc6a6042cfc649a2672a1e4cad071e9565104e16097730606dc3396e6dd0dd00",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s1",
+    "number": "4.1",
+    "title": "基本电路结构",
+    "lead": "I²C 的关键先在电路：两根线、上拉电阻和只能主动拉低的开漏输出。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "为什么用两根共享线",
+        "paragraphs": [
+          "SCL 传时钟，SDA 传数据；多个器件可共享总线。不同于点对点 UART，每个从设备靠地址区分。主机控制一次事务的节奏，读写方向改变时 SDA 的驱动方也会改变。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "开漏与上拉怎样协作",
+        "paragraphs": [
+          "各器件可拉低总线，写高意味着释放，由上拉电阻给电容充电形成高电平。因此任意一方拉低时线路保持低，不能用推挽高去对抗别人的低。电阻过大边沿慢，过小则低电平电流增大。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "从电路理解故障",
+        "paragraphs": [
+          "没有上拉、没共地、从设备未上电或把线接反，都会让协议失败。先测空闲 SCL/SDA 是否为高，再讨论寄存器事件；软件看见 BUSY 不一定只是程序问题。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "识别供电与地址",
+        "action": "查器件电压、地址脚和总线接法。",
+        "why": "通信前要避免电气不兼容和地址冲突。",
+        "expect": "每个从机可唯一定位。",
+        "functionIds": []
+      },
+      {
+        "title": "配置开漏和上拉",
+        "action": "确认双方释放高电平时由上拉建立高。",
+        "why": "总线需要多方共享驱动权。",
+        "expect": "空闲两线都高。",
+        "functionIds": []
+      },
+      {
+        "title": "观察拉低和释放",
+        "action": "测低电平以及上升沿。",
+        "why": "协议时序建立在真实电气边沿上。",
+        "expect": "没有推挽争用或上升过慢。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "识别供电与地址：查器件电压、地址脚和总线接法。",
+      "配置开漏和上拉：确认双方释放高电平时由上拉建立高。",
+      "观察拉低和释放：测低电平以及上升沿。"
+    ],
+    "diagram": {
+      "kind": "i2c-bus",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "上拉电压不能超过参与器件的允许范围；不默认所有管脚都耐 5 V。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "空闲 SDA 一直低",
+        "checks": "查短路、从设备卡在事务中、供电和开漏释放；不要只重复初始化。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.1",
+        "url": "urn:stm32:course:4.1:pdf",
+        "section": "4.1 基本电路结构 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "eab24f7335ebcee477e69a10d8f109428c6b26d27d8ac396f8975314809e24d1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s2",
+    "number": "4.2",
+    "title": "通信协议",
+    "lead": "把一次事务读成 START、地址、数据、应答、STOP，而不是一串孤立函数。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "帧的边界怎样产生",
+        "paragraphs": [
+          "SCL 为高时，SDA 从高变低表示 START，从低变高表示 STOP。普通数据位在 SCL 低时改变、在高时保持稳定；反复起始允许不释放总线就切换方向。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "地址与方向",
+        "paragraphs": [
+          "常见地址为 7 位，紧随一位 R/W。7 位地址本身与在线上传送的地址字节不是同一个数。调用驱动时必须查接口要求传 7 位数还是左移后的地址字节。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "第九拍是谁应答",
+        "paragraphs": [
+          "每 8 位后有第 9 个时钟，接收方拉低 SDA 表示 ACK，保持释放为 NACK。主机读最后一个字节时通常发送 NACK，随后 STOP，表明不再继续接收；不能把主机主动 NACK 都当成通信错误。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "发起事务",
+        "action": "先检查总线空闲，产生 START。",
+        "why": "建立一次明确的总线事务。",
+        "expect": "从设备识别起始条件。",
+        "functionIds": []
+      },
+      {
+        "title": "寻址",
+        "action": "发送地址和读写方向，检查 ACK。",
+        "why": "确认目标存在且接受请求。",
+        "expect": "没有应答则结束并报告。",
+        "functionIds": []
+      },
+      {
+        "title": "传输数据",
+        "action": "每字节检查接收方应答。",
+        "why": "接收能力和继续传输意图由 ACK/NACK 表达。",
+        "expect": "字节边界清楚。",
+        "functionIds": []
+      },
+      {
+        "title": "结束事务",
+        "action": "读最后字节时发送 NACK，再 STOP。",
+        "why": "释放总线并终止本次传输。",
+        "expect": "SCL/SDA 回到空闲高。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "发起事务：先检查总线空闲，产生 START。",
+      "寻址：发送地址和读写方向，检查 ACK。",
+      "传输数据：每字节检查接收方应答。",
+      "结束事务：读最后字节时发送 NACK，再 STOP。"
+    ],
+    "diagram": {
+      "kind": "i2c-frame",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "此节为协议层；硬件 I2C 与 GPIO 模拟在后续分别实现。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "地址正确却没有 ACK",
+        "checks": "先区分 7 位地址与地址字节，再查电平、地址脚和读写方向。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.2",
+        "url": "urn:stm32:course:4.2:pdf",
+        "section": "4.2 通信协议 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "ab227b2720c9e719fe7a076cebbcc7992a7fe72915f127c482ab2e1fe79af750",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s3",
+    "number": "4.3",
+    "title": "I2C 模块的使用方法",
+    "lead": "先把 I2C1 接到 PB8/PB9，再配置速度和外设状态机。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.i2c.i2c-cmd",
+      "fn.i2c.i2c-init",
+      "fn.i2c.i2c-structinit",
+      "fn.rcc.rcc-apb1periphclockcmd",
+      "fn.rcc.rcc-apb2periphclockcmd"
+    ],
+    "sections": [
+      {
+        "title": "课程采用重映射引脚",
+        "paragraphs": [
+          "本课硬件 I2C1 使用 PB8=SCL、PB9=SDA。需要 GPIOB 和 AFIO 的 APB2 时钟，以及 I2C1 的 APB1 时钟，再使能 GPIO_Remap_I2C1。两个引脚都使用复用开漏，并接合适上拉。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-pinremapconfig",
+          "fn.gpio.gpio-init",
+          "fn.rcc.rcc-apb1periphclockcmd"
+        ]
+      },
+      {
+        "title": "初始化参数的分工",
+        "paragraphs": [
+          "I2C_InitTypeDef 包括时钟速度、模式、占空比、自身地址、ACK 和地址长度等。ClockSpeed 是总线时钟目标；DutyCycle 主要用于快速模式的高低周期比例。OwnAddress 不等于本次要访问的从机地址。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-structinit",
+          "fn.i2c.i2c-init"
+        ]
+      },
+      {
+        "title": "配置不等于已经完成事务",
+        "paragraphs": [
+          "I2C_Cmd 使能外设；真正通信仍要驱动 START、寻址、读写和 STOP 的状态流程。F1 的 I2C 接收存在严格的软件时序，后续不能用一个通用等待事件替代所有分支。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-cmd"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "开三类时钟",
+        "action": "GPIOB/AFIO 开 APB2，I2C1 开 APB1。",
+        "why": "端口、映射、通信外设是不同模块。",
+        "expect": "寄存器均可配置。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd",
+          "fn.rcc.rcc-apb1periphclockcmd"
+        ]
+      },
+      {
+        "title": "配置重映射引脚",
+        "action": "使能 I2C1 重映射并设 PB8/PB9 为 AF_OD。",
+        "why": "让外设以开漏方式驱动课程线路。",
+        "expect": "空闲线高，映射正确。",
+        "functionIds": [
+          "fn.gpio.gpio-pinremapconfig",
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "配置并使能",
+        "action": "填速度等参数，调用 Init 后 Cmd。",
+        "why": "初始化描述目标时序，使能启动模块。",
+        "expect": "准备进入 4.4 的事务。",
+        "functionIds": [
+          "fn.i2c.i2c-init",
+          "fn.i2c.i2c-cmd"
+        ]
+      }
+    ],
+    "flow": [
+      "开三类时钟：GPIOB/AFIO 开 APB2，I2C1 开 APB1。",
+      "配置重映射引脚：使能 I2C1 重映射并设 PB8/PB9 为 AF_OD。",
+      "配置并使能：填速度等参数，调用 Init 后 Cmd。"
+    ],
+    "diagram": {
+      "kind": "i2c-bus",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);\n/* GPIOB、AFIO、PB8/PB9 的复用开漏与上拉须先配置。 */\nGPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);\nI2C_InitTypeDef bus;\nI2C_StructInit(&bus);\nbus.I2C_ClockSpeed = 100000;\nbus.I2C_Mode = I2C_Mode_I2C;\nbus.I2C_DutyCycle = I2C_DutyCycle_2;\nbus.I2C_Ack = I2C_Ack_Enable;\nbus.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;\nI2C_Init(I2C1, &bus);\nI2C_Cmd(I2C1, ENABLE);",
+      "assumptions": [
+        "片段聚焦外设配置，不是完整初始化；先完成 GPIOB/AFIO 和 AF_OD。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "I2C1 初始化后完全没波形",
+        "checks": "Cmd 不会自动发事务；检查重映射、START 操作、上拉和实际接线。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.3",
+        "url": "urn:stm32:course:4.3:pdf",
+        "section": "4.3 I2C 模块的使用方法 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1ff2b824c99906832abf65c88ed279dcbd390374b1ac2e75484992e3251d845c",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s4",
+    "number": "4.4",
+    "title": "写数据",
+    "lead": "把硬件标志位当作状态机的路标，逐段确认再往下走。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.i2c.i2c-generatestart",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-getflagstatus",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-send7bitaddress",
+      "fn.i2c.i2c-senddata"
+    ],
+    "sections": [
+      {
+        "title": "从空闲到寻址",
+        "paragraphs": [
+          "先确认总线不 BUSY，再产生 START，等待 SB 后发送地址写方向。地址被应答后产生 ADDR；按手册顺序读取 SR1、SR2 清除 ADDR，后续数据阶段才能推进。课程还检查 AF 识别未应答。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-getflagstatus",
+          "fn.i2c.i2c-generatestart",
+          "fn.i2c.i2c-senddata",
+          "fn.i2c.i2c-readregister"
+        ]
+      },
+      {
+        "title": "填充数据与结束",
+        "paragraphs": [
+          "TXE 表示数据寄存器空，可以写下一字节。结束前需要关注 BTF 等状态以确保数据真正传出，再产生 STOP。等待时检查错误并设置超时，不能让设备缺失造成无限循环。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-generatestop"
+        ]
+      },
+      {
+        "title": "地址接口的参数不能猜",
+        "paragraphs": [
+          "课程代码可用 I2C_SendData 写地址字节，也可阅读 I2C_Send7bitAddress 的封装；两者的参数语义不同。SPL 的 Send7bitAddress 接收已按接口要求对齐的地址值并设置方向位，不能把“7bit”直接解释成永远传未左移的 7 位数。必须看实现与调用约定。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-send7bitaddress"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "开始",
+        "action": "检查 BUSY 并产生 START，等待 SB。",
+        "why": "状态机只在允许的阶段接受下一操作。",
+        "expect": "START 已发出。",
+        "functionIds": [
+          "fn.i2c.i2c-generatestart",
+          "fn.i2c.i2c-getflagstatus"
+        ]
+      },
+      {
+        "title": "发送地址",
+        "action": "发送地址写方向，检查 ADDR 或 AF。",
+        "why": "明确目标是否应答。",
+        "expect": "未应答时走错误出口。",
+        "functionIds": [
+          "fn.i2c.i2c-senddata"
+        ]
+      },
+      {
+        "title": "清 ADDR 后写数据",
+        "action": "依序读 SR1/SR2，再等 TXE 填数据。",
+        "why": "ADDR 的清除有规定读序列。",
+        "expect": "字节按序发送。",
+        "functionIds": [
+          "fn.i2c.i2c-readregister",
+          "fn.i2c.i2c-senddata"
+        ]
+      },
+      {
+        "title": "结束",
+        "action": "等最后传输完成后 STOP，恢复可重试状态。",
+        "why": "不能提前结束最后一字节。",
+        "expect": "总线释放，成功或错误可报告。",
+        "functionIds": [
+          "fn.i2c.i2c-generatestop"
+        ]
+      }
+    ],
+    "flow": [
+      "开始：检查 BUSY 并产生 START，等待 SB。",
+      "发送地址：发送地址写方向，检查 ADDR 或 AF。",
+      "清 ADDR 后写数据：依序读 SR1/SR2，再等 TXE 填数据。",
+      "结束：等最后传输完成后 STOP，恢复可重试状态。"
+    ],
+    "diagram": {
+      "kind": "i2c-frame",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 仅演示地址字节构造；完整事务见上方状态步骤。 */\nuint8_t address7 = 0x3C;\nuint8_t address_write = (uint8_t)(address7 << 1);\n/* 已等待 SB 后： */\nI2C_SendData(I2C1, address_write);\n/* 还必须检查 ADDR/AF、清 ADDR、传数据与 STOP，并设置超时。 */",
+      "assumptions": [
+        "0x3C 只是示意地址，必须查实际器件。",
+        "不能把此片段当作可直接运行的完整 I2C 驱动。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "程序卡在等应答",
+        "checks": "检查地址表示、上拉、供电和 AF；所有等待应有超时和 STOP/恢复策略。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.4",
+        "url": "urn:stm32:course:4.4:pdf",
+        "section": "4.4 写数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "a2418f6e66f55b9326f19580fdc470c993918553c15ce8a1abd1dcf0cc57909b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s5",
+    "number": "4.5",
+    "title": "读数据",
+    "lead": "先懂最后一个字节如何结束，再区分 1、2 和多个字节的硬件时序。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.i2c.i2c-acknowledgeconfig",
+      "fn.i2c.i2c-generatestop",
+      "fn.i2c.i2c-nackpositionconfig",
+      "fn.i2c.i2c-readregister",
+      "fn.i2c.i2c-receivedata"
+    ],
+    "sections": [
+      {
+        "title": "接收方负责最后的应答",
+        "paragraphs": [
+          "读方向下从设备发送数据，主机决定每字节后继续 ACK 还是最后 NACK。主机要在正确时机配置 ACK、清 ADDR 和产生 STOP，不能读完以后再随意补一个 NACK。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-acknowledgeconfig",
+          "fn.i2c.i2c-generatestop"
+        ]
+      },
+      {
+        "title": "F1 接收必须分长度",
+        "paragraphs": [
+          "1 字节、2 字节和大于 2 字节时，ACK/POS、ADDR 清除、BTF 与 STOP 的组合顺序不同。课程按这些分支展开。I2C_CheckEvent 的一个事件不能替代所有分支；盲目套同一循环可能多收一字节或卡总线。"
+        ],
+        "functionIds": [
+          "fn.i2c.i2c-nackpositionconfig",
+          "fn.i2c.i2c-readregister",
+          "fn.i2c.i2c-receivedata"
+        ]
+      },
+      {
+        "title": "读数据也需要恢复配置",
+        "paragraphs": [
+          "结束一个短读后，要为下一次事务恢复 ACK 和 POS 等配置。对共享总线还需考虑异常恢复和超时。本节给出原理步骤，不提供未经完整时序验证的万能接收驱动。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "先决定长度",
+        "action": "进入事务前明确要读几个字节。",
+        "why": "接收尾部控制必须提前安排。",
+        "expect": "选择 1、2 或多字节分支。",
+        "functionIds": []
+      },
+      {
+        "title": "寻址进入接收",
+        "action": "START 后发读方向地址，按分支设置 ACK/POS 并处理 ADDR。",
+        "why": "控制器在地址阶段后开始接收。",
+        "expect": "不会错过最后 NACK 的时点。",
+        "functionIds": [
+          "fn.i2c.i2c-acknowledgeconfig",
+          "fn.i2c.i2c-nackpositionconfig",
+          "fn.i2c.i2c-readregister"
+        ]
+      },
+      {
+        "title": "按状态取数据",
+        "action": "依据 RXNE/BTF 和剩余字节读取 DR。",
+        "why": "DR 与移位寄存器状态共同决定可读时机。",
+        "expect": "字节顺序与数量正确。",
+        "functionIds": [
+          "fn.i2c.i2c-receivedata"
+        ]
+      },
+      {
+        "title": "结束和复位参数",
+        "action": "正确 STOP，并恢复 ACK/POS 默认策略。",
+        "why": "避免本次短读影响下一事务。",
+        "expect": "下一次读写仍可正常开始。",
+        "functionIds": [
+          "fn.i2c.i2c-generatestop"
+        ]
+      }
+    ],
+    "flow": [
+      "先决定长度：进入事务前明确要读几个字节。",
+      "寻址进入接收：START 后发读方向地址，按分支设置 ACK/POS 并处理 ADDR。",
+      "按状态取数据：依据 RXNE/BTF 和剩余字节读取 DR。",
+      "结束和复位参数：正确 STOP，并恢复 ACK/POS 默认策略。"
+    ],
+    "diagram": {
+      "kind": "i2c-frame",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* API 作用示意；这些行不是完整接收顺序。 */\nI2C_AcknowledgeConfig(I2C1, DISABLE); /* 控制 ACK */\nuint8_t value = I2C_ReceiveData(I2C1); /* 读接收 DR */\n/* 必须按 1/2/多字节分支安排 ADDR、BTF、STOP 和恢复操作。 */",
+      "assumptions": [
+        "示意行不能直接串成驱动；实际顺序需按 RM0008 接收分支验证。",
+        "未进行总线分析仪或实机时序测试。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "首字节正确但下一次通信卡死",
+        "checks": "检查长度分支、ADDR 清除、ACK/POS 恢复和异常 STOP；不能只检查读出的值。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.5",
+        "url": "urn:stm32:course:4.5:pdf",
+        "section": "4.5 读数据 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7d51771192f6537a5f8d96ef714b696c9bfe4f8f2eac7057c9dd9bbf515a827",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s6",
+    "number": "4.6",
+    "title": "软 I2C",
+    "lead": "用普通 GPIO 亲手产生每个时钟和数据边沿，理解协议与硬件控制器的区别。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-readinputdatabit",
+      "fn.gpio.gpio-writebit"
+    ],
+    "sections": [
+      {
+        "title": "课程的软件实现接线",
+        "paragraphs": [
+          "软 I2C 使用 PA0/PA1 作为 SCL/SDA，配置通用开漏并接上拉。它不使用 I2C1 的 PB8/PB9 映射，也不依赖 I2C_Init 的内部状态机。SCL/SDA 写 1 表示释放，不是强拉高。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-writebit",
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      },
+      {
+        "title": "先封装最小动作",
+        "paragraphs": [
+          "scl_write、sda_write、delay、send_byte、receive_byte 是工程自定义函数。先验证设置与读取单根线，再组合 START/STOP、8 位数据和第 9 拍应答。高位先发与 UART 课的常见低位先发不同。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "从教学延时到可靠总线",
+        "paragraphs": [
+          "固定软件延时能帮助观察时序，但编译优化和中断会改变实际周期。若支持时钟延展，释放 SCL 后还要确认它实际变高并有超时；需要多主仲裁时还要额外实现，不能把教学位操作直接说成完整 I2C 规范实现。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "配置 PA0/PA1",
+        "action": "通用开漏，写 1 释放两根线。",
+        "why": "软件自己控制协议，不用外设复用输出。",
+        "expect": "空闲两线为高。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-writebit"
+        ]
+      },
+      {
+        "title": "实现基础动作",
+        "action": "封装拉低、释放、读线和延时。",
+        "why": "把电气操作和协议步骤分层。",
+        "expect": "每根线的动作可单独测量。",
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      },
+      {
+        "title": "组装协议",
+        "action": "依次实现 START、字节、ACK、STOP。",
+        "why": "事务由这些最小单元组成。",
+        "expect": "每 8 位后有明确应答时钟。",
+        "functionIds": []
+      },
+      {
+        "title": "验证读写",
+        "action": "比较时序与数据，加入超时和错误返回。",
+        "why": "能发波形不代表能处理失败。",
+        "expect": "未应答时不会永久阻塞。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "配置 PA0/PA1：通用开漏，写 1 释放两根线。",
+      "实现基础动作：封装拉低、释放、读线和延时。",
+      "组装协议：依次实现 START、字节、ACK、STOP。",
+      "验证读写：比较时序与数据，加入超时和错误返回。"
+    ],
+    "diagram": {
+      "kind": "i2c-frame",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* GPIO 位操作示意：PA0=SCL，PA1=SDA。 */\nGPIO_WriteBit(GPIOA, GPIO_Pin_1, Bit_SET);   /* 释放 SDA */\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);   /* 释放 SCL */\n/* 等待 SCL 实际为高、满足建立时间后，再拉低 SDA 产生 START。 */\nGPIO_WriteBit(GPIOA, GPIO_Pin_1, Bit_RESET);",
+      "assumptions": [
+        "PA0/PA1 已设通用开漏并外接上拉。",
+        "片段缺少时序延时和超时，仅展示边沿意义。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "软 I2C 却只改 I2C_ClockSpeed",
+        "checks": "该参数只控制硬件 I2C；软件实现需检查 GPIO 边沿与延时。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.6",
+        "url": "urn:stm32:course:4.6:pdf",
+        "section": "4.6 软 I2C / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "31ad6c3b3d4226431a1e599a10dfc5fc51e42b7ca9eec485dbe5f55860964d06",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s7",
+    "number": "4.7",
+    "title": "封装常用功能",
+    "lead": "让硬件 I2C 和软件 I2C 提供可理解的接口，但保留它们各自的实现约束。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "先分别验证底层",
+        "paragraphs": [
+          "按讲义先测试硬件 I2C，再测试软件 I2C。两条路径都应能报告地址应答、实际传输长度和超时。相同设备能被两种实现访问，可以帮助定位问题在协议、接线还是控制器流程。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "统一上层的约定",
+        "paragraphs": [
+          "封装时明确地址参数是 7 位逻辑地址还是线上字节，长度单位是字节，错误码怎样表达未应答、超时和总线忙。上层不应该凭驱动名字猜测是否需要左移。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "不要隐藏关键差异",
+        "paragraphs": [
+          "硬件 I2C 的接收长度分支、软件 I2C 的延时与时钟延展支持，应留在各自后端。接口相似不代表所有特性相同；先定义能力与限制，再考虑替换实现。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "分别测试",
+        "action": "用同一目标器件验证硬件与软件后端。",
+        "why": "有可比较的输入输出。",
+        "expect": "读写结果和错误行为明确。",
+        "functionIds": []
+      },
+      {
+        "title": "定义契约",
+        "action": "固定地址、缓冲区、长度、超时和返回值语义。",
+        "why": "防止上层用错参数。",
+        "expect": "调用者不依赖内部细节。",
+        "functionIds": []
+      },
+      {
+        "title": "连接设备驱动",
+        "action": "设备驱动只调用已定义的传输接口。",
+        "why": "OLED 等设备可复用底层。",
+        "expect": "设备命令与总线实现分层。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "分别测试：用同一目标器件验证硬件与软件后端。",
+      "定义契约：固定地址、缓冲区、长度、超时和返回值语义。",
+      "连接设备驱动：设备驱动只调用已定义的传输接口。"
+    ],
+    "diagram": {
+      "kind": "bus-stack",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 原创接口示意，不是 SPL API。地址约定为未左移的 7 位值。 */\nint bus_write(uint8_t address7, const uint8_t *data,\n              uint16_t length, uint32_t timeout_ms);",
+      "assumptions": [
+        "具体后端负责将 address7 转为其内部接口所需格式。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "更换后端后地址失效",
+        "checks": "两端地址约定不一致；在接口边界统一，而不是在各处随手左移。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.7",
+        "url": "urn:stm32:course:4.7:pdf",
+        "section": "4.7 封装常用功能 / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "0db70198fecf04dcef0f2e41702c145676a634dda62f356712889b95f21511ba",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course4.s8",
+    "number": "4.8",
+    "title": "OLED 显示器",
+    "lead": "先理解显示存储和命令，再把总线字节组织成文字与图形。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "从像素到显示存储",
+        "paragraphs": [
+          "小型单色 OLED 用位表示像素，控制器把显示 RAM 的位映射到行列。先查实际模块控制器和分辨率，再理解页、列与位的关系；不要只靠“OLED”三个字就套所有初始化命令。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "初始化和基本操作",
+        "paragraphs": [
+          "课程先讲显示原理与初始化，再讲基本操作、文本和图形。I2C 事务只负责传输字节；设备协议还区分命令和显示数据，寻址、开屏、扫描方向等命令必须与模块规格匹配。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "字模与图形怎样落到像素",
+        "paragraphs": [
+          "文字显示本质是把字模位图写入显示缓冲区，图形则把点、线和几何关系转换成像素。整理一个 RAM 帧缓冲能统一刷新，但会消耗 SRAM；字体和第三方图片的许可也要单独确认。本网站不发布课程原字库或截图。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "确认模块",
+        "action": "核对控制器、供电、分辨率与 I2C 地址。",
+        "why": "设备名相似不保证命令兼容。",
+        "expect": "选定正确设备驱动。",
+        "functionIds": []
+      },
+      {
+        "title": "先通总线",
+        "action": "用已测试的硬件或软件 I2C 发送事务。",
+        "why": "先解决底层，再处理显示内容。",
+        "expect": "目标有正常应答。",
+        "functionIds": []
+      },
+      {
+        "title": "初始化并点亮测试",
+        "action": "按设备规格发命令，写入简单测试图案。",
+        "why": "用全灭/单点等简单图案检查页列映射。",
+        "expect": "能解释每个字节对应哪些像素。",
+        "functionIds": []
+      },
+      {
+        "title": "加入文字和图形",
+        "action": "用自有或可用的字模绘制，再刷新。",
+        "why": "显示上层应复用像素操作。",
+        "expect": "坐标、边界与字模来源明确。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "确认模块：核对控制器、供电、分辨率与 I2C 地址。",
+      "先通总线：用已测试的硬件或软件 I2C 发送事务。",
+      "初始化并点亮测试：按设备规格发命令，写入简单测试图案。",
+      "加入文字和图形：用自有或可用的字模绘制，再刷新。"
+    ],
+    "diagram": {
+      "kind": "oled",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 原创图形层示意：每页 8 个纵向像素，实际映射按控制器核对。 */\nframebuffer[x + (y / 8) * width] |= (uint8_t)(1U << (y % 8));\n/* 随后由设备驱动设置页列，并经总线发送 framebuffer。 */",
+      "assumptions": [
+        "示意采用页式缓冲布局；需验证 x/y 边界和实际控制器映射。",
+        "不附带老师的原字库和完整 OLED 驱动。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "总线 ACK 正常但屏幕不显示",
+        "checks": "继续查设备初始化、命令/数据控制字节、开屏、地址映射和刷新，不把总线成功等同于显示正确。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.4.8",
+        "url": "urn:stm32:course:4.8:pdf",
+        "section": "4.8 OLED 显示器 / PDF第1—26页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "63b53e4f213e2adba919df9300b53f990b32ffc478a10cfb8a7a0a0255dc20c7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s1",
+    "number": "5.1",
+    "title": "电路结构和通信协议",
+    "lead": "从四根线和时钟边沿理解 SPI，再决定模式参数。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "主从信号怎样连接",
+        "paragraphs": [
+          "SCK 提供时钟，MOSI 从主机到从机，MISO 从从机到主机，CS/NSS 选中目标器件。全双工中发送与接收同时发生；多个从机共用数据和时钟时，片选要保证只有合适的器件驱动 MISO。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "CPOL 与 CPHA",
+        "paragraphs": [
+          "CPOL 决定时钟空闲电平，CPHA 决定相对第一个或第二个边沿采样。四种模式是两位组合，不能只看“上升沿”就确定模式，因为第一边沿取决于空闲电平。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "位顺序和帧宽也要约定",
+        "paragraphs": [
+          "高位先发或低位先发、8 位或 16 位以及最大时钟均由双方约定。SPI 没有 I2C 那种统一地址和 ACK，设备命令、片选边界与响应含义由具体器件协议定义。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "查器件时序",
+        "action": "确认电压、CPOL/CPHA、频率与位顺序。",
+        "why": "SPI 参数必须匹配从机。",
+        "expect": "知道哪个边沿改变和采样数据。",
+        "functionIds": []
+      },
+      {
+        "title": "分清线方向",
+        "action": "按 MOSI/MISO/SCK/CS 接线并共地。",
+        "why": "名称方向以主机为参照。",
+        "expect": "收发通路不混淆。",
+        "functionIds": []
+      },
+      {
+        "title": "画一个字节",
+        "action": "标出片选、8 个时钟和采样点。",
+        "why": "把参数翻译成实际时序。",
+        "expect": "可用波形解释收发。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "查器件时序：确认电压、CPOL/CPHA、频率与位顺序。",
+      "分清线方向：按 MOSI/MISO/SCK/CS 接线并共地。",
+      "画一个字节：标出片选、8 个时钟和采样点。"
+    ],
+    "diagram": {
+      "kind": "spi",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "",
+      "assumptions": [
+        "本节讨论普通单主机四线 SPI；具体设备协议单独核对。"
+      ],
+      "status": "not_applicable",
+      "publicationStatus": "not_applicable"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "数据总是错一位",
+        "checks": "检查 CPHA、CPOL、位顺序和片选建立时间，而不只降低波特率。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.1",
+        "url": "urn:stm32:course:5.1:pdf",
+        "section": "5.1 电路结构和通信协议 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "60cad9c0e056b8008c80d8fae9a67bccb2a9d276bf08eaa5036aebb6a687e90a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s2",
+    "number": "5.2",
+    "title": "番外：按钮驱动程序编写",
+    "lead": "沿用输入知识，把抖动电平整理为一次可用的按钮事件。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-readinputdatabit"
+    ],
+    "sections": [
+      {
+        "title": "先稳定输入与输出",
+        "paragraphs": [
+          "课程在 SPI 实验前插入按钮驱动。先初始化按钮输入与 LED 输出，验证按下极性；按钮代码并不属于 SPI 外设本身，是后续实验的人机输入基础。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "用稳定时间确认变化",
+        "paragraphs": [
+          "机械抖动可能在几毫秒内产生多次跳变。记录候选电平及其开始时间，仅当它持续稳定达到阈值时才更新确认状态。阈值需要结合实际按钮，不保证所有硬件都适用同一常数。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "由状态转移触发动作",
+        "paragraphs": [
+          "只有从稳定松开变为稳定按下时发送一次按下事件。主循环反复调用处理函数，长按期间不重复产生同类边沿事件；若需要连发，应设计独立规则。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "采样",
+        "action": "读取按钮引脚并转换为按下/松开。",
+        "why": "把电气极性集中处理。",
+        "expect": "得到逻辑状态。",
+        "functionIds": [
+          "fn.gpio.gpio-readinputdatabit"
+        ]
+      },
+      {
+        "title": "确认稳定",
+        "action": "变化后计时并复查。",
+        "why": "过滤短促抖动。",
+        "expect": "状态改变有持续时间证据。",
+        "functionIds": []
+      },
+      {
+        "title": "发出事件",
+        "action": "稳定松开→按下才触发一次动作。",
+        "why": "事件不同于一直为低的电平。",
+        "expect": "按住不反复翻转 LED。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "采样：读取按钮引脚并转换为按下/松开。",
+      "确认稳定：变化后计时并复查。",
+      "发出事件：稳定松开→按下才触发一次动作。"
+    ],
+    "diagram": {
+      "kind": "button",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 应用层消抖伪代码，tick 单位为毫秒。 */\nif (sample != candidate) { candidate = sample; changed_at = tick; }\nif ((uint32_t)(tick - changed_at) >= debounce_ms && stable != candidate) {\n    stable = candidate;\n    if (stable == PRESSED) { on_press(); }\n}",
+      "assumptions": [
+        "sample、状态变量与回调由驱动定义，启动时需正确初始化。",
+        "无符号差值计时适用于间隔小于计数器回绕范围的场景。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "启动就触发一次假按下",
+        "checks": "初始化稳定状态和候选状态时读取真实电平，不把默认零当作一次事件。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.2",
+        "url": "urn:stm32:course:5.2:pdf",
+        "section": "5.2 番外：按钮驱动程序编写 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "546a1f295416dcfb9b0edb27486e936457591287c57facc4ee2cdd78348e70e1",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s3",
+    "number": "5.3",
+    "title": "番外：按钮代码的封装",
+    "lead": "让按钮模块报告事件，让业务层决定 LED、串口或存储器做什么。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init"
+    ],
+    "sections": [
+      {
+        "title": "驱动和业务分开",
+        "paragraphs": [
+          "课程把按钮配置、处理与回调组织成模块。驱动只关心引脚、极性、消抖与事件；回调决定用户按下后要做的事。这样同一套处理可以服务不同按钮。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "每个实例保存自己的状态",
+        "paragraphs": [
+          "多个按钮不能共用一组候选电平和计时变量，否则会互相干扰。结构体可包含端口、管脚、状态、时间和回调。My_Button_Proc 一类名字是工程封装，不是 SPL 官方 API。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "回调需要约束",
+        "paragraphs": [
+          "说明回调运行在主循环还是中断上下文、是否允许阻塞、是否能修改实例。课程轮询处理适合把耗时业务留在主循环；接口边界比把所有代码塞进一个函数更重要。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "定义实例",
+        "action": "把端口、管脚、极性和运行状态放入结构。",
+        "why": "不同按钮要独立记忆。",
+        "expect": "多实例互不干扰。",
+        "functionIds": []
+      },
+      {
+        "title": "初始化",
+        "action": "设置 GPIO 并读取初始稳定状态。",
+        "why": "避免启动误触发。",
+        "expect": "按键未操作时无事件。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "周期调用",
+        "action": "主循环调用处理函数，确认事件后通知回调。",
+        "why": "消抖需要连续观察。",
+        "expect": "业务动作只在真实事件发生。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "定义实例：把端口、管脚、极性和运行状态放入结构。",
+      "初始化：设置 GPIO 并读取初始稳定状态。",
+      "周期调用：主循环调用处理函数，确认事件后通知回调。"
+    ],
+    "diagram": {
+      "kind": "bus-stack",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 原创应用接口示意；不是 SPL 标准函数。 */\nvoid button_init(Button *button);\nvoid button_process(Button *button, uint32_t now_ms);\n/* 主循环按固定、足够短的周期调用 process。 */",
+      "assumptions": [
+        "Button 的成员与生命周期由项目定义；回调上下文必须写入接口说明。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "两个按钮一起误触发",
+        "checks": "检查驱动是否用静态共享变量保存所有按钮的状态。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.3",
+        "url": "urn:stm32:course:5.3:pdf",
+        "section": "5.3 番外：按钮代码的封装 / PDF第1—6页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "6922dfc02fe8a3b70a4632358a5a317c14df9d719208b0a09abac3f85d30dbb9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s4",
+    "number": "5.4",
+    "title": "IO 引脚初始化",
+    "lead": "本课先只看接线：SPI1 重映射到 PB3/PB4/PB5，PA15 做软件片选。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-init",
+      "fn.gpio.gpio-pinremapconfig",
+      "fn.gpio.gpio-setbits"
+    ],
+    "sections": [
+      {
+        "title": "逐根线对应功能",
+        "paragraphs": [
+          "课程采用 PB3=SCK、PB4=MISO、PB5=MOSI、PA15=CS。SCK/MOSI 由 SPI 外设输出，MISO 输入，CS 由软件普通输出控制；不能把默认 PA5/PA6/PA7 接法混入此方案。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "复用与调试接口冲突",
+        "paragraphs": [
+          "这些重映射引脚涉及 JTAG。后续实验通过 GPIO_Remap_SWJ_JTAGDisable 释放 JTAG 相关管脚并保留 SWD。不要直接关闭全部 SWJ 后又不知道怎样恢复调试。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-pinremapconfig"
+        ]
+      },
+      {
+        "title": "先让片选处于无效态",
+        "paragraphs": [
+          "片选是事务边界，初始化时应使目标器件处于未选中状态。本课以低有效 CS 为例，空闲高。输出初值与配置顺序要留意短暂毛刺，外部可用上拉保证复位期间的默认状态。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-setbits"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "核对线序",
+        "action": "检查 PB3/PB4/PB5/PA15 与目标器件。",
+        "why": "课程用的是 SPI1 重映射。",
+        "expect": "接线不沿用默认引脚。",
+        "functionIds": []
+      },
+      {
+        "title": "释放并重映射",
+        "action": "开 AFIO，保留 SWD、关闭 JTAG，再打开 SPI1 重映射。",
+        "why": "调试复用可能占用这些脚。",
+        "expect": "SPI 与软件 CS 可以控制目标线。",
+        "functionIds": [
+          "fn.gpio.gpio-pinremapconfig"
+        ]
+      },
+      {
+        "title": "配置模式",
+        "action": "SCK/MOSI 复用推挽，MISO 输入，CS 普通输出。",
+        "why": "每根线的驱动来源不同。",
+        "expect": "空闲 CS 高。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-setbits"
+        ]
+      }
+    ],
+    "flow": [
+      "核对线序：检查 PB3/PB4/PB5/PA15 与目标器件。",
+      "释放并重映射：开 AFIO，保留 SWD、关闭 JTAG，再打开 SPI1 重映射。",
+      "配置模式：SCK/MOSI 复用推挽，MISO 输入，CS 普通输出。"
+    ],
+    "diagram": {
+      "kind": "spi",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* AFIO、GPIOA、GPIOB 时钟已开启。 */\nGPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE); /* 保留 SWD */\nGPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);\nGPIO_SetBits(GPIOA, GPIO_Pin_15); /* 低有效 CS 的无效态 */\n/* 随后分别配置 PB3/PB5 AF_PP、PB4 输入、PA15 Out_PP。 */",
+      "assumptions": [
+        "必须确认当前使用 SWD 调试，实际硬件与课程接线一致。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "PB3 波形不出或 PA15 不响应",
+        "checks": "核对 JTAG 占用、AFIO 时钟和重映射；不要只改 SPI 分频。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.4",
+        "url": "urn:stm32:course:5.4:pdf",
+        "section": "5.4 IO 引脚初始化 / PDF第1—2页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "fcc2e402e73c13ed1590ab7f427c50d604e83937d91b500ec21dc7ae9ca3fc1f",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s5",
+    "number": "5.5",
+    "title": "SPI 模块的初始化",
+    "lead": "将 5.1 的时序约定逐项填入 SPI_InitTypeDef。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.rcc.rcc-apb2periphclockcmd",
+      "fn.spi.spi-cmd",
+      "fn.spi.spi-init",
+      "fn.spi.spi-structinit"
+    ],
+    "sections": [
+      {
+        "title": "工作方式与数据帧",
+        "paragraphs": [
+          "主机模式产生 SCK；全双工双线同时连接 MOSI/MISO。DataSize 选择帧宽，FirstBit 选择位顺序。器件需要哪种模式，应从器件时序查证，不能因例程能编译就认定匹配。"
+        ],
+        "functionIds": [
+          "fn.spi.spi-structinit",
+          "fn.spi.spi-init"
+        ]
+      },
+      {
+        "title": "时钟极性、相位与分频",
+        "paragraphs": [
+          "CPOL/CPHA 共同决定采样边沿。BaudRatePrescaler 是 SPI 输入时钟的分频，不是直接填写赫兹；SPI1 时钟来自 APB2。系统时钟变化后，应重新确认 SCK 不超从机上限。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "软件 NSS 与外部片选",
+        "paragraphs": [
+          "SPI_NSS_Soft 配置内部 NSS 管理，外部 PA15 仍需应用控制。内部 NSS 和器件 CS 不是自动相连的一根软件线。先初始化再 SPI_Cmd 使能。"
+        ],
+        "functionIds": [
+          "fn.spi.spi-cmd"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "开 SPI1 时钟",
+        "action": "在 APB2 使能 SPI1。",
+        "why": "分频基于该总线时钟。",
+        "expect": "模块具备输入时钟。",
+        "functionIds": [
+          "fn.rcc.rcc-apb2periphclockcmd"
+        ]
+      },
+      {
+        "title": "匹配时序",
+        "action": "填主机、全双工、8 位、MSB、CPOL/CPHA 和分频。",
+        "why": "所有参数共同描述一帧。",
+        "expect": "与从机数据手册相符。",
+        "functionIds": [
+          "fn.spi.spi-structinit",
+          "fn.spi.spi-init"
+        ]
+      },
+      {
+        "title": "启用并检查 CS",
+        "action": "使能 SPI，保持软件 CS 无效。",
+        "why": "使能外设不代表已经选中器件。",
+        "expect": "准备发起事务。",
+        "functionIds": [
+          "fn.spi.spi-cmd"
+        ]
+      }
+    ],
+    "flow": [
+      "开 SPI1 时钟：在 APB2 使能 SPI1。",
+      "匹配时序：填主机、全双工、8 位、MSB、CPOL/CPHA 和分频。",
+      "启用并检查 CS：使能 SPI，保持软件 CS 无效。"
+    ],
+    "diagram": {
+      "kind": "spi",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "SPI_InitTypeDef spi;\nSPI_StructInit(&spi);\nspi.SPI_Mode = SPI_Mode_Master;\nspi.SPI_Direction = SPI_Direction_2Lines_FullDuplex;\nspi.SPI_DataSize = SPI_DataSize_8b;\nspi.SPI_CPOL = SPI_CPOL_Low;\nspi.SPI_CPHA = SPI_CPHA_1Edge;\nspi.SPI_NSS = SPI_NSS_Soft;\nspi.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;\nspi.SPI_FirstBit = SPI_FirstBit_MSB;\nSPI_Init(SPI1, &spi);\nSPI_Cmd(SPI1, ENABLE);",
+      "assumptions": [
+        "示意采用模式 0；需核对实际从机支持。",
+        "SPI1 时钟与 5.4 的引脚配置已完成。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "更换系统时钟后 Flash 读失败",
+        "checks": "重新计算 SPI1 的 SCK，检查分频与器件最大频率。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.5",
+        "url": "urn:stm32:course:5.5:pdf",
+        "section": "5.5 SPI 模块的初始化 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "121d406760260efdfdfe9a59177f647378614a18f0ca89201e70dd1f18585d93",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s6",
+    "number": "5.6",
+    "title": "数据收发",
+    "lead": "SPI 每发送一帧也接收一帧，读操作同样需要主机提供时钟。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.gpio.gpio-resetbits",
+      "fn.gpio.gpio-setbits",
+      "fn.spi.spi-i2s-getflagstatus",
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sections": [
+      {
+        "title": "全双工的一次交换",
+        "paragraphs": [
+          "主机把数据写入发送路径后，时钟推动双方移位；同时收到的位进入接收寄存器。SPI_I2S_SendData 与 SPI_I2S_ReceiveData 在这里用于 SPI；名称中的 I2S 不意味着本课程改成音频接口。"
+        ],
+        "functionIds": [
+          "fn.spi.spi-i2s-senddata",
+          "fn.spi.spi-i2s-receivedata"
+        ]
+      },
+      {
+        "title": "用标志保护交换顺序",
+        "paragraphs": [
+          "先等 TXE 再写，等 RXNE 再读。若只写不读，可能留下接收数据甚至溢出；读设备时发出的 dummy 字节用于提供 SCK，其内容由设备协议约定。结束 CS 前还需确认传输真正结束。"
+        ],
+        "functionIds": [
+          "fn.spi.spi-i2s-getflagstatus"
+        ]
+      },
+      {
+        "title": "CS 把多个字节组织成一条命令",
+        "paragraphs": [
+          "命令、地址和数据往往要在同一次 CS 低期间连续交换。每字节都升高 CS 可能让设备把后续地址当成新命令。所有等待加入超时，错误时按器件约定安全结束事务。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "选中器件",
+        "action": "把目标 CS 拉低。",
+        "why": "建立设备命令边界。",
+        "expect": "只有目标响应本次事务。",
+        "functionIds": [
+          "fn.gpio.gpio-resetbits"
+        ]
+      },
+      {
+        "title": "写并读一帧",
+        "action": "TXE 后写，RXNE 后读。",
+        "why": "每帧都有双向移位。",
+        "expect": "收发寄存器得到及时服务。",
+        "functionIds": [
+          "fn.spi.spi-i2s-getflagstatus",
+          "fn.spi.spi-i2s-senddata",
+          "fn.spi.spi-i2s-receivedata"
+        ]
+      },
+      {
+        "title": "完整结束",
+        "action": "全部字节后确认非忙，再释放 CS。",
+        "why": "不能截断末尾时钟。",
+        "expect": "器件接收完整命令。",
+        "functionIds": [
+          "fn.gpio.gpio-setbits"
+        ]
+      }
+    ],
+    "flow": [
+      "选中器件：把目标 CS 拉低。",
+      "写并读一帧：TXE 后写，RXNE 后读。",
+      "完整结束：全部字节后确认非忙，再释放 CS。"
+    ],
+    "diagram": {
+      "kind": "spi",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 单帧交换示意；所有等待需在驱动中增加超时。 */\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET) {}\nSPI_I2S_SendData(SPI1, tx);\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET) {}\nuint8_t rx = (uint8_t)SPI_I2S_ReceiveData(SPI1);",
+      "assumptions": [
+        "SPI 配成 8 位全双工；tx 已定义；CS 在上层事务控制。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "Flash 地址字节被当成命令",
+        "checks": "检查 CS 是否在整个命令+地址+数据期间保持有效。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.6",
+        "url": "urn:stm32:course:5.6:pdf",
+        "section": "5.6 数据收发 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d633a1f3889d9d2a19d58331180d51350a9e694fd50cfe6b4acf70be8247fff9",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s7",
+    "number": "5.7",
+    "title": "W25Q64 实验（上）",
+    "lead": "先理解 NOR Flash 的擦除和编程约束，再组织 SPI 命令。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.spi.spi-i2s-receivedata",
+      "fn.spi.spi-i2s-senddata"
+    ],
+    "sections": [
+      {
+        "title": "Flash 不是可以随意改写的 RAM",
+        "paragraphs": [
+          "本实验使用 W25Q64 外部串行 Flash。擦除使相应存储单元回到 1，页编程主要把位从 1 写成 0；把已有 0 恢复为 1 需要擦除。页边界、扇区大小和最大时序必须按实际型号数据手册检查。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "写入是一条流程",
+        "paragraphs": [
+          "课程把写使能、擦除/编程、忙状态轮询和读取分开。写使能锁存并不等于写入完成；擦除后需等忙结束，编程后也需等待，再读回比较。读取 BUSY 要有超时。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "先验证小范围",
+        "paragraphs": [
+          "选定可牺牲的测试区域，避免覆盖现有数据。按设备协议在一次 CS 中发送命令、地址和数据。课程中的 SPI GPIO 重映射与 JTAG 释放仍然适用；命令层是自定义驱动，不属于 SPL。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "确认测试地址",
+        "action": "选择空闲测试区并读取初值。",
+        "why": "擦除会影响整个区域。",
+        "expect": "不会误删其他数据。",
+        "functionIds": []
+      },
+      {
+        "title": "写使能与擦除",
+        "action": "发送写使能，再按目标扇区擦除。",
+        "why": "编程无法任意把 0 改为 1。",
+        "expect": "等待 BUSY 解除。",
+        "functionIds": []
+      },
+      {
+        "title": "再次写使能并编程",
+        "action": "按页边界发送地址和数据。",
+        "why": "写使能可能在一次操作后被清除。",
+        "expect": "目标字节写入完成。",
+        "functionIds": []
+      },
+      {
+        "title": "读回验证",
+        "action": "等待结束后读取并比较。",
+        "why": "发送成功不等于存储正确。",
+        "expect": "值与预期一致。",
+        "functionIds": [
+          "fn.spi.spi-i2s-senddata",
+          "fn.spi.spi-i2s-receivedata"
+        ]
+      }
+    ],
+    "flow": [
+      "确认测试地址：选择空闲测试区并读取初值。",
+      "写使能与擦除：发送写使能，再按目标扇区擦除。",
+      "再次写使能并编程：按页边界发送地址和数据。",
+      "读回验证：等待结束后读取并比较。"
+    ],
+    "diagram": {
+      "kind": "flash",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 原创流程伪代码，以下函数均属设备驱动封装。 */\nflash_write_enable();\nflash_erase_test_sector();\nif (!flash_wait_ready(timeout_ms)) { return ERROR; }\nflash_write_enable();\nflash_program_page(address, data, length);\nif (!flash_wait_ready(timeout_ms)) { return ERROR; }\nflash_read(address, verify, length);",
+      "assumptions": [
+        "仅对明确可擦除区域操作；命令、地址宽度与页界限按实际型号核对。",
+        "伪代码未编译，不包含老师完整驱动。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "第一次写对，第二次写不对",
+        "checks": "检查是否需要先擦除、是否重新写使能、是否跨页，以及是否等忙结束。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.7",
+        "url": "urn:stm32:course:5.7:pdf",
+        "section": "5.7 W25Q64 实验（上） / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9e1dd4ee0aa0cd5074322e3c467f436a8d480254573b017a70d76f800d993740",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course5.s8",
+    "number": "5.8",
+    "title": "W25Q64 实验（下）",
+    "lead": "把按钮、LED 和外部 Flash 串起来，让状态跨复位保存。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "恢复和修改分成两个时刻",
+        "paragraphs": [
+          "启动时从 Flash 读取已保存的 LED 状态，校验其是否合法后恢复；运行时按钮产生事件，再修改 LED 和保存。不要在每次主循环无变化时都擦写。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "把已有模块接起来",
+        "paragraphs": [
+          "按钮模块报告一次按下，业务层切换状态，GPIO 改变 LED，存储驱动写入。每层失败应有可见结果，尤其是 LED 已变但存储失败时，不能宣称持久化成功。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "扩展：寿命与掉电",
+        "paragraphs": [
+          "Flash 擦写有寿命限制，频繁写同一扇区会磨损。实际产品可采用变化才写、延迟合并、双槽与校验等策略。它们是原理扩展，不冒充课程已经实现的掉电安全存储。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "上电恢复",
+        "action": "读保存值，验证范围或标记。",
+        "why": "空白 Flash 可能是 0xFF，不能直接当合法布尔状态。",
+        "expect": "无有效记录时采用明确默认值。",
+        "functionIds": []
+      },
+      {
+        "title": "处理按下",
+        "action": "消抖后产生一次事件。",
+        "why": "避免抖动触发多次擦写。",
+        "expect": "一次操作对应一次业务变化。",
+        "functionIds": []
+      },
+      {
+        "title": "更新与保存",
+        "action": "改变 LED，调用存储并检查结果。",
+        "why": "显示状态和持久化状态需要区分。",
+        "expect": "保存失败可提示或重试。",
+        "functionIds": []
+      },
+      {
+        "title": "复位验证",
+        "action": "重启后重新读取。",
+        "why": "只看本次内存变量不能验证持久性。",
+        "expect": "LED 恢复上次成功保存值。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "上电恢复：读保存值，验证范围或标记。",
+      "处理按下：消抖后产生一次事件。",
+      "更新与保存：改变 LED，调用存储并检查结果。",
+      "复位验证：重启后重新读取。"
+    ],
+    "diagram": {
+      "kind": "bus-stack",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 业务层伪代码：区分当前状态与保存结果。 */\nif (button_pressed_event) {\n    led_state = !led_state;\n    set_led(led_state);\n    if (!save_led_state(led_state)) {\n        report_save_failure();\n    }\n}",
+      "assumptions": [
+        "封装名称为原创示意，未提供掉电安全实现。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "按一次后很快磨损或阻塞",
+        "checks": "检查是否在循环里不断保存，或按钮抖动产生多次事件。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.5.8",
+        "url": "urn:stm32:course:5.8:pdf",
+        "section": "5.8 W25Q64 实验（下） / PDF第1—7页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "75962cfbf84f40487590de63ab6875202acb9b8a58ccd254ae9998ae0f92ccf7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course6.s1",
+    "number": "6.1",
+    "title": "中断的概念",
+    "lead": "外设提出请求，内核暂时转去处理，再回到原来的程序。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.nvic.nvic-init"
+    ],
+    "sections": [
+      {
+        "title": "轮询与中断的差别",
+        "paragraphs": [
+          "轮询是主程序反复问是否发生事件；中断是事件满足条件后请求 CPU 进入处理函数。中断不会让 CPU 同时执行两条程序，它改变执行顺序，硬件负责必要的上下文进入与返回。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "一条中断链路",
+        "paragraphs": [
+          "事件标志、外设中断使能、NVIC 使能和全局屏蔽共同决定处理函数是否运行。只开 NVIC 不会自动开启外设事件；有标志但不进中断，要沿整条链路检查。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "处理函数应该短而明确",
+        "paragraphs": [
+          "先识别来源，及时服务或按规则清除状态，把耗时业务交回主循环。处理函数名称还必须与启动文件向量表一致。中断里长延时或等待依赖其他被阻塞的中断，可能卡死系统。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "定义事件",
+        "action": "明确要响应接收、计时还是引脚变化。",
+        "why": "不同事件有不同状态和清除方式。",
+        "expect": "知道应该检查哪个标志。",
+        "functionIds": []
+      },
+      {
+        "title": "打开链路",
+        "action": "配置外设允许中断，再配置 NVIC。",
+        "why": "两个使能层缺一不可。",
+        "expect": "请求能到达内核。",
+        "functionIds": [
+          "fn.nvic.nvic-init"
+        ]
+      },
+      {
+        "title": "编写处理函数",
+        "action": "匹配向量名，识别并处理来源。",
+        "why": "共享向量可能有多个事件。",
+        "expect": "退出后不会因未处理状态立即反复进入。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "定义事件：明确要响应接收、计时还是引脚变化。",
+      "打开链路：配置外设允许中断，再配置 NVIC。",
+      "编写处理函数：匹配向量名，识别并处理来源。"
+    ],
+    "diagram": {
+      "kind": "irq",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 结构示意；具体标志与清除方式取决于外设。 */\nvoid Peripheral_IRQHandler(void) {\n    if (event_pending()) {\n        service_event();\n        /* 必要时按该外设规定清除状态。 */\n    }\n}",
+      "assumptions": [
+        "Peripheral_IRQHandler 是占位名，不是真实向量符号。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "刚退出又立即进入",
+        "checks": "检查请求来源是否仍有效，是否漏读数据或漏清挂起位。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.1",
+        "url": "urn:stm32:course:6.1:pdf",
+        "section": "6.1 中断的概念 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b170d880df7d14a37eb06906880155ca4dee049736e6f01db12e3b21a43e4142",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course6.s2",
+    "number": "6.2",
+    "title": "中断优先级",
+    "lead": "把抢占优先级和子优先级分开，就能解释嵌套与排队。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.nvic.nvic-prioritygroupconfig"
+    ],
+    "sections": [
+      {
+        "title": "数字小通常优先级高",
+        "paragraphs": [
+          "STM32F103 的 Cortex-M3 实现 4 个可用优先级位。优先级分组把这些位分给抢占优先级和子优先级；实际可填范围取决于分组，不能随意填任意 8 位数。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "抢占决定能否打断",
+        "paragraphs": [
+          "更高抢占优先级的中断可以打断正在处理的低优先级中断。相同抢占优先级之间不会因为子优先级更高就嵌套；子优先级主要用于多个待处理请求之间的选择。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "分组是系统级约定",
+        "paragraphs": [
+          "NVIC_PriorityGroupConfig 修改分组，应在系统统一设置，不要每个驱动随意重配。NVIC_Init 填通道、抢占优先级、子优先级和使能；Group_2 在此芯片常用为 2 位抢占、2 位子优先级。"
+        ],
+        "functionIds": [
+          "fn.nvic.nvic-prioritygroupconfig",
+          "fn.nvic.nvic-init"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "统一分组",
+        "action": "选择并只在适当初始化位置配置分组。",
+        "why": "所有驱动要共享同一解释方式。",
+        "expect": "优先级字段范围明确。",
+        "functionIds": [
+          "fn.nvic.nvic-prioritygroupconfig"
+        ]
+      },
+      {
+        "title": "分配抢占级",
+        "action": "按响应期限决定能否互相打断。",
+        "why": "抢占关系影响实时性和共享数据。",
+        "expect": "嵌套顺序可解释。",
+        "functionIds": []
+      },
+      {
+        "title": "配置子优先级",
+        "action": "安排同一抢占级的等待顺序。",
+        "why": "子优先级不能制造同级嵌套。",
+        "expect": "同时挂起时有明确排序。",
+        "functionIds": [
+          "fn.nvic.nvic-init"
+        ]
+      }
+    ],
+    "flow": [
+      "统一分组：选择并只在适当初始化位置配置分组。",
+      "分配抢占级：按响应期限决定能否互相打断。",
+      "配置子优先级：安排同一抢占级的等待顺序。"
+    ],
+    "diagram": {
+      "kind": "irq",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);\nNVIC_InitTypeDef n;\nn.NVIC_IRQChannel = USART1_IRQn;\nn.NVIC_IRQChannelPreemptionPriority = 1;\nn.NVIC_IRQChannelSubPriority = 0;\nn.NVIC_IRQChannelCmd = ENABLE;\nNVIC_Init(&n);",
+      "assumptions": [
+        "使用课程的 misc.h NVIC 封装；全工程统一 Group_2。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "子优先级更高却不能打断",
+        "checks": "同一抢占级不会靠子优先级嵌套；检查分组与抢占字段。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.2",
+        "url": "urn:stm32:course:6.2:pdf",
+        "section": "6.2 中断优先级 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1d7800c56b4fc590afaa713f8355e4871137b927f25632c2c6a5bb11873317de",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course6.s3",
+    "number": "6.3",
+    "title": "串口中断编程实验",
+    "lead": "让串口命令改变闪灯速度：主循环负责闪灯，中断负责及时接收。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.usart.usart-getitstatus",
+      "fn.usart.usart-itconfig",
+      "fn.usart.usart-receivedata"
+    ],
+    "sections": [
+      {
+        "title": "先保留已经工作的闪灯",
+        "paragraphs": [
+          "课程接收字符 '0'、'1'、'2'，分别选择 1000、200、50 ms 的闪灯间隔。先让 LED 和 USART 轮询各自正常，再把接收改成 RXNE 中断。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "两层使能与一个处理入口",
+        "paragraphs": [
+          "USART_ITConfig 开 RXNE 中断，NVIC_Init 打开 USART1_IRQn。USART1_IRQHandler 中检查 USART_GetITStatus，再 USART_ReceiveData 取走数据。不要把读 DR 的作用与任意清除标志函数互换。"
+        ],
+        "functionIds": [
+          "fn.usart.usart-itconfig",
+          "fn.nvic.nvic-init",
+          "fn.usart.usart-getitstatus",
+          "fn.usart.usart-receivedata"
+        ]
+      },
+      {
+        "title": "扩展：共享变量与业务边界",
+        "paragraphs": [
+          "中断更新、主循环读取的间隔变量应按共享访问要求处理，简单示例可用 volatile 防止优化缓存。volatile 不保证复杂操作原子，也不替代临界区。ISR 只接收和更新状态，不在里面长延时闪灯。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "准备基础",
+        "action": "初始化 LED 与 USART，测试单字节接收。",
+        "why": "减少同时调试的变量。",
+        "expect": "字符编码正确。",
+        "functionIds": []
+      },
+      {
+        "title": "开启 RXNE 链路",
+        "action": "开 USART_RXNE 中断并配置 USART1_IRQn。",
+        "why": "外设与 NVIC 两层都要允许。",
+        "expect": "接收事件可进入处理函数。",
+        "functionIds": [
+          "fn.usart.usart-itconfig",
+          "fn.nvic.nvic-init"
+        ]
+      },
+      {
+        "title": "处理命令",
+        "action": "检查 RXNE，读字节，更新间隔。",
+        "why": "接收服务必须及时。",
+        "expect": "主循环下次读取新间隔。",
+        "functionIds": [
+          "fn.usart.usart-getitstatus",
+          "fn.usart.usart-receivedata"
+        ]
+      }
+    ],
+    "flow": [
+      "准备基础：初始化 LED 与 USART，测试单字节接收。",
+      "开启 RXNE 链路：开 USART_RXNE 中断并配置 USART1_IRQn。",
+      "处理命令：检查 RXNE，读字节，更新间隔。"
+    ],
+    "diagram": {
+      "kind": "irq",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "volatile uint32_t blink_interval_ms = 1000;\nvoid USART1_IRQHandler(void) {\n    if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {\n        uint8_t ch = (uint8_t)USART_ReceiveData(USART1);\n        if (ch == '0') blink_interval_ms = 1000;\n        else if (ch == '1') blink_interval_ms = 200;\n        else if (ch == '2') blink_interval_ms = 50;\n    }\n}",
+      "assumptions": [
+        "LED、USART、RXNE 与 NVIC 已初始化；片段为原创整理。",
+        "volatile 是相对课程示例的共享变量说明，不代表所有同步问题已解决。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "串口中断进入后灯停止",
+        "checks": "检查 ISR 是否使用长延时、阻塞打印或等待只能由其他中断推进的条件。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.6.3",
+        "url": "urn:stm32:course:6.3:pdf",
+        "section": "6.3 串口中断编程实验 / PDF第1—14页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "255315fd7477670c909d7da07e2da89260edbeb4b61fc229fc698d585b69d8c2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course7.s1",
+    "number": "7.1",
+    "title": "EXTI 工作原理",
+    "lead": "GPIO 的边沿可以经 EXTI 产生中断或事件，但线号与端口映射必须对应。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.exti.exti-structinit",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.nvic.nvic-init"
+    ],
+    "sections": [
+      {
+        "title": "线号与端口是两回事",
+        "paragraphs": [
+          "EXTI0…15 可连接同编号的 GPIO 管脚。例如 PA5 或 PB5 可选为 EXTI5 来源，但不能同时让这两个端口都独立占用 EXTI5。AFIO 的选择把具体端口接到对应线。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "触发、屏蔽与挂起",
+        "paragraphs": [
+          "EXTI 可选择上升沿、下降沿或双边沿，配置中断/事件模式以及屏蔽。边沿出现后产生挂起状态；中断路径再进入 NVIC。事件模式不是自动执行 ISR 的别名。"
+        ],
+        "functionIds": [
+          "fn.gpio.gpio-extilineconfig",
+          "fn.exti.exti-init"
+        ]
+      },
+      {
+        "title": "共享向量与清除规则",
+        "paragraphs": [
+          "EXTI5–9 共用 EXTI9_5_IRQn，EXTI10–15 共用另一个向量。处理函数要检查各条可能来源。挂起位采用写 1 清除语义，使用 EXTI_ClearITPendingBit 对应清除，不能按普通存储位直觉乱写。"
+        ],
+        "functionIds": [
+          "fn.exti.exti-getitstatus",
+          "fn.exti.exti-clearitpendingbit"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "选择线",
+        "action": "由 GPIO 位号确定 EXTI 线号。",
+        "why": "端口选择不能改变位号。",
+        "expect": "PA5 对应 EXTI5。",
+        "functionIds": []
+      },
+      {
+        "title": "配置端口映射",
+        "action": "通过 AFIO 指定该线来自哪个端口。",
+        "why": "同号多端口需要多选一。",
+        "expect": "触发来自正确管脚。",
+        "functionIds": [
+          "fn.gpio.gpio-extilineconfig"
+        ]
+      },
+      {
+        "title": "配触发并接 NVIC",
+        "action": "设置边沿、模式、线使能和对应向量。",
+        "why": "EXTI 配置与 NVIC 配置分层。",
+        "expect": "有效边沿进入处理函数。",
+        "functionIds": [
+          "fn.exti.exti-init",
+          "fn.nvic.nvic-init"
+        ]
+      }
+    ],
+    "flow": [
+      "选择线：由 GPIO 位号确定 EXTI 线号。",
+      "配置端口映射：通过 AFIO 指定该线来自哪个端口。",
+      "配触发并接 NVIC：设置边沿、模式、线使能和对应向量。"
+    ],
+    "diagram": {
+      "kind": "exti",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* AFIO 与输入 GPIO 已配置。 */\nGPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);\nEXTI_InitTypeDef e;\nEXTI_StructInit(&e);\ne.EXTI_Line = EXTI_Line5;\ne.EXTI_Mode = EXTI_Mode_Interrupt;\ne.EXTI_Trigger = EXTI_Trigger_Falling;\ne.EXTI_LineCmd = ENABLE;\nEXTI_Init(&e);",
+      "assumptions": [
+        "低有效按钮按下对应下降沿；NVIC 还需单独配置。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "PA5 能读到变化但 EXTI 不响应",
+        "checks": "检查 AFIO 时钟、端口映射、线5、边沿和 EXTI9_5_IRQn。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.1",
+        "url": "urn:stm32:course:7.1:pdf",
+        "section": "7.1 EXTI 工作原理 / PDF第1—9页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b897c75d9d8b475c4cbc9171ba845382bbc1f40e6cc57271f32288033e5a7dd8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course7.s2",
+    "number": "7.2",
+    "title": "按钮实验",
+    "lead": "用 PA5/PA6 两个按钮练习同一个 EXTI9_5 处理函数。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.exti.exti-clearitpendingbit",
+      "fn.exti.exti-getitstatus",
+      "fn.exti.exti-init",
+      "fn.gpio.gpio-extilineconfig",
+      "fn.gpio.gpio-init",
+      "fn.nvic.nvic-init"
+    ],
+    "sections": [
+      {
+        "title": "按课程接线配置",
+        "paragraphs": [
+          "PA5、PA6 作为按钮输入，分别映射 EXTI5、EXTI6，课程用 PC13 LED 显示结果。先读取按钮电平确认极性，再设置对应触发边沿；上拉低有效通常选择按下的下降沿。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "共享处理函数检查每条线",
+        "paragraphs": [
+          "EXTI9_5_IRQHandler 是两条线的共同入口。分别用 EXTI_GetITStatus 检查并用 EXTI_ClearITPendingBit 清除。两个独立 if 允许同时处理两条挂起；仅用 if/else 可能延后另一来源。"
+        ],
+        "functionIds": [
+          "fn.exti.exti-getitstatus",
+          "fn.exti.exti-clearitpendingbit"
+        ]
+      },
+      {
+        "title": "中断不是自动消抖",
+        "paragraphs": [
+          "机械按钮边沿可连续产生多个中断。ISR 可以登记待处理标志，把稳定时间确认放到主循环；不要用长延时堵在共享中断里。复杂产品应明确合并事件或丢弃抖动的规则。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "初始化输入和映射",
+        "action": "PA5/PA6 上拉，AFIO 分别选 GPIOA 来源。",
+        "why": "电平与来源先正确。",
+        "expect": "两线挂起来源清晰。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.gpio.gpio-extilineconfig"
+        ]
+      },
+      {
+        "title": "开启两线与共享 NVIC",
+        "action": "配置 EXTI_Line5/6 和 EXTI9_5_IRQn。",
+        "why": "线配置不等于向量已启用。",
+        "expect": "两按钮都能提出请求。",
+        "functionIds": [
+          "fn.exti.exti-init",
+          "fn.nvic.nvic-init"
+        ]
+      },
+      {
+        "title": "分别服务并消抖",
+        "action": "检查和清除每条挂起，登记业务标志。",
+        "why": "一次中断入口可能有多个来源。",
+        "expect": "主循环确认稳定按钮事件。",
+        "functionIds": [
+          "fn.exti.exti-getitstatus",
+          "fn.exti.exti-clearitpendingbit"
+        ]
+      }
+    ],
+    "flow": [
+      "初始化输入和映射：PA5/PA6 上拉，AFIO 分别选 GPIOA 来源。",
+      "开启两线与共享 NVIC：配置 EXTI_Line5/6 和 EXTI9_5_IRQn。",
+      "分别服务并消抖：检查和清除每条挂起，登记业务标志。"
+    ],
+    "diagram": {
+      "kind": "exti",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "volatile uint8_t button_pending;\nvoid EXTI9_5_IRQHandler(void) {\n    if (EXTI_GetITStatus(EXTI_Line5) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line5);\n        button_pending |= 1U;\n    }\n    if (EXTI_GetITStatus(EXTI_Line6) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line6);\n        button_pending |= 2U;\n    }\n}\n/* 主循环读取后仍需消抖；共享读改写须考虑竞争。 */",
+      "assumptions": [
+        "只展示中断登记；共享标志读改写需要适当临界区，volatile 不能解决竞争。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "一个按钮正常，另一个不正常",
+        "checks": "检查是否误用 EXTI0_IRQn、漏映射线6，或处理函数只检查了线5。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.7.2",
+        "url": "urn:stm32:course:7.2:pdf",
+        "section": "7.2 按钮实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "7fd27d95f8538ab89c454db4d9db142d31902acc0d0a7e7e6a1d2981cad7e0dc",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course8.s1",
+    "number": "8.1",
+    "title": "时钟树",
+    "lead": "从振荡源走到总线和外设，解释每一个频率是怎样来的。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.rcc.rcc-getclocksfreq"
+    ],
+    "sections": [
+      {
+        "title": "时钟树的三种积木",
+        "paragraphs": [
+          "时钟源提供节奏，分频降低频率，PLL 倍频再供选择器选用。HSI、HSE 等来源具有不同精度和启动条件。不是所有模块都直接吃 SYSCLK。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "分清主干和分支",
+        "paragraphs": [
+          "SYSCLK 经 AHB 分频得到 HCLK，再经 APB1/APB2 分频得到 PCLK1/PCLK2。F103C8 的常见配置是 SYSCLK=72 MHz、PCLK1=36 MHz、PCLK2=72 MHz；APB1 不能随意跑到 72 MHz。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "定时器和 ADC 的特殊关系",
+        "paragraphs": [
+          "APB 预分频为 1 时，定时器时钟等于对应 PCLK；不为 1 时，定时器常取 2×PCLK。ADC 还要从 PCLK2 再分频，满足 ADC 时钟上限。必须沿分支计算，不能把所有外设都写成 72 MHz。"
+        ],
+        "functionIds": [
+          "fn.rcc.rcc-getclocksfreq"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "找源",
+        "action": "确认板上 HSE 晶振与系统实际选择。",
+        "why": "外部晶振频率不是由 PLL 倍数猜出来的。",
+        "expect": "频率计算起点正确。",
+        "functionIds": []
+      },
+      {
+        "title": "算总线",
+        "action": "沿 PLL、AHB、APB 分频计算。",
+        "why": "每段都有限制。",
+        "expect": "HCLK/PCLK 均不超芯片上限。",
+        "functionIds": []
+      },
+      {
+        "title": "算外设",
+        "action": "特别核对定时器倍频与 ADC 分频。",
+        "why": "外设时钟不总等于总线频率。",
+        "expect": "波特率、定时与采样可计算。",
+        "functionIds": [
+          "fn.rcc.rcc-getclocksfreq"
+        ]
+      }
+    ],
+    "flow": [
+      "找源：确认板上 HSE 晶振与系统实际选择。",
+      "算总线：沿 PLL、AHB、APB 分频计算。",
+      "算外设：特别核对定时器倍频与 ADC 分频。"
+    ],
+    "diagram": {
+      "kind": "clock",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_ClocksTypeDef clocks;\nRCC_GetClocksFreq(&clocks);\n/* clocks.PCLK1_Frequency 与 TIMx 时钟不总相等。\n   还要检查 APB 预分频是否为 1。 */",
+      "assumptions": [
+        "查询函数根据 RCC 配置计算；不能代替晶振精度的物理测量。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "定时器周期正好多一倍或少一半",
+        "checks": "检查 APB 分频不为1时的定时器时钟倍频关系。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.1",
+        "url": "urn:stm32:course:8.1:pdf",
+        "section": "8.1 时钟树 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "d55182263177487dc8ec78f595864d122f788983f257c4ed4ea1b2ed226c6fb6",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course8.s2",
+    "number": "8.2",
+    "title": "时钟树编程",
+    "lead": "提高频率以前先准备 Flash 和总线，再等时钟稳定、切换并确认。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.flash.flash-prefetchbuffercmd",
+      "fn.flash.flash-setlatency",
+      "fn.rcc.rcc-getflagstatus",
+      "fn.rcc.rcc-getsysclksource",
+      "fn.rcc.rcc-hclkconfig",
+      "fn.rcc.rcc-hseconfig",
+      "fn.rcc.rcc-pclk1config",
+      "fn.rcc.rcc-pclk2config",
+      "fn.rcc.rcc-pllcmd",
+      "fn.rcc.rcc-pllconfig",
+      "fn.rcc.rcc-sysclkconfig"
+    ],
+    "sections": [
+      {
+        "title": "复位和启动流程先确认",
+        "paragraphs": [
+          "课程从复位时钟状态和启动文件里的 SystemInit 讲起。用户 main 之前可能已经做过系统时钟初始化，不能假设当前一定仍为复位时钟。改变系统时钟还会影响延时、串口、SPI 和定时器。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "先满足高速运行条件",
+        "paragraphs": [
+          "以外部 8 MHz 晶振配置 72 MHz 为例，先按工作条件设置 Flash 等待周期与预取，再设置总线分频。启用 HSE 后确认就绪，配置并启动 PLL，等 PLL 就绪再切系统源。"
+        ],
+        "functionIds": [
+          "fn.flash.flash-setlatency",
+          "fn.flash.flash-prefetchbuffercmd",
+          "fn.rcc.rcc-hseconfig",
+          "fn.rcc.rcc-pllconfig",
+          "fn.rcc.rcc-pllcmd",
+          "fn.rcc.rcc-sysclkconfig"
+        ]
+      },
+      {
+        "title": "等待、切换与软件频率",
+        "paragraphs": [
+          "所有就绪等待都应有超时和失败策略；切换后读取 SWS 确认。SystemCoreClock 是 CMSIS 软件维护值，时钟变化后应更新相关软件状态并重新计算依赖频率的外设配置。"
+        ],
+        "functionIds": [
+          "fn.rcc.rcc-getflagstatus",
+          "fn.rcc.rcc-getsysclksource",
+          "fn.rcc.rcc-hclkconfig",
+          "fn.rcc.rcc-pclk1config",
+          "fn.rcc.rcc-pclk2config"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "准备 Flash 与分频",
+        "action": "配置正确等待周期，AHB不分频、APB1除2、APB2不分频。",
+        "why": "避免切换后 CPU/总线超出条件。",
+        "expect": "高速切换前配置已就绪。",
+        "functionIds": [
+          "fn.flash.flash-setlatency",
+          "fn.rcc.rcc-pclk1config"
+        ]
+      },
+      {
+        "title": "准备 HSE 与 PLL",
+        "action": "确认 8MHz HSE，就绪后设 PLL×9，启用并等稳定。",
+        "why": "不能切换到未稳定的源。",
+        "expect": "超时有明确失败处理。",
+        "functionIds": [
+          "fn.rcc.rcc-hseconfig",
+          "fn.rcc.rcc-pllconfig",
+          "fn.rcc.rcc-pllcmd"
+        ]
+      },
+      {
+        "title": "切换并确认",
+        "action": "选择 PLL 为 SYSCLK 并检查 SWS。",
+        "why": "请求切换与实际切换完成不同。",
+        "expect": "系统实际运行于目标源。",
+        "functionIds": [
+          "fn.rcc.rcc-sysclkconfig",
+          "fn.rcc.rcc-getsysclksource"
+        ]
+      },
+      {
+        "title": "更新依赖",
+        "action": "更新软件频率并复核 USART/TIM/ADC。",
+        "why": "分频参数依赖时钟。",
+        "expect": "应用时间单位保持正确。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "准备 Flash 与分频：配置正确等待周期，AHB不分频、APB1除2、APB2不分频。",
+      "准备 HSE 与 PLL：确认 8MHz HSE，就绪后设 PLL×9，启用并等稳定。",
+      "切换并确认：选择 PLL 为 SYSCLK 并检查 SWS。",
+      "更新依赖：更新软件频率并复核 USART/TIM/ADC。"
+    ],
+    "diagram": {
+      "kind": "clock",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+      "assumptions": [
+        "具体等待周期还需满足电压和芯片规格。",
+        "SystemCoreClockUpdate 是 CMSIS 函数，不是 SPL 外设函数。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "切到72MHz后程序异常",
+        "checks": "检查 Flash 等待周期、晶振频率、PLL就绪、APB1上限和软件计时依赖。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.8.2",
+        "url": "urn:stm32:course:8.2:pdf",
+        "section": "8.2 时钟树编程 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "76d3485f9ffb25118ac0dd5aedac21df71cf079c97ab38c5bd2a40c3fecefdce",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s1",
+    "number": "9.1",
+    "title": "时基单元",
+    "lead": "先算计数器多久加一，再算多少次形成一次更新。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sections": [
+      {
+        "title": "时钟、PSC、CNT 和 ARR",
+        "paragraphs": [
+          "定时器输入时钟经 PSC 预分频后推动 CNT，ARR 决定计数范围。边沿向上计数常用关系为计数频率=fTIM/(PSC+1)，更新频率=fTIM/((PSC+1)(ARR+1))。公式里的加一不能丢。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "向上、向下和中心对齐",
+        "paragraphs": [
+          "向上到 ARR 后回卷，向下到 0 后重装，中心对齐在两端往返。模式改变更新与输出波形关系，不能把向上计数公式不加分析地套给所有模式。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "预装载为什么存在",
+        "paragraphs": [
+          "运行时直接改周期或比较值可能影响当前周期。预装载让新值在规定更新点生效，减少中途跳变。TIM_TimeBaseInit 填 PSC、ARR、计数模式等，TIM_Cmd 负责启动计数。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-timebasestructinit",
+          "fn.tim.tim-timebaseinit",
+          "fn.tim.tim-cmd"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "求 fTIM",
+        "action": "从 8.1 时钟树计算定时器输入。",
+        "why": "APB 定时器可能有倍频关系。",
+        "expect": "不是机械等于 PCLK。",
+        "functionIds": []
+      },
+      {
+        "title": "选 PSC/ARR",
+        "action": "按目标分辨率与周期计算并减一。",
+        "why": "计数包含 0。",
+        "expect": "周期落在寄存器范围内。",
+        "functionIds": []
+      },
+      {
+        "title": "初始化启动",
+        "action": "配置模式，按需处理初始更新标志，再使能。",
+        "why": "初始化可能触发更新，不能让旧标志冒充新事件。",
+        "expect": "计数和更新符合预期。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit",
+          "fn.tim.tim-clearflag",
+          "fn.tim.tim-cmd"
+        ]
+      }
+    ],
+    "flow": [
+      "求 fTIM：从 8.1 时钟树计算定时器输入。",
+      "选 PSC/ARR：按目标分辨率与周期计算并减一。",
+      "初始化启动：配置模式，按需处理初始更新标志，再使能。"
+    ],
+    "diagram": {
+      "kind": "timer",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* fTIM=72MHz，向上计数：1MHz计数、1ms更新。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 72 - 1;\nbase.TIM_Period = 1000 - 1;\nbase.TIM_CounterMode = TIM_CounterMode_Up;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_ClearFlag(TIM3, TIM_FLAG_Update);\nTIM_Cmd(TIM3, ENABLE);",
+      "assumptions": [
+        "TIM3 时钟已开启且 fTIM 确为72MHz。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "周期差一个计数或差一倍",
+        "checks": "查 PSC/ARR 的加一、APB 倍频与计数模式。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.1",
+        "url": "urn:stm32:course:9.1:pdf",
+        "section": "9.1 时基单元 / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b78d206803972dd4fa12eab596261a6e98da9f9e034c900325ff3332790d62d0",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s2",
+    "number": "9.2",
+    "title": "自制延迟函数",
+    "lead": "让 TIM3 每毫秒产生一个软件节拍，再用时间差判断等待。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.nvic.nvic-init",
+      "fn.tim.tim-clearitpendingbit",
+      "fn.tim.tim-getitstatus",
+      "fn.tim.tim-itconfig",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sections": [
+      {
+        "title": "硬件定时和软件计数",
+        "paragraphs": [
+          "课程用 TIM3 形成 1 ms 更新中断，ISR 递增 currentTick。这个变量是软件时间，不是 CNT 本身。PSC/ARR、更新中断使能、NVIC 和处理函数共同形成节拍。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-itconfig",
+          "fn.tim.tim-getitstatus",
+          "fn.tim.tim-clearitpendingbit"
+        ]
+      },
+      {
+        "title": "计时变量与共享读取",
+        "paragraphs": [
+          "ISR 更新的变量应考虑 volatile 与访问原子性。处理函数只清更新标志并递增计数，不把业务延时放到 ISR。延时调用的单位和节拍频率必须对应。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "扩展：回绕安全的差值",
+        "paragraphs": [
+          "课程到期时间相加再比较的写法需要留意无符号回绕。原创改进使用无符号差值 now-start 与持续时间比较；前提是采样与等待范围受控，不跨越无法区分的完整计数周期。阻塞延时仍会占住主循环。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "建立1ms更新",
+        "action": "用 TIM3 时基和时钟计算1ms。",
+        "why": "软件毫秒来自硬件周期。",
+        "expect": "节拍单位准确。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit"
+        ]
+      },
+      {
+        "title": "开更新中断",
+        "action": "清初始标志，再开更新中断与 NVIC。",
+        "why": "避免初始化状态被当作真实节拍。",
+        "expect": "每次更新进入一次短 ISR。",
+        "functionIds": [
+          "fn.tim.tim-clearitpendingbit",
+          "fn.tim.tim-itconfig",
+          "fn.nvic.nvic-init"
+        ]
+      },
+      {
+        "title": "用差值等待",
+        "action": "记录起点，比较无符号经过时间。",
+        "why": "处理计数器回绕比绝对小于比较稳妥。",
+        "expect": "延时跨小范围回绕仍正确。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "建立1ms更新：用 TIM3 时基和时钟计算1ms。",
+      "开更新中断：清初始标志，再开更新中断与 NVIC。",
+      "用差值等待：记录起点，比较无符号经过时间。"
+    ],
+    "diagram": {
+      "kind": "timer",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "volatile uint32_t tick_ms;\nvoid TIM3_IRQHandler(void) {\n    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) {\n        TIM_ClearITPendingBit(TIM3, TIM_IT_Update);\n        ++tick_ms;\n    }\n}\nvoid delay_ms(uint32_t ms) {\n    uint32_t start = tick_ms;\n    while ((uint32_t)(tick_ms - start) < ms) {}\n}",
+      "assumptions": [
+        "TIM3每1ms更新一次，NVIC与中断已开启；不在禁止该中断的环境调用。",
+        "片段为回绕写法的原创整理，未编译。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "延时永远不返回",
+        "checks": "检查节拍中断是否被屏蔽、函数是否在阻塞该中断的 ISR 内调用。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.2",
+        "url": "urn:stm32:course:9.2:pdf",
+        "section": "9.2 自制延迟函数 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1f5262ffc0ed4e62386b73561516b0e1654624c6a8fc33051f411109d29dd6b8",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s3",
+    "number": "9.3",
+    "title": "输出比较",
+    "lead": "比较 CNT 和 CCR，让硬件在准确时刻改变输出。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-ocstructinit",
+      "fn.tim.tim-setcompare1",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sections": [
+      {
+        "title": "比较不是软件轮询",
+        "paragraphs": [
+          "输出比较把 CNT 与 CCRx 比较，产生内部参考信号并经极性、使能和输出路径到管脚。PWM 是输出比较的一种应用，不需要主循环每个周期手动翻转 IO。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "周期与占空比分开",
+        "paragraphs": [
+          "ARR 控制周期范围，CCRx 控制比较位置。常见向上 PWM1 配置中，有效时间与 CCR/(ARR+1) 相关，边界和极性要结合模式解释。OCMode、OutputState、Pulse、Polarity 是不同维度。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-ocstructinit",
+          "fn.tim.tim-oc1init",
+          "fn.tim.tim-setcompare1"
+        ]
+      },
+      {
+        "title": "高级定时器的输出门控",
+        "paragraphs": [
+          "TIM1 带高级输出控制，除了通道使能还需要主输出使能 MOE。互补输出、极性与死区有专门用途；不能把两个互补脚当成随意驱动功率桥的安全保证。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-ctrlpwmoutputs"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "定周期",
+        "action": "先配时基和 ARR。",
+        "why": "比较值必须放在有意义的计数范围。",
+        "expect": "得到目标 PWM 频率。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit"
+        ]
+      },
+      {
+        "title": "定比较模式",
+        "action": "配置 PWM 模式、CCR、极性和通道输出。",
+        "why": "模式决定比较后如何改变信号。",
+        "expect": "通道产生参考波形。",
+        "functionIds": [
+          "fn.tim.tim-oc1init"
+        ]
+      },
+      {
+        "title": "接通输出",
+        "action": "设置复用引脚，TIM1还需 MOE，启动计数。",
+        "why": "内部波形不等于管脚已经接通。",
+        "expect": "实际管脚出现波形。",
+        "functionIds": [
+          "fn.tim.tim-ctrlpwmoutputs",
+          "fn.tim.tim-cmd"
+        ]
+      }
+    ],
+    "flow": [
+      "定周期：先配时基和 ARR。",
+      "定比较模式：配置 PWM 模式、CCR、极性和通道输出。",
+      "接通输出：设置复用引脚，TIM1还需 MOE，启动计数。"
+    ],
+    "diagram": {
+      "kind": "pwm",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "TIM_OCInitTypeDef oc;\nTIM_OCStructInit(&oc);\noc.TIM_OCMode = TIM_OCMode_PWM1;\noc.TIM_OutputState = TIM_OutputState_Enable;\noc.TIM_Pulse = 500;\noc.TIM_OCPolarity = TIM_OCPolarity_High;\nTIM_OC1Init(TIM1, &oc);\nTIM_CtrlPWMOutputs(TIM1, ENABLE);",
+      "assumptions": [
+        "时基 ARR=999，TIM1_CH1管脚配置完成；计数启动另行调用。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "CNT 在跑但 TIM1 没输出",
+        "checks": "逐层检查 GPIO复用、通道使能、极性、MOE和刹车状态。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.3",
+        "url": "urn:stm32:course:9.3:pdf",
+        "section": "9.3 输出比较 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "e7066ff30aedbcbc5ee4b5b74d2a108d13e6943dbaaa90598095a17250328663",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s4",
+    "number": "9.4",
+    "title": "呼吸灯实验",
+    "lead": "保持 PWM 周期稳定，缓慢改变 CCR，让亮度随时间变化。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-ctrlpwmoutputs",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-oc1preloadconfig",
+      "fn.tim.tim-setcompare1"
+    ],
+    "sections": [
+      {
+        "title": "课程使用 TIM1 输出",
+        "paragraphs": [
+          "本课采用 TIM1，包含 PA8 与 PB13 的主/互补输出配置。先让固定占空比 PWM 正常，再改变亮度。LED 接法决定有效电平，互补输出不是两路完全独立的周期。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "由数学曲线到比较值",
+        "paragraphs": [
+          "课程用随时间变化的正弦量生成 0…1 的归一化亮度，再乘以周期计数换成 CCR。人眼亮度感受并非严格线性，正弦变化只是便于理解的效果，不保证光通量按相同曲线变化。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "更新与边界",
+        "paragraphs": [
+          "TIM_SetCompare1 改变通道1比较值。应限制范围，按需打开比较预装载，避免在周期中途造成波形突变。亮度更新节奏比 PWM 周期慢，两者不能混淆。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-setcompare1",
+          "fn.tim.tim-oc1preloadconfig",
+          "fn.tim.tim-ctrlpwmoutputs"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "先产生固定 PWM",
+        "action": "配置 TIM1 时基、输出比较与管脚。",
+        "why": "先确认硬件链路。",
+        "expect": "固定亮度稳定。",
+        "functionIds": [
+          "fn.tim.tim-oc1init",
+          "fn.tim.tim-ctrlpwmoutputs"
+        ]
+      },
+      {
+        "title": "计算亮度",
+        "action": "用时间生成0…1并限幅。",
+        "why": "比较值不能越界。",
+        "expect": "亮度变量连续变化。",
+        "functionIds": []
+      },
+      {
+        "title": "更新 CCR",
+        "action": "把亮度映射到计数范围。",
+        "why": "硬件继续自动产生高频PWM。",
+        "expect": "看到缓慢呼吸效果。",
+        "functionIds": [
+          "fn.tim.tim-setcompare1"
+        ]
+      }
+    ],
+    "flow": [
+      "先产生固定 PWM：配置 TIM1 时基、输出比较与管脚。",
+      "计算亮度：用时间生成0…1并限幅。",
+      "更新 CCR：把亮度映射到计数范围。"
+    ],
+    "diagram": {
+      "kind": "pwm",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 已知 ARR=999；level 由应用生成并限制在0..1。 */\nif (level < 0.0f) level = 0.0f;\nif (level > 1.0f) level = 1.0f;\nTIM_SetCompare1(TIM1, (uint16_t)(level * 1000.0f));",
+      "assumptions": [
+        "TIM1、PA8/互补输出按课程配置完成；level 生成另行实现。",
+        "CCR边界与PWM模式、极性一起核对。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "亮度突跳或亮灭反向",
+        "checks": "查占空比范围、预装载、更新节奏和 LED 有效电平。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.4",
+        "url": "urn:stm32:course:9.4:pdf",
+        "section": "9.4 呼吸灯实验 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "f80085c8ab69cde2bed9293ea4863c2a7899c4165e25f34c022396e6bc0eef41",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s5",
+    "number": "9.5",
+    "title": "输入捕获",
+    "lead": "把外部边沿到来的时刻锁进 CCR，测量就不再依赖软件反应速度。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-icstructinit",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sections": [
+      {
+        "title": "边沿锁存计数值",
+        "paragraphs": [
+          "输入经过滤波、极性选择和分频等路径，捕获有效边沿时把 CNT 锁存到 CCRx 并产生标志。CPU 稍晚读取 CCR，取得的仍是硬件记录的时刻，而不是软件读函数那一刻的 CNT。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "通道映射先分清",
+        "paragraphs": [
+          "DirectTI、IndirectTI 等输入选择决定某个捕获通道接哪路输入。可以把同一路信号分别送到不同通道，记录不同边沿；不能只凭通道号猜引脚和信号来源。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-icstructinit",
+          "fn.tim.tim-icinit"
+        ]
+      },
+      {
+        "title": "滤波、分频与溢出",
+        "paragraphs": [
+          "滤波可抑制不满足采样条件的短脉冲，也会影响可识别的最高频率；输入分频可能每若干有效边沿才捕获。计算时间差时还要处理计数回绕、漏捕获和超时。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-getcapture1",
+          "fn.tim.tim-getcapture2"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "定分辨率",
+        "action": "计算每个计数对应的时间。",
+        "why": "CCR只是计数，不自带秒单位。",
+        "expect": "可将差值换算成时间。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit"
+        ]
+      },
+      {
+        "title": "配捕获路径",
+        "action": "选择通道、输入映射、边沿、滤波和分频。",
+        "why": "有效边沿必须到达目标捕获寄存器。",
+        "expect": "能解释CCR来源。",
+        "functionIds": [
+          "fn.tim.tim-icinit"
+        ]
+      },
+      {
+        "title": "等事件读 CCR",
+        "action": "检查捕获标志，再读锁存值。",
+        "why": "当前CNT与捕获时刻不同。",
+        "expect": "取得边沿时间并检查回绕/超时。",
+        "functionIds": [
+          "fn.tim.tim-getcapture1"
+        ]
+      }
+    ],
+    "flow": [
+      "定分辨率：计算每个计数对应的时间。",
+      "配捕获路径：选择通道、输入映射、边沿、滤波和分频。",
+      "等事件读 CCR：检查捕获标志，再读锁存值。"
+    ],
+    "diagram": {
+      "kind": "capture",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "TIM_ICInitTypeDef capture;\nTIM_ICStructInit(&capture);\ncapture.TIM_Channel = TIM_Channel_1;\ncapture.TIM_ICPolarity = TIM_ICPolarity_Rising;\ncapture.TIM_ICSelection = TIM_ICSelection_DirectTI;\ncapture.TIM_ICPrescaler = TIM_ICPSC_DIV1;\ncapture.TIM_ICFilter = 0;\nTIM_ICInit(TIM1, &capture);",
+      "assumptions": [
+        "相应输入管脚与时基已配置；滤波值应按信号环境选择。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "测得间隔偶尔异常巨大",
+        "checks": "查溢出、漏捕获、输入映射和是否读到了未更新的CCR。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.5",
+        "url": "urn:stm32:course:9.5:pdf",
+        "section": "9.5 输入捕获 / PDF第1—13页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "24f6b09878a63a5681dd91a6ea66e8c3ab0808b367491a7e561e35b6eb559b9a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s6",
+    "number": "9.6",
+    "title": "超声波测距实验",
+    "lead": "用触发脉冲启动测量，用输入捕获测 Echo 的高电平宽度。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-clearflag",
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-setcounter"
+    ],
+    "sections": [
+      {
+        "title": "先看模块接口",
+        "paragraphs": [
+          "课程使用 HC-SR04 类模块，TRIG 在 PA0，按规定发触发脉冲，Echo 宽度代表超声往返时间。模块电源和 Echo 电平可能高于 MCU 输入允许值，接线前按实际模块和目标管脚核对，必要时分压或电平转换。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "硬件记录两个边沿",
+        "paragraphs": [
+          "课程用 TIM1 的两个捕获值取得脉冲开始与结束，依输入映射记录上升/下降沿。先清旧标志和计数，再启动本次测量；没有目标回波时也要有超时，不能永久等待。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-setcounter",
+          "fn.tim.tim-clearflag",
+          "fn.tim.tim-getcapture1",
+          "fn.tim.tim-getcapture2"
+        ]
+      },
+      {
+        "title": "时间到距离",
+        "paragraphs": [
+          "若每计数1微秒，距离约等于计数差×10⁻⁶×声速/2。除2因为时间包含去程和回程。声速受温度等条件影响，本课程常用340m/s是近似；还需处理计数回绕和量程。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "准备输入与触发",
+        "action": "核对 TRIG/Echo、电平转换和共地。",
+        "why": "先保护输入并建立正确连接。",
+        "expect": "引脚不会过压。",
+        "functionIds": []
+      },
+      {
+        "title": "初始化测时",
+        "action": "设定1us计数和所需捕获边沿，清旧状态。",
+        "why": "两次边沿要属于同一次测量。",
+        "expect": "数据来源明确。",
+        "functionIds": [
+          "fn.tim.tim-icinit",
+          "fn.tim.tim-clearflag",
+          "fn.tim.tim-setcounter"
+        ]
+      },
+      {
+        "title": "发脉冲并等回波",
+        "action": "按模块要求发触发脉冲，以超时等待两次捕获。",
+        "why": "无回波属于可处理结果。",
+        "expect": "成功或超时可区分。",
+        "functionIds": []
+      },
+      {
+        "title": "算距离",
+        "action": "取差值，按计数单位换算并除2。",
+        "why": "时基单位和往返关系不能漏。",
+        "expect": "结果有合理量程。",
+        "functionIds": [
+          "fn.tim.tim-getcapture1",
+          "fn.tim.tim-getcapture2"
+        ]
+      }
+    ],
+    "flow": [
+      "准备输入与触发：核对 TRIG/Echo、电平转换和共地。",
+      "初始化测时：设定1us计数和所需捕获边沿，清旧状态。",
+      "发脉冲并等回波：按模块要求发触发脉冲，以超时等待两次捕获。",
+      "算距离：取差值，按计数单位换算并除2。"
+    ],
+    "diagram": {
+      "kind": "echo",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 假定已获得同一次有效回波，时基1us，且回绕已处理。 */\nuint32_t pulse_us = echo_ticks;\nfloat distance_m = pulse_us * 1e-6f * 340.0f / 2.0f;",
+      "assumptions": [
+        "只展示物理换算，不包含模块触发、捕获超时与回绕代码。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "测距刚好翻倍",
+        "checks": "检查是否漏除往返的2；若差1000倍，再查微秒与毫秒单位。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.6",
+        "url": "urn:stm32:course:9.6:pdf",
+        "section": "9.6 超声波测距实验 / PDF第1—19页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "defb2472ab7f13a5a8338c90ad90ca5db97bd3cfe226388137dd69c30151136d",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s7",
+    "number": "9.7",
+    "title": "从模式控制器",
+    "lead": "理解触发输入怎样复位、门控或启动计数器，再理解定时器同步。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sections": [
+      {
+        "title": "从模式不只是外部时钟",
+        "paragraphs": [
+          "定时器从模式控制器接受 TRGI，根据模式改变计数行为。复位模式可在触发时重置计数，门控模式只在条件有效时计数，触发模式按事件启动；各模式行为不同。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "触发从哪里来",
+        "paragraphs": [
+          "TIM_SelectInputTrigger 选择 TI1FP1、TI2FP2、ETRF 或内部 ITR 等可用源。ITR 对应其他定时器的哪一路，要查该定时器互连表，不能把所有 TIMx 的 ITR 编号当成相同接线。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-selectinputtrigger",
+          "fn.tim.tim-selectslavemode"
+        ]
+      },
+      {
+        "title": "主模式输出给谁",
+        "paragraphs": [
+          "主模式可把更新或比较等内部信号选为 TRGO，送其他模块。TIM_SelectOutputTrigger 选择输出来源；TRGO 是内部触发信号，不必在引脚上产生波形。主/从描述的是触发关系，不是两个软件线程。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-selectoutputtrigger"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "写清触发来源",
+        "action": "从目标波形或定时器内部信号开始。",
+        "why": "先知道谁驱动谁。",
+        "expect": "能在框图标出源与目标。",
+        "functionIds": []
+      },
+      {
+        "title": "选择 TRGI",
+        "action": "配置输入触发源并核对互连表。",
+        "why": "源选错则模式再正确也不会动作。",
+        "expect": "触发到达目标控制器。",
+        "functionIds": [
+          "fn.tim.tim-selectinputtrigger"
+        ]
+      },
+      {
+        "title": "选择模式",
+        "action": "按需求复位、门控或触发等。",
+        "why": "不同模式改变计数方式。",
+        "expect": "计数行为可预测。",
+        "functionIds": [
+          "fn.tim.tim-selectslavemode"
+        ]
+      }
+    ],
+    "flow": [
+      "写清触发来源：从目标波形或定时器内部信号开始。",
+      "选择 TRGI：配置输入触发源并核对互连表。",
+      "选择模式：按需求复位、门控或触发等。"
+    ],
+    "diagram": {
+      "kind": "trigger",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 以 TI1FP1 触发复位计数器为例。 */\nTIM_SelectInputTrigger(TIM1, TIM_TS_TI1FP1);\nTIM_SelectSlaveMode(TIM1, TIM_SlaveMode_Reset);",
+      "assumptions": [
+        "TI1输入路径、极性、滤波和时基已经按需求设置。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "从模式不工作",
+        "checks": "查TRGI来源、触发极性、输入路径与计数使能，不只检查SMS模式。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.7",
+        "url": "urn:stm32:course:9.7:pdf",
+        "section": "9.7 从模式控制器 / PDF第1—10页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b480314e1c8b83e16d19d4bfc6fbf854f0a69f977ac9aa0b4a0ffc6827dc1a56",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s8",
+    "number": "9.8",
+    "title": "PWM 参数测量原理",
+    "lead": "用上升沿复位计数，用不同通道锁存周期和高电平宽度。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-pwmiconfig",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sections": [
+      {
+        "title": "让同一输入走两条捕获路径",
+        "paragraphs": [
+          "PWM 输入测量可把同一路信号送到直接与间接捕获通道，一个记录上升沿，一个记录下降沿。输入映射、极性和触发源必须配合，不能只把两个 CCR 相除而忽略信号路径。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "复位模式建立周期基准",
+        "paragraphs": [
+          "以每次上升沿作为周期起点，触发捕获并复位计数；另一边沿记录高电平时间。相应配置下，周期与高时间分别进入两个捕获寄存器。实际哪个CCR对应哪个量，要按通道配置判断。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-pwmiconfig",
+          "fn.tim.tim-selectinputtrigger",
+          "fn.tim.tim-selectslavemode"
+        ]
+      },
+      {
+        "title": "计算还需要有效性判断",
+        "paragraphs": [
+          "频率=fCNT/周期计数，占空比=高时间计数/周期计数。周期不能为0，要确认捕获属于有效周期，并处理低频溢出、无信号和极端占空比。首次捕获可能尚未形成完整周期。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "画信号路径",
+        "action": "从TI输入标出两路捕获和触发。",
+        "why": "先分清每个CCR的物理含义。",
+        "expect": "周期和高时间不混用。",
+        "functionIds": []
+      },
+      {
+        "title": "配置捕获/复位",
+        "action": "设置两种边沿与从模式复位。",
+        "why": "用硬件建立统一时间基准。",
+        "expect": "一个周期得到关联测量值。",
+        "functionIds": [
+          "fn.tim.tim-pwmiconfig",
+          "fn.tim.tim-selectinputtrigger",
+          "fn.tim.tim-selectslavemode"
+        ]
+      },
+      {
+        "title": "判定有效再计算",
+        "action": "确认周期非零、状态新鲜且未超范围。",
+        "why": "避免除零和旧数据。",
+        "expect": "输出带有效标志的结果。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "画信号路径：从TI输入标出两路捕获和触发。",
+      "配置捕获/复位：设置两种边沿与从模式复位。",
+      "判定有效再计算：确认周期非零、状态新鲜且未超范围。"
+    ],
+    "diagram": {
+      "kind": "capture",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 量的对应关系必须由实际通道配置确认。 */\nif (period_ticks > 0 && high_ticks <= period_ticks) {\n    frequency_hz = counter_hz / (float)period_ticks;\n    duty = high_ticks / (float)period_ticks;\n}",
+      "assumptions": [
+        "这里只展示公式，捕获完整性与超时判定须先完成。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "占空比偶尔超过100%",
+        "checks": "查通道映射、捕获是否来自同周期、回绕与除法类型。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.8",
+        "url": "urn:stm32:course:9.8:pdf",
+        "section": "9.8 PWM 参数测量原理 / PDF第1—22页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "183f0681b2fd31a256f000c717b17e3f1176287688cbb192ff735c09370043e2",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s9",
+    "number": "9.9",
+    "title": "PWM 参数测量实验",
+    "lead": "TIM3 产生已知 PWM，TIM1 测量，再用预期值检查结果。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-getcapture1",
+      "fn.tim.tim-getcapture2",
+      "fn.tim.tim-icinit",
+      "fn.tim.tim-oc1init",
+      "fn.tim.tim-selectinputtrigger",
+      "fn.tim.tim-selectslavemode"
+    ],
+    "sections": [
+      {
+        "title": "先建立已知信号",
+        "paragraphs": [
+          "课程用 TIM3 产生 PWM，接到 TIM1 的捕获输入。先用已知频率和占空比测试测量模块，比直接接未知信号更容易发现配置错误。接线后共地，并核对输出与输入管脚。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "配置 TIM1 的测量链路",
+        "paragraphs": [
+          "按课程方案，CCR1 对应周期，CCR2 对应高电平时间。把输入捕获、触发选择和复位模式串起来，设置合适计数分辨率；若采用1us计数，频率为10⁶/CCR1。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-getcapture1",
+          "fn.tim.tim-getcapture2",
+          "fn.tim.tim-selectslavemode"
+        ]
+      },
+      {
+        "title": "从固定值走到边界",
+        "paragraphs": [
+          "先验证50%等容易观察的占空比，再改变频率与占空比。记录无信号、很低频和极端占空比时的行为；未拿到完整有效周期时不要显示看似精确的结果。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "产生参考 PWM",
+        "action": "固定TIM3频率和占空比。",
+        "why": "建立可核对的标准输入。",
+        "expect": "知道理论周期和高时间。",
+        "functionIds": [
+          "fn.tim.tim-oc1init"
+        ]
+      },
+      {
+        "title": "连接测量",
+        "action": "TIM1配置捕获与复位，从课程接线输入。",
+        "why": "通道映射与边沿必须一致。",
+        "expect": "CCR1/2含义明确。",
+        "functionIds": [
+          "fn.tim.tim-icinit",
+          "fn.tim.tim-selectinputtrigger",
+          "fn.tim.tim-selectslavemode"
+        ]
+      },
+      {
+        "title": "读取并比较",
+        "action": "有效时读CCR并算频率和比例。",
+        "why": "确认单位、除法和测量误差。",
+        "expect": "结果与参考源吻合。",
+        "functionIds": [
+          "fn.tim.tim-getcapture1",
+          "fn.tim.tim-getcapture2"
+        ]
+      }
+    ],
+    "flow": [
+      "产生参考 PWM：固定TIM3频率和占空比。",
+      "连接测量：TIM1配置捕获与复位，从课程接线输入。",
+      "读取并比较：有效时读CCR并算频率和比例。"
+    ],
+    "diagram": {
+      "kind": "capture",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "uint16_t period = TIM_GetCapture1(TIM1);\nuint16_t high = TIM_GetCapture2(TIM1);\n/* 前提：已确认同一有效周期，计数频率1MHz。 */\nif (period != 0 && high <= period) {\n    float hz = 1000000.0f / period;\n    float ratio = (float)high / period;\n    /* 使用 hz 与 ratio；不要使用整数除法求占空比。 */\n}",
+      "assumptions": [
+        "代码为计算片段，未实现同周期快照、溢出和无信号检测。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "占空比只显示0或1",
+        "checks": "检查是否把整数相除后再转float，应先转换操作数。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.9.9",
+        "url": "urn:stm32:course:9.9:pdf",
+        "section": "9.9 PWM 参数测量实验 / PDF第1—11页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "de7a23f8b9f66b6593a7bbe59fec8b735500cfcda8363e98e32059fce17cc10a",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course9.s10",
+    "number": "9.10",
+    "title": "编码器原理与步骤（原创补充）",
+    "lead": "老师资料正文重复，本节按你的选择加入原创讲解，不冒充缺失讲义或源码。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-encoderinterfaceconfig",
+      "fn.tim.tim-getcounter",
+      "fn.tim.tim-setcounter",
+      "fn.tim.tim-timebaseinit",
+      "fn.tim.tim-timebasestructinit"
+    ],
+    "sections": [
+      {
+        "title": "A/B 两路相位提供方向",
+        "paragraphs": [
+          "增量式正交编码器的A、B两路信号相差约四分之一个周期。观察哪一路先变化可判断运动方向；只数一根线通常不能完整判断方向。每转脉冲数、四倍频计数和机械定位格数不是同一概念。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "定时器怎样计数",
+        "paragraphs": [
+          "RM0008 §15.3.12 描述TI1/TI2经滤波和极性选择进入编码器接口。TI12模式按两路有效边沿计数，硬件根据相位决定加减，CNT在0…ARR范围回绕。计数来自输入变化，不能把内部72MHz当编码器运动频率。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-encoderinterfaceconfig",
+          "fn.tim.tim-getcounter",
+          "fn.tim.tim-setcounter"
+        ]
+      },
+      {
+        "title": "原创示例的接线与限制",
+        "paragraphs": [
+          "以下选TIM3默认CH1=PA6、CH2=PA7作为教学方案，区别于老师其他实验接线。机械编码器需上拉与适当滤波，开集电极/推挽输出要按设备电气条件处理；滤波会限制可通过的变化速度。方向的正负要通过实测定义。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "核对编码器输出",
+        "action": "确认A/B电平、上拉、共地及PA6/PA7映射。",
+        "why": "先保护输入并建立正交信号。",
+        "expect": "两路相位可观察。",
+        "functionIds": []
+      },
+      {
+        "title": "配置时基范围",
+        "action": "使能TIM3和GPIOA，PSC设0、ARR设65535。",
+        "why": "编码器事件推动计数，ARR仍决定回绕范围。",
+        "expect": "计数范围明确。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit"
+        ]
+      },
+      {
+        "title": "接通编码器接口",
+        "action": "配置TI12、两路极性，按需要设置输入滤波。",
+        "why": "由硬件分析两路边沿与方向。",
+        "expect": "缓慢正反转时计数增减。",
+        "functionIds": [
+          "fn.tim.tim-encoderinterfaceconfig"
+        ]
+      },
+      {
+        "title": "读取差值",
+        "action": "初始化CNT并周期读取，用受控范围差值计算位移。",
+        "why": "跨65535/0回绕不等于突然反向。",
+        "expect": "单位和正方向由设备定义。",
+        "functionIds": [
+          "fn.tim.tim-setcounter",
+          "fn.tim.tim-cmd",
+          "fn.tim.tim-getcounter"
+        ]
+      }
+    ],
+    "flow": [
+      "核对编码器输出：确认A/B电平、上拉、共地及PA6/PA7映射。",
+      "配置时基范围：使能TIM3和GPIOA，PSC设0、ARR设65535。",
+      "接通编码器接口：配置TI12、两路极性，按需要设置输入滤波。",
+      "读取差值：初始化CNT并周期读取，用受控范围差值计算位移。"
+    ],
+    "diagram": {
+      "kind": "encoder",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": true,
+    "example": {
+      "code": "/* 原创配置片段：TIM3默认PA6/PA7，GPIO/时钟与滤波需另行核对。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 0;\nbase.TIM_Period = 0xFFFF;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI12,\n    TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);\nTIM_SetCounter(TIM3, 0);\nTIM_Cmd(TIM3, ENABLE);\n/* TIM_GetCounter(TIM3)读计数；边沿模式含义以编码器模式规则解释。 */",
+      "assumptions": [
+        "原创补充，并非老师9.10源码；未编译、未实机测试。",
+        "RM0008原理已读取，GPIO输入、滤波和计数回绕算法仍需结合真实编码器验证。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "一格不是一个计数",
+        "checks": "区分编码器周期、TI12有效边沿计数倍率与机械卡点；先观测A/B波形。"
+      },
+      {
+        "symptom": "反向或乱跳",
+        "checks": "查A/B交换、机械抖动、电平与滤波；交换线序会改变方向定义。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.original.9.10",
+        "url": "https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+        "section": "RM0008 Rev21 §15.3.12，PDF第392—394页 / 编码器接口；原创补充",
+        "status": "source_checked",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": "9.10 编码器原理与步骤（原创补充） / 仅封面；正文重复，不作编码器依据",
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s1",
+    "number": "10.1",
+    "title": "逐次逼近型 ADC",
+    "lead": "模拟电压先被采样保持，再逐位比较形成数字结果。",
+    "minutes": 8,
+    "conceptVerification": "source_checked",
+    "functionIds": [],
+    "sections": [
+      {
+        "title": "ADC 解决什么问题",
+        "paragraphs": [
+          "ADC把连续电压映射成有限数字码。F103的ADC分辨率为12位，常用结果范围0…4095；分辨率不是绝对精度，参考电压、噪声和输入电路都会影响结果。输入必须在器件允许的模拟范围内。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "逐次逼近怎样工作",
+        "paragraphs": [
+          "SAR可理解为从高位到低位逐次试探，通过内部DAC与比较器决定每一位。采样保持先把电压保持住，转换期间再完成这些比较；变化很快的输入需要考虑采样频率与前端带宽。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "电压换算有前提",
+        "paragraphs": [
+          "把结果换成电压要使用真实参考电压和合适的标定关系。常见端点近似用3.3×码值/4095，但真实VDDA/VREF不一定恰好3.3V，也不意味着每个结果都具有理想精度。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "明确量程",
+        "action": "确认信号最小最大电压与参考条件。",
+        "why": "ADC不能直接接受任意外部电压。",
+        "expect": "输入不会越界。",
+        "functionIds": []
+      },
+      {
+        "title": "理解采样保持",
+        "action": "检查信号源是否能在采样窗口内充电。",
+        "why": "数字结果反映采样后的状态。",
+        "expect": "源阻抗与采样时间有联系。",
+        "functionIds": []
+      },
+      {
+        "title": "读码再换算",
+        "action": "先观察原始码值，再按参考电压计算。",
+        "why": "避免把错误码值包装成漂亮电压。",
+        "expect": "结果与实际电压可核对。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "明确量程：确认信号最小最大电压与参考条件。",
+      "理解采样保持：检查信号源是否能在采样窗口内充电。",
+      "读码再换算：先观察原始码值，再按参考电压计算。"
+    ],
+    "diagram": {
+      "kind": "sar",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 端点近似，vref 应来自实际参考或测量。 */\nfloat voltage = (float)raw * vref / 4095.0f;",
+      "assumptions": [
+        "raw为12位右对齐有效结果，vref为实际参考电压；此式不是精度校准。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "始终显示3.3V或0V",
+        "checks": "先查输入范围、模拟管脚与实际电压，再查对齐、通道和参考。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.1",
+        "url": "urn:stm32:course:10.1:pdf",
+        "section": "10.1 逐次逼近型 ADC / PDF第1—15页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "1a087cfc1c7fc587480be4a137de3a640479acb76999dde2d7a4f32a061800b7",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s2",
+    "number": "10.2",
+    "title": "ADC 模块的结构框图",
+    "lead": "先沿着通道选择走到规则组和注入组，再讨论如何触发和读取。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig"
+    ],
+    "sections": [
+      {
+        "title": "多路输入共用转换器",
+        "paragraphs": [
+          "多个模拟通道通过选择和序列配置进入ADC。引脚编号、ADC通道编号和序列位置是三套不同概念：例如PA0可对应ADC通道0，而该通道可安排在序列第1位。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "规则组与注入组",
+        "paragraphs": [
+          "规则组按规则序列转换，结果通常从DR读取；注入组有自己的序列和JDR寄存器，可由特定触发启动，并参与与规则组的优先关系。两组有不同标志和配置接口，不能混用。"
+        ],
+        "functionIds": [
+          "fn.adc.adc-regularchannelconfig",
+          "fn.adc.adc-injectedchannelconfig",
+          "fn.adc.adc-getconversionvalue",
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      },
+      {
+        "title": "扫描与连续不是一回事",
+        "paragraphs": [
+          "扫描指按序列处理多个通道；连续指触发后是否重复转换。一个决定“依次转谁”，另一个决定“是否再来一轮”。触发方式、序列长度和采样时间仍须独立配置。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "选通道",
+        "action": "由引脚确认ADC通道号。",
+        "why": "端口名不直接等于序列位置。",
+        "expect": "模拟源接对通道。",
+        "functionIds": []
+      },
+      {
+        "title": "选组和序列",
+        "action": "决定规则或注入，设置位置与长度。",
+        "why": "结果位置和标志依组而异。",
+        "expect": "知道转换顺序和结果寄存器。",
+        "functionIds": [
+          "fn.adc.adc-regularchannelconfig",
+          "fn.adc.adc-injectedchannelconfig"
+        ]
+      },
+      {
+        "title": "匹配触发与读取",
+        "action": "用该组的触发、完成标志和读取接口。",
+        "why": "避免读到另一组旧结果。",
+        "expect": "每个结果有明确来源。",
+        "functionIds": [
+          "fn.adc.adc-getconversionvalue",
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      }
+    ],
+    "flow": [
+      "选通道：由引脚确认ADC通道号。",
+      "选组和序列：决定规则或注入，设置位置与长度。",
+      "匹配触发与读取：用该组的触发、完成标志和读取接口。"
+    ],
+    "diagram": {
+      "kind": "adc",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 两种接口的分工示意，不代表应在同一实验中混用。 */\nuint16_t regular_value = ADC_GetConversionValue(ADC1);\nuint16_t injected_value = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);",
+      "assumptions": [
+        "读取前必须确认对应组已完成转换；InjectedChannel_1表示注入结果位置。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "配置通道正确却读到旧值",
+        "checks": "查用了哪一组、触发是否到达、完成标志和结果寄存器是否匹配。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.2",
+        "url": "urn:stm32:course:10.2:pdf",
+        "section": "10.2 ADC 模块的结构框图 / PDF第1—24页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "9ae9ca00c6134b49179301ae97dd39e1e8db4cc890499039bf5e02a33170b1f3",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s3",
+    "number": "10.3",
+    "title": "采样时间和转换时间",
+    "lead": "给采样电容足够充电时间，再计算整次转换需要多久。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sections": [
+      {
+        "title": "先限制 ADC 时钟",
+        "paragraphs": [
+          "F103 ADC时钟从PCLK2分频，必须满足最高14MHz的限制。72MHz PCLK2常选除6得到12MHz，而不是把72MHz直接送入ADC。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "采样窗口由源阻抗决定",
+        "paragraphs": [
+          "内部采样电容需要通过信号源等效电阻充电。高阻源或附加RC使稳定更慢，过短采样会让结果偏离实际电压。增加采样时间有帮助，但不能修复输入过压和不合理前端。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "总时间包含两部分",
+        "paragraphs": [
+          "单次转换时间由采样周期加上12.5个转换周期组成，再除ADC时钟。采样周期按通道设置；计算触发频率时，多通道序列还要把各通道时间相加并留余量。"
+        ],
+        "functionIds": [
+          "fn.rcc.rcc-adcclkconfig",
+          "fn.adc.adc-regularchannelconfig",
+          "fn.adc.adc-injectedchannelconfig"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "算 ADC 时钟",
+        "action": "由PCLK2选2/4/6/8分频并检查上限。",
+        "why": "先满足外设时钟条件。",
+        "expect": "例如72/6=12MHz。",
+        "functionIds": [
+          "fn.rcc.rcc-adcclkconfig"
+        ]
+      },
+      {
+        "title": "选采样周期",
+        "action": "按源阻抗、精度与速率需求选择。",
+        "why": "采样电容要建立到足够接近输入。",
+        "expect": "稳定且噪声可解释。",
+        "functionIds": [
+          "fn.adc.adc-regularchannelconfig"
+        ]
+      },
+      {
+        "title": "核对总时长",
+        "action": "把采样+12.5周期除时钟，序列逐项相加。",
+        "why": "触发过快会超出处理能力。",
+        "expect": "转换有足够完成时间。",
+        "functionIds": []
+      }
+    ],
+    "flow": [
+      "算 ADC 时钟：由PCLK2选2/4/6/8分频并检查上限。",
+      "选采样周期：按源阻抗、精度与速率需求选择。",
+      "核对总时长：把采样+12.5周期除时钟，序列逐项相加。"
+    ],
+    "diagram": {
+      "kind": "sampling",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "RCC_ADCCLKConfig(RCC_PCLK2_Div6); /* PCLK2=72MHz时为12MHz */\nADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,\n    ADC_SampleTime_55Cycles5);\n/* 单通道理论转换时间=(55.5+12.5)/12MHz。 */",
+      "assumptions": [
+        "PCLK2实际72MHz；55.5周期只是示例，需按源阻抗验证。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "高阻信号读值偏低",
+        "checks": "先延长采样时间并检查前端阻抗、参考与通道切换影响。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.3",
+        "url": "urn:stm32:course:10.3:pdf",
+        "section": "10.3 采样时间和转换时间 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "656ccfcf079352d854799995b76b705c10e41b84961fdbad800aa68056c4c31e",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s4",
+    "number": "10.4",
+    "title": "常规单通道转换",
+    "lead": "按 PA0 模拟输入、ADC 时钟、规则序列、软件触发、EOC 读取串起第一次采样。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.adc.adc-cmd",
+      "fn.adc.adc-getcalibrationstatus",
+      "fn.adc.adc-getconversionvalue",
+      "fn.adc.adc-getflagstatus",
+      "fn.adc.adc-getresetcalibrationstatus",
+      "fn.adc.adc-init",
+      "fn.adc.adc-regularchannelconfig",
+      "fn.adc.adc-resetcalibration",
+      "fn.adc.adc-softwarestartconvcmd",
+      "fn.adc.adc-startcalibration",
+      "fn.gpio.gpio-init",
+      "fn.rcc.rcc-adcclkconfig"
+    ],
+    "sections": [
+      {
+        "title": "先准备模拟输入和时钟",
+        "paragraphs": [
+          "课程用PA0/ADC通道0。GPIO_Mode_AIN打开模拟使用方式；GPIOA和ADC1要开APB2时钟，ADC时钟从PCLK2合理分频。数字上拉模式不适合替代模拟输入配置。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "配置规则单通道",
+        "paragraphs": [
+          "设置独立模式、非扫描、非连续、右对齐、1个规则通道，再用ADC_RegularChannelConfig指定通道0、Rank1和采样时间。单次软件触发不等于连续采集。"
+        ],
+        "functionIds": [
+          "fn.adc.adc-init",
+          "fn.adc.adc-regularchannelconfig",
+          "fn.adc.adc-cmd"
+        ]
+      },
+      {
+        "title": "触发、完成和校准",
+        "paragraphs": [
+          "启用ADC后按要求稳定并执行校准，再发软件触发，等EOC读取DR。校准是本节补充说明，不能声称老师工程已完整实现。校准与EOC等待都要有超时，结果以原始码先验证。"
+        ],
+        "functionIds": [
+          "fn.adc.adc-resetcalibration",
+          "fn.adc.adc-getresetcalibrationstatus",
+          "fn.adc.adc-startcalibration",
+          "fn.adc.adc-getcalibrationstatus",
+          "fn.adc.adc-softwarestartconvcmd",
+          "fn.adc.adc-getflagstatus",
+          "fn.adc.adc-getconversionvalue"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "准备输入",
+        "action": "PA0设AIN，开ADC1时钟并分频。",
+        "why": "模拟路径和时钟都要就绪。",
+        "expect": "ADC时钟不超限。",
+        "functionIds": [
+          "fn.gpio.gpio-init",
+          "fn.rcc.rcc-adcclkconfig"
+        ]
+      },
+      {
+        "title": "配置序列",
+        "action": "独立、单通道、规则Rank1、合适采样周期。",
+        "why": "明确采哪个源和结果格式。",
+        "expect": "配置对应PA0。",
+        "functionIds": [
+          "fn.adc.adc-init",
+          "fn.adc.adc-regularchannelconfig"
+        ]
+      },
+      {
+        "title": "使能并校准",
+        "action": "按器件要求等待稳定，执行校准。",
+        "why": "校准不是GPIO配置的一部分。",
+        "expect": "等待有超时，失败可报告。",
+        "functionIds": [
+          "fn.adc.adc-cmd",
+          "fn.adc.adc-resetcalibration",
+          "fn.adc.adc-startcalibration"
+        ]
+      },
+      {
+        "title": "触发并读取",
+        "action": "软件触发，等EOC再读DR。",
+        "why": "只有完成后才是本次结果。",
+        "expect": "读到0…4095的有效右对齐数据。",
+        "functionIds": [
+          "fn.adc.adc-softwarestartconvcmd",
+          "fn.adc.adc-getflagstatus",
+          "fn.adc.adc-getconversionvalue"
+        ]
+      }
+    ],
+    "flow": [
+      "准备输入：PA0设AIN，开ADC1时钟并分频。",
+      "配置序列：独立、单通道、规则Rank1、合适采样周期。",
+      "使能并校准：按器件要求等待稳定，执行校准。",
+      "触发并读取：软件触发，等EOC再读DR。"
+    ],
+    "diagram": {
+      "kind": "adc",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* 前提：ADC1规则组已初始化、通道0 Rank1、右对齐、已校准。 */\nADC_SoftwareStartConvCmd(ADC1, ENABLE);\n/* 教学轮询示意；正式驱动需超时。 */\nwhile (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {}\nuint16_t raw = ADC_GetConversionValue(ADC1);",
+      "assumptions": [
+        "仅演示触发与读取，不包含完整初始化和校准等待。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "每次读到相同旧值",
+        "checks": "检查是否真正触发、等待EOC以及是否误读注入结果。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.4",
+        "url": "urn:stm32:course:10.4:pdf",
+        "section": "10.4 常规单通道转换 / PDF第1—17页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "b4741ef2ddd0b86ea15f9cdaa02f4e12b69112f7f9b50ef2ed29243d4aef62bf",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s5",
+    "number": "10.5",
+    "title": "定时器触发",
+    "lead": "本课按老师工程使用“TIM1 更新 TRGO → ADC 注入组”，不要混成规则组触发。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.adc.adc-externaltriginjectedconvcmd",
+      "fn.adc.adc-externaltriginjectedconvconfig",
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.tim.tim-cmd",
+      "fn.tim.tim-selectoutputtrigger",
+      "fn.tim.tim-timebaseinit"
+    ],
+    "sections": [
+      {
+        "title": "把采样时刻交给硬件",
+        "paragraphs": [
+          "主循环的软件延时会受执行路径影响。定时器更新事件作为TRGO给ADC触发，可以让采样起点更规律。它不自动保证传感器精度，也不自动把结果发串口。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "本课采用注入序列",
+        "paragraphs": [
+          "课程工程使用ADC_InjectedSequencerLengthConfig、ADC_InjectedChannelConfig与ADC_ExternalTrigInjectedConvConfig。TIM1_TRGO被选作注入外部触发源，再开启注入触发；结果从JDR读取，完成标志用JEOC。"
+        ],
+        "functionIds": [
+          "fn.tim.tim-selectoutputtrigger",
+          "fn.adc.adc-injectedsequencerlengthconfig",
+          "fn.adc.adc-injectedchannelconfig",
+          "fn.adc.adc-externaltriginjectedconvconfig",
+          "fn.adc.adc-externaltriginjectedconvcmd"
+        ]
+      },
+      {
+        "title": "周期与消费速度要配合",
+        "paragraphs": [
+          "先配置好ADC并清理状态，再启动触发定时器。触发间隔必须允许序列完成，读取/发送也要及时；串口打印太慢可能让软件错过观察结果，不能因此认定硬件没有转换。"
+        ],
+        "functionIds": [
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "配置TIM1更新",
+        "action": "按计数时钟设1ms等目标周期，选Update为TRGO。",
+        "why": "事件由硬件周期生成。",
+        "expect": "触发源可计算。",
+        "functionIds": [
+          "fn.tim.tim-timebaseinit",
+          "fn.tim.tim-selectoutputtrigger"
+        ]
+      },
+      {
+        "title": "配置注入组",
+        "action": "长度1，通道0置注入Rank1，选TIM1_TRGO。",
+        "why": "触发和结果必须属于同一组。",
+        "expect": "读JDR1而不是规则DR。",
+        "functionIds": [
+          "fn.adc.adc-injectedsequencerlengthconfig",
+          "fn.adc.adc-injectedchannelconfig",
+          "fn.adc.adc-externaltriginjectedconvconfig"
+        ]
+      },
+      {
+        "title": "开启并读取",
+        "action": "ADC稳定校准后开注入触发，再启动TIM1；等JEOC读结果。",
+        "why": "避免尚未准备好就收到触发。",
+        "expect": "周期性采样有新结果。",
+        "functionIds": [
+          "fn.adc.adc-externaltriginjectedconvcmd",
+          "fn.tim.tim-cmd",
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      }
+    ],
+    "flow": [
+      "配置TIM1更新：按计数时钟设1ms等目标周期，选Update为TRGO。",
+      "配置注入组：长度1，通道0置注入Rank1，选TIM1_TRGO。",
+      "开启并读取：ADC稳定校准后开注入触发，再启动TIM1；等JEOC读结果。"
+    ],
+    "diagram": {
+      "kind": "adc-trigger",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+      "assumptions": [
+        "课程路线使用注入组；TIM1时基与ADC初始化另行完成。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "等EOC一直没有结果",
+        "checks": "该课用注入组，应核对JEOC和JDR；同时检查TRGO与注入触发使能。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.5",
+        "url": "urn:stm32:course:10.5:pdf",
+        "section": "10.5 定时器触发 / PDF第1—16页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "80da3423d560ec9ac47e4cf995ab4340ea08d6fcaf04083ca671cc8700c42e7b",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  },
+  {
+    "knowledgePointId": "kp.course10.s6",
+    "number": "10.6",
+    "title": "扫描模式",
+    "lead": "延续注入组路线，把 PA0 和 PA1 按顺序转换并读取两个结果。",
+    "minutes": 12,
+    "conceptVerification": "source_checked",
+    "functionIds": [
+      "fn.adc.adc-getinjectedconversionvalue",
+      "fn.adc.adc-init",
+      "fn.adc.adc-injectedchannelconfig",
+      "fn.adc.adc-injectedsequencerlengthconfig",
+      "fn.gpio.gpio-init"
+    ],
+    "sections": [
+      {
+        "title": "序列长度与位置一起配置",
+        "paragraphs": [
+          "课程用两个模拟输入，开启扫描，注入序列长度设2，通道0与通道1放入不同Rank。只打开扫描位却不设置长度与各位置，不会自动把所有引脚都采一遍。"
+        ],
+        "functionIds": []
+      },
+      {
+        "title": "结果位置不是通道编号",
+        "paragraphs": [
+          "注入结果按所配置序列进入对应JDR。ADC_InjectedChannel_1/2指读取注入结果位置，不是ADC_Channel_1/2模拟输入编号。先画出PA0→通道0→Rank1→JDR1这样的对应关系。"
+        ],
+        "functionIds": [
+          "fn.adc.adc-injectedsequencerlengthconfig",
+          "fn.adc.adc-injectedchannelconfig",
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      },
+      {
+        "title": "整轮时间与源阻抗",
+        "paragraphs": [
+          "两通道依次采样不是完全同时。触发间隔要容纳两次转换，通道切换时采样电容的建立也要考虑信号源阻抗。此课是注入扫描，不新增DMA专题，也不把DMA当成必需步骤。"
+        ],
+        "functionIds": []
+      }
+    ],
+    "steps": [
+      {
+        "title": "准备两路输入",
+        "action": "PA0/PA1设AIN并接合适模拟源。",
+        "why": "不能让数字上下拉干扰采样。",
+        "expect": "电压均在允许范围。",
+        "functionIds": [
+          "fn.gpio.gpio-init"
+        ]
+      },
+      {
+        "title": "配置扫描序列",
+        "action": "开扫描、注入长度2，分别设通道0/1的Rank与采样时间。",
+        "why": "扫描对象由序列明确定义。",
+        "expect": "顺序可在表里核对。",
+        "functionIds": [
+          "fn.adc.adc-init",
+          "fn.adc.adc-injectedsequencerlengthconfig",
+          "fn.adc.adc-injectedchannelconfig"
+        ]
+      },
+      {
+        "title": "触发后取整轮结果",
+        "action": "沿用TIM1_TRGO，JEOC后读JDR1/2。",
+        "why": "读取接口对应结果位置。",
+        "expect": "两个值能对应各自输入。",
+        "functionIds": [
+          "fn.adc.adc-getinjectedconversionvalue"
+        ]
+      }
+    ],
+    "flow": [
+      "准备两路输入：PA0/PA1设AIN并接合适模拟源。",
+      "配置扫描序列：开扫描、注入长度2，分别设通道0/1的Rank与采样时间。",
+      "触发后取整轮结果：沿用TIM1_TRGO，JEOC后读JDR1/2。"
+    ],
+    "diagram": {
+      "kind": "adc-scan",
+      "caption": "原创学习示意，非老师课件截图；不代替实际原理图。"
+    },
+    "originalSupplement": false,
+    "example": {
+      "code": "ADC_InjectedSequencerLengthConfig(ADC1, 2);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_1, 2, ADC_SampleTime_55Cycles5);\n/* 扫描和触发已开启，确认JEOC后： */\nuint16_t first = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);\nuint16_t second = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2);",
+      "assumptions": [
+        "ADC_ScanConvMode已开启；JEOC和注入序列按10.5配置。",
+        "先后采样不等于同步采样。"
+      ],
+      "status": "pending",
+      "publicationStatus": "draft"
+    },
+    "troubleshooting": [
+      {
+        "symptom": "两个旋钮的值对不上",
+        "checks": "逐项核对GPIO、ADC通道、Rank与JDR位置，别把注入结果编号当通道号。"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "src.course.10.6",
+        "url": "urn:stm32:course:10.6:pdf",
+        "section": "10.6 扫描模式 / PDF第1—8页，按讲义模块顺序原创整理",
+        "status": "source_checked",
+        "revision": "8f848b9855e7a7aad7caac3a4a2fa33dc3ae625051e5030b6e7abaea35b62a71",
+        "chip": "STM32F103C8T6"
+      }
+    ],
+    "sourceIssue": null,
+    "reviewedOn": "2026-10-17"
+  }
+]

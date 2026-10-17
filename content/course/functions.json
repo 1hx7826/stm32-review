@@ -1,0 +1,5458 @@
+{
+  "functions": [
+    {
+      "id": "fn.adc.adc-cmd",
+      "name": "ADC_Cmd",
+      "peripheral": "ADC",
+      "prototype": "void ADC_Cmd(ADC_TypeDef* ADCx, FunctionalState NewState);",
+      "purpose": "使能或关闭 ADC",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_Cmd / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-externaltriginjectedconvcmd",
+      "name": "ADC_ExternalTrigInjectedConvCmd",
+      "peripheral": "ADC",
+      "prototype": "void ADC_ExternalTrigInjectedConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);",
+      "purpose": "打开或关闭注入外部触发",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "目标ADC实例，本课程使用ADC1。"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE使能、DISABLE关闭。"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值。"
+      },
+      "flowPosition": "10.5 定时器触发",
+      "example": {
+        "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+        "context": "节选自本网站原创整理的 10.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "ENABLE允许注入外部触发，DISABLE关闭。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_ExternalTrigInjectedConvCmd / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.adc.adc-externaltriginjectedconvconfig",
+      "name": "ADC_ExternalTrigInjectedConvConfig",
+      "peripheral": "ADC",
+      "prototype": "void ADC_ExternalTrigInjectedConvConfig(ADC_TypeDef* ADCx, uint32_t ADC_ExternalTrigInjecConv);",
+      "purpose": "选择注入组外部触发源",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "目标ADC实例，本课程使用ADC1。"
+        },
+        {
+          "name": "ADC_ExternalTrigInjecConv",
+          "type": "uint32_t",
+          "meaning": "注入组触发源，如ADC_ExternalTrigInjecConv_T1_TRGO。"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值。"
+      },
+      "flowPosition": "10.5 定时器触发",
+      "example": {
+        "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+        "context": "节选自本网站原创整理的 10.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "选择允许的注入触发源，如TIM1_TRGO。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_ExternalTrigInjectedConvConfig / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.adc.adc-getcalibrationstatus",
+      "name": "ADC_GetCalibrationStatus",
+      "peripheral": "ADC",
+      "prototype": "FlagStatus ADC_GetCalibrationStatus(ADC_TypeDef* ADCx);",
+      "purpose": "读取校准是否仍进行",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET 表示校准步骤仍在进行；RESET 表示已结束"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_GetCalibrationStatus / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-getconversionvalue",
+      "name": "ADC_GetConversionValue",
+      "peripheral": "ADC",
+      "prototype": "uint16_t ADC_GetConversionValue(ADC_TypeDef* ADCx);",
+      "purpose": "读取规则组数据寄存器",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "寄存器数据值；按计数、捕获或 ADC 对齐配置解释"
+      },
+      "flowPosition": "10.2 ADC 模块的结构框图；10.4 常规单通道转换",
+      "example": {
+        "code": "/* 两种接口的分工示意，不代表应在同一实验中混用。 */\nuint16_t regular_value = ADC_GetConversionValue(ADC1);\nuint16_t injected_value = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);",
+        "context": "节选自本网站原创整理的 10.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s2",
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_GetConversionValue / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-getflagstatus",
+      "name": "ADC_GetFlagStatus",
+      "peripheral": "ADC",
+      "prototype": "FlagStatus ADC_GetFlagStatus(ADC_TypeDef* ADCx, uint8_t ADC_FLAG);",
+      "purpose": "读取 ADC 指定状态标志",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        },
+        {
+          "name": "ADC_FLAG",
+          "type": "uint8_t",
+          "meaning": "ADC 状态标志编码"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET/RESET 表示指定标志的置位/复位状态"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 前提：ADC1规则组已初始化、通道0 Rank1、右对齐、已校准。 */\nADC_SoftwareStartConvCmd(ADC1, ENABLE);\n/* 教学轮询示意；正式驱动需超时。 */\nwhile (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {}\nuint16_t raw = ADC_GetConversionValue(ADC1);",
+        "context": "节选自本网站原创整理的 10.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_GetFlagStatus / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-getinjectedconversionvalue",
+      "name": "ADC_GetInjectedConversionValue",
+      "peripheral": "ADC",
+      "prototype": "uint16_t ADC_GetInjectedConversionValue(ADC_TypeDef* ADCx, uint8_t ADC_InjectedChannel);",
+      "purpose": "读取指定注入结果寄存器",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "目标ADC实例，本课程使用ADC1。"
+        },
+        {
+          "name": "ADC_InjectedChannel",
+          "type": "uint8_t",
+          "meaning": "选择注入结果位置JDR1至JDR4，不等于ADC模拟通道编号。"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "返回选定寄存器中的值；含义与配置、对齐和状态有关。"
+      },
+      "flowPosition": "10.2 ADC 模块的结构框图；10.5 定时器触发；10.6 扫描模式",
+      "example": {
+        "code": "/* 两种接口的分工示意，不代表应在同一实验中混用。 */\nuint16_t regular_value = ADC_GetConversionValue(ADC1);\nuint16_t injected_value = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);",
+        "context": "节选自本网站原创整理的 10.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "选择JDR结果位置，不等同于模拟输入通道号。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s2",
+        "kp.course10.s5",
+        "kp.course10.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_GetInjectedConversionValue / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.adc.adc-getresetcalibrationstatus",
+      "name": "ADC_GetResetCalibrationStatus",
+      "peripheral": "ADC",
+      "prototype": "FlagStatus ADC_GetResetCalibrationStatus(ADC_TypeDef* ADCx);",
+      "purpose": "读取复位校准是否仍进行",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET 表示校准步骤仍在进行；RESET 表示已结束"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_GetResetCalibrationStatus / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-init",
+      "name": "ADC_Init",
+      "peripheral": "ADC",
+      "prototype": "void ADC_Init(ADC_TypeDef* ADCx, ADC_InitTypeDef* ADC_InitStruct);",
+      "purpose": "配置 ADC 模式、扫描、连续、触发、对齐和序列长度",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        },
+        {
+          "name": "ADC_InitStruct",
+          "type": "ADC_InitTypeDef*",
+          "meaning": "指向 ADC_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "ADC_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.4 常规单通道转换；10.6 扫描模式",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4",
+        "kp.course10.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_Init / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-injectedchannelconfig",
+      "name": "ADC_InjectedChannelConfig",
+      "peripheral": "ADC",
+      "prototype": "void ADC_InjectedChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime);",
+      "purpose": "设置注入通道、序列位置与采样时间",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "目标ADC实例，本课程使用ADC1。"
+        },
+        {
+          "name": "ADC_Channel",
+          "type": "uint8_t",
+          "meaning": "模拟输入通道，例如ADC_Channel_0对应本课PA0。"
+        },
+        {
+          "name": "Rank",
+          "type": "uint8_t",
+          "meaning": "在注入序列中的位置；从1开始，不能超过设置的序列长度。"
+        },
+        {
+          "name": "ADC_SampleTime",
+          "type": "uint8_t",
+          "meaning": "该通道采样周期配置，例如55.5个ADC时钟；按源阻抗选择。"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值。"
+      },
+      "flowPosition": "10.2 ADC 模块的结构框图；10.3 采样时间和转换时间；10.5 定时器触发；10.6 扫描模式",
+      "example": {
+        "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+        "context": "节选自本网站原创整理的 10.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "模拟输入通道；Rank表示注入序列位置，SampleTime表示采样周期。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s2",
+        "kp.course10.s3",
+        "kp.course10.s5",
+        "kp.course10.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_InjectedChannelConfig / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.adc.adc-injectedsequencerlengthconfig",
+      "name": "ADC_InjectedSequencerLengthConfig",
+      "peripheral": "ADC",
+      "prototype": "void ADC_InjectedSequencerLengthConfig(ADC_TypeDef* ADCx, uint8_t Length);",
+      "purpose": "设置注入序列长度",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "目标ADC实例，本课程使用ADC1。"
+        },
+        {
+          "name": "Length",
+          "type": "uint8_t",
+          "meaning": "注入序列长度，STM32F103最多4个转换位置。"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值。"
+      },
+      "flowPosition": "10.5 定时器触发；10.6 扫描模式",
+      "example": {
+        "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+        "context": "节选自本网站原创整理的 10.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "注入序列的通道数量；F103注入组最多4个位置。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s5",
+        "kp.course10.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_InjectedSequencerLengthConfig / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.adc.adc-regularchannelconfig",
+      "name": "ADC_RegularChannelConfig",
+      "peripheral": "ADC",
+      "prototype": "void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime);",
+      "purpose": "配置规则组通道、序列次序及采样时间",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        },
+        {
+          "name": "ADC_Channel",
+          "type": "uint8_t",
+          "meaning": "规则组通道编码；外部引脚按 C8T6 封装筛选，内部通道另核验"
+        },
+        {
+          "name": "Rank",
+          "type": "uint8_t",
+          "meaning": "规则序列位置（从 1 开始），需与序列长度匹配"
+        },
+        {
+          "name": "ADC_SampleTime",
+          "type": "uint8_t",
+          "meaning": "采样周期编码；结合源阻抗和 ADC 时钟选择"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.2 ADC 模块的结构框图；10.3 采样时间和转换时间；10.4 常规单通道转换",
+      "example": {
+        "code": "RCC_ADCCLKConfig(RCC_PCLK2_Div6); /* PCLK2=72MHz时为12MHz */\nADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,\n    ADC_SampleTime_55Cycles5);\n/* 单通道理论转换时间=(55.5+12.5)/12MHz。 */",
+        "context": "节选自本网站原创整理的 10.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s2",
+        "kp.course10.s3",
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_RegularChannelConfig / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-resetcalibration",
+      "name": "ADC_ResetCalibration",
+      "peripheral": "ADC",
+      "prototype": "void ADC_ResetCalibration(ADC_TypeDef* ADCx);",
+      "purpose": "开始复位校准寄存器",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_ResetCalibration / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-softwarestartconvcmd",
+      "name": "ADC_SoftwareStartConvCmd",
+      "peripheral": "ADC",
+      "prototype": "void ADC_SoftwareStartConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);",
+      "purpose": "控制规则组软件启动转换",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 前提：ADC1规则组已初始化、通道0 Rank1、右对齐、已校准。 */\nADC_SoftwareStartConvCmd(ADC1, ENABLE);\n/* 教学轮询示意；正式驱动需超时。 */\nwhile (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {}\nuint16_t raw = ADC_GetConversionValue(ADC1);",
+        "context": "节选自本网站原创整理的 10.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_SoftwareStartConvCmd / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.adc.adc-startcalibration",
+      "name": "ADC_StartCalibration",
+      "peripheral": "ADC",
+      "prototype": "void ADC_StartCalibration(ADC_TypeDef* ADCx);",
+      "purpose": "启动 ADC 校准",
+      "parameters": [
+        {
+          "name": "ADCx",
+          "type": "ADC_TypeDef*",
+          "meaning": "ADC1 或 ADC2；ADC_DMACmd 在本芯片仅使用 ADC1"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.4 常规单通道转换",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO 模拟输入、ADC 时钟合法、上电稳定和校准流程正确。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_adc.h",
+          "url": "urn:stm32:course:header:stm32f10x_adc.h",
+          "section": "stm32f10x_adc.h / ADC_StartCalibration / V3.6.2",
+          "revision": "ed7f95fbbac933195b6f78951c063b20c92ee7a0feaa5b3c35ffb3d1e6827875",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "ADC1、ADC2；DMA 请求仅 ADC1，外部模拟通道按 LQFP48 引脚限制"
+      }
+    },
+    {
+      "id": "fn.exti.exti-clearitpendingbit",
+      "name": "EXTI_ClearITPendingBit",
+      "peripheral": "EXTI",
+      "prototype": "void EXTI_ClearITPendingBit(uint32_t EXTI_Line);",
+      "purpose": "清除指定 EXTI 挂起位",
+      "parameters": [
+        {
+          "name": "EXTI_Line",
+          "type": "uint32_t",
+          "meaning": "外部中断线掩码；GPIO 外部线限定 0–15"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "7.1 EXTI 工作原理；7.2 按钮实验",
+      "example": {
+        "code": "volatile uint8_t button_pending;\nvoid EXTI9_5_IRQHandler(void) {\n    if (EXTI_GetITStatus(EXTI_Line5) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line5);\n        button_pending |= 1U;\n    }\n    if (EXTI_GetITStatus(EXTI_Line6) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line6);\n        button_pending |= 2U;\n    }\n}\n/* 主循环读取后仍需消抖；共享读改写须考虑竞争。 */",
+        "context": "节选自本网站原创整理的 7.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO、AFIO 来源映射、EXTI 和 NVIC 各层需分别正确配置。"
+      ],
+      "knowledgePointIds": [
+        "kp.course7.s1",
+        "kp.course7.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_exti.h",
+          "url": "urn:stm32:course:header:stm32f10x_exti.h",
+          "section": "stm32f10x_exti.h / EXTI_ClearITPendingBit / V3.6.2",
+          "revision": "e352d96e5f61c4e1b9281a5bd8fa60f1841d9a5870719fdecf4cfa36a7ebeff3",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIO 外部中断 EXTI0–15；其他内部线不作为本版默认练习"
+      }
+    },
+    {
+      "id": "fn.exti.exti-getitstatus",
+      "name": "EXTI_GetITStatus",
+      "peripheral": "EXTI",
+      "prototype": "ITStatus EXTI_GetITStatus(uint32_t EXTI_Line);",
+      "purpose": "结合中断屏蔽和挂起状态判断指定线路",
+      "parameters": [
+        {
+          "name": "EXTI_Line",
+          "type": "uint32_t",
+          "meaning": "外部中断线掩码；GPIO 外部线限定 0–15"
+        }
+      ],
+      "returnValue": {
+        "type": "ITStatus",
+        "meaning": "SET/RESET 表示函数判断的中断状态；具体是否结合使能位以实现为准"
+      },
+      "flowPosition": "7.1 EXTI 工作原理；7.2 按钮实验",
+      "example": {
+        "code": "volatile uint8_t button_pending;\nvoid EXTI9_5_IRQHandler(void) {\n    if (EXTI_GetITStatus(EXTI_Line5) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line5);\n        button_pending |= 1U;\n    }\n    if (EXTI_GetITStatus(EXTI_Line6) != RESET) {\n        EXTI_ClearITPendingBit(EXTI_Line6);\n        button_pending |= 2U;\n    }\n}\n/* 主循环读取后仍需消抖；共享读改写须考虑竞争。 */",
+        "context": "节选自本网站原创整理的 7.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO、AFIO 来源映射、EXTI 和 NVIC 各层需分别正确配置。"
+      ],
+      "knowledgePointIds": [
+        "kp.course7.s1",
+        "kp.course7.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_exti.h",
+          "url": "urn:stm32:course:header:stm32f10x_exti.h",
+          "section": "stm32f10x_exti.h / EXTI_GetITStatus / V3.6.2",
+          "revision": "e352d96e5f61c4e1b9281a5bd8fa60f1841d9a5870719fdecf4cfa36a7ebeff3",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIO 外部中断 EXTI0–15；其他内部线不作为本版默认练习"
+      }
+    },
+    {
+      "id": "fn.exti.exti-init",
+      "name": "EXTI_Init",
+      "peripheral": "EXTI",
+      "prototype": "void EXTI_Init(EXTI_InitTypeDef* EXTI_InitStruct);",
+      "purpose": "配置 EXTI 线路、模式、边沿和使能",
+      "parameters": [
+        {
+          "name": "EXTI_InitStruct",
+          "type": "EXTI_InitTypeDef*",
+          "meaning": "指向 EXTI_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "EXTI_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "7.1 EXTI 工作原理；7.2 按钮实验",
+      "example": {
+        "code": "/* AFIO 与输入 GPIO 已配置。 */\nGPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);\nEXTI_InitTypeDef e;\nEXTI_StructInit(&e);\ne.EXTI_Line = EXTI_Line5;\ne.EXTI_Mode = EXTI_Mode_Interrupt;\ne.EXTI_Trigger = EXTI_Trigger_Falling;\ne.EXTI_LineCmd = ENABLE;\nEXTI_Init(&e);",
+        "context": "节选自本网站原创整理的 7.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO、AFIO 来源映射、EXTI 和 NVIC 各层需分别正确配置。"
+      ],
+      "knowledgePointIds": [
+        "kp.course7.s1",
+        "kp.course7.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_exti.h",
+          "url": "urn:stm32:course:header:stm32f10x_exti.h",
+          "section": "stm32f10x_exti.h / EXTI_Init / V3.6.2",
+          "revision": "e352d96e5f61c4e1b9281a5bd8fa60f1841d9a5870719fdecf4cfa36a7ebeff3",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIO 外部中断 EXTI0–15；其他内部线不作为本版默认练习"
+      }
+    },
+    {
+      "id": "fn.exti.exti-structinit",
+      "name": "EXTI_StructInit",
+      "peripheral": "EXTI",
+      "prototype": "void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct);",
+      "purpose": "填写 EXTI 配置结构默认值",
+      "parameters": [
+        {
+          "name": "EXTI_InitStruct",
+          "type": "EXTI_InitTypeDef*",
+          "meaning": "指向 EXTI_InitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "EXTI_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "7.1 EXTI 工作原理",
+      "example": {
+        "code": "/* AFIO 与输入 GPIO 已配置。 */\nGPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);\nEXTI_InitTypeDef e;\nEXTI_StructInit(&e);\ne.EXTI_Line = EXTI_Line5;\ne.EXTI_Mode = EXTI_Mode_Interrupt;\ne.EXTI_Trigger = EXTI_Trigger_Falling;\ne.EXTI_LineCmd = ENABLE;\nEXTI_Init(&e);",
+        "context": "节选自本网站原创整理的 7.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "GPIO、AFIO 来源映射、EXTI 和 NVIC 各层需分别正确配置。"
+      ],
+      "knowledgePointIds": [
+        "kp.course7.s1"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_exti.h",
+          "url": "urn:stm32:course:header:stm32f10x_exti.h",
+          "section": "stm32f10x_exti.h / EXTI_StructInit / V3.6.2",
+          "revision": "e352d96e5f61c4e1b9281a5bd8fa60f1841d9a5870719fdecf4cfa36a7ebeff3",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIO 外部中断 EXTI0–15；其他内部线不作为本版默认练习"
+      }
+    },
+    {
+      "id": "fn.flash.flash-prefetchbuffercmd",
+      "name": "FLASH_PrefetchBufferCmd",
+      "peripheral": "FLASH",
+      "prototype": "void FLASH_PrefetchBufferCmd(uint32_t FLASH_PrefetchBuffer);",
+      "purpose": "控制 Flash 预取缓冲",
+      "parameters": [
+        {
+          "name": "FLASH_PrefetchBuffer",
+          "type": "uint32_t",
+          "meaning": "FLASH_PrefetchBuffer_Enable / Disable"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+        "context": "节选自本网站原创整理的 8.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "提高 HCLK 前先满足 Flash 延迟和预取条件；降低时钟与降低延迟的顺序另核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_flash.h",
+          "url": "urn:stm32:course:header:stm32f10x_flash.h",
+          "section": "stm32f10x_flash.h / FLASH_PrefetchBufferCmd / V3.6.2",
+          "revision": "425dc48c22762c87e8561e42a4776dc241580c0289bb4132ba2767e4122c0edf",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "内部 Flash 访问控制；仅作为时钟配置依赖，不扩展成 Flash 编程专题"
+      }
+    },
+    {
+      "id": "fn.flash.flash-setlatency",
+      "name": "FLASH_SetLatency",
+      "peripheral": "FLASH",
+      "prototype": "void FLASH_SetLatency(uint32_t FLASH_Latency);",
+      "purpose": "配置 Flash 访问等待周期",
+      "parameters": [
+        {
+          "name": "FLASH_Latency",
+          "type": "uint32_t",
+          "meaning": "Flash 等待周期编码，必须结合 HCLK 和电压条件"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+        "context": "节选自本网站原创整理的 8.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "提高 HCLK 前先满足 Flash 延迟和预取条件；降低时钟与降低延迟的顺序另核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_flash.h",
+          "url": "urn:stm32:course:header:stm32f10x_flash.h",
+          "section": "stm32f10x_flash.h / FLASH_SetLatency / V3.6.2",
+          "revision": "425dc48c22762c87e8561e42a4776dc241580c0289bb4132ba2767e4122c0edf",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "内部 Flash 访问控制；仅作为时钟配置依赖，不扩展成 Flash 编程专题"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-extilineconfig",
+      "name": "GPIO_EXTILineConfig",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_EXTILineConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource);",
+      "purpose": "为一条外部中断线选择 GPIO 端口来源",
+      "parameters": [
+        {
+          "name": "GPIO_PortSource",
+          "type": "uint8_t",
+          "meaning": "GPIO_PortSourceGPIOx 端口来源编号"
+        },
+        {
+          "name": "GPIO_PinSource",
+          "type": "uint8_t",
+          "meaning": "GPIO_PinSourcex 引脚编号，不是 GPIO_Pin_x 位掩码"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "7.1 EXTI 工作原理；7.2 按钮实验",
+      "example": {
+        "code": "/* AFIO 与输入 GPIO 已配置。 */\nGPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);\nEXTI_InitTypeDef e;\nEXTI_StructInit(&e);\ne.EXTI_Line = EXTI_Line5;\ne.EXTI_Mode = EXTI_Mode_Interrupt;\ne.EXTI_Trigger = EXTI_Trigger_Falling;\ne.EXTI_LineCmd = ENABLE;\nEXTI_Init(&e);",
+        "context": "节选自本网站原创整理的 7.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。",
+        "需开 AFIO 时钟；重映射不是配置 GPIO 模式；不要混用 Pin 与 PinSource。"
+      ],
+      "knowledgePointIds": [
+        "kp.course7.s1",
+        "kp.course7.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_EXTILineConfig / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-init",
+      "name": "GPIO_Init",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct);",
+      "purpose": "配置选定引脚的模式与输出速度",
+      "parameters": [
+        {
+          "name": "GPIOx",
+          "type": "GPIO_TypeDef*",
+          "meaning": "GPIO 端口实例；只使用 LQFP48 实际引出的引脚"
+        },
+        {
+          "name": "GPIO_InitStruct",
+          "type": "GPIO_InitTypeDef*",
+          "meaning": "指向 GPIO_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "GPIO_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；2.2 IO 的最大输出速度；2.3 LED 闪灯实验；2.4 四种输入模式；2.5 按钮实验；3.3 为串口初始化 IO 引脚；4.3 I2C 模块的使用方法；4.6 软 I2C；5.3 番外：按钮代码的封装；5.4 IO 引脚初始化；7.2 按钮实验；10.4 常规单通道转换；10.6 扫描模式",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_0;\nio.GPIO_Mode = GPIO_Mode_Out_OD;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOA, &io);\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); /* 释放开漏输出 */",
+        "context": "节选自本网站原创整理的 2.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course2.s2",
+        "kp.course2.s3",
+        "kp.course2.s4",
+        "kp.course2.s5",
+        "kp.course3.s3",
+        "kp.course4.s3",
+        "kp.course4.s6",
+        "kp.course5.s3",
+        "kp.course5.s4",
+        "kp.course7.s2",
+        "kp.course10.s4",
+        "kp.course10.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_Init / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-pinremapconfig",
+      "name": "GPIO_PinRemapConfig",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_PinRemapConfig(uint32_t GPIO_Remap, FunctionalState NewState);",
+      "purpose": "配置 AFIO 复用重映射或 SWJ 设置",
+      "parameters": [
+        {
+          "name": "GPIO_Remap",
+          "type": "uint32_t",
+          "meaning": "复用/调试接口重映射掩码；必须确认目标引脚在 LQFP48 上存在"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.3 为串口初始化 IO 引脚；4.3 I2C 模块的使用方法；5.4 IO 引脚初始化",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB |\n    RCC_APB2Periph_AFIO | RCC_APB2Periph_USART1, ENABLE);\nGPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_6;\nio.GPIO_Mode = GPIO_Mode_AF_PP;\nio.GPIO_Speed = GPIO_Speed_10MHz;\nGPIO_Init(GPIOB, &io);\nio.GPIO_Pin = GPIO_Pin_7;\nio.GPIO_Mode = GPIO_Mode_IPU;\nGPIO_Init(GPIOB, &io);",
+        "context": "节选自本网站原创整理的 3.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。",
+        "需开 AFIO 时钟；重映射不是配置 GPIO 模式；不要混用 Pin 与 PinSource。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s3",
+        "kp.course4.s3",
+        "kp.course5.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_PinRemapConfig / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-readinputdatabit",
+      "name": "GPIO_ReadInputDataBit",
+      "peripheral": "GPIO",
+      "prototype": "uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);",
+      "purpose": "读取指定单个引脚的输入电平",
+      "parameters": [
+        {
+          "name": "GPIOx",
+          "type": "GPIO_TypeDef*",
+          "meaning": "GPIO 端口实例；只使用 LQFP48 实际引出的引脚"
+        },
+        {
+          "name": "GPIO_Pin",
+          "type": "uint16_t",
+          "meaning": "GPIO_Pin_x 位掩码；读单引脚函数和 WriteBit 只能选择一个引脚"
+        }
+      ],
+      "returnValue": {
+        "type": "uint8_t",
+        "meaning": "0 或 1"
+      },
+      "flowPosition": "2.4 四种输入模式；2.5 按钮实验；4.6 软 I2C；5.2 番外：按钮驱动程序编写",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_1;\nio.GPIO_Mode = GPIO_Mode_IPU;\nGPIO_Init(GPIOA, &io);\nuint8_t pressed = (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1) == Bit_RESET);",
+        "context": "节选自本网站原创整理的 2.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s4",
+        "kp.course2.s5",
+        "kp.course4.s6",
+        "kp.course5.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_ReadInputDataBit / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-resetbits",
+      "name": "GPIO_ResetBits",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);",
+      "purpose": "将选定输出锁存位清 0",
+      "parameters": [
+        {
+          "name": "GPIOx",
+          "type": "GPIO_TypeDef*",
+          "meaning": "GPIO 端口实例；只使用 LQFP48 实际引出的引脚"
+        },
+        {
+          "name": "GPIO_Pin",
+          "type": "uint16_t",
+          "meaning": "GPIO_Pin_x 位掩码；读单引脚函数和 WriteBit 只能选择一个引脚"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；5.6 数据收发",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。",
+        "写输出锁存位不等于验证引脚电平，也不等于所有硬件上的 LED 亮/灭。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course5.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_ResetBits / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-setbits",
+      "name": "GPIO_SetBits",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);",
+      "purpose": "将选定输出锁存位置 1",
+      "parameters": [
+        {
+          "name": "GPIOx",
+          "type": "GPIO_TypeDef*",
+          "meaning": "GPIO 端口实例；只使用 LQFP48 实际引出的引脚"
+        },
+        {
+          "name": "GPIO_Pin",
+          "type": "uint16_t",
+          "meaning": "GPIO_Pin_x 位掩码；读单引脚函数和 WriteBit 只能选择一个引脚"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；5.4 IO 引脚初始化；5.6 数据收发",
+      "example": {
+        "code": "/* AFIO、GPIOA、GPIOB 时钟已开启。 */\nGPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE); /* 保留 SWD */\nGPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);\nGPIO_SetBits(GPIOA, GPIO_Pin_15); /* 低有效 CS 的无效态 */\n/* 随后分别配置 PB3/PB5 AF_PP、PB4 输入、PA15 Out_PP。 */",
+        "context": "节选自本网站原创整理的 5.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。",
+        "写输出锁存位不等于验证引脚电平，也不等于所有硬件上的 LED 亮/灭。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course5.s4",
+        "kp.course5.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_SetBits / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-structinit",
+      "name": "GPIO_StructInit",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_StructInit(GPIO_InitTypeDef* GPIO_InitStruct);",
+      "purpose": "为 GPIO 配置结构填写库默认值",
+      "parameters": [
+        {
+          "name": "GPIO_InitStruct",
+          "type": "GPIO_InitTypeDef*",
+          "meaning": "指向 GPIO_InitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "GPIO_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；2.2 IO 的最大输出速度；2.3 LED 闪灯实验；2.4 四种输入模式；3.3 为串口初始化 IO 引脚",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_0;\nio.GPIO_Mode = GPIO_Mode_Out_OD;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOA, &io);\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); /* 释放开漏输出 */",
+        "context": "节选自本网站原创整理的 2.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course2.s2",
+        "kp.course2.s3",
+        "kp.course2.s4",
+        "kp.course3.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_StructInit / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.gpio.gpio-writebit",
+      "name": "GPIO_WriteBit",
+      "peripheral": "GPIO",
+      "prototype": "void GPIO_WriteBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, BitAction BitVal);",
+      "purpose": "按 Bit_SET / Bit_RESET 设置一个引脚",
+      "parameters": [
+        {
+          "name": "GPIOx",
+          "type": "GPIO_TypeDef*",
+          "meaning": "GPIO 端口实例；只使用 LQFP48 实际引出的引脚"
+        },
+        {
+          "name": "GPIO_Pin",
+          "type": "uint16_t",
+          "meaning": "GPIO_Pin_x 位掩码；读单引脚函数和 WriteBit 只能选择一个引脚"
+        },
+        {
+          "name": "BitVal",
+          "type": "BitAction",
+          "meaning": "Bit_SET（1）或 Bit_RESET（0）"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；2.3 LED 闪灯实验；2.5 按钮实验；4.6 软 I2C",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_0;\nio.GPIO_Mode = GPIO_Mode_Out_OD;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOA, &io);\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); /* 释放开漏输出 */",
+        "context": "节选自本网站原创整理的 2.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开启相应 GPIO APB2 时钟并配置正确模式；不假设所有端口 16 引脚均引出。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course2.s3",
+        "kp.course2.s5",
+        "kp.course4.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_gpio.h",
+          "url": "urn:stm32:course:header:stm32f10x_gpio.h",
+          "section": "stm32f10x_gpio.h / GPIO_WriteBit / V3.6.2",
+          "revision": "543647ca5547c6db6193ab014936027ecbd0991cd52de66a31a183a42c780e37",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "GPIOA/GPIOB 及 LQFP48 引出的 GPIOC/GPIOD 少量引脚；每个具体引脚另按数据手册核对"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-acknowledgeconfig",
+      "name": "I2C_AcknowledgeConfig",
+      "peripheral": "I2C",
+      "prototype": "void I2C_AcknowledgeConfig(I2C_TypeDef* I2Cx, FunctionalState NewState);",
+      "purpose": "控制硬件 ACK 应答使能",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.5 读数据",
+      "example": {
+        "code": "/* API 作用示意；这些行不是完整接收顺序。 */\nI2C_AcknowledgeConfig(I2C1, DISABLE); /* 控制 ACK */\nuint8_t value = I2C_ReceiveData(I2C1); /* 读接收 DR */\n/* 必须按 1/2/多字节分支安排 ADDR、BTF、STOP 和恢复操作。 */",
+        "context": "节选自本网站原创整理的 4.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_AcknowledgeConfig / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-cmd",
+      "name": "I2C_Cmd",
+      "peripheral": "I2C",
+      "prototype": "void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState);",
+      "purpose": "使能或关闭硬件 I²C",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.3 I2C 模块的使用方法",
+      "example": {
+        "code": "RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);\n/* GPIOB、AFIO、PB8/PB9 的复用开漏与上拉须先配置。 */\nGPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);\nI2C_InitTypeDef bus;\nI2C_StructInit(&bus);\nbus.I2C_ClockSpeed = 100000;\nbus.I2C_Mode = I2C_Mode_I2C;\nbus.I2C_DutyCycle = I2C_DutyCycle_2;\nbus.I2C_Ack = I2C_Ack_Enable;\nbus.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;\nI2C_Init(I2C1, &bus);\nI2C_Cmd(I2C1, ENABLE);",
+        "context": "节选自本网站原创整理的 4.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_Cmd / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-generatestart",
+      "name": "I2C_GenerateSTART",
+      "peripheral": "I2C",
+      "prototype": "void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState);",
+      "purpose": "控制硬件产生 START 请求",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.4 写数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_GenerateSTART / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-generatestop",
+      "name": "I2C_GenerateSTOP",
+      "peripheral": "I2C",
+      "prototype": "void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState);",
+      "purpose": "控制硬件产生 STOP 请求",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.4 写数据；4.5 读数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4",
+        "kp.course4.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_GenerateSTOP / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-getflagstatus",
+      "name": "I2C_GetFlagStatus",
+      "peripheral": "I2C",
+      "prototype": "FlagStatus I2C_GetFlagStatus(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG);",
+      "purpose": "读取指定硬件 I²C 状态标志",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "I2C_FLAG",
+          "type": "uint32_t",
+          "meaning": "I²C 标志编码；读/清除顺序可能有硬件副作用"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET/RESET 表示指定标志的置位/复位状态"
+      },
+      "flowPosition": "4.4 写数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_GetFlagStatus / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-init",
+      "name": "I2C_Init",
+      "peripheral": "I2C",
+      "prototype": "void I2C_Init(I2C_TypeDef* I2Cx, I2C_InitTypeDef* I2C_InitStruct);",
+      "purpose": "配置硬件 I²C 时钟、地址及模式",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "I2C_InitStruct",
+          "type": "I2C_InitTypeDef*",
+          "meaning": "指向 I2C_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "I2C_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.3 I2C 模块的使用方法",
+      "example": {
+        "code": "RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);\n/* GPIOB、AFIO、PB8/PB9 的复用开漏与上拉须先配置。 */\nGPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);\nI2C_InitTypeDef bus;\nI2C_StructInit(&bus);\nbus.I2C_ClockSpeed = 100000;\nbus.I2C_Mode = I2C_Mode_I2C;\nbus.I2C_DutyCycle = I2C_DutyCycle_2;\nbus.I2C_Ack = I2C_Ack_Enable;\nbus.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;\nI2C_Init(I2C1, &bus);\nI2C_Cmd(I2C1, ENABLE);",
+        "context": "节选自本网站原创整理的 4.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_Init / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-nackpositionconfig",
+      "name": "I2C_NACKPositionConfig",
+      "peripheral": "I2C",
+      "prototype": "void I2C_NACKPositionConfig(I2C_TypeDef* I2Cx, uint16_t I2C_NACKPosition);",
+      "purpose": "配置 POS 对应的下一字节 NACK 位置",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "I2C_NACKPosition",
+          "type": "uint16_t",
+          "meaning": "NACK 位置配置编码；1/2/N 字节接收序列需分别核验"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.5 读数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_NACKPositionConfig / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-readregister",
+      "name": "I2C_ReadRegister",
+      "peripheral": "I2C",
+      "prototype": "uint16_t I2C_ReadRegister(I2C_TypeDef* I2Cx, uint8_t I2C_Register);",
+      "purpose": "读取I2C寄存器的值",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "目标I2C实例，本课程硬件I2C使用I2C1。"
+        },
+        {
+          "name": "I2C_Register",
+          "type": "uint8_t",
+          "meaning": "控制器寄存器选择，如I2C_Register_SR1或SR2；读取可能参与标志清除。"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "返回选定寄存器中的值；含义与配置、对齐和状态有关。"
+      },
+      "flowPosition": "4.4 写数据；4.5 读数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "寄存器选择，如SR1、SR2；读状态可能参与标志清除序列。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4",
+        "kp.course4.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_ReadRegister / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-receivedata",
+      "name": "I2C_ReceiveData",
+      "peripheral": "I2C",
+      "prototype": "uint8_t I2C_ReceiveData(I2C_TypeDef* I2Cx);",
+      "purpose": "读取硬件 I²C 数据寄存器字节",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        }
+      ],
+      "returnValue": {
+        "type": "uint8_t",
+        "meaning": "接收寄存器数据；按字长和数据宽度解释"
+      },
+      "flowPosition": "4.5 读数据",
+      "example": {
+        "code": "/* API 作用示意；这些行不是完整接收顺序。 */\nI2C_AcknowledgeConfig(I2C1, DISABLE); /* 控制 ACK */\nuint8_t value = I2C_ReceiveData(I2C1); /* 读接收 DR */\n/* 必须按 1/2/多字节分支安排 ADDR、BTF、STOP 和恢复操作。 */",
+        "context": "节选自本网站原创整理的 4.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_ReceiveData / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-send7bitaddress",
+      "name": "I2C_Send7bitAddress",
+      "peripheral": "I2C",
+      "prototype": "void I2C_Send7bitAddress(I2C_TypeDef* I2Cx, uint8_t Address, uint8_t I2C_Direction);",
+      "purpose": "发送含读写方向位的从机地址字节",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "Address",
+          "type": "uint8_t",
+          "meaning": "随附SPL实现要求已左移一位的地址值；函数修改bit0为读写方向，不再替你左移。"
+        },
+        {
+          "name": "I2C_Direction",
+          "type": "uint8_t",
+          "meaning": "I2C_Direction_Transmitter 或 I2C_Direction_Receiver"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.4 写数据",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。",
+        "按已读取实现：裸 7 位地址需先左移 1 位；例中 0x50 只是地址编码示例，并未假设板上存在该器件。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_Send7bitAddress / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-senddata",
+      "name": "I2C_SendData",
+      "peripheral": "I2C",
+      "prototype": "void I2C_SendData(I2C_TypeDef* I2Cx, uint8_t Data);",
+      "purpose": "向硬件 I²C 数据寄存器写入一个字节",
+      "parameters": [
+        {
+          "name": "I2Cx",
+          "type": "I2C_TypeDef*",
+          "meaning": "硬件 I2C1 或 I2C2；不适用于软件 I²C"
+        },
+        {
+          "name": "Data",
+          "type": "uint8_t",
+          "meaning": "要发送的数据；范围随外设字长/数据宽度变化"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.4 写数据",
+      "example": {
+        "code": "/* 仅演示地址字节构造；完整事务见上方状态步骤。 */\nuint8_t address7 = 0x3C;\nuint8_t address_write = (uint8_t)(address7 << 1);\n/* 已等待 SB 后： */\nI2C_SendData(I2C1, address_write);\n/* 还必须检查 ADDR/AF、清 ADDR、传数据与 STOP，并设置超时。 */",
+        "context": "节选自本网站原创整理的 4.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_SendData / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.i2c.i2c-structinit",
+      "name": "I2C_StructInit",
+      "peripheral": "I2C",
+      "prototype": "void I2C_StructInit(I2C_InitTypeDef* I2C_InitStruct);",
+      "purpose": "填写硬件 I²C 配置结构默认值",
+      "parameters": [
+        {
+          "name": "I2C_InitStruct",
+          "type": "I2C_InitTypeDef*",
+          "meaning": "指向 I2C_InitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "I2C_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "4.3 I2C 模块的使用方法",
+      "example": {
+        "code": "RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);\n/* GPIOB、AFIO、PB8/PB9 的复用开漏与上拉须先配置。 */\nGPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);\nI2C_InitTypeDef bus;\nI2C_StructInit(&bus);\nbus.I2C_ClockSpeed = 100000;\nbus.I2C_Mode = I2C_Mode_I2C;\nbus.I2C_DutyCycle = I2C_DutyCycle_2;\nbus.I2C_Ack = I2C_Ack_Enable;\nbus.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;\nI2C_Init(I2C1, &bus);\nI2C_Cmd(I2C1, ENABLE);",
+        "context": "节选自本网站原创整理的 4.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "APB1 时钟、复用开漏引脚、外部上拉和目标从机地址均需正确；等待必须带超时。"
+      ],
+      "knowledgePointIds": [
+        "kp.course4.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_i2c.h",
+          "url": "urn:stm32:course:header:stm32f10x_i2c.h",
+          "section": "stm32f10x_i2c.h / I2C_StructInit / V3.6.2",
+          "revision": "90218c5ff9f01f805f4a86901ad1662bc5fd0a01fde48db22a472ef4e1a68bc2",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "硬件 I2C1/I2C2；软件 I²C 必须另列 SoftI2C_* 教学封装"
+      }
+    },
+    {
+      "id": "fn.nvic.nvic-init",
+      "name": "NVIC_Init",
+      "peripheral": "NVIC",
+      "prototype": "void NVIC_Init(NVIC_InitTypeDef* NVIC_InitStruct);",
+      "purpose": "配置 IRQ 优先级及通道使能",
+      "parameters": [
+        {
+          "name": "NVIC_InitStruct",
+          "type": "NVIC_InitTypeDef*",
+          "meaning": "指向 NVIC_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "NVIC_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "6.1 中断的概念；6.2 中断优先级；6.3 串口中断编程实验；7.1 EXTI 工作原理；7.2 按钮实验；9.2 自制延迟函数",
+      "example": {
+        "code": "NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);\nNVIC_InitTypeDef n;\nn.NVIC_IRQChannel = USART1_IRQn;\nn.NVIC_IRQChannelPreemptionPriority = 1;\nn.NVIC_IRQChannelSubPriority = 0;\nn.NVIC_IRQChannelCmd = ENABLE;\nNVIC_Init(&n);",
+        "context": "节选自本网站原创整理的 6.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "统一优先级分组；使用本芯片 IRQ 名称并提供正确 ISR。"
+      ],
+      "knowledgePointIds": [
+        "kp.course6.s1",
+        "kp.course6.s2",
+        "kp.course6.s3",
+        "kp.course7.s1",
+        "kp.course7.s2",
+        "kp.course9.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.misc.h",
+          "url": "urn:stm32:course:header:misc.h",
+          "section": "misc.h / NVIC_Init / V3.6.2",
+          "revision": "97d7414336a55e1fd22c5d1c1d1b7a66583d158732db3bb60c601bd9b62d55e1",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "Cortex-M3 NVIC；IRQ 通道必须在 STM32F103C8T6 向量表存在"
+      }
+    },
+    {
+      "id": "fn.nvic.nvic-prioritygroupconfig",
+      "name": "NVIC_PriorityGroupConfig",
+      "peripheral": "NVIC",
+      "prototype": "void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup);",
+      "purpose": "设置抢占优先级与子优先级的分组",
+      "parameters": [
+        {
+          "name": "NVIC_PriorityGroup",
+          "type": "uint32_t",
+          "meaning": "分组编码；需统一全工程分组设置"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "6.2 中断优先级",
+      "example": {
+        "code": "NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);\nNVIC_InitTypeDef n;\nn.NVIC_IRQChannel = USART1_IRQn;\nn.NVIC_IRQChannelPreemptionPriority = 1;\nn.NVIC_IRQChannelSubPriority = 0;\nn.NVIC_IRQChannelCmd = ENABLE;\nNVIC_Init(&n);",
+        "context": "节选自本网站原创整理的 6.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "统一优先级分组；使用本芯片 IRQ 名称并提供正确 ISR。"
+      ],
+      "knowledgePointIds": [
+        "kp.course6.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.misc.h",
+          "url": "urn:stm32:course:header:misc.h",
+          "section": "misc.h / NVIC_PriorityGroupConfig / V3.6.2",
+          "revision": "97d7414336a55e1fd22c5d1c1d1b7a66583d158732db3bb60c601bd9b62d55e1",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "Cortex-M3 NVIC；IRQ 通道必须在 STM32F103C8T6 向量表存在"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-adcclkconfig",
+      "name": "RCC_ADCCLKConfig",
+      "peripheral": "RCC",
+      "prototype": "void RCC_ADCCLKConfig(uint32_t RCC_PCLK2);",
+      "purpose": "配置 ADC 对 PCLK2 的分频",
+      "parameters": [
+        {
+          "name": "RCC_PCLK2",
+          "type": "uint32_t",
+          "meaning": "ADC 对 PCLK2 的分频编码（2/4/6/8）"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "10.3 采样时间和转换时间；10.4 常规单通道转换",
+      "example": {
+        "code": "RCC_ADCCLKConfig(RCC_PCLK2_Div6); /* PCLK2=72MHz时为12MHz */\nADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1,\n    ADC_SampleTime_55Cycles5);\n/* 单通道理论转换时间=(55.5+12.5)/12MHz。 */",
+        "context": "节选自本网站原创整理的 10.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course10.s3",
+        "kp.course10.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_ADCCLKConfig / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-apb1periphclockcmd",
+      "name": "RCC_APB1PeriphClockCmd",
+      "peripheral": "RCC",
+      "prototype": "void RCC_APB1PeriphClockCmd(uint32_t RCC_APB1Periph, FunctionalState NewState);",
+      "purpose": "使能或关闭 APB1 外设时钟",
+      "parameters": [
+        {
+          "name": "RCC_APB1Periph",
+          "type": "uint32_t",
+          "meaning": "APB1 外设掩码，可组合同总线已存在外设"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.2 UART 模块的使用方法；4.3 I2C 模块的使用方法",
+      "example": {
+        "code": "RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);\n/* GPIOB、AFIO、PB8/PB9 的复用开漏与上拉须先配置。 */\nGPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);\nI2C_InitTypeDef bus;\nI2C_StructInit(&bus);\nbus.I2C_ClockSpeed = 100000;\nbus.I2C_Mode = I2C_Mode_I2C;\nbus.I2C_DutyCycle = I2C_DutyCycle_2;\nbus.I2C_Ack = I2C_Ack_Enable;\nbus.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;\nI2C_Init(I2C1, &bus);\nI2C_Cmd(I2C1, ENABLE);",
+        "context": "节选自本网站原创整理的 4.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s2",
+        "kp.course4.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_APB1PeriphClockCmd / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-apb2periphclockcmd",
+      "name": "RCC_APB2PeriphClockCmd",
+      "peripheral": "RCC",
+      "prototype": "void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState);",
+      "purpose": "使能或关闭 APB2 外设时钟",
+      "parameters": [
+        {
+          "name": "RCC_APB2Periph",
+          "type": "uint32_t",
+          "meaning": "APB2 外设掩码，可组合同总线已存在外设"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "2.1 四种输出模式；2.3 LED 闪灯实验；2.4 四种输入模式；3.2 UART 模块的使用方法；3.3 为串口初始化 IO 引脚；4.3 I2C 模块的使用方法；5.5 SPI 模块的初始化",
+      "example": {
+        "code": "RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\nGPIO_InitTypeDef io;\nGPIO_StructInit(&io);\nio.GPIO_Pin = GPIO_Pin_0;\nio.GPIO_Mode = GPIO_Mode_Out_OD;\nio.GPIO_Speed = GPIO_Speed_2MHz;\nGPIO_Init(GPIOA, &io);\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); /* 释放开漏输出 */",
+        "context": "节选自本网站原创整理的 2.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course2.s1",
+        "kp.course2.s3",
+        "kp.course2.s4",
+        "kp.course3.s2",
+        "kp.course3.s3",
+        "kp.course4.s3",
+        "kp.course5.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_APB2PeriphClockCmd / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-getclocksfreq",
+      "name": "RCC_GetClocksFreq",
+      "peripheral": "RCC",
+      "prototype": "void RCC_GetClocksFreq(RCC_ClocksTypeDef* RCC_Clocks);",
+      "purpose": "根据配置寄存器和时钟常量推算各总线时钟",
+      "parameters": [
+        {
+          "name": "RCC_Clocks",
+          "type": "RCC_ClocksTypeDef*",
+          "meaning": "指向 RCC_ClocksTypeDef；由本函数写入推算频率，字段目录见 structures。",
+          "structureType": "RCC_ClocksTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.1 时钟树",
+      "example": {
+        "code": "RCC_ClocksTypeDef clocks;\nRCC_GetClocksFreq(&clocks);\n/* clocks.PCLK1_Frequency 与 TIMx 时钟不总相等。\n   还要检查 APB 预分频是否为 1。 */",
+        "context": "节选自本网站原创整理的 8.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。",
+        "依赖 HSE_VALUE 等常量；是配置推算，不能证明晶振实际频率。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s1"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_GetClocksFreq / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-getflagstatus",
+      "name": "RCC_GetFlagStatus",
+      "peripheral": "RCC",
+      "prototype": "FlagStatus RCC_GetFlagStatus(uint8_t RCC_FLAG);",
+      "purpose": "读取 RCC 指定状态标志",
+      "parameters": [
+        {
+          "name": "RCC_FLAG",
+          "type": "uint8_t",
+          "meaning": "RCC 状态标志编码"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET/RESET 表示指定标志的置位/复位状态"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_GetFlagStatus / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-getsysclksource",
+      "name": "RCC_GetSYSCLKSource",
+      "peripheral": "RCC",
+      "prototype": "uint8_t RCC_GetSYSCLKSource(void);",
+      "purpose": "读取实际系统时钟来源状态",
+      "parameters": [],
+      "returnValue": {
+        "type": "uint8_t",
+        "meaning": "当前 SWS 编码：0x00 HSI、0x04 HSE、0x08 PLL（按读取实现）"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_GetSYSCLKSource / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-hclkconfig",
+      "name": "RCC_HCLKConfig",
+      "peripheral": "RCC",
+      "prototype": "void RCC_HCLKConfig(uint32_t RCC_SYSCLK);",
+      "purpose": "配置 AHB 分频",
+      "parameters": [
+        {
+          "name": "RCC_SYSCLK",
+          "type": "uint32_t",
+          "meaning": "AHB 分频编码"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+        "context": "节选自本网站原创整理的 8.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_HCLKConfig / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-hseconfig",
+      "name": "RCC_HSEConfig",
+      "peripheral": "RCC",
+      "prototype": "void RCC_HSEConfig(uint32_t RCC_HSE);",
+      "purpose": "选择 HSE 关闭、晶振或旁路模式",
+      "parameters": [
+        {
+          "name": "RCC_HSE",
+          "type": "uint32_t",
+          "meaning": "RCC_HSE_OFF / RCC_HSE_ON / RCC_HSE_Bypass；按真实硬件选择"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_HSEConfig / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-pclk1config",
+      "name": "RCC_PCLK1Config",
+      "peripheral": "RCC",
+      "prototype": "void RCC_PCLK1Config(uint32_t RCC_HCLK);",
+      "purpose": "配置 APB1 分频",
+      "parameters": [
+        {
+          "name": "RCC_HCLK",
+          "type": "uint32_t",
+          "meaning": "APB 分频编码；注意 APB1 最高 36 MHz"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+        "context": "节选自本网站原创整理的 8.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_PCLK1Config / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-pclk2config",
+      "name": "RCC_PCLK2Config",
+      "peripheral": "RCC",
+      "prototype": "void RCC_PCLK2Config(uint32_t RCC_HCLK);",
+      "purpose": "配置 APB2 分频",
+      "parameters": [
+        {
+          "name": "RCC_HCLK",
+          "type": "uint32_t",
+          "meaning": "APB 分频编码；注意 APB1 最高 36 MHz"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 依赖前提：HSE=8MHz，HSE/PLL已按带超时流程准备。\n   以下仅展示切换前的总线与Flash配置，不是完整时钟驱动。 */\nFLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);\nFLASH_SetLatency(FLASH_Latency_2);\nRCC_HCLKConfig(RCC_SYSCLK_Div1);\nRCC_PCLK1Config(RCC_HCLK_Div2);\nRCC_PCLK2Config(RCC_HCLK_Div1);",
+        "context": "节选自本网站原创整理的 8.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_PCLK2Config / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-pllcmd",
+      "name": "RCC_PLLCmd",
+      "peripheral": "RCC",
+      "prototype": "void RCC_PLLCmd(FunctionalState NewState);",
+      "purpose": "启用或关闭 PLL",
+      "parameters": [
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_PLLCmd / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-pllconfig",
+      "name": "RCC_PLLConfig",
+      "peripheral": "RCC",
+      "prototype": "void RCC_PLLConfig(uint32_t RCC_PLLSource, uint32_t RCC_PLLMul);",
+      "purpose": "配置 PLL 输入源及倍频",
+      "parameters": [
+        {
+          "name": "RCC_PLLSource",
+          "type": "uint32_t",
+          "meaning": "PLL 输入来源；本芯片不使用 Connectivity line 专有来源"
+        },
+        {
+          "name": "RCC_PLLMul",
+          "type": "uint32_t",
+          "meaning": "PLL 倍频编码；结果必须满足芯片频率限制"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。",
+        "例中 HSE_Div1 ×9 只有在外部源频率及目标频率合法时才可用；配置时必须满足 PLL 关闭前提。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_PLLConfig / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.rcc.rcc-sysclkconfig",
+      "name": "RCC_SYSCLKConfig",
+      "peripheral": "RCC",
+      "prototype": "void RCC_SYSCLKConfig(uint32_t RCC_SYSCLKSource);",
+      "purpose": "请求切换系统时钟来源",
+      "parameters": [
+        {
+          "name": "RCC_SYSCLKSource",
+          "type": "uint32_t",
+          "meaning": "系统时钟请求来源；调用不代表切换已经完成"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "8.2 时钟树编程",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先确认真实晶振、HSE_VALUE、Flash 等待周期及总线频率限制。"
+      ],
+      "knowledgePointIds": [
+        "kp.course8.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_rcc.h",
+          "url": "urn:stm32:course:header:stm32f10x_rcc.h",
+          "section": "stm32f10x_rcc.h / RCC_SYSCLKConfig / V3.6.2",
+          "revision": "4d846ea385234266155a52d5701183c57d290d823ddb0e94c0c2d16cc6785c24",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "系统 RCC；只选择 STM32F103x8 的合法时钟源和已存在外设掩码"
+      }
+    },
+    {
+      "id": "fn.spi.spi-cmd",
+      "name": "SPI_Cmd",
+      "peripheral": "SPI",
+      "prototype": "void SPI_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState);",
+      "purpose": "使能或关闭 SPI",
+      "parameters": [
+        {
+          "name": "SPIx",
+          "type": "SPI_TypeDef*",
+          "meaning": "SPI1 或 SPI2；本项目不使用 I²S 模式"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "5.5 SPI 模块的初始化",
+      "example": {
+        "code": "SPI_InitTypeDef spi;\nSPI_StructInit(&spi);\nspi.SPI_Mode = SPI_Mode_Master;\nspi.SPI_Direction = SPI_Direction_2Lines_FullDuplex;\nspi.SPI_DataSize = SPI_DataSize_8b;\nspi.SPI_CPOL = SPI_CPOL_Low;\nspi.SPI_CPHA = SPI_CPHA_1Edge;\nspi.SPI_NSS = SPI_NSS_Soft;\nspi.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;\nspi.SPI_FirstBit = SPI_FirstBit_MSB;\nSPI_Init(SPI1, &spi);\nSPI_Cmd(SPI1, ENABLE);",
+        "context": "节选自本网站原创整理的 5.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_Cmd / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.spi.spi-i2s-getflagstatus",
+      "name": "SPI_I2S_GetFlagStatus",
+      "peripheral": "SPI",
+      "prototype": "FlagStatus SPI_I2S_GetFlagStatus(SPI_TypeDef* SPIx, uint16_t SPI_I2S_FLAG);",
+      "purpose": "读取 SPI 指定状态标志",
+      "parameters": [
+        {
+          "name": "SPIx",
+          "type": "SPI_TypeDef*",
+          "meaning": "SPI1 或 SPI2；本项目不使用 I²S 模式"
+        },
+        {
+          "name": "SPI_I2S_FLAG",
+          "type": "uint16_t",
+          "meaning": "SPI 标志编码，例如 TXE / RXNE / BSY"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET/RESET 表示指定标志的置位/复位状态"
+      },
+      "flowPosition": "5.6 数据收发",
+      "example": {
+        "code": "/* 单帧交换示意；所有等待需在驱动中增加超时。 */\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET) {}\nSPI_I2S_SendData(SPI1, tx);\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET) {}\nuint8_t rx = (uint8_t)SPI_I2S_ReceiveData(SPI1);",
+        "context": "节选自本网站原创整理的 5.6；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_I2S_GetFlagStatus / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.spi.spi-i2s-receivedata",
+      "name": "SPI_I2S_ReceiveData",
+      "peripheral": "SPI",
+      "prototype": "uint16_t SPI_I2S_ReceiveData(SPI_TypeDef* SPIx);",
+      "purpose": "读取 SPI 数据寄存器",
+      "parameters": [
+        {
+          "name": "SPIx",
+          "type": "SPI_TypeDef*",
+          "meaning": "SPI1 或 SPI2；本项目不使用 I²S 模式"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "接收寄存器数据；按字长和数据宽度解释"
+      },
+      "flowPosition": "5.6 数据收发；5.7 W25Q64 实验（上）",
+      "example": {
+        "code": "/* 单帧交换示意；所有等待需在驱动中增加超时。 */\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET) {}\nSPI_I2S_SendData(SPI1, tx);\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET) {}\nuint8_t rx = (uint8_t)SPI_I2S_ReceiveData(SPI1);",
+        "context": "节选自本网站原创整理的 5.6；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s6",
+        "kp.course5.s7"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_I2S_ReceiveData / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.spi.spi-i2s-senddata",
+      "name": "SPI_I2S_SendData",
+      "peripheral": "SPI",
+      "prototype": "void SPI_I2S_SendData(SPI_TypeDef* SPIx, uint16_t Data);",
+      "purpose": "写入 SPI 数据寄存器",
+      "parameters": [
+        {
+          "name": "SPIx",
+          "type": "SPI_TypeDef*",
+          "meaning": "SPI1 或 SPI2；本项目不使用 I²S 模式"
+        },
+        {
+          "name": "Data",
+          "type": "uint16_t",
+          "meaning": "要发送的数据；范围随外设字长/数据宽度变化"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "5.6 数据收发；5.7 W25Q64 实验（上）",
+      "example": {
+        "code": "/* 单帧交换示意；所有等待需在驱动中增加超时。 */\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET) {}\nSPI_I2S_SendData(SPI1, tx);\nwhile (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET) {}\nuint8_t rx = (uint8_t)SPI_I2S_ReceiveData(SPI1);",
+        "context": "节选自本网站原创整理的 5.6；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s6",
+        "kp.course5.s7"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_I2S_SendData / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.spi.spi-init",
+      "name": "SPI_Init",
+      "peripheral": "SPI",
+      "prototype": "void SPI_Init(SPI_TypeDef* SPIx, SPI_InitTypeDef* SPI_InitStruct);",
+      "purpose": "配置 SPI 主从、方向、数据宽度、模式、NSS 和分频",
+      "parameters": [
+        {
+          "name": "SPIx",
+          "type": "SPI_TypeDef*",
+          "meaning": "SPI1 或 SPI2；本项目不使用 I²S 模式"
+        },
+        {
+          "name": "SPI_InitStruct",
+          "type": "SPI_InitTypeDef*",
+          "meaning": "指向 SPI_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "SPI_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "5.5 SPI 模块的初始化",
+      "example": {
+        "code": "SPI_InitTypeDef spi;\nSPI_StructInit(&spi);\nspi.SPI_Mode = SPI_Mode_Master;\nspi.SPI_Direction = SPI_Direction_2Lines_FullDuplex;\nspi.SPI_DataSize = SPI_DataSize_8b;\nspi.SPI_CPOL = SPI_CPOL_Low;\nspi.SPI_CPHA = SPI_CPHA_1Edge;\nspi.SPI_NSS = SPI_NSS_Soft;\nspi.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;\nspi.SPI_FirstBit = SPI_FirstBit_MSB;\nSPI_Init(SPI1, &spi);\nSPI_Cmd(SPI1, ENABLE);",
+        "context": "节选自本网站原创整理的 5.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_Init / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.spi.spi-structinit",
+      "name": "SPI_StructInit",
+      "peripheral": "SPI",
+      "prototype": "void SPI_StructInit(SPI_InitTypeDef* SPI_InitStruct);",
+      "purpose": "填写 SPI 配置结构默认值",
+      "parameters": [
+        {
+          "name": "SPI_InitStruct",
+          "type": "SPI_InitTypeDef*",
+          "meaning": "指向 SPI_InitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "SPI_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "5.5 SPI 模块的初始化",
+      "example": {
+        "code": "SPI_InitTypeDef spi;\nSPI_StructInit(&spi);\nspi.SPI_Mode = SPI_Mode_Master;\nspi.SPI_Direction = SPI_Direction_2Lines_FullDuplex;\nspi.SPI_DataSize = SPI_DataSize_8b;\nspi.SPI_CPOL = SPI_CPOL_Low;\nspi.SPI_CPHA = SPI_CPHA_1Edge;\nspi.SPI_NSS = SPI_NSS_Soft;\nspi.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;\nspi.SPI_FirstBit = SPI_FirstBit_MSB;\nSPI_Init(SPI1, &spi);\nSPI_Cmd(SPI1, ENABLE);",
+        "context": "节选自本网站原创整理的 5.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "SPI1 在 APB2，SPI2 在 APB1；GPIO、模式、分频和片选策略需与从设备匹配。",
+        "全双工发送同时接收；需处理 RXNE/溢出及 BSY；片选结束条件按从设备协议核验。"
+      ],
+      "knowledgePointIds": [
+        "kp.course5.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_spi.h",
+          "url": "urn:stm32:course:header:stm32f10x_spi.h",
+          "section": "stm32f10x_spi.h / SPI_StructInit / V3.6.2",
+          "revision": "63f8394ef649802cc13173e34674e5404b10f3f8981a8ba1b233005ad886f85d",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "SPI1/SPI2 的 SPI 模式；名称中的 I2S 不代表本芯片支持 I²S"
+      }
+    },
+    {
+      "id": "fn.tim.tim-clearflag",
+      "name": "TIM_ClearFlag",
+      "peripheral": "TIM",
+      "prototype": "void TIM_ClearFlag(TIM_TypeDef* TIMx, uint16_t TIM_FLAG);",
+      "purpose": "清除指定定时器状态标志",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_FLAG",
+          "type": "uint16_t",
+          "meaning": "定时器状态标志编码"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.1 时基单元；9.6 超声波测距实验",
+      "example": {
+        "code": "/* fTIM=72MHz，向上计数：1MHz计数、1ms更新。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 72 - 1;\nbase.TIM_Period = 1000 - 1;\nbase.TIM_CounterMode = TIM_CounterMode_Up;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_ClearFlag(TIM3, TIM_FLAG_Update);\nTIM_Cmd(TIM3, ENABLE);",
+        "context": "节选自本网站原创整理的 9.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s1",
+        "kp.course9.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_ClearFlag / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-clearitpendingbit",
+      "name": "TIM_ClearITPendingBit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_ClearITPendingBit(TIM_TypeDef* TIMx, uint16_t TIM_IT);",
+      "purpose": "清除指定定时器中断挂起位",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_IT",
+          "type": "uint16_t",
+          "meaning": "定时器中断源编码；不能把不存在通道/高级中断用于普通定时器"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.2 自制延迟函数",
+      "example": {
+        "code": "volatile uint32_t tick_ms;\nvoid TIM3_IRQHandler(void) {\n    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) {\n        TIM_ClearITPendingBit(TIM3, TIM_IT_Update);\n        ++tick_ms;\n    }\n}\nvoid delay_ms(uint32_t ms) {\n    uint32_t start = tick_ms;\n    while ((uint32_t)(tick_ms - start) < ms) {}\n}",
+        "context": "节选自本网站原创整理的 9.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_ClearITPendingBit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-cmd",
+      "name": "TIM_Cmd",
+      "peripheral": "TIM",
+      "prototype": "void TIM_Cmd(TIM_TypeDef* TIMx, FunctionalState NewState);",
+      "purpose": "使能或关闭定时器计数器",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.1 时基单元；9.3 输出比较；9.10 编码器原理与步骤（原创补充）；10.5 定时器触发",
+      "example": {
+        "code": "/* fTIM=72MHz，向上计数：1MHz计数、1ms更新。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 72 - 1;\nbase.TIM_Period = 1000 - 1;\nbase.TIM_CounterMode = TIM_CounterMode_Up;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_ClearFlag(TIM3, TIM_FLAG_Update);\nTIM_Cmd(TIM3, ENABLE);",
+        "context": "节选自本网站原创整理的 9.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s1",
+        "kp.course9.s3",
+        "kp.course9.s10",
+        "kp.course10.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_Cmd / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-ctrlpwmoutputs",
+      "name": "TIM_CtrlPWMOutputs",
+      "peripheral": "TIM",
+      "prototype": "void TIM_CtrlPWMOutputs(TIM_TypeDef* TIMx, FunctionalState NewState);",
+      "purpose": "控制高级定时器主输出 MOE",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.3 输出比较；9.4 呼吸灯实验",
+      "example": {
+        "code": "TIM_OCInitTypeDef oc;\nTIM_OCStructInit(&oc);\noc.TIM_OCMode = TIM_OCMode_PWM1;\noc.TIM_OutputState = TIM_OutputState_Enable;\noc.TIM_Pulse = 500;\noc.TIM_OCPolarity = TIM_OCPolarity_High;\nTIM_OC1Init(TIM1, &oc);\nTIM_CtrlPWMOutputs(TIM1, ENABLE);",
+        "context": "节选自本网站原创整理的 9.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。",
+        "本芯片此函数只用于 TIM1；TIM2–TIM4 不使用 BDTR.MOE。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s3",
+        "kp.course9.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_CtrlPWMOutputs / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅 TIM1 主输出；不适用 TIM2–TIM4"
+      }
+    },
+    {
+      "id": "fn.tim.tim-encoderinterfaceconfig",
+      "name": "TIM_EncoderInterfaceConfig",
+      "peripheral": "TIM",
+      "prototype": "void TIM_EncoderInterfaceConfig(TIM_TypeDef* TIMx, uint16_t TIM_EncoderMode, uint16_t TIM_IC1Polarity, uint16_t TIM_IC2Polarity);",
+      "purpose": "配置正交编码器接口",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_EncoderMode",
+          "type": "uint16_t",
+          "meaning": "编码器接口模式编码"
+        },
+        {
+          "name": "TIM_IC1Polarity",
+          "type": "uint16_t",
+          "meaning": "编码器通道 1 的输入极性"
+        },
+        {
+          "name": "TIM_IC2Polarity",
+          "type": "uint16_t",
+          "meaning": "编码器通道 2 的输入极性"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.10 编码器原理与步骤（原创补充）",
+      "example": {
+        "code": "/* 原创配置片段：TIM3默认PA6/PA7，GPIO/时钟与滤波需另行核对。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 0;\nbase.TIM_Period = 0xFFFF;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI12,\n    TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);\nTIM_SetCounter(TIM3, 0);\nTIM_Cmd(TIM3, ENABLE);\n/* TIM_GetCounter(TIM3)读计数；边沿模式含义以编码器模式规则解释。 */",
+        "context": "节选自本网站原创整理的 9.10；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s10"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_EncoderInterfaceConfig / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-getcapture1",
+      "name": "TIM_GetCapture1",
+      "peripheral": "TIM",
+      "prototype": "uint16_t TIM_GetCapture1(TIM_TypeDef* TIMx);",
+      "purpose": "读取通道 1 捕获寄存器值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "寄存器数据值；按计数、捕获或 ADC 对齐配置解释"
+      },
+      "flowPosition": "9.5 输入捕获；9.6 超声波测距实验；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "uint16_t period = TIM_GetCapture1(TIM1);\nuint16_t high = TIM_GetCapture2(TIM1);\n/* 前提：已确认同一有效周期，计数频率1MHz。 */\nif (period != 0 && high <= period) {\n    float hz = 1000000.0f / period;\n    float ratio = (float)high / period;\n    /* 使用 hz 与 ratio；不要使用整数除法求占空比。 */\n}",
+        "context": "节选自本网站原创整理的 9.9；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。",
+        "频率换算需知道计数时钟、捕获差值/复位模式与溢出；不能无条件用 72 MHz / capture。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s5",
+        "kp.course9.s6",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_GetCapture1 / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-getcapture2",
+      "name": "TIM_GetCapture2",
+      "peripheral": "TIM",
+      "prototype": "uint16_t TIM_GetCapture2(TIM_TypeDef* TIMx);",
+      "purpose": "读取通道 2 捕获寄存器值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "寄存器数据值；按计数、捕获或 ADC 对齐配置解释"
+      },
+      "flowPosition": "9.5 输入捕获；9.6 超声波测距实验；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "uint16_t period = TIM_GetCapture1(TIM1);\nuint16_t high = TIM_GetCapture2(TIM1);\n/* 前提：已确认同一有效周期，计数频率1MHz。 */\nif (period != 0 && high <= period) {\n    float hz = 1000000.0f / period;\n    float ratio = (float)high / period;\n    /* 使用 hz 与 ratio；不要使用整数除法求占空比。 */\n}",
+        "context": "节选自本网站原创整理的 9.9；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。",
+        "频率换算需知道计数时钟、捕获差值/复位模式与溢出；不能无条件用 72 MHz / capture。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s5",
+        "kp.course9.s6",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_GetCapture2 / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-getcounter",
+      "name": "TIM_GetCounter",
+      "peripheral": "TIM",
+      "prototype": "uint16_t TIM_GetCounter(TIM_TypeDef* TIMx);",
+      "purpose": "读取当前计数器值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "寄存器数据值；按计数、捕获或 ADC 对齐配置解释"
+      },
+      "flowPosition": "9.10 编码器原理与步骤（原创补充）",
+      "example": {
+        "code": "/* 原创配置片段：TIM3默认PA6/PA7，GPIO/时钟与滤波需另行核对。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 0;\nbase.TIM_Period = 0xFFFF;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI12,\n    TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);\nTIM_SetCounter(TIM3, 0);\nTIM_Cmd(TIM3, ENABLE);\n/* TIM_GetCounter(TIM3)读计数；边沿模式含义以编码器模式规则解释。 */",
+        "context": "节选自本网站原创整理的 9.10；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s10"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_GetCounter / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-getitstatus",
+      "name": "TIM_GetITStatus",
+      "peripheral": "TIM",
+      "prototype": "ITStatus TIM_GetITStatus(TIM_TypeDef* TIMx, uint16_t TIM_IT);",
+      "purpose": "检查中断使能和状态位",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_IT",
+          "type": "uint16_t",
+          "meaning": "定时器中断源编码；不能把不存在通道/高级中断用于普通定时器"
+        }
+      ],
+      "returnValue": {
+        "type": "ITStatus",
+        "meaning": "SET/RESET 表示函数判断的中断状态；具体是否结合使能位以实现为准"
+      },
+      "flowPosition": "9.2 自制延迟函数",
+      "example": {
+        "code": "volatile uint32_t tick_ms;\nvoid TIM3_IRQHandler(void) {\n    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) {\n        TIM_ClearITPendingBit(TIM3, TIM_IT_Update);\n        ++tick_ms;\n    }\n}\nvoid delay_ms(uint32_t ms) {\n    uint32_t start = tick_ms;\n    while ((uint32_t)(tick_ms - start) < ms) {}\n}",
+        "context": "节选自本网站原创整理的 9.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_GetITStatus / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-icinit",
+      "name": "TIM_ICInit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);",
+      "purpose": "配置指定通道输入捕获",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_ICInitStruct",
+          "type": "TIM_ICInitTypeDef*",
+          "meaning": "指向 TIM_ICInitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "TIM_ICInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.5 输入捕获；9.6 超声波测距实验；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "TIM_ICInitTypeDef capture;\nTIM_ICStructInit(&capture);\ncapture.TIM_Channel = TIM_Channel_1;\ncapture.TIM_ICPolarity = TIM_ICPolarity_Rising;\ncapture.TIM_ICSelection = TIM_ICSelection_DirectTI;\ncapture.TIM_ICPrescaler = TIM_ICPSC_DIV1;\ncapture.TIM_ICFilter = 0;\nTIM_ICInit(TIM1, &capture);",
+        "context": "节选自本网站原创整理的 9.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s5",
+        "kp.course9.s6",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_ICInit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-icstructinit",
+      "name": "TIM_ICStructInit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_ICStructInit(TIM_ICInitTypeDef* TIM_ICInitStruct);",
+      "purpose": "填写输入捕获结构默认值",
+      "parameters": [
+        {
+          "name": "TIM_ICInitStruct",
+          "type": "TIM_ICInitTypeDef*",
+          "meaning": "指向 TIM_ICInitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "TIM_ICInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.5 输入捕获",
+      "example": {
+        "code": "TIM_ICInitTypeDef capture;\nTIM_ICStructInit(&capture);\ncapture.TIM_Channel = TIM_Channel_1;\ncapture.TIM_ICPolarity = TIM_ICPolarity_Rising;\ncapture.TIM_ICSelection = TIM_ICSelection_DirectTI;\ncapture.TIM_ICPrescaler = TIM_ICPSC_DIV1;\ncapture.TIM_ICFilter = 0;\nTIM_ICInit(TIM1, &capture);",
+        "context": "节选自本网站原创整理的 9.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_ICStructInit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-itconfig",
+      "name": "TIM_ITConfig",
+      "peripheral": "TIM",
+      "prototype": "void TIM_ITConfig(TIM_TypeDef* TIMx, uint16_t TIM_IT, FunctionalState NewState);",
+      "purpose": "使能或关闭定时器中断源",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_IT",
+          "type": "uint16_t",
+          "meaning": "定时器中断源编码；不能把不存在通道/高级中断用于普通定时器"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.2 自制延迟函数",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_ITConfig / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-oc1init",
+      "name": "TIM_OC1Init",
+      "peripheral": "TIM",
+      "prototype": "void TIM_OC1Init(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);",
+      "purpose": "配置通道 1 输出比较模式、极性、使能和初始比较值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_OCInitStruct",
+          "type": "TIM_OCInitTypeDef*",
+          "meaning": "指向 TIM_OCInitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "TIM_OCInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.3 输出比较；9.4 呼吸灯实验；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "TIM_OCInitTypeDef oc;\nTIM_OCStructInit(&oc);\noc.TIM_OCMode = TIM_OCMode_PWM1;\noc.TIM_OutputState = TIM_OutputState_Enable;\noc.TIM_Pulse = 500;\noc.TIM_OCPolarity = TIM_OCPolarity_High;\nTIM_OC1Init(TIM1, &oc);\nTIM_CtrlPWMOutputs(TIM1, ENABLE);",
+        "context": "节选自本网站原创整理的 9.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s3",
+        "kp.course9.s4",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_OC1Init / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-oc1preloadconfig",
+      "name": "TIM_OC1PreloadConfig",
+      "peripheral": "TIM",
+      "prototype": "void TIM_OC1PreloadConfig(TIM_TypeDef* TIMx, uint16_t TIM_OCPreload);",
+      "purpose": "配置通道 1 比较寄存器预装载",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_OCPreload",
+          "type": "uint16_t",
+          "meaning": "通道比较寄存器预装载配置编码"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.4 呼吸灯实验",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_OC1PreloadConfig / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-ocstructinit",
+      "name": "TIM_OCStructInit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_OCStructInit(TIM_OCInitTypeDef* TIM_OCInitStruct);",
+      "purpose": "填写输出比较结构默认值",
+      "parameters": [
+        {
+          "name": "TIM_OCInitStruct",
+          "type": "TIM_OCInitTypeDef*",
+          "meaning": "指向 TIM_OCInitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "TIM_OCInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.3 输出比较",
+      "example": {
+        "code": "TIM_OCInitTypeDef oc;\nTIM_OCStructInit(&oc);\noc.TIM_OCMode = TIM_OCMode_PWM1;\noc.TIM_OutputState = TIM_OutputState_Enable;\noc.TIM_Pulse = 500;\noc.TIM_OCPolarity = TIM_OCPolarity_High;\nTIM_OC1Init(TIM1, &oc);\nTIM_CtrlPWMOutputs(TIM1, ENABLE);",
+        "context": "节选自本网站原创整理的 9.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_OCStructInit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-pwmiconfig",
+      "name": "TIM_PWMIConfig",
+      "peripheral": "TIM",
+      "prototype": "void TIM_PWMIConfig(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);",
+      "purpose": "配置两个捕获通道以测量 PWM 输入",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_ICInitStruct",
+          "type": "TIM_ICInitTypeDef*",
+          "meaning": "指向 TIM_ICInitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "TIM_ICInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.8 PWM 参数测量原理",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。",
+        "只配置输入捕获通道 1/2；测量还需正确触发源及从模式。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s8"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_PWMIConfig / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-selectinputtrigger",
+      "name": "TIM_SelectInputTrigger",
+      "peripheral": "TIM",
+      "prototype": "void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);",
+      "purpose": "选择触发输入源",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_InputTriggerSource",
+          "type": "uint16_t",
+          "meaning": "定时器触发输入 TS 编码；按实例核对路由"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.7 从模式控制器；9.8 PWM 参数测量原理；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "/* 以 TI1FP1 触发复位计数器为例。 */\nTIM_SelectInputTrigger(TIM1, TIM_TS_TI1FP1);\nTIM_SelectSlaveMode(TIM1, TIM_SlaveMode_Reset);",
+        "context": "节选自本网站原创整理的 9.7；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s7",
+        "kp.course9.s8",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_SelectInputTrigger / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-selectoutputtrigger",
+      "name": "TIM_SelectOutputTrigger",
+      "peripheral": "TIM",
+      "prototype": "void TIM_SelectOutputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_TRGOSource);",
+      "purpose": "选择定时器TRGO的内部信号来源",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "目标定时器实例，按本节选择。"
+        },
+        {
+          "name": "TIM_TRGOSource",
+          "type": "uint16_t",
+          "meaning": "TRGO来源，例如TIM_TRGOSource_Update；可用目标按器件互连表核对。"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值。"
+      },
+      "flowPosition": "9.7 从模式控制器；10.5 定时器触发",
+      "example": {
+        "code": "/* ADC1基本配置、模拟通道、稳定和校准均已完成。 */\nADC_InjectedSequencerLengthConfig(ADC1, 1);\nADC_InjectedChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);\nADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);\nADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);\nTIM_SelectOutputTrigger(TIM1, TIM_TRGOSource_Update);\n/* 配好时基后TIM_Cmd启动；JEOC后读ADC_InjectedChannel_1。 */",
+        "context": "节选自本网站原创整理的 10.5；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先配置对应时钟、输入和模式。",
+        "触发输出来源，例如Update；具体连接按器件互连表。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s7",
+        "kp.course10.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_SelectOutputTrigger / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "仅按STM32F103C8T6本节实例与序列限制使用；其他型号不作保证。"
+      }
+    },
+    {
+      "id": "fn.tim.tim-selectslavemode",
+      "name": "TIM_SelectSlaveMode",
+      "peripheral": "TIM",
+      "prototype": "void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode);",
+      "purpose": "选择定时器从模式",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_SlaveMode",
+          "type": "uint16_t",
+          "meaning": "从模式 SMS 编码"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.7 从模式控制器；9.8 PWM 参数测量原理；9.9 PWM 参数测量实验",
+      "example": {
+        "code": "/* 以 TI1FP1 触发复位计数器为例。 */\nTIM_SelectInputTrigger(TIM1, TIM_TS_TI1FP1);\nTIM_SelectSlaveMode(TIM1, TIM_SlaveMode_Reset);",
+        "context": "节选自本网站原创整理的 9.7；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s7",
+        "kp.course9.s8",
+        "kp.course9.s9"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_SelectSlaveMode / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-setcompare1",
+      "name": "TIM_SetCompare1",
+      "peripheral": "TIM",
+      "prototype": "void TIM_SetCompare1(TIM_TypeDef* TIMx, uint16_t Compare1);",
+      "purpose": "写入通道 1 比较寄存器值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "Compare1",
+          "type": "uint16_t",
+          "meaning": "对应通道 CCR 值，结合 PWM/捕获场景解释"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.3 输出比较；9.4 呼吸灯实验",
+      "example": {
+        "code": "/* 已知 ARR=999；level 由应用生成并限制在0..1。 */\nif (level < 0.0f) level = 0.0f;\nif (level > 1.0f) level = 1.0f;\nTIM_SetCompare1(TIM1, (uint16_t)(level * 1000.0f));",
+        "context": "节选自本网站原创整理的 9.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s3",
+        "kp.course9.s4"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_SetCompare1 / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-setcounter",
+      "name": "TIM_SetCounter",
+      "peripheral": "TIM",
+      "prototype": "void TIM_SetCounter(TIM_TypeDef* TIMx, uint16_t Counter);",
+      "purpose": "写入计数器值",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "Counter",
+          "type": "uint16_t",
+          "meaning": "要写入的 16 位 CNT 值"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.6 超声波测距实验；9.10 编码器原理与步骤（原创补充）",
+      "example": {
+        "code": "/* 原创配置片段：TIM3默认PA6/PA7，GPIO/时钟与滤波需另行核对。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 0;\nbase.TIM_Period = 0xFFFF;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI12,\n    TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);\nTIM_SetCounter(TIM3, 0);\nTIM_Cmd(TIM3, ENABLE);\n/* TIM_GetCounter(TIM3)读计数；边沿模式含义以编码器模式规则解释。 */",
+        "context": "节选自本网站原创整理的 9.10；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s6",
+        "kp.course9.s10"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_SetCounter / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-timebaseinit",
+      "name": "TIM_TimeBaseInit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_TimeBaseInit(TIM_TypeDef* TIMx, TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);",
+      "purpose": "配置时基并产生更新事件装载分频参数",
+      "parameters": [
+        {
+          "name": "TIMx",
+          "type": "TIM_TypeDef*",
+          "meaning": "本芯片 TIM1 或 TIM2–TIM4；高级功能和通道限制见 applicability"
+        },
+        {
+          "name": "TIM_TimeBaseInitStruct",
+          "type": "TIM_TimeBaseInitTypeDef*",
+          "meaning": "指向 TIM_TimeBaseInitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "TIM_TimeBaseInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.1 时基单元；9.2 自制延迟函数；9.3 输出比较；9.5 输入捕获；9.10 编码器原理与步骤（原创补充）；10.5 定时器触发",
+      "example": {
+        "code": "/* fTIM=72MHz，向上计数：1MHz计数、1ms更新。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 72 - 1;\nbase.TIM_Period = 1000 - 1;\nbase.TIM_CounterMode = TIM_CounterMode_Up;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_ClearFlag(TIM3, TIM_FLAG_Update);\nTIM_Cmd(TIM3, ENABLE);",
+        "context": "节选自本网站原创整理的 9.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。",
+        "源码会写 EGR 产生更新事件；开启更新中断前应按场景处理 UIF，防止启动时立即中断。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s1",
+        "kp.course9.s2",
+        "kp.course9.s3",
+        "kp.course9.s5",
+        "kp.course9.s10",
+        "kp.course10.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_TimeBaseInit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.tim.tim-timebasestructinit",
+      "name": "TIM_TimeBaseStructInit",
+      "peripheral": "TIM",
+      "prototype": "void TIM_TimeBaseStructInit(TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);",
+      "purpose": "填写 TIM 时基结构默认值",
+      "parameters": [
+        {
+          "name": "TIM_TimeBaseInitStruct",
+          "type": "TIM_TimeBaseInitTypeDef*",
+          "meaning": "指向 TIM_TimeBaseInitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "TIM_TimeBaseInitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "9.1 时基单元；9.10 编码器原理与步骤（原创补充）",
+      "example": {
+        "code": "/* fTIM=72MHz，向上计数：1MHz计数、1ms更新。 */\nTIM_TimeBaseInitTypeDef base;\nTIM_TimeBaseStructInit(&base);\nbase.TIM_Prescaler = 72 - 1;\nbase.TIM_Period = 1000 - 1;\nbase.TIM_CounterMode = TIM_CounterMode_Up;\nTIM_TimeBaseInit(TIM3, &base);\nTIM_ClearFlag(TIM3, TIM_FLAG_Update);\nTIM_Cmd(TIM3, ENABLE);",
+        "context": "节选自本网站原创整理的 9.1；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "先开 TIM 时钟；需要引脚的功能还需开 GPIO/AFIO 时钟并核对复用。"
+      ],
+      "knowledgePointIds": [
+        "kp.course9.s1",
+        "kp.course9.s10"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_tim.h",
+          "url": "urn:stm32:course:header:stm32f10x_tim.h",
+          "section": "stm32f10x_tim.h / TIM_TimeBaseStructInit / V3.6.2",
+          "revision": "8c008a1b87fab8be6588ce997e5863ebc6c1e51ceaed682ee57527720c3451ef",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "TIM1、TIM2、TIM3、TIM4；具体通道/高级功能限制见条目说明"
+      }
+    },
+    {
+      "id": "fn.usart.usart-cmd",
+      "name": "USART_Cmd",
+      "peripheral": "USART",
+      "prototype": "void USART_Cmd(USART_TypeDef* USARTx, FunctionalState NewState);",
+      "purpose": "使能或关闭串口",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.2 UART 模块的使用方法；3.7 封装常用功能",
+      "example": {
+        "code": "USART_InitTypeDef u;\nUSART_StructInit(&u);\nu.USART_BaudRate = 115200;\nu.USART_WordLength = USART_WordLength_8b;\nu.USART_StopBits = USART_StopBits_1;\nu.USART_Parity = USART_Parity_No;\nu.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;\nu.USART_HardwareFlowControl = USART_HardwareFlowControl_None;\nUSART_Init(USART1, &u);\nUSART_Cmd(USART1, ENABLE);",
+        "context": "节选自本网站原创整理的 3.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s2",
+        "kp.course3.s7"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_Cmd / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-getflagstatus",
+      "name": "USART_GetFlagStatus",
+      "peripheral": "USART",
+      "prototype": "FlagStatus USART_GetFlagStatus(USART_TypeDef* USARTx, uint16_t USART_FLAG);",
+      "purpose": "读取指定串口状态标志",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "USART_FLAG",
+          "type": "uint16_t",
+          "meaning": "串口状态标志；ClearFlag 只接受专门允许清除的标志"
+        }
+      ],
+      "returnValue": {
+        "type": "FlagStatus",
+        "meaning": "SET/RESET 表示指定标志的置位/复位状态"
+      },
+      "flowPosition": "3.4 发送数据；3.6 接收数据",
+      "example": {
+        "code": "/* 示意片段；量产程序请给两个等待加入超时。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET) {}\nUSART_SendData(USART1, 0x55);\n/* 只有需要确认最后一帧结束时才额外等 TC。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {}",
+        "context": "节选自本网站原创整理的 3.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s4",
+        "kp.course3.s6"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_GetFlagStatus / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-getitstatus",
+      "name": "USART_GetITStatus",
+      "peripheral": "USART",
+      "prototype": "ITStatus USART_GetITStatus(USART_TypeDef* USARTx, uint16_t USART_IT);",
+      "purpose": "结合使能位查询串口中断状态",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "USART_IT",
+          "type": "uint16_t",
+          "meaning": "串口中断源/状态编码；ClearITPendingBit 不能清任意中断源"
+        }
+      ],
+      "returnValue": {
+        "type": "ITStatus",
+        "meaning": "SET/RESET 表示函数判断的中断状态；具体是否结合使能位以实现为准"
+      },
+      "flowPosition": "6.3 串口中断编程实验",
+      "example": {
+        "code": "volatile uint32_t blink_interval_ms = 1000;\nvoid USART1_IRQHandler(void) {\n    if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {\n        uint8_t ch = (uint8_t)USART_ReceiveData(USART1);\n        if (ch == '0') blink_interval_ms = 1000;\n        else if (ch == '1') blink_interval_ms = 200;\n        else if (ch == '2') blink_interval_ms = 50;\n    }\n}",
+        "context": "节选自本网站原创整理的 6.3；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course6.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_GetITStatus / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-itconfig",
+      "name": "USART_ITConfig",
+      "peripheral": "USART",
+      "prototype": "void USART_ITConfig(USART_TypeDef* USARTx, uint16_t USART_IT, FunctionalState NewState);",
+      "purpose": "使能或关闭串口中断源",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "USART_IT",
+          "type": "uint16_t",
+          "meaning": "串口中断源/状态编码；ClearITPendingBit 不能清任意中断源"
+        },
+        {
+          "name": "NewState",
+          "type": "FunctionalState",
+          "meaning": "ENABLE 或 DISABLE；控制使能状态"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "6.3 串口中断编程实验",
+      "example": {
+        "code": "/* 本函数的调用位置见下方关联课程步骤；此处不填充未初始化调用。 */",
+        "context": "请打开关联课程查看作用与前提。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course6.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_ITConfig / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-init",
+      "name": "USART_Init",
+      "peripheral": "USART",
+      "prototype": "void USART_Init(USART_TypeDef* USARTx, USART_InitTypeDef* USART_InitStruct);",
+      "purpose": "配置串口波特率、帧参数、流控和收发方向",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "USART_InitStruct",
+          "type": "USART_InitTypeDef*",
+          "meaning": "指向 USART_InitTypeDef；各字段由调用者按实际场景配置，字段目录见 structures。",
+          "structureType": "USART_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.2 UART 模块的使用方法；3.7 封装常用功能",
+      "example": {
+        "code": "USART_InitTypeDef u;\nUSART_StructInit(&u);\nu.USART_BaudRate = 115200;\nu.USART_WordLength = USART_WordLength_8b;\nu.USART_StopBits = USART_StopBits_1;\nu.USART_Parity = USART_Parity_No;\nu.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;\nu.USART_HardwareFlowControl = USART_HardwareFlowControl_None;\nUSART_Init(USART1, &u);\nUSART_Cmd(USART1, ENABLE);",
+        "context": "节选自本网站原创整理的 3.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s2",
+        "kp.course3.s7"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_Init / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-receivedata",
+      "name": "USART_ReceiveData",
+      "peripheral": "USART",
+      "prototype": "uint16_t USART_ReceiveData(USART_TypeDef* USARTx);",
+      "purpose": "读取串口接收数据寄存器",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        }
+      ],
+      "returnValue": {
+        "type": "uint16_t",
+        "meaning": "接收寄存器数据；按字长和数据宽度解释"
+      },
+      "flowPosition": "3.6 接收数据；6.3 串口中断编程实验",
+      "example": {
+        "code": "if (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) != RESET) {\n    uint8_t ch = (uint8_t)USART_ReceiveData(USART1);\n    if (ch == '0') {\n        /* 处理文本字符 0；不是数值 0x00。 */\n    }\n}",
+        "context": "节选自本网站原创整理的 3.6；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s6",
+        "kp.course6.s3"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_ReceiveData / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-senddata",
+      "name": "USART_SendData",
+      "peripheral": "USART",
+      "prototype": "void USART_SendData(USART_TypeDef* USARTx, uint16_t Data);",
+      "purpose": "把数据写入串口发送数据寄存器",
+      "parameters": [
+        {
+          "name": "USARTx",
+          "type": "USART_TypeDef*",
+          "meaning": "USART1、USART2 或 USART3"
+        },
+        {
+          "name": "Data",
+          "type": "uint16_t",
+          "meaning": "要发送的数据；范围随外设字长/数据宽度变化"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.4 发送数据；3.5 格式化打印字符串",
+      "example": {
+        "code": "/* 示意片段；量产程序请给两个等待加入超时。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET) {}\nUSART_SendData(USART1, 0x55);\n/* 只有需要确认最后一帧结束时才额外等 TC。 */\nwhile (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {}",
+        "context": "节选自本网站原创整理的 3.4；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s4",
+        "kp.course3.s5"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_SendData / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    },
+    {
+      "id": "fn.usart.usart-structinit",
+      "name": "USART_StructInit",
+      "peripheral": "USART",
+      "prototype": "void USART_StructInit(USART_InitTypeDef* USART_InitStruct);",
+      "purpose": "填写串口配置结构默认值",
+      "parameters": [
+        {
+          "name": "USART_InitStruct",
+          "type": "USART_InitTypeDef*",
+          "meaning": "指向 USART_InitTypeDef；由本函数填写库默认值，字段目录见 structures。",
+          "structureType": "USART_InitTypeDef"
+        }
+      ],
+      "returnValue": {
+        "type": "void",
+        "meaning": "无返回值"
+      },
+      "flowPosition": "3.2 UART 模块的使用方法",
+      "example": {
+        "code": "USART_InitTypeDef u;\nUSART_StructInit(&u);\nu.USART_BaudRate = 115200;\nu.USART_WordLength = USART_WordLength_8b;\nu.USART_StopBits = USART_StopBits_1;\nu.USART_Parity = USART_Parity_No;\nu.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;\nu.USART_HardwareFlowControl = USART_HardwareFlowControl_None;\nUSART_Init(USART1, &u);\nUSART_Cmd(USART1, ENABLE);",
+        "context": "节选自本网站原创整理的 3.2；完整前提见课程。未编译、未实机验证。",
+        "verificationStatus": "pending"
+      },
+      "prerequisitesAndCommonErrors": [
+        "USART1 在 APB2，USART2/3 在 APB1；先正确配置时钟、TX/RX 引脚和帧参数。"
+      ],
+      "knowledgePointIds": [
+        "kp.course3.s2"
+      ],
+      "sources": [
+        {
+          "sourceId": "src.course.header.stm32f10x_usart.h",
+          "url": "urn:stm32:course:header:stm32f10x_usart.h",
+          "section": "stm32f10x_usart.h / USART_StructInit / V3.6.2",
+          "revision": "34e41470ab37857162f5db9bb1f1b78be8cedfa3cd0d0e29f133eadbbb40ad93",
+          "status": "source_checked",
+          "chip": "STM32F103C8T6"
+        }
+      ],
+      "verification": {
+        "officialPackage": "pending",
+        "declaration": "source_checked",
+        "hardwareDetails": "pending",
+        "exampleCompilation": "pending"
+      },
+      "applicability": {
+        "scope": "USART1、USART2、USART3；不引入 UART4/UART5"
+      }
+    }
+  ],
+  "structures": {
+    "RCC_ClocksTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "SYSCLK_Frequency",
+          "meaning": "推算的系统时钟，单位 Hz"
+        },
+        {
+          "type": "uint32_t",
+          "name": "HCLK_Frequency",
+          "meaning": "推算的 AHB 时钟，单位 Hz"
+        },
+        {
+          "type": "uint32_t",
+          "name": "PCLK1_Frequency",
+          "meaning": "推算的 APB1 时钟，单位 Hz"
+        },
+        {
+          "type": "uint32_t",
+          "name": "PCLK2_Frequency",
+          "meaning": "推算的 APB2 时钟，单位 Hz"
+        },
+        {
+          "type": "uint32_t",
+          "name": "ADCCLK_Frequency",
+          "meaning": "推算的 ADC 时钟，单位 Hz"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "GPIO_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint16_t",
+          "name": "GPIO_Pin",
+          "meaning": "引脚位掩码"
+        },
+        {
+          "type": "GPIOSpeed_TypeDef",
+          "name": "GPIO_Speed",
+          "meaning": "输出驱动速度等级；不是运行时翻转频率"
+        },
+        {
+          "type": "GPIOMode_TypeDef",
+          "name": "GPIO_Mode",
+          "meaning": "输入、输出、复用或模拟模式"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "EXTI_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "EXTI_Line",
+          "meaning": "EXTI 线路掩码"
+        },
+        {
+          "type": "EXTIMode_TypeDef",
+          "name": "EXTI_Mode",
+          "meaning": "中断或事件模式"
+        },
+        {
+          "type": "EXTITrigger_TypeDef",
+          "name": "EXTI_Trigger",
+          "meaning": "上升沿、下降沿或双边沿"
+        },
+        {
+          "type": "FunctionalState",
+          "name": "EXTI_LineCmd",
+          "meaning": "线路使能状态"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "NVIC_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint8_t",
+          "name": "NVIC_IRQChannel",
+          "meaning": "中断通道编号"
+        },
+        {
+          "type": "uint8_t",
+          "name": "NVIC_IRQChannelPreemptionPriority",
+          "meaning": "抢占优先级"
+        },
+        {
+          "type": "uint8_t",
+          "name": "NVIC_IRQChannelSubPriority",
+          "meaning": "子优先级"
+        },
+        {
+          "type": "FunctionalState",
+          "name": "NVIC_IRQChannelCmd",
+          "meaning": "中断通道使能状态"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "TIM_TimeBaseInitTypeDef": {
+      "members": [
+        {
+          "type": "uint16_t",
+          "name": "TIM_Prescaler",
+          "meaning": "PSC 预分频寄存器值，计数除数为值加一"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_CounterMode",
+          "meaning": "计数方向或中心对齐模式"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_Period",
+          "meaning": "ARR 自动重装载值"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_ClockDivision",
+          "meaning": "CKD 对采样时钟的分频，不能代替 PSC"
+        },
+        {
+          "type": "uint8_t",
+          "name": "TIM_RepetitionCounter",
+          "meaning": "重复计数值；本芯片仅 TIM1 使用"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "TIM_OCInitTypeDef": {
+      "members": [
+        {
+          "type": "uint16_t",
+          "name": "TIM_OCMode",
+          "meaning": "输出比较模式"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OutputState",
+          "meaning": "主通道输出使能"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OutputNState",
+          "meaning": "互补输出使能，仅高级定时器适用"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_Pulse",
+          "meaning": "初始 CCR 比较值"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OCPolarity",
+          "meaning": "主输出极性"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OCNPolarity",
+          "meaning": "互补输出极性，仅高级定时器适用"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OCIdleState",
+          "meaning": "主输出空闲电平，仅高级定时器适用"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_OCNIdleState",
+          "meaning": "互补输出空闲电平，仅高级定时器适用"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "TIM_ICInitTypeDef": {
+      "members": [
+        {
+          "type": "uint16_t",
+          "name": "TIM_Channel",
+          "meaning": "捕获通道"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_ICPolarity",
+          "meaning": "输入捕获边沿"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_ICSelection",
+          "meaning": "直接/间接输入映射"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_ICPrescaler",
+          "meaning": "捕获事件预分频"
+        },
+        {
+          "type": "uint16_t",
+          "name": "TIM_ICFilter",
+          "meaning": "数字滤波参数"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "ADC_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "ADC_Mode",
+          "meaning": "独立或双 ADC 模式"
+        },
+        {
+          "type": "FunctionalState",
+          "name": "ADC_ScanConvMode",
+          "meaning": "序列扫描开关"
+        },
+        {
+          "type": "FunctionalState",
+          "name": "ADC_ContinuousConvMode",
+          "meaning": "连续转换开关"
+        },
+        {
+          "type": "uint32_t",
+          "name": "ADC_ExternalTrigConv",
+          "meaning": "规则组触发源选择"
+        },
+        {
+          "type": "uint32_t",
+          "name": "ADC_DataAlign",
+          "meaning": "左/右对齐"
+        },
+        {
+          "type": "uint8_t",
+          "name": "ADC_NbrOfChannel",
+          "meaning": "规则组序列长度"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "DMA_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "DMA_PeripheralBaseAddr",
+          "meaning": "CPAR 外设地址或 MEM2MEM 中的相应地址"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_MemoryBaseAddr",
+          "meaning": "CMAR 存储器地址"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_DIR",
+          "meaning": "传输方向，结合 MEM2MEM 解释"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_BufferSize",
+          "meaning": "传输单元数量；非恒为字节数"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_PeripheralInc",
+          "meaning": "外设地址自增"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_MemoryInc",
+          "meaning": "存储器地址自增"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_PeripheralDataSize",
+          "meaning": "外设侧传输单元宽度"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_MemoryDataSize",
+          "meaning": "存储器侧传输单元宽度"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_Mode",
+          "meaning": "普通/循环模式"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_Priority",
+          "meaning": "通道仲裁优先级"
+        },
+        {
+          "type": "uint32_t",
+          "name": "DMA_M2M",
+          "meaning": "存储器到存储器模式开关"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "USART_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "USART_BaudRate",
+          "meaning": "目标波特率"
+        },
+        {
+          "type": "uint16_t",
+          "name": "USART_WordLength",
+          "meaning": "字长；应结合校验位确定数据位数"
+        },
+        {
+          "type": "uint16_t",
+          "name": "USART_StopBits",
+          "meaning": "停止位"
+        },
+        {
+          "type": "uint16_t",
+          "name": "USART_Parity",
+          "meaning": "校验方式"
+        },
+        {
+          "type": "uint16_t",
+          "name": "USART_Mode",
+          "meaning": "收发方向"
+        },
+        {
+          "type": "uint16_t",
+          "name": "USART_HardwareFlowControl",
+          "meaning": "硬件流控"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "I2C_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint32_t",
+          "name": "I2C_ClockSpeed",
+          "meaning": "目标 SCL 频率"
+        },
+        {
+          "type": "uint16_t",
+          "name": "I2C_Mode",
+          "meaning": "I²C/SMBus 模式"
+        },
+        {
+          "type": "uint16_t",
+          "name": "I2C_DutyCycle",
+          "meaning": "快速模式占空比设置"
+        },
+        {
+          "type": "uint16_t",
+          "name": "I2C_OwnAddress1",
+          "meaning": "本机地址编码，不是目标从机地址"
+        },
+        {
+          "type": "uint16_t",
+          "name": "I2C_Ack",
+          "meaning": "ACK 初始配置"
+        },
+        {
+          "type": "uint16_t",
+          "name": "I2C_AcknowledgedAddress",
+          "meaning": "7 位/10 位本机地址模式"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    },
+    "SPI_InitTypeDef": {
+      "members": [
+        {
+          "type": "uint16_t",
+          "name": "SPI_Direction",
+          "meaning": "传输方向/双工模式"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_Mode",
+          "meaning": "主机/从机"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_DataSize",
+          "meaning": "8 位/16 位数据宽度"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_CPOL",
+          "meaning": "时钟空闲电平"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_CPHA",
+          "meaning": "采样相位"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_NSS",
+          "meaning": "软件/硬件 NSS 管理"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_BaudRatePrescaler",
+          "meaning": "SPI 时钟分频"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_FirstBit",
+          "meaning": "MSB/LSB 先发"
+        },
+        {
+          "type": "uint16_t",
+          "name": "SPI_CRCPolynomial",
+          "meaning": "CRC 多项式参数"
+        }
+      ],
+      "verificationStatus": "source_checked",
+      "officialPackageStatus": "pending"
+    }
+  }
+}

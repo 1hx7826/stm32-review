@@ -35,7 +35,7 @@ describe('B：正式提交自动复习与自评调整',()=>{
 describe('C：历史归档与严格合法性校验',()=>{
  const retired='q.retired.gpio.original';
  const backup=()=>recordAttempt(study(),{...answer(false),questionId:retired});
- it('Phase 2 格式 v1 的有效备份仍可读取',()=>{const d=recordAttempt(study(),answer(true));expect(parseImport(JSON.stringify(d),c)).toMatchObject({schemaVersion:1,contentVersion:'0.2.0'});});
+ it('Phase 2 格式 v1 的有效备份仍可读取',()=>{const d=recordAttempt({...study(),contentVersion:'0.2.0'},answer(true));expect(parseImport(JSON.stringify(d),c)).toMatchObject({schemaVersion:1,contentVersion:'0.2.0'});});
  it('结构合法的未知/退役记录及错题状态保留为未评分归档',()=>{const d=parseImport(JSON.stringify(backup()),c);expect(d.attempts[0].questionId).toBe(retired);expect(d.attempts[0].grading).toEqual({kind:'ungraded',isCorrect:null});expect(d.wrongQuestionStates).toHaveLength(1);expect(archiveDetails(d,c).attemptCount).toBe(1);expect(stats(d,c.questions).total).toBe(0);expect(dueQuestions(d,c.questions)).toEqual([]);});
  it('归档复习事件、题目熟悉度及稳定 ID 不丢失',()=>{const d=backup();d.reviewEvents=[createReview(d,retired,'good',d.attempts[0].attemptId,'2026-10-14T00:01:00Z')];d.questionStates=[{questionId:retired,familiarity:'familiar',updatedAt:'2026-10-14T00:01:00Z',origin:'user',bookmarked:true}];const n=parseImport(JSON.stringify(d),c);expect(n.reviewEvents[0].reviewEventId).toBe(d.reviewEvents[0].reviewEventId);expect(n.questionStates).toEqual(d.questionStates);expect(archiveDetails(n,c).reviewCount).toBe(1);});
  it('只有状态没有作答的合法历史条目也不静默删除',()=>{const d=study();d.wrongQuestionStates=backup().wrongQuestionStates;const n=parseImport(JSON.stringify(d),c);expect(n.wrongQuestionStates).toHaveLength(1);expect(archiveDetails(n,c).questionIds).toEqual([retired]);});

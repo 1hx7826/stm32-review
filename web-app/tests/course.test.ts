@@ -1,0 +1,20 @@
+import {describe,it,expect} from 'vitest';
+import raw from '../src/generated/content.json';
+import type {Content} from '../src/model';
+import {emptyStudy} from '../src/model';
+import {archiveDetails} from '../src/history';
+import {parseImport} from '../src/validation';
+import {isPublished,dueQuestions} from '../src/domain';
+const c=raw as unknown as Content,points=c.chapters.flatMap(ch=>ch.knowledgePoints);
+describe('课程替换与历史兼容',()=>{
+ it('10章54节使用数字顺序，9.10位于9.9之后',()=>{expect(c.chapters).toHaveLength(10);expect(points).toHaveLength(54);expect(points.map(p=>p.number)).toEqual([3,5,7,8,8,3,2,2,10,6].flatMap((n,i)=>Array.from({length:n},(_,j)=>`${i+1}.${j+1}`)));});
+ it('每节都有独立讲解、操作原因与成功判据',()=>{expect(c.lessons).toHaveLength(54);for(const l of c.lessons){expect(l.sections.length).toBeGreaterThanOrEqual(3);expect(l.steps.length).toBeGreaterThanOrEqual(3);expect(l.steps.every(s=>s.action&&s.why&&s.expect)).toBe(true);}});
+ it('9.10保留资料冲突，原创内容不冒充老师代码',()=>{const l=c.lessons.find(x=>x.number==='9.10')!;expect(l.originalSupplement).toBe(true);expect(l.sourceIssue).toContain('重复');expect(l.title).toContain('原创');expect(l.sources[0].section).toContain('RM0008');expect(l.example.status).toBe('pending');});
+ it('54题54卡全用新ID，无旧题进入当前池',()=>{expect(c.questions.filter(q=>q.type==='flashcard')).toHaveLength(54);expect(c.questions.filter(q=>q.type!=='flashcard')).toHaveLength(54);expect(c.historyQuestions).toEqual([]);expect(c.questions.every(q=>/^q\.course/.test(q.id)&&isPublished(q))).toBe(true);});
+ it('课程核对不升级为官方或实机核验',()=>{expect(c.questions.every(q=>q.verification.answer==='source_checked'&&q.verification.code==='not_applicable')).toBe(true);expect(c.functions.every(f=>f.verification.declaration==='source_checked'&&f.verification.officialPackage==='pending'&&f.verification.exampleCompilation==='pending')).toBe(true);});
+ it('来源标识和当前题目不一致时禁止发布',()=>{const q=structuredClone(c.questions[0]);q.sources[0].sourceId='src.course.99.99';expect(isPublished(q)).toBe(false);q.sources[0].sourceId='src.course.1.1';q.sources[0].url='https://example.com';expect(isPublished(q)).toBe(false);});
+ it('旧v1章节知识状态合法导入且不改ID',()=>{const d=emptyStudy('0.2.0');d.chapterStates=[{chapterId:'ch.gpio',status:'learned',updatedAt:'2026-10-14T00:00:00Z',origin:'user'}];d.knowledgeStates=[{knowledgePointId:'kp.gpio.config',familiarity:'familiar',updatedAt:'2026-10-14T00:00:00Z',origin:'user'}];const n=parseImport(JSON.stringify(d),c);expect(n.chapterStates).toEqual(d.chapterStates);expect(n.knowledgeStates).toEqual(d.knowledgeStates);expect(n.schemaVersion).toBe(1);});
+ it('旧题记录保留未评分且不进入新每日池',()=>{const d=emptyStudy('0.2.0');d.attempts=[{attemptId:'att.10000000-0000-4000-8000-000000000001',questionId:'q.rcc.old-check-01',questionRevision:1,answeredAt:'2026-10-14T00:00:00Z',mode:'practice',response:{kind:'options',optionIds:['old-option']},grading:{kind:'objective',isCorrect:true},durationMs:100}];const n=parseImport(JSON.stringify(d),c);expect(n.attempts).toHaveLength(1);expect(n.attempts[0].grading.kind).toBe('ungraded');expect(archiveDetails(n,c).attemptCount).toBe(1);expect(dueQuestions(n,c.questions)).toEqual([]);});
+ it('新版课程状态和选项ID可以v1导入往返',()=>{const d=emptyStudy(c.version);d.chapterStates=[{chapterId:c.chapters[0].id,status:'in_progress',updatedAt:'2026-10-17T00:00:00Z',origin:'user'}];expect(parseImport(JSON.stringify(d),c).chapterStates).toEqual(d.chapterStates);});
+ it('所有步骤和内嵌函数都引用当前函数目录',()=>{const fn=new Set(c.functions.map(f=>f.id));expect(fn.size).toBe(93);for(const l of c.lessons){for(const id of [...l.functionIds,...l.steps.flatMap(s=>s.functionIds)])expect(fn.has(id)).toBe(true);}});
+});

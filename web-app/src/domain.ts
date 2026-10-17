@@ -1,6 +1,14 @@
 import type {Attempt,Question,Rating,Response,ReviewEvent,StudyData} from './model';
 import {now,uid} from './model';
-export function isPublished(q:Question){return q.publicationStatus==='published'&&q.verification.answer==='official_checked'&&q.verification.reasoning==='official_checked'&&q.verification.chipApplicability==='official_checked'&&['not_applicable','compiled','on_device'].includes(q.verification.code);}
+export function isPublished(q:Question){
+ const verified=['answer','reasoning','chipApplicability'] as const;
+ const official=verified.every(k=>q.verification[k]==='official_checked');
+ const match=/^q\.course(\d+)\.s(\d+)\./.exec(q.id),number=match?`${match[1]}.${match[2]}`:'';
+ const course=!!match&&verified.every(k=>q.verification[k]==='source_checked')&&q.sources.some(s=>s.status==='source_checked'&&(
+  s.sourceId===`src.course.${number}`&&s.url===`urn:stm32:course:${number}:pdf`||
+  number==='9.10'&&s.sourceId==='src.course.original.9.10'&&s.url.startsWith('https://www.st.com/resource/en/reference_manual/rm0008-')));
+ return q.publicationStatus==='published'&&(official||course)&&!q.sources.some(s=>s.status==='conflict')&&['not_applicable','compiled','on_device'].includes(q.verification.code);
+}
 export function grade(q:Question,r:Response):Attempt['grading'] {
  if(q.type==='flashcard'){if(r.kind!=='self_rating')throw new Error('记忆卡需要自评');return {kind:'self_rated',isCorrect:null};}
  if(q.type==='true_false'){if(r.kind!=='boolean')throw new Error('判断题答案格式错误');return {kind:'objective',isCorrect:r.value===q.answer.value};}

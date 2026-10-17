@@ -1,0 +1,904 @@
+{
+  "version": "1.0.0-course",
+  "chapters": [
+    {
+      "id": "ch.course1",
+      "title": "准备开发环境",
+      "description": "先认识工具、器件和管脚。",
+      "order": 1,
+      "knowledgePoints": [
+        {
+          "id": "kp.course1.s1",
+          "number": "1.1",
+          "title": "安装开发环境",
+          "learningGoal": "先把编辑、编译、下载和运行这四件事分清楚，再建立能反复使用的开发环境。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course1.s1.check-01",
+            "q.course1.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course1.s2",
+          "number": "1.2",
+          "title": "STM32 的基本信息",
+          "learningGoal": "从芯片型号读出限制，知道遇到问题应该翻哪一份手册。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course1.s2.check-01",
+            "q.course1.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course1.s3",
+          "number": "1.3",
+          "title": "STM32 的引脚分布",
+          "learningGoal": "先认封装方向，再认电源、启动和复用功能，最后才选择普通 IO。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course1.s3.check-01",
+            "q.course1.s3.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course2",
+      "title": "GPIO 输入与输出",
+      "description": "从驱动电路到LED与按钮。",
+      "order": 2,
+      "knowledgePoints": [
+        {
+          "id": "kp.course2.s1",
+          "number": "2.1",
+          "title": "四种输出模式",
+          "learningGoal": "把输出驱动方式和信号来源拆开，四种输出模式就容易理解了。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-resetbits",
+            "fn.gpio.gpio-setbits",
+            "fn.gpio.gpio-structinit",
+            "fn.gpio.gpio-writebit",
+            "fn.rcc.rcc-apb2periphclockcmd"
+          ],
+          "exerciseIds": [
+            "q.course2.s1.check-01",
+            "q.course2.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course2.s2",
+          "number": "2.2",
+          "title": "IO 的最大输出速度",
+          "learningGoal": "2 MHz、10 MHz、50 MHz 描述驱动配置，不是让 GPIO 自动按这个频率翻转。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-structinit"
+          ],
+          "exerciseIds": [
+            "q.course2.s2.check-01",
+            "q.course2.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course2.s3",
+          "number": "2.3",
+          "title": "LED 闪灯实验",
+          "learningGoal": "沿着“电流怎么流 → 时钟怎么开 → 引脚怎么配 → 电平怎么写”的顺序点亮课程中的 PC13 LED。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-structinit",
+            "fn.gpio.gpio-writebit",
+            "fn.rcc.rcc-apb2periphclockcmd"
+          ],
+          "exerciseIds": [
+            "q.course2.s3.check-01",
+            "q.course2.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course2.s4",
+          "number": "2.4",
+          "title": "四种输入模式",
+          "learningGoal": "先理解输入端看见什么，再决定上拉、下拉、浮空还是模拟输入。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-readinputdatabit",
+            "fn.gpio.gpio-structinit",
+            "fn.rcc.rcc-apb2periphclockcmd"
+          ],
+          "exerciseIds": [
+            "q.course2.s4.check-01",
+            "q.course2.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course2.s5",
+          "number": "2.5",
+          "title": "按钮实验",
+          "learningGoal": "用 PA1 读按钮、PA0 控制 LED，再认识“电平”和“一次按下事件”的区别。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-readinputdatabit",
+            "fn.gpio.gpio-writebit"
+          ],
+          "exerciseIds": [
+            "q.course2.s5.check-01",
+            "q.course2.s5.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course3",
+      "title": "USART 串口通信",
+      "description": "从通信帧到可复用串口驱动。",
+      "order": 3,
+      "knowledgePoints": [
+        {
+          "id": "kp.course3.s1",
+          "number": "3.1",
+          "title": "通信协议",
+          "learningGoal": "先读懂一帧 UART 波形，再去配置串口模块。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course3.s1.check-01",
+            "q.course3.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s2",
+          "number": "3.2",
+          "title": "UART 模块的使用方法",
+          "learningGoal": "从发送/接收数据寄存器到移位寄存器，理解 USART_Init 实际在配置什么。",
+          "functionIds": [
+            "fn.rcc.rcc-apb1periphclockcmd",
+            "fn.rcc.rcc-apb2periphclockcmd",
+            "fn.usart.usart-cmd",
+            "fn.usart.usart-init",
+            "fn.usart.usart-structinit"
+          ],
+          "exerciseIds": [
+            "q.course3.s2.check-01",
+            "q.course3.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s3",
+          "number": "3.3",
+          "title": "为串口初始化 IO 引脚",
+          "learningGoal": "把 USART1 内部信号接到正确的管脚，理解默认引脚和重映射。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-pinremapconfig",
+            "fn.gpio.gpio-structinit",
+            "fn.rcc.rcc-apb2periphclockcmd"
+          ],
+          "exerciseIds": [
+            "q.course3.s3.check-01",
+            "q.course3.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s4",
+          "number": "3.4",
+          "title": "发送数据",
+          "learningGoal": "用 TXE 和 TC 区分“可以继续写”与“线上已经发完”。",
+          "functionIds": [
+            "fn.usart.usart-getflagstatus",
+            "fn.usart.usart-senddata"
+          ],
+          "exerciseIds": [
+            "q.course3.s4.check-01",
+            "q.course3.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s5",
+          "number": "3.5",
+          "title": "格式化打印字符串",
+          "learningGoal": "printf 负责把值变成字符，串口发送负责把字符送出去。",
+          "functionIds": [
+            "fn.usart.usart-senddata"
+          ],
+          "exerciseIds": [
+            "q.course3.s5.check-01",
+            "q.course3.s5.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s6",
+          "number": "3.6",
+          "title": "接收数据",
+          "learningGoal": "从 RXNE 读出字节，再识别字符和错误标志。",
+          "functionIds": [
+            "fn.usart.usart-getflagstatus",
+            "fn.usart.usart-receivedata"
+          ],
+          "exerciseIds": [
+            "q.course3.s6.check-01",
+            "q.course3.s6.card-01"
+          ]
+        },
+        {
+          "id": "kp.course3.s7",
+          "number": "3.7",
+          "title": "封装常用功能",
+          "learningGoal": "把初始化、字节、缓冲区和文本接口分层，主程序才能表达意图。",
+          "functionIds": [
+            "fn.usart.usart-cmd",
+            "fn.usart.usart-init"
+          ],
+          "exerciseIds": [
+            "q.course3.s7.check-01",
+            "q.course3.s7.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course4",
+      "title": "I²C 与 OLED",
+      "description": "先懂总线，再做硬件与软件实现。",
+      "order": 4,
+      "knowledgePoints": [
+        {
+          "id": "kp.course4.s1",
+          "number": "4.1",
+          "title": "基本电路结构",
+          "learningGoal": "I²C 的关键先在电路：两根线、上拉电阻和只能主动拉低的开漏输出。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course4.s1.check-01",
+            "q.course4.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s2",
+          "number": "4.2",
+          "title": "通信协议",
+          "learningGoal": "把一次事务读成 START、地址、数据、应答、STOP，而不是一串孤立函数。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course4.s2.check-01",
+            "q.course4.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s3",
+          "number": "4.3",
+          "title": "I2C 模块的使用方法",
+          "learningGoal": "先把 I2C1 接到 PB8/PB9，再配置速度和外设状态机。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-pinremapconfig",
+            "fn.i2c.i2c-cmd",
+            "fn.i2c.i2c-init",
+            "fn.i2c.i2c-structinit",
+            "fn.rcc.rcc-apb1periphclockcmd",
+            "fn.rcc.rcc-apb2periphclockcmd"
+          ],
+          "exerciseIds": [
+            "q.course4.s3.check-01",
+            "q.course4.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s4",
+          "number": "4.4",
+          "title": "写数据",
+          "learningGoal": "把硬件标志位当作状态机的路标，逐段确认再往下走。",
+          "functionIds": [
+            "fn.i2c.i2c-generatestart",
+            "fn.i2c.i2c-generatestop",
+            "fn.i2c.i2c-getflagstatus",
+            "fn.i2c.i2c-readregister",
+            "fn.i2c.i2c-send7bitaddress",
+            "fn.i2c.i2c-senddata"
+          ],
+          "exerciseIds": [
+            "q.course4.s4.check-01",
+            "q.course4.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s5",
+          "number": "4.5",
+          "title": "读数据",
+          "learningGoal": "先懂最后一个字节如何结束，再区分 1、2 和多个字节的硬件时序。",
+          "functionIds": [
+            "fn.i2c.i2c-acknowledgeconfig",
+            "fn.i2c.i2c-generatestop",
+            "fn.i2c.i2c-nackpositionconfig",
+            "fn.i2c.i2c-readregister",
+            "fn.i2c.i2c-receivedata"
+          ],
+          "exerciseIds": [
+            "q.course4.s5.check-01",
+            "q.course4.s5.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s6",
+          "number": "4.6",
+          "title": "软 I2C",
+          "learningGoal": "用普通 GPIO 亲手产生每个时钟和数据边沿，理解协议与硬件控制器的区别。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-readinputdatabit",
+            "fn.gpio.gpio-writebit"
+          ],
+          "exerciseIds": [
+            "q.course4.s6.check-01",
+            "q.course4.s6.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s7",
+          "number": "4.7",
+          "title": "封装常用功能",
+          "learningGoal": "让硬件 I2C 和软件 I2C 提供可理解的接口，但保留它们各自的实现约束。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course4.s7.check-01",
+            "q.course4.s7.card-01"
+          ]
+        },
+        {
+          "id": "kp.course4.s8",
+          "number": "4.8",
+          "title": "OLED 显示器",
+          "learningGoal": "先理解显示存储和命令，再把总线字节组织成文字与图形。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course4.s8.check-01",
+            "q.course4.s8.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course5",
+      "title": "SPI 与外部存储",
+      "description": "掌握时序、按钮驱动与Flash读写。",
+      "order": 5,
+      "knowledgePoints": [
+        {
+          "id": "kp.course5.s1",
+          "number": "5.1",
+          "title": "电路结构和通信协议",
+          "learningGoal": "从四根线和时钟边沿理解 SPI，再决定模式参数。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course5.s1.check-01",
+            "q.course5.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s2",
+          "number": "5.2",
+          "title": "番外：按钮驱动程序编写",
+          "learningGoal": "沿用输入知识，把抖动电平整理为一次可用的按钮事件。",
+          "functionIds": [
+            "fn.gpio.gpio-readinputdatabit"
+          ],
+          "exerciseIds": [
+            "q.course5.s2.check-01",
+            "q.course5.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s3",
+          "number": "5.3",
+          "title": "番外：按钮代码的封装",
+          "learningGoal": "让按钮模块报告事件，让业务层决定 LED、串口或存储器做什么。",
+          "functionIds": [
+            "fn.gpio.gpio-init"
+          ],
+          "exerciseIds": [
+            "q.course5.s3.check-01",
+            "q.course5.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s4",
+          "number": "5.4",
+          "title": "IO 引脚初始化",
+          "learningGoal": "本课先只看接线：SPI1 重映射到 PB3/PB4/PB5，PA15 做软件片选。",
+          "functionIds": [
+            "fn.gpio.gpio-init",
+            "fn.gpio.gpio-pinremapconfig",
+            "fn.gpio.gpio-setbits"
+          ],
+          "exerciseIds": [
+            "q.course5.s4.check-01",
+            "q.course5.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s5",
+          "number": "5.5",
+          "title": "SPI 模块的初始化",
+          "learningGoal": "将 5.1 的时序约定逐项填入 SPI_InitTypeDef。",
+          "functionIds": [
+            "fn.rcc.rcc-apb2periphclockcmd",
+            "fn.spi.spi-cmd",
+            "fn.spi.spi-init",
+            "fn.spi.spi-structinit"
+          ],
+          "exerciseIds": [
+            "q.course5.s5.check-01",
+            "q.course5.s5.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s6",
+          "number": "5.6",
+          "title": "数据收发",
+          "learningGoal": "SPI 每发送一帧也接收一帧，读操作同样需要主机提供时钟。",
+          "functionIds": [
+            "fn.gpio.gpio-resetbits",
+            "fn.gpio.gpio-setbits",
+            "fn.spi.spi-i2s-getflagstatus",
+            "fn.spi.spi-i2s-receivedata",
+            "fn.spi.spi-i2s-senddata"
+          ],
+          "exerciseIds": [
+            "q.course5.s6.check-01",
+            "q.course5.s6.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s7",
+          "number": "5.7",
+          "title": "W25Q64 实验（上）",
+          "learningGoal": "先理解 NOR Flash 的擦除和编程约束，再组织 SPI 命令。",
+          "functionIds": [
+            "fn.spi.spi-i2s-receivedata",
+            "fn.spi.spi-i2s-senddata"
+          ],
+          "exerciseIds": [
+            "q.course5.s7.check-01",
+            "q.course5.s7.card-01"
+          ]
+        },
+        {
+          "id": "kp.course5.s8",
+          "number": "5.8",
+          "title": "W25Q64 实验（下）",
+          "learningGoal": "把按钮、LED 和外部 Flash 串起来，让状态跨复位保存。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course5.s8.check-01",
+            "q.course5.s8.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course6",
+      "title": "中断与优先级",
+      "description": "让硬件事件及时得到处理。",
+      "order": 6,
+      "knowledgePoints": [
+        {
+          "id": "kp.course6.s1",
+          "number": "6.1",
+          "title": "中断的概念",
+          "learningGoal": "外设提出请求，内核暂时转去处理，再回到原来的程序。",
+          "functionIds": [
+            "fn.nvic.nvic-init"
+          ],
+          "exerciseIds": [
+            "q.course6.s1.check-01",
+            "q.course6.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course6.s2",
+          "number": "6.2",
+          "title": "中断优先级",
+          "learningGoal": "把抢占优先级和子优先级分开，就能解释嵌套与排队。",
+          "functionIds": [
+            "fn.nvic.nvic-init",
+            "fn.nvic.nvic-prioritygroupconfig"
+          ],
+          "exerciseIds": [
+            "q.course6.s2.check-01",
+            "q.course6.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course6.s3",
+          "number": "6.3",
+          "title": "串口中断编程实验",
+          "learningGoal": "让串口命令改变闪灯速度：主循环负责闪灯，中断负责及时接收。",
+          "functionIds": [
+            "fn.nvic.nvic-init",
+            "fn.usart.usart-getitstatus",
+            "fn.usart.usart-itconfig",
+            "fn.usart.usart-receivedata"
+          ],
+          "exerciseIds": [
+            "q.course6.s3.check-01",
+            "q.course6.s3.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course7",
+      "title": "EXTI 外部中断",
+      "description": "把GPIO边沿接到中断链路。",
+      "order": 7,
+      "knowledgePoints": [
+        {
+          "id": "kp.course7.s1",
+          "number": "7.1",
+          "title": "EXTI 工作原理",
+          "learningGoal": "GPIO 的边沿可以经 EXTI 产生中断或事件，但线号与端口映射必须对应。",
+          "functionIds": [
+            "fn.exti.exti-clearitpendingbit",
+            "fn.exti.exti-getitstatus",
+            "fn.exti.exti-init",
+            "fn.exti.exti-structinit",
+            "fn.gpio.gpio-extilineconfig",
+            "fn.nvic.nvic-init"
+          ],
+          "exerciseIds": [
+            "q.course7.s1.check-01",
+            "q.course7.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course7.s2",
+          "number": "7.2",
+          "title": "按钮实验",
+          "learningGoal": "用 PA5/PA6 两个按钮练习同一个 EXTI9_5 处理函数。",
+          "functionIds": [
+            "fn.exti.exti-clearitpendingbit",
+            "fn.exti.exti-getitstatus",
+            "fn.exti.exti-init",
+            "fn.gpio.gpio-extilineconfig",
+            "fn.gpio.gpio-init",
+            "fn.nvic.nvic-init"
+          ],
+          "exerciseIds": [
+            "q.course7.s2.check-01",
+            "q.course7.s2.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course8",
+      "title": "时钟系统",
+      "description": "沿时钟树计算并配置频率。",
+      "order": 8,
+      "knowledgePoints": [
+        {
+          "id": "kp.course8.s1",
+          "number": "8.1",
+          "title": "时钟树",
+          "learningGoal": "从振荡源走到总线和外设，解释每一个频率是怎样来的。",
+          "functionIds": [
+            "fn.rcc.rcc-getclocksfreq"
+          ],
+          "exerciseIds": [
+            "q.course8.s1.check-01",
+            "q.course8.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course8.s2",
+          "number": "8.2",
+          "title": "时钟树编程",
+          "learningGoal": "提高频率以前先准备 Flash 和总线，再等时钟稳定、切换并确认。",
+          "functionIds": [
+            "fn.flash.flash-prefetchbuffercmd",
+            "fn.flash.flash-setlatency",
+            "fn.rcc.rcc-getflagstatus",
+            "fn.rcc.rcc-getsysclksource",
+            "fn.rcc.rcc-hclkconfig",
+            "fn.rcc.rcc-hseconfig",
+            "fn.rcc.rcc-pclk1config",
+            "fn.rcc.rcc-pclk2config",
+            "fn.rcc.rcc-pllcmd",
+            "fn.rcc.rcc-pllconfig",
+            "fn.rcc.rcc-sysclkconfig"
+          ],
+          "exerciseIds": [
+            "q.course8.s2.check-01",
+            "q.course8.s2.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course9",
+      "title": "定时器",
+      "description": "从计时到PWM、测量和编码器。",
+      "order": 9,
+      "knowledgePoints": [
+        {
+          "id": "kp.course9.s1",
+          "number": "9.1",
+          "title": "时基单元",
+          "learningGoal": "先算计数器多久加一，再算多少次形成一次更新。",
+          "functionIds": [
+            "fn.tim.tim-clearflag",
+            "fn.tim.tim-cmd",
+            "fn.tim.tim-timebaseinit",
+            "fn.tim.tim-timebasestructinit"
+          ],
+          "exerciseIds": [
+            "q.course9.s1.check-01",
+            "q.course9.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s2",
+          "number": "9.2",
+          "title": "自制延迟函数",
+          "learningGoal": "让 TIM3 每毫秒产生一个软件节拍，再用时间差判断等待。",
+          "functionIds": [
+            "fn.nvic.nvic-init",
+            "fn.tim.tim-clearitpendingbit",
+            "fn.tim.tim-getitstatus",
+            "fn.tim.tim-itconfig",
+            "fn.tim.tim-timebaseinit"
+          ],
+          "exerciseIds": [
+            "q.course9.s2.check-01",
+            "q.course9.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s3",
+          "number": "9.3",
+          "title": "输出比较",
+          "learningGoal": "比较 CNT 和 CCR，让硬件在准确时刻改变输出。",
+          "functionIds": [
+            "fn.tim.tim-cmd",
+            "fn.tim.tim-ctrlpwmoutputs",
+            "fn.tim.tim-oc1init",
+            "fn.tim.tim-ocstructinit",
+            "fn.tim.tim-setcompare1",
+            "fn.tim.tim-timebaseinit"
+          ],
+          "exerciseIds": [
+            "q.course9.s3.check-01",
+            "q.course9.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s4",
+          "number": "9.4",
+          "title": "呼吸灯实验",
+          "learningGoal": "保持 PWM 周期稳定，缓慢改变 CCR，让亮度随时间变化。",
+          "functionIds": [
+            "fn.tim.tim-ctrlpwmoutputs",
+            "fn.tim.tim-oc1init",
+            "fn.tim.tim-oc1preloadconfig",
+            "fn.tim.tim-setcompare1"
+          ],
+          "exerciseIds": [
+            "q.course9.s4.check-01",
+            "q.course9.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s5",
+          "number": "9.5",
+          "title": "输入捕获",
+          "learningGoal": "把外部边沿到来的时刻锁进 CCR，测量就不再依赖软件反应速度。",
+          "functionIds": [
+            "fn.tim.tim-getcapture1",
+            "fn.tim.tim-getcapture2",
+            "fn.tim.tim-icinit",
+            "fn.tim.tim-icstructinit",
+            "fn.tim.tim-timebaseinit"
+          ],
+          "exerciseIds": [
+            "q.course9.s5.check-01",
+            "q.course9.s5.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s6",
+          "number": "9.6",
+          "title": "超声波测距实验",
+          "learningGoal": "用触发脉冲启动测量，用输入捕获测 Echo 的高电平宽度。",
+          "functionIds": [
+            "fn.tim.tim-clearflag",
+            "fn.tim.tim-getcapture1",
+            "fn.tim.tim-getcapture2",
+            "fn.tim.tim-icinit",
+            "fn.tim.tim-setcounter"
+          ],
+          "exerciseIds": [
+            "q.course9.s6.check-01",
+            "q.course9.s6.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s7",
+          "number": "9.7",
+          "title": "从模式控制器",
+          "learningGoal": "理解触发输入怎样复位、门控或启动计数器，再理解定时器同步。",
+          "functionIds": [
+            "fn.tim.tim-selectinputtrigger",
+            "fn.tim.tim-selectoutputtrigger",
+            "fn.tim.tim-selectslavemode"
+          ],
+          "exerciseIds": [
+            "q.course9.s7.check-01",
+            "q.course9.s7.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s8",
+          "number": "9.8",
+          "title": "PWM 参数测量原理",
+          "learningGoal": "用上升沿复位计数，用不同通道锁存周期和高电平宽度。",
+          "functionIds": [
+            "fn.tim.tim-pwmiconfig",
+            "fn.tim.tim-selectinputtrigger",
+            "fn.tim.tim-selectslavemode"
+          ],
+          "exerciseIds": [
+            "q.course9.s8.check-01",
+            "q.course9.s8.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s9",
+          "number": "9.9",
+          "title": "PWM 参数测量实验",
+          "learningGoal": "TIM3 产生已知 PWM，TIM1 测量，再用预期值检查结果。",
+          "functionIds": [
+            "fn.tim.tim-getcapture1",
+            "fn.tim.tim-getcapture2",
+            "fn.tim.tim-icinit",
+            "fn.tim.tim-oc1init",
+            "fn.tim.tim-selectinputtrigger",
+            "fn.tim.tim-selectslavemode"
+          ],
+          "exerciseIds": [
+            "q.course9.s9.check-01",
+            "q.course9.s9.card-01"
+          ]
+        },
+        {
+          "id": "kp.course9.s10",
+          "number": "9.10",
+          "title": "编码器原理与步骤（原创补充）",
+          "learningGoal": "老师资料正文重复，本节按你的选择加入原创讲解，不冒充缺失讲义或源码。",
+          "functionIds": [
+            "fn.tim.tim-cmd",
+            "fn.tim.tim-encoderinterfaceconfig",
+            "fn.tim.tim-getcounter",
+            "fn.tim.tim-setcounter",
+            "fn.tim.tim-timebaseinit",
+            "fn.tim.tim-timebasestructinit"
+          ],
+          "exerciseIds": [
+            "q.course9.s10.check-01",
+            "q.course9.s10.card-01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch.course10",
+      "title": "ADC 模数转换",
+      "description": "从逐次逼近到触发与扫描。",
+      "order": 10,
+      "knowledgePoints": [
+        {
+          "id": "kp.course10.s1",
+          "number": "10.1",
+          "title": "逐次逼近型 ADC",
+          "learningGoal": "模拟电压先被采样保持，再逐位比较形成数字结果。",
+          "functionIds": [],
+          "exerciseIds": [
+            "q.course10.s1.check-01",
+            "q.course10.s1.card-01"
+          ]
+        },
+        {
+          "id": "kp.course10.s2",
+          "number": "10.2",
+          "title": "ADC 模块的结构框图",
+          "learningGoal": "先沿着通道选择走到规则组和注入组，再讨论如何触发和读取。",
+          "functionIds": [
+            "fn.adc.adc-getconversionvalue",
+            "fn.adc.adc-getinjectedconversionvalue",
+            "fn.adc.adc-injectedchannelconfig",
+            "fn.adc.adc-regularchannelconfig"
+          ],
+          "exerciseIds": [
+            "q.course10.s2.check-01",
+            "q.course10.s2.card-01"
+          ]
+        },
+        {
+          "id": "kp.course10.s3",
+          "number": "10.3",
+          "title": "采样时间和转换时间",
+          "learningGoal": "给采样电容足够充电时间，再计算整次转换需要多久。",
+          "functionIds": [
+            "fn.adc.adc-injectedchannelconfig",
+            "fn.adc.adc-regularchannelconfig",
+            "fn.rcc.rcc-adcclkconfig"
+          ],
+          "exerciseIds": [
+            "q.course10.s3.check-01",
+            "q.course10.s3.card-01"
+          ]
+        },
+        {
+          "id": "kp.course10.s4",
+          "number": "10.4",
+          "title": "常规单通道转换",
+          "learningGoal": "按 PA0 模拟输入、ADC 时钟、规则序列、软件触发、EOC 读取串起第一次采样。",
+          "functionIds": [
+            "fn.adc.adc-cmd",
+            "fn.adc.adc-getcalibrationstatus",
+            "fn.adc.adc-getconversionvalue",
+            "fn.adc.adc-getflagstatus",
+            "fn.adc.adc-getresetcalibrationstatus",
+            "fn.adc.adc-init",
+            "fn.adc.adc-regularchannelconfig",
+            "fn.adc.adc-resetcalibration",
+            "fn.adc.adc-softwarestartconvcmd",
+            "fn.adc.adc-startcalibration",
+            "fn.gpio.gpio-init",
+            "fn.rcc.rcc-adcclkconfig"
+          ],
+          "exerciseIds": [
+            "q.course10.s4.check-01",
+            "q.course10.s4.card-01"
+          ]
+        },
+        {
+          "id": "kp.course10.s5",
+          "number": "10.5",
+          "title": "定时器触发",
+          "learningGoal": "本课按老师工程使用“TIM1 更新 TRGO → ADC 注入组”，不要混成规则组触发。",
+          "functionIds": [
+            "fn.adc.adc-externaltriginjectedconvcmd",
+            "fn.adc.adc-externaltriginjectedconvconfig",
+            "fn.adc.adc-getinjectedconversionvalue",
+            "fn.adc.adc-injectedchannelconfig",
+            "fn.adc.adc-injectedsequencerlengthconfig",
+            "fn.tim.tim-cmd",
+            "fn.tim.tim-selectoutputtrigger",
+            "fn.tim.tim-timebaseinit"
+          ],
+          "exerciseIds": [
+            "q.course10.s5.check-01",
+            "q.course10.s5.card-01"
+          ]
+        },
+        {
+          "id": "kp.course10.s6",
+          "number": "10.6",
+          "title": "扫描模式",
+          "learningGoal": "延续注入组路线，把 PA0 和 PA1 按顺序转换并读取两个结果。",
+          "functionIds": [
+            "fn.adc.adc-getinjectedconversionvalue",
+            "fn.adc.adc-init",
+            "fn.adc.adc-injectedchannelconfig",
+            "fn.adc.adc-injectedsequencerlengthconfig",
+            "fn.gpio.gpio-init"
+          ],
+          "exerciseIds": [
+            "q.course10.s6.check-01",
+            "q.course10.s6.card-01"
+          ]
+        }
+      ]
+    }
+  ]
+}
